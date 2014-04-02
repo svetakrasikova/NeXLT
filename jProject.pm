@@ -1,5 +1,19 @@
-# class jProject
+#####################
+#
+# ©2011–2014 Autodesk Development Sàrl
+#
 # Description: This class provides interfaces to access the Project properties
+#
+# Created by Ravi Singh
+#
+# Changelog
+# v2.				Modified by Ventsislav Zhechev on 02 Apr 2014
+# Removed unnecessary indirection when declaring the class structure.
+# Removed some unused debug code.
+#
+# v1.				Modified by Ravi Singh on 16 Sep 2011
+#
+#####################
 
 package jProject;
 use strict;
@@ -11,102 +25,77 @@ use jStringList;
 use Class::Struct qw(struct);
 
 struct 'jProject' => { 
-        version    =>  '$',
-        res_prop_names    =>  '$',
-        string_prop_names    =>  '$',
-        prj_custom_props    =>  '$',
-        string_lists =>  '$'
+	version => '$',
+	res_prop_names => '$',
+	string_prop_names => '$',
+	prj_custom_props => '$',
+	string_lists => '$'
 };
 
 sub read_dump_file {
 	return unless @_;
-	my ( $self ) = shift;
-	my ($dumpFile) = shift;
+	my $self = shift;
+	my $dumpFile = shift;
 	my $fh;
 	my @StringListArray = ();
-
-	local $/;
-
-	open($fh, "$dumpFile");
-	my $json_text   = <$fh>;
-	my $json_text_decoded = decode_json( $json_text );
-
-	my @jsonRootArray = @$json_text_decoded;
-        	
-	my $hob = $self->new();  # Class::Struct made this!        
-	$hob->version(shift @jsonRootArray);
-	$hob->res_prop_names(shift @jsonRootArray);
-	$hob->string_prop_names(shift @jsonRootArray);
-	$hob->prj_custom_props(shift @jsonRootArray);
 	
-	foreach (@jsonRootArray) {
-		my @stringList = @$_;
-		next if ($#stringList == -1);
-		push @StringListArray, jStringList->new(@stringList);
+	local $/;
+	
+	open $fh, "<$dumpFile";
+	my $json_text_decoded = decode_json(<$fh>);
+	close $fh;
+	
+	my $hob = $self->new();  # Class::Struct made this!        
+	$hob->version(shift @$json_text_decoded);
+	$hob->res_prop_names(shift @$json_text_decoded);
+	$hob->string_prop_names(shift @$json_text_decoded);
+	$hob->prj_custom_props(shift @$json_text_decoded);
+	
+	foreach (@$json_text_decoded) {
+		next unless @$_;
+		push @StringListArray, jStringList->new(@$_);
 	}
-    
+	
 	$hob->string_lists(\@StringListArray);
 	return $hob;
 }
 
-## Return JSON file version
-## my $json_version = jProject->version();
-
-## Return array of Project custom properties
-## my $prj_custom_props = jProject->prj_custom_props();
-## 
-## This array contains each project custom property key-value pair as an individual
-## array as demonstrated below
-=head
-	[
-		[
-		20000,
-		"This is test."
-		],
-		[
-		"U:NewUserProp",
-		"This is new property."
-		]
-	],
-=cut
 
 1;
 
 __END__
 
 =head1 NAME
-
-
-
-=head1 SYNOPSIS
-    
-
-
-=head1 DESCRIPTION
-
-
-
-=head2 Methods
-
-
-
-=head1 EXAMPLES
-
-Run these code snippets to get a quick feel for the behavior of this
-module.  
-
-=head1 BUGS
-
-=head1 AUTHOR
-
-Ravi Singh        ravi.singh@autodesk.com
-
-=head1 VERSION
-
-Version 1.0  (Sep 16 2011)
-
-=head1 SEE ALSO
-
-perl(1)
-
-=cut
+ 
+ 
+ 
+ =head1 SYNOPSIS
+ 
+ 
+ 
+ =head1 DESCRIPTION
+ 
+ 
+ 
+ =head2 Methods
+ 
+ 
+ 
+ =head1 EXAMPLES
+ 
+ 
+ =head1 BUGS
+ 
+ =head1 AUTHOR
+ 
+ Ravi Singh        ravi.singh@autodesk.com
+ 
+ =head1 VERSION
+ 
+ Version 1.0  (Sep 16 2011)
+ 
+ =head1 SEE ALSO
+ 
+ perl(1)
+ 
+ =cut
