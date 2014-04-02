@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:jProject.pm">
+   </FileRef>
+   <FileRef
+      location = "group:jResource.pm">
+   </FileRef>
+   <FileRef
+      location = "group:jString.pm">
+   </FileRef>
+   <FileRef
+      location = "group:jStringList.pm">
+   </FileRef>
    <Group
       location = "group:nexlt"
       name = "nexlt">
