@@ -75,7 +75,9 @@ my $printer = sub {
 	my $language = shift;
 	return unless defined $languageQueues{$language};
 	
+	my $newFile = ! -e "$language-passolo-data";
 	open OUTPUT, ">>$language-passolo-data";
+	print OUTPUT "resource\trestype\tenu\t$language\tid\tproduct\trelease\tsrclc\n" if $newFile;
 	while (my $data = $languageQueues{$language}->dequeue()) {
 		print OUTPUT encode "utf-8", $data;
 	}
@@ -130,7 +132,7 @@ foreach my $strList (@{$project->string_lists}) {
 		$id =~ s/\s+//g;
 		$id = $lang . "_" . $id . "_" . md5_hex(uri_escape_utf8($str->src_text));
 
-		printForLanguage $lang, "Software\t$restype\t$src\t$trn\t$id\t$aproduct\t$Version\t".lc($src)."\t$lang\n";
+		printForLanguage $lang, "Software\t$restype\t$src\t$trn\t$id\t$aproduct\t$Version\t".lc($src)."\n";
 	}
 }
 
