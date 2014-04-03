@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # ©2013–2014 Autodesk Development Sàrl
 #
@@ -8,6 +9,8 @@
 # Changelog
 # v2.			Modified by Ventsislav Zhechev on 03 Apr 2014
 # Now we are going through all *-passolo-data files in a loop to simplify the addition of new langauges and avoid pinging Solr for non-existing files.
+# We are also properly handling the case where there are no *-passolo-data files.
+# Added a #! to make this script a proper executable.
 #
 # v1.			Modified by Mirko Plitt
 # Initial version
@@ -15,6 +18,9 @@
 
 for file in /mnt/tr/*-passolo-data
 do
-	echo "Executing http://localhost:8983/solr/update/csv?stream.file=$file&escape=\&stream.contentType=text/plain;charset=utf-8&separator=%09&commit=true"
-	curl "http://localhost:8983/solr/update/csv?stream.file=$file&escape=\&stream.contentType=text/plain;charset=utf-8&separator=%09&commit=true"
+	if [ $file != '/mnt/tr/*-passolo-data' ]
+	then
+		echo "Executing http://localhost:8983/solr/update/csv?stream.file=$file&escape=\&stream.contentType=text/plain;charset=utf-8&separator=%09&commit=true"
+		curl "http://localhost:8983/solr/update/csv?stream.file=$file&escape=\&stream.contentType=text/plain;charset=utf-8&separator=%09&commit=true"
+	fi
 done

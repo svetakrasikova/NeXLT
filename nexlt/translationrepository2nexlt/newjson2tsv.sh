@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # ©2013–2014 Autodesk Development Sàrl
 #
@@ -9,6 +10,7 @@
 # Changelog
 # v2.0.1	Modified by Ventsislav Zhechev on 03 Apr 2014
 # Modified to skip the test and ACD_old_test repositories.
+# Added a #! to make this script a proper executable.
 #
 # v2.			Modified by Ventsislav Zhechev on 02 Apr 2014
 # Modified to process all JSON files using json2solr.pl
@@ -26,7 +28,7 @@ do
 	if [ $product != test ] && [ $product != ACD_old_test ]
 	then
 		echo "Parsing $js - product: $product"
-		perl /mnt/tr/json2solr.pl $js $product
+		/mnt/tr/json2solr.pl $js $product
 	fi
 done
 

@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 ################################################################################
 #
 # ©2012–2014 Autodesk Development Sàrl
@@ -22,6 +23,8 @@
 #						➤ by default the data is appended to files named <language>-passolo-data
 #						➤ threads are created on demand to output the data for each language
 #						➤ the target language should no longer be provided as a command-line option
+#		2.0.1 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Apr-03-2014
+#				– Added a #! to make this script a proper executable.
 #
 ################################################################################
 
@@ -37,7 +40,6 @@ use URI::Escape;
 use Digest::MD5 qw(md5 md5_hex md5_base64);
 use jProject;
 
-#binmode(STDOUT, ":utf8");
 
 die( "Script takes two arguments: $0 <JSON_file> <product_code>\n" ) unless @ARGV == 2;
 my $jsonFile = $ARGV[0];
@@ -109,7 +111,6 @@ foreach my $strList (@{$project->string_lists}) {
 						$str->state_review ||
 						$str->state_readonly ||
 						(!$str->state_translated && !$str->state_pretranslated);
-#						!$str->state_pretranslated;
 
 		$restype = exists $ResTypeDll{$str->resource->restype} && $ResTypeDll{$str->resource->restype} =~ /^\d+$/ ? $ResTypeDll{$str->resource->restype} : $str->resource->restype;
 		next unless $restype;
