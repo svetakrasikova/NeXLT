@@ -17,10 +17,13 @@ touch /mnt/tr/lastrefresh.new
 
 for js in `find /mnt/tr -name "*json" -newer /mnt/tr/lastrefresh`
 do
-echo $js
-	product=`echo -n $js | sed 's/\/mnt\/tr\/\([^\/]*\)\/[^\/]*.*\/\([^\/]*\)\/[^\/]*.json/\1/'` 
-	echo "Parsing $js - product: $product"
-	perl /mnt/tr/json2solr.pl $js $product
+#	echo $js
+	product=`echo -n $js | sed 's/\/mnt\/tr\/\([^\/]*\)\/[^\/]*.*\/\([^\/]*\)\/[^\/]*.json/\1/'`
+	if [ $product != test ] && [ $product != ACD_old_test ]
+	then
+		echo "Parsing $js - product: $product"
+		perl /mnt/tr/json2solr.pl $js $product
+	fi
 done
 
 mv /mnt/tr/lastrefresh.new /mnt/tr/lastrefresh
