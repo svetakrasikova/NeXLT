@@ -18,7 +18,7 @@
 package jProject;
 use strict;
 
-use JSON;
+use JSON::XS;
 
 use jStringList;
 

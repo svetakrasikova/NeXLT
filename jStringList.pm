@@ -17,7 +17,7 @@
 package jStringList;
 use strict;
 
-use JSON;
+use JSON::XS;
 
 use jString;
 use jResource;
