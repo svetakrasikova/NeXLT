@@ -26,4 +26,4 @@ do
 	fi
 done
 
-/OptiBay/SW_JSONs/tools/parseJSON.pl -threads=4
+/OptiBay/SW_JSONs/tools/parseJSON.pl -threads=8

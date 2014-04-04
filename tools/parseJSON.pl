@@ -8,6 +8,8 @@
 # Changelog
 # v1.1		Modified by Ventsislav Zhechev on 04 Apr 2014
 # Switched to incremental parsing of the JSON files—processing one string list at a time.
+# Switched to batch printing to reduce the number of subroutine calls.
+# Added progress output.
 #
 # v1.			Modified by Ventsislav Zhechev on 03 Apr 2014
 # Initial version
@@ -31,17 +33,11 @@ use jString;
 our ($threads);
 $threads ||= 8;
 
-my %ProdID_ProductRel; # Key: ProductId, Value: Array(Product, Release)
-# Load reference file, RAPID_ProductId.tsv
-open( PRODIDFILE , "/OptiBay/SW_JSONs/tools/RAPID_ProductId.tsv" ) or die "Cannot open RAPID_ProductId.tsv file!\n";
-while(<PRODIDFILE>) {
-	my @line = split /\t/, $_;
-	$ProdID_ProductRel{$line[0]} = [$line[9],$line[8]] unless exists $ProdID_ProductRel{$line[0]};
-}
-close(PRODIDFILE);
-print STDERR "RAPID file loaded.\n";
+$| = 1;
+select STDERR;
+$| = 1;
 
-my %ResTypeDll = ( "4" => "Menu" , "5" => "Dialog" , "6" => "String Table" , "9" => "Accelerator Table" , "11" => "Message Table" , "16" => "Version" , "23" => "HTML", "240" => "DLGINIT" );
+#my %ResTypeDll = ( "4" => "Menu" , "5" => "Dialog" , "6" => "String Table" , "9" => "Accelerator Table" , "11" => "Message Table" , "16" => "Version" , "23" => "HTML", "240" => "DLGINIT" );
 
 my @workers :shared;
 my $fileQueue = new Thread::Queue;
@@ -53,11 +49,14 @@ my $printer = sub {
 		return unless defined $languageQueues{$language};
 	}
 	
+	my $counter = 0;
 	my $out = IO::Compress::Bzip2->new("/OptiBay/SW_JSONs/corpus/corpus.sw.$language.bz2");
 	while (my $data = $languageQueues{$language}->dequeue()) {
-		print $out encode "utf-8", $data;
+		print $out encode "utf-8", $data->[0];
+		$counter += $data->[1];
 	}
 	close $out;
+	print STDERR threads->tid().": Output $counter segments for language $language.\n";
 };
 
 sub printForLanguage {
@@ -74,7 +73,7 @@ sub printForLanguage {
 			}
 		}
 	}
-	$languageQueues{$language}->enqueue(shift);
+	$languageQueues{$language}->enqueue([@_]);
 }
 
 my $processJSON = sub {
@@ -113,7 +112,10 @@ my $processJSON = sub {
 					my $lang = $data->[4];
 					my $src;
 					my $trn;
-					my $restype;
+#					my $restype;
+					
+					my $toPrint = "";
+					my $counter = 0;
 					
 					foreach my $str (@{$data->[7]}) {
 						$str = jString->populate(@$str);
@@ -143,8 +145,11 @@ my $processJSON = sub {
 						$trn =~ s/\\$/\\ /g;
 						$trn =~ s/\\\t/\\ \t/g;
 						
-						printForLanguage $lang, "$src$trn$product◊÷\n";
+						$toPrint .= "$src$trn$product◊÷\n";
+						++$counter;
 					}
+#					print STDERR encode "utf-8", threads->tid().": Printing for language $lang:\n$toPrint\n";
+					printForLanguage $lang, $toPrint, $counter if $counter;
 					last;
 				}
 				
@@ -163,7 +168,10 @@ my $processJSON = sub {
 			# separating "," between elements, or the final "]"
 			while (!$done) {
 				# if we find "]", we are done
-				$done = 1 and last if $json->incr_text =~ m"^\s*\]";
+				if ($json->incr_text =~ m"^\s*\]") {
+					$done = 1;
+					last;
+				}
 				# if we find ",", we can continue with the next element
 				last if $json->incr_text =~ s/^\s*,//;
 				# if we find anything else, we have a parse error!
@@ -182,6 +190,9 @@ my $processJSON = sub {
 		}
 		close $fh;
 		print STDERR threads->tid().": $jsonFile processing finished.\n";
+		
+		my $filesLeft = $fileQueue->pending();
+		print STDERR threads->tid().": $filesLeft files left to process.\n" if $filesLeft && !($filesLeft % 10);
 	}
 	print STDERR threads->tid().": Finished work!\n";
 };
