@@ -25,6 +25,8 @@
 #						➤ the target language should no longer be provided as a command-line option
 #		2.0.1 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Apr-03-2014
 #				– Added a #! to make this script a proper executable.
+#		2.0.2 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Apr-04-2014
+#				– Fixed a small bug in the restype consistency check.
 #
 ################################################################################
 
@@ -112,7 +114,7 @@ foreach my $strList (@{$project->string_lists}) {
 						$str->state_readonly ||
 						(!$str->state_translated && !$str->state_pretranslated);
 
-		$restype = exists $ResTypeDll{$str->resource->restype} && $ResTypeDll{$str->resource->restype} =~ /^\d+$/ ? $ResTypeDll{$str->resource->restype} : $str->resource->restype;
+		$restype = exists $ResTypeDll{$str->resource->restype} && $str->resource->restype =~ /^\d+$/ ? $ResTypeDll{$str->resource->restype} : $str->resource->restype;
 		next unless $restype;
 		
 		$src = $str->src_text;
