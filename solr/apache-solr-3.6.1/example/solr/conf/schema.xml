@@ -1099,6 +1099,7 @@
    <copyField source="hin" dest="hin_str"/>
    <copyField source="ell" dest="ell_str"/>
    <copyField source="dnk" dest="dnk_str"/>
+   <copyField source="heb" dest="heb_str"/>
 
    <copyField source="cat" dest="text"/>
    <copyField source="name" dest="text"/>
