@@ -693,6 +693,16 @@
       </analyzer>
     </fieldType>
     
+    <!-- Hebrew -->
+    <fieldType name="text_he" class="solr.TextField" positionIncrementGap="100">
+      <analyzer> 
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <!--filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_hu.txt" format="snowball" enablePositionIncrements="true"/>
+        <filter class="solr.SnowballPorterFilterFactory" language="Hebrew"/-->
+      </analyzer>
+    </fieldType>
+    
     <!-- Hungarian -->
     <fieldType name="text_hu" class="solr.TextField" positionIncrementGap="100">
       <analyzer> 
@@ -980,6 +990,7 @@
    <field name="hin" type="text_hi" indexed="true" stored="true" multiValued="true"/>
    <field name="ell" type="text_el" indexed="true" stored="true" multiValued="true"/>
    <field name="dnk" type="text_da" indexed="true" stored="true" multiValued="true"/>
+   <field name="heb" type="text_he" indexed="true" stored="true" multiValued="true"/>
    <field name="resource" type="string" default="Documentation" indexed="true" stored="true" multiValued="true"/>
    <field name="restype" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="product" type="string" indexed="true" stored="true" multiValued="true"/>
