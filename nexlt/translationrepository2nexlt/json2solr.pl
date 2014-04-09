@@ -27,6 +27,8 @@
 #				– Added a #! to make this script a proper executable.
 #		2.0.2 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Apr-04-2014
 #				– Fixed a small bug in the restype consistency check.
+#		2.0.3 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Apr-09-2014
+#				– Added language mapping to fix a JSON language data bug.
 #
 ################################################################################
 
@@ -90,6 +92,9 @@ my $printer = sub {
 
 sub printForLanguage {
 	my $language = shift;
+	#Fix some bugs in the JSON files.
+	$language = "esp" if $language eq "esn";
+	$language = "eng" if $language eq "enu";
 	unless (exists $languageQueues{$language}) {
 		print STDERR "Starting thread for outputting $language.\n";
 		$languageQueues{$language} = new Thread::Queue;
