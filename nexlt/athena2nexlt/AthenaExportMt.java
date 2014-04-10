@@ -1,8 +1,11 @@
 //
-// ©2013 Autodesk Development Sàrl
+// ©2013–2014 Autodesk Development Sàrl
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.1.2		Modified on 10 Apr 2014 by Ventsislav Zhechev
+// Updated the language mappings.
+//
 // v1.1.1		Modified on 17 Mar 2013 by Ventsislav Zhechev
 // Removed some redundand not-null checks.
 //
@@ -49,16 +52,23 @@ public class AthenaExportMt {
 	private final static Map<String, String> LANG_MAPPING = new HashMap<String, String>();
 	
 	static {
+		LANG_MAPPING.put("ar_sa", "ARA");
 		LANG_MAPPING.put("cs_cz", "CSY");
 		LANG_MAPPING.put("da_dk", "DAN");
 		LANG_MAPPING.put("de", "DEU");
+		LANG_MAPPING.put("el_gr", "ELL");
+		LANG_MAPPING.put("en_au", "ENA");
 		LANG_MAPPING.put("en_gb", "ENG");
 		LANG_MAPPING.put("es", "ESP");
-		LANG_MAPPING.put("es_mx", "LAS"); // TODO
+		LANG_MAPPING.put("es_mx", "LAS");
 		LANG_MAPPING.put("fi_fi", "FIN");
 		LANG_MAPPING.put("fr", "FRA");
-		LANG_MAPPING.put("fr_ca", "FRC");  // TODO
+		LANG_MAPPING.put("fr_be", "FRB");
+		LANG_MAPPING.put("fr_ca", "FRC");
+		LANG_MAPPING.put("he_il", "HEB");
+		LANG_MAPPING.put("hi_in", "HIN");
 		LANG_MAPPING.put("hu_hu", "HUN");
+		LANG_MAPPING.put("id_id", "IND");
 		LANG_MAPPING.put("it", "ITA");
 		LANG_MAPPING.put("ja_jp", "JPN");
 		LANG_MAPPING.put("ko_kr", "KOR");
@@ -67,41 +77,27 @@ public class AthenaExportMt {
 		LANG_MAPPING.put("pl_pl", "PLK");
 		LANG_MAPPING.put("pt_br", "PTB");
 		LANG_MAPPING.put("pt_pt", "PTG");
+		LANG_MAPPING.put("ro_ro", "ROM");
 		LANG_MAPPING.put("ru_ru", "RUS");
+		LANG_MAPPING.put("sk_sk", "SLK");
 		LANG_MAPPING.put("sv_se", "SVE");
+		LANG_MAPPING.put("th_th", "THA");
 		LANG_MAPPING.put("tr_tr", "TUR");
-		LANG_MAPPING.put("vi_vn", "VNM");
+		LANG_MAPPING.put("vi_vn", "VIT");
 		LANG_MAPPING.put("zh_cn", "CHS");
 		LANG_MAPPING.put("zh_tw", "CHT");
-		LANG_MAPPING.put("en_au", "ENA");
-		LANG_MAPPING.put("fr_be", "FRB");
-       		LANG_MAPPING.put("el_gr", "ELL");
-		LANG_MAPPING.put("ar_sa", "ARA");
-		LANG_MAPPING.put("hi_in", "HIN");
-		LANG_MAPPING.put("th_th", "THA");
-		LANG_MAPPING.put("he_il", "HEB");
-		LANG_MAPPING.put("id_id", "IND");
-		LANG_MAPPING.put("sk_sk", "SKY");
-		LANG_MAPPING.put("ro_ro", "ROM");
-		LANG_MAPPING.put("ro_ro", "ROM");
-		LANG_MAPPING.put("zu_za", "ZZZ");
 
 	}
 	
 	public static void main (String[] args) {
 		System.out.println("Export from Athena for MT");
 		System.out.println("=========================\n");
-		if (args == null || args.length < 4 || args.length > 7) {
-			System.out.println("Usage: java AthenaExportMt <dburl> <username> <password> <tablename> [<start date (yyyy.mm.dd)>] [<end date (yyyy.mm.dd)>] {0: use creation date|1: use translation date}");
+		if (args == null || args.length < 4 || args.length > 8) {
+			System.out.println("Usage: java AthenaExportMt <dburl> <username> <password> <tablename> [<start date (yyyy.mm.dd)>] [<end date (yyyy.mm.dd)>] {0: use creation date|1: use translation date} {0: output for MT analysis|1: output for Solr indexing}");
 			// CMSDEV1.autodesk.com =(description=(address=(protocol=tcp)(host=uspetddgpdbo001.autodesk.com)(port=1521))(connect_data=(service_name=CMSDEV1.autodesk.com)))
 			// CMSSTG1.autodesk.com  =(description=(address=(protocol=tcp)(host=oracmsstg.autodesk.com)        (port=1528))(connect_data=(service_name=CMSSTG1.autodesk.com)))
 			// CMSPRD1.autodesk.com=( DESCRIPTION=(SDU=16384)(address=(protocol=tcp)(host=oracmsprd1.autodesk.com)(port=1521))(CONNECT_DATA=(service_name=CMSPRD1.autodesk.com)))
-			// javac -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt.java
-			// java -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt jdbc:oracle:thin:@uspetddgpdbo001.autodesk.com:1521:CMSDEV1 cmsuser cmsuser CUS_SEG_EN_JA_JP
-			// java -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsstg.autodesk.com:1528:CMSSTG1 cmsuser cmsuser CUS_SEG_EN_JA_JP
-			// nohup java -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser cmsuser ALL 2013.02.01 2013.03.01 &
-			// java -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt jdbc:oracle:thin:@NEU4CZ1410QF1.ads.autodesk.com:1521:XE ws_dev ws_dev ALL 2013.02.01 2013.03.01
-			System.out.println("Example: java -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser cmsuser ALL 2013.02.01 2013.03.01 1");
+			System.out.println("Example: java -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser cmsuser ALL 2013.02.01 2013.03.01 1 0");
 			System.exit(0);
 		}
 		
@@ -130,6 +126,11 @@ public class AthenaExportMt {
 		boolean useCreationDate = false;
 		if (args.length > 6) {
 			useCreationDate = args[6].equals("1");
+		}
+		
+		boolean outputForSolr = false;
+		if (args.length > 7) {
+			outputForSolr = args[7].equals("1");
 		}
 		
 		System.out.println("Start " + (useCreationDate ? "creation" : "translation") + " date: " + (startDate==null?"N/A":startDate));
@@ -192,31 +193,22 @@ public class AthenaExportMt {
 					final Date now = new Date();
 					final String baseFileName = "athena_" + targetLanguage;
 					
-					fos = new FileOutputStream(new File(baseFileName + "_" + sdf.format(now) + ".csv.bz2"));
-					fos.write("BZ".getBytes());
-					osw = new OutputStreamWriter(new CBZip2OutputStream(fos), "UTF-8");
-					// Make excel read it as UTF-8.
-//					final byte[] bom = new byte[] { (byte)0xEF, (byte)0xBB, (byte)0xBF };
-//					fos.write(bom);
-					csvWriter = new CSVWriter(osw, '\t');
-					String[] tmpArray = {"translation type", "enu", targetLanguage, "product", "release", "mt score", "mt translation", "tm score", "tm translation", "creation date", "id"};
-					csvWriter.writeNext(tmpArray);
+					if (outputForSolr) {
+						fos = new FileOutputStream(new File(baseFileName + "_" + sdf.format(now) + ".csv.bz2"));
+						fos.write("BZ".getBytes());
+						osw = new OutputStreamWriter(new CBZip2OutputStream(fos), "UTF-8");
+						csvWriter = new CSVWriter(osw, '\t');
+					} else {
+						mtfos = new FileOutputStream(new File(baseFileName + ".mt.bz2"));
+						mtfos.write("BZ".getBytes());
+						mtPrintStream = new PrintStream(new CBZip2OutputStream(mtfos), true, "UTF-8");
+						
+						tmfos = new FileOutputStream(new File(baseFileName + ".tm.bz2"));
+						tmfos.write("BZ".getBytes());
+						tmPrintStream = new PrintStream(new CBZip2OutputStream(tmfos), true, "UTF-8");
+					}
 					
-					mtfos = new FileOutputStream(new File(baseFileName + ".mt.bz2"));
-					mtfos.write("BZ".getBytes());
-					mtPrintStream = new PrintStream(new CBZip2OutputStream(mtfos), true, "UTF-8");
-					
-					tmfos = new FileOutputStream(new File(baseFileName + ".tm.bz2"));
-					tmfos.write("BZ".getBytes());
-					tmPrintStream = new PrintStream(new CBZip2OutputStream(tmfos), true, "UTF-8");
-					
-					
-	//				String sqlSelect = "select ROWID, PLACEHOLDERS from cus_seg_en_fr " + 
-	//"where sourcesegment like '%{2}%' " +
-	//"and placeholders like '<phs><ph id=\"1\">%'|| chr(38) ||'lt;ph id='|| chr(38) ||'quot;2'|| chr(38) ||'quot;'|| chr(38) ||'gt;%</ph></phs>' " +
-	//"and placeholders not like '%<ph id=\"2\">%'";
-					
-					
+										
 					// For MT
 					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID, MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE from " + oneTable + " " + 
 							"where REVIEWSTATUS in (5, 6, 7, 9) " + 
@@ -280,7 +272,12 @@ public class AthenaExportMt {
 					ps = conn.prepareStatement(sqlSelect);
 					rs = ps.executeQuery();
 					while (rs.next()) {
-						if (!foundSegments) { foundSegments = true; }
+						if (!foundSegments) {
+							if (outputForSolr) {
+								csvWriter.writeNext(new String[]{"id", "product", "enu", targetLanguage, "release", "srclc"});
+							}
+							foundSegments = true;
+						}
 						
 						String product = rs.getString(1);
 						String release = rs.getString(2);
@@ -293,10 +290,7 @@ public class AthenaExportMt {
 						String targetSegment = rs.getString(4);
 						targetSegment = targetSegment.replaceAll("\n", " ");
 						targetSegment = targetSegment.replaceAll("\r", " ");
-						
-//						final String segmentUid = rs.getString(5);
-//						final String id = segmentUid + "_" + targetLanguage;
-						
+												
 						final Double mtScore = rs.getDouble(6);
 						String mtScoreString = null;
 						if (mtScore != null && !rs.wasNull()) {
@@ -379,21 +373,23 @@ public class AthenaExportMt {
 							translationDateString = "";
 						}
 						
-						// MT
-						tmpArray = new String[]{translationTypeString, sourceSegment, targetSegment, product, release, mtScoreString, mtTranslation, tmScoreString, tmTranslation, creationDateString, translationDateString, uid};
+						if (outputForSolr) {
+							tmpArray = new String[]{translationTypeString, sourceSegment, targetSegment, product, release, mtScoreString, mtTranslation, tmScoreString, tmTranslation, creationDateString, translationDateString, uid};
 						
-						csvWriter.writeNext(tmpArray);
-						//
-						
-						mtPrintStream.println(sourceSegment + "" + mtTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
-						tmPrintStream.println(sourceSegment + "" + tmTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
+							csvWriter.writeNext(tmpArray);
+						} else {
+							mtPrintStream.println(sourceSegment + "" + mtTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
+							tmPrintStream.println(sourceSegment + "" + tmTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
+						}
 					}
 					rs.close();
 					ps.close();
 					
 					if (!foundSegments) {
-						mtPrintStream.print(" ");
-						tmPrintStream.print(" ");
+						if (!outputForSolr) {
+							mtPrintStream.print(" ");
+							tmPrintStream.print(" ");
+						}
 					}
 					
 					conn.rollback();
