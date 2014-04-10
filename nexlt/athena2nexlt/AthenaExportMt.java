@@ -3,8 +3,10 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
-// v1.1.2		Modified on 10 Apr 2014 by Ventsislav Zhechev
+// v1.2			Modified on 10 Apr 2014 by Ventsislav Zhechev
 // Updated the language mappings.
+// Added a parameter to select Solr-style output or output for MT analysis.
+// Corrected the Solr-style output to not require post-processing.
 //
 // v1.1.1		Modified on 17 Mar 2013 by Ventsislav Zhechev
 // Removed some redundand not-null checks.
@@ -86,6 +88,7 @@ public class AthenaExportMt {
 		LANG_MAPPING.put("vi_vn", "VIT");
 		LANG_MAPPING.put("zh_cn", "CHS");
 		LANG_MAPPING.put("zh_tw", "CHT");
+		LANG_MAPPING.put("zu_za", "ZUL");
 
 	}
 	
@@ -97,7 +100,7 @@ public class AthenaExportMt {
 			// CMSDEV1.autodesk.com =(description=(address=(protocol=tcp)(host=uspetddgpdbo001.autodesk.com)(port=1521))(connect_data=(service_name=CMSDEV1.autodesk.com)))
 			// CMSSTG1.autodesk.com  =(description=(address=(protocol=tcp)(host=oracmsstg.autodesk.com)        (port=1528))(connect_data=(service_name=CMSSTG1.autodesk.com)))
 			// CMSPRD1.autodesk.com=( DESCRIPTION=(SDU=16384)(address=(protocol=tcp)(host=oracmsprd1.autodesk.com)(port=1521))(CONNECT_DATA=(service_name=CMSPRD1.autodesk.com)))
-			System.out.println("Example: java -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser cmsuser ALL 2013.02.01 2013.03.01 1 0");
+			System.out.println("Example: java -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser Ten2Four ALL 2013.02.01 2013.03.01 1 0");
 			System.exit(0);
 		}
 		
@@ -175,6 +178,10 @@ public class AthenaExportMt {
 			for (String oneTable: tables) {
 				System.out.println("Processing " + oneTable + "...");
 				String tmpLanguage = oneTable.substring(11);
+				//Skip this as it’s not a currently used language.
+				if (tmpLanguage.equals("zu_za")) {
+					continue;
+				}
 				if (!LANG_MAPPING.containsKey(tmpLanguage)) {
 					throw new RuntimeException("No mapping for: " + tmpLanguage);
 				}
@@ -194,9 +201,9 @@ public class AthenaExportMt {
 					final String baseFileName = "athena_" + targetLanguage;
 					
 					if (outputForSolr) {
-						fos = new FileOutputStream(new File(baseFileName + "_" + sdf.format(now) + ".csv.bz2"));
-						fos.write("BZ".getBytes());
-						osw = new OutputStreamWriter(new CBZip2OutputStream(fos), "UTF-8");
+						fos = new FileOutputStream(new File(baseFileName + ".csv"));
+//						fos.write("BZ".getBytes());
+						osw = new OutputStreamWriter(fos, "UTF-8");
 						csvWriter = new CSVWriter(osw, '\t');
 					} else {
 						mtfos = new FileOutputStream(new File(baseFileName + ".mt.bz2"));
@@ -374,9 +381,7 @@ public class AthenaExportMt {
 						}
 						
 						if (outputForSolr) {
-							tmpArray = new String[]{translationTypeString, sourceSegment, targetSegment, product, release, mtScoreString, mtTranslation, tmScoreString, tmTranslation, creationDateString, translationDateString, uid};
-						
-							csvWriter.writeNext(tmpArray);
+							csvWriter.writeNext(new String[]{uid, product, sourceSegment, targetSegment, release, sourceSegment.toLowerCase()});
 						} else {
 							mtPrintStream.println(sourceSegment + "" + mtTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
 							tmPrintStream.println(sourceSegment + "" + tmTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
@@ -386,7 +391,9 @@ public class AthenaExportMt {
 					ps.close();
 					
 					if (!foundSegments) {
-						if (!outputForSolr) {
+						if (outputForSolr) {
+							csvWriter.writeNext(new String[]{"id", "product", "enu", targetLanguage, "release", "srclc"});
+						} else {
 							mtPrintStream.print(" ");
 							tmPrintStream.print(" ");
 						}
