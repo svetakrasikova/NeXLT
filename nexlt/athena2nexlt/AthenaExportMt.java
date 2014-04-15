@@ -225,7 +225,7 @@ public class AthenaExportMt {
 					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID, MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE from " + oneTable + " " + 
 							"where REVIEWSTATUS in (5, 6, 7, 9) " + 
 							"and RELEASE != 'TESTING' " +
-							"and TRANSLATIONTYPE not in (1" + (useICE ? : "" : ", 4) ") + //not AUTO or ICE  match
+							"and TRANSLATIONTYPE not in (1" + (useICE ? "" : ", 4) ") + //not AUTO or ICE  match
 							"and SOURCESEGMENT is not null and POSTTRANSLATIONTARGET is not null and PRODUCT is not null and RELEASE is not null ";
 								
 					if (startDate != null && endDate != null) {
