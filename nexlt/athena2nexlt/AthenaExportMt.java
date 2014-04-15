@@ -129,16 +129,25 @@ public class AthenaExportMt {
 		boolean useCreationDate = false;
 		if (args.length > 6) {
 			useCreationDate = args[6].equals("1");
+			System.out.println("Using creation date for filtering.");
+		} else {
+			System.out.println("Using translation date for filtering.");
 		}
 		
 		boolean outputForSolr = false;
 		if (args.length > 7) {
 			outputForSolr = args[7].equals("1");
+			System.out.println("Outputting data for Solr.");
+		} else {
+			System.out.println("Outputting data for post-editing analysis.");
 		}
 		
 		boolean useICE = false;
 		if (args.length > 8) {
 			outputForSolr = args[8].equals("1");
+			System.out.println("Including ICE matches in output.");
+		} else {
+			System.out.println("NOT including ICE matches in output.");
 		}
 		
 		System.out.println("Start " + (useCreationDate ? "creation" : "translation") + " date: " + (startDate==null?"N/A":startDate));
