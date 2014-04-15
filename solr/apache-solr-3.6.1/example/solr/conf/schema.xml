@@ -698,7 +698,7 @@
       <analyzer> 
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
-        <!--filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_hu.txt" format="snowball" enablePositionIncrements="true"/>
+        <!--filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_he.txt" format="snowball" enablePositionIncrements="true"/>
         <filter class="solr.SnowballPorterFilterFactory" language="Hebrew"/-->
       </analyzer>
     </fieldType>
@@ -866,6 +866,16 @@
       </analyzer>
     </fieldType>
     
+    <!-- Slovak -->
+    <fieldType name="text_sk" class="solr.TextField" positionIncrementGap="100">
+      <analyzer> 
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <!--filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_sk.txt" format="snowball" enablePositionIncrements="true"/>
+				 <filter class="solr.SnowballPorterFilterFactory" language="Slovak"/-->
+      </analyzer>
+    </fieldType>
+    
     <!-- Swedish -->
     <fieldType name="text_sv" class="solr.TextField" positionIncrementGap="100">
       <analyzer> 
@@ -894,6 +904,16 @@
         <filter class="solr.TurkishLowerCaseFilterFactory"/>
         <filter class="solr.StopFilterFactory" ignoreCase="false" words="lang/stopwords_tr.txt" enablePositionIncrements="true"/>
         <filter class="solr.SnowballPorterFilterFactory" language="Turkish"/>
+      </analyzer>
+    </fieldType>
+
+		<!-- Vietnamese -->
+    <fieldType name="text_vi" class="solr.TextField" positionIncrementGap="100">
+      <analyzer> 
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <!--filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_vi.txt" format="snowball" enablePositionIncrements="true"/>
+				 <filter class="solr.SnowballPorterFilterFactory" language="Vietnamese"/-->
       </analyzer>
     </fieldType>
  </types>
@@ -963,34 +983,40 @@
 -->
    <field name="enu" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
    <field name="srclc" type="string" indexed="true" stored="false" multiValued="false"/>
-   <field name="deu" type="text_de" indexed="true" stored="true" multiValued="true"/>
-   <field name="fra" type="text_fr" indexed="true" stored="true" multiValued="true"/>
-   <field name="esp" type="text_es" indexed="true" stored="true" multiValued="true"/>
-   <field name="ita" type="text_it" indexed="true" stored="true" multiValued="true"/>
-   <field name="ptb" type="text_pt" indexed="true" stored="true" multiValued="true"/>
-   <field name="rus" type="text_ru" indexed="true" stored="true" multiValued="true"/>
+   <field name="ara" type="text_ar" indexed="true" stored="true" multiValued="true"/>
    <field name="csy" type="text_cz" indexed="true" stored="true" multiValued="true"/>
-   <field name="plk" type="text_pl" indexed="true" stored="true" multiValued="true"/>
+   <field name="dnk" type="text_da" indexed="true" stored="true" multiValued="true"/>
+   <field name="deu" type="text_de" indexed="true" stored="true" multiValued="true"/>
+   <field name="ell" type="text_el" indexed="true" stored="true" multiValued="true"/>
+   <field name="ena" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
+   <field name="eng" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
+   <field name="esp" type="text_es" indexed="true" stored="true" multiValued="true"/>
+   <field name="las" type="text_es" indexed="true" stored="true" multiValued="true"/>
+   <field name="fin" type="text_fi" indexed="true" stored="true" multiValued="true"/>
+   <field name="fra" type="text_fr" indexed="true" stored="true" multiValued="true"/>
+   <field name="frb" type="text_fr" indexed="true" stored="true" multiValued="true"/>
+   <field name="frc" type="text_fr" indexed="true" stored="true" multiValued="true"/>
+   <field name="heb" type="text_he" indexed="true" stored="true" multiValued="true"/>
+   <field name="hin" type="text_hi" indexed="true" stored="true" multiValued="true"/>
    <field name="hun" type="text_hu" indexed="true" stored="true" multiValued="true"/>
+   <field name="ind" type="text_id" indexed="true" stored="true" multiValued="true"/>
+   <field name="ita" type="text_it" indexed="true" stored="true" multiValued="true"/>
+   <field name="jpn" type="text_ja" indexed="true" stored="true" multiValued="true"/>
+   <field name="kor" type="text_cjk" indexed="true" stored="true" multiValued="true"/>
+   <field name="nld" type="text_nl" indexed="true" stored="true" multiValued="true"/>
+   <field name="nor" type="text_no" indexed="true" stored="true" multiValued="true"/>
+   <field name="plk" type="text_pl" indexed="true" stored="true" multiValued="true"/>
+   <field name="ptb" type="text_pt" indexed="true" stored="true" multiValued="true"/>
+   <field name="ptg" type="text_pt" indexed="true" stored="true" multiValued="true"/>
+   <field name="rus" type="text_ru" indexed="true" stored="true" multiValued="true"/>
+   <field name="rom" type="text_ro" indexed="true" stored="true" multiValued="true"/>
+   <field name="slk" type="text_sk" indexed="true" stored="true" multiValued="true"/>
+   <field name="swe" type="text_sv" indexed="true" stored="true" multiValued="true"/>
+   <field name="tha" type="text_th" indexed="true" stored="true" multiValued="true"/>
+   <field name="tur" type="text_tr" indexed="true" stored="true" multiValued="true"/>
+   <field name="vit" type="text_vi" indexed="true" stored="true" multiValued="true"/>
    <field name="chs" type="text_cjk" indexed="true" stored="true" multiValued="true"/>
    <field name="cht" type="text_cjk" indexed="true" stored="true" multiValued="true"/>
-   <field name="kor" type="text_cjk" indexed="true" stored="true" multiValued="true"/>
-   <field name="jpn" type="text_ja" indexed="true" stored="true" multiValued="true"/>
-   <field name="eng" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
-   <field name="gre" type="text_el" indexed="true" stored="true" multiValued="true"/>
-   <field name="rom" type="text_ro" indexed="true" stored="true" multiValued="true"/>
-   <field name="nld" type="text_nl" indexed="true" stored="true" multiValued="true"/>
-   <field name="fin" type="text_fi" indexed="true" stored="true" multiValued="true"/>
-   <field name="ptg" type="text_pt" indexed="true" stored="true" multiValued="true"/>
-   <field name="ara" type="text_ar" indexed="true" stored="true" multiValued="true"/>
-   <field name="tur" type="text_tr" indexed="true" stored="true" multiValued="true"/>
-   <field name="swe" type="text_sv" indexed="true" stored="true" multiValued="true"/>
-   <field name="nor" type="text_no" indexed="true" stored="true" multiValued="true"/>
-   <field name="ind" type="text_id" indexed="true" stored="true" multiValued="true"/>
-   <field name="hin" type="text_hi" indexed="true" stored="true" multiValued="true"/>
-   <field name="ell" type="text_el" indexed="true" stored="true" multiValued="true"/>
-   <field name="dnk" type="text_da" indexed="true" stored="true" multiValued="true"/>
-   <field name="heb" type="text_he" indexed="true" stored="true" multiValued="true"/>
    <field name="resource" type="string" default="Documentation" indexed="true" stored="true" multiValued="true"/>
    <field name="restype" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="product" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -1083,34 +1109,40 @@
         or to add multiple fields to the same field for easier/faster searching.  -->
 
    <copyField source="enu" dest="enu_str"/>
-   <copyField source="deu" dest="deu_str"/>
-   <copyField source="fra" dest="fra_str"/>
-   <copyField source="ita" dest="ita_str"/>
-   <copyField source="esp" dest="esp_str"/>
-   <copyField source="ptb" dest="ptb_str"/>
-   <copyField source="rus" dest="rus_str"/>
+   <copyField source="ara" dest="ara_str"/>
    <copyField source="csy" dest="csy_str"/>
-   <copyField source="plk" dest="plk_str"/>
+   <copyField source="dnk" dest="dnk_str"/>
+   <copyField source="deu" dest="deu_str"/>
+   <copyField source="ell" dest="ell_str"/>
+   <copyField source="ena" dest="ena_str"/>
+   <copyField source="eng" dest="eng_str"/>
+   <copyField source="esp" dest="esp_str"/>
+   <copyField source="las" dest="las_str"/>
+   <copyField source="fin" dest="fin_str"/>
+   <copyField source="fra" dest="fra_str"/>
+   <copyField source="frb" dest="frb_str"/>
+   <copyField source="frc" dest="frc_str"/>
+   <copyField source="heb" dest="heb_str"/>
+   <copyField source="hin" dest="hin_str"/>
    <copyField source="hun" dest="hun_str"/>
+   <copyField source="ind" dest="ind_str"/>
+   <copyField source="ita" dest="ita_str"/>
+   <copyField source="jpn" dest="jpn_str"/>
+   <copyField source="kor" dest="kor_str"/>
+   <copyField source="nld" dest="nld_str"/>
+   <copyField source="nor" dest="nor_str"/>
+   <copyField source="plk" dest="plk_str"/>
+   <copyField source="ptb" dest="ptb_str"/>
+   <copyField source="ptg" dest="ptg_str"/>
+   <copyField source="rom" dest="rom_str"/>
+   <copyField source="rus" dest="rus_str"/>
+   <copyField source="slk" dest="slk_str"/>
+   <copyField source="swe" dest="swe_str"/>
+   <copyField source="tha" dest="tha_str"/>
+   <copyField source="tur" dest="tur_str"/>
+   <copyField source="vit" dest="vit_str"/>
    <copyField source="chs" dest="chs_str"/>
    <copyField source="cht" dest="cht_str"/>
-   <copyField source="kor" dest="kor_str"/>
-   <copyField source="jpn" dest="jpn_str"/>
-   <copyField source="nld" dest="nld_str"/>
-   <copyField source="rom" dest="rom_str"/>
-   <copyField source="gre" dest="gre_str"/>
-   <copyField source="fin" dest="fin_str"/>
-   <copyField source="ptg" dest="ptg_str"/>
-   <copyField source="eng" dest="eng_str"/>
-   <copyField source="ara" dest="ara_str"/>
-   <copyField source="tur" dest="tur_str"/>
-   <copyField source="swe" dest="swe_str"/>
-   <copyField source="nor" dest="nor_str"/>
-   <copyField source="ind" dest="ind_str"/>
-   <copyField source="hin" dest="hin_str"/>
-   <copyField source="ell" dest="ell_str"/>
-   <copyField source="dnk" dest="dnk_str"/>
-   <copyField source="heb" dest="heb_str"/>
 
    <copyField source="cat" dest="text"/>
    <copyField source="name" dest="text"/>

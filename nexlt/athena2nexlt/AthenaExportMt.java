@@ -60,7 +60,7 @@ public class AthenaExportMt {
 	static {
 		LANG_MAPPING.put("ar_sa", "ARA");
 		LANG_MAPPING.put("cs_cz", "CSY");
-		LANG_MAPPING.put("da_dk", "DAN");
+		LANG_MAPPING.put("da_dk", "DNK");
 		LANG_MAPPING.put("de", "DEU");
 		LANG_MAPPING.put("el_gr", "ELL");
 		LANG_MAPPING.put("en_au", "ENA");
@@ -86,7 +86,7 @@ public class AthenaExportMt {
 		LANG_MAPPING.put("ro_ro", "ROM");
 		LANG_MAPPING.put("ru_ru", "RUS");
 		LANG_MAPPING.put("sk_sk", "SLK");
-		LANG_MAPPING.put("sv_se", "SVE");
+		LANG_MAPPING.put("sv_se", "SWE");
 		LANG_MAPPING.put("th_th", "THA");
 		LANG_MAPPING.put("tr_tr", "TUR");
 		LANG_MAPPING.put("vi_vn", "VIT");
