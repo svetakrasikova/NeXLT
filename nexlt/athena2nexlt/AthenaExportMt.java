@@ -3,6 +3,10 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.2.1		Modified on 15 Apr 2014 by Ventsislav Zhechev
+// Added informational output.
+// Added an option to include ICE matches in output.
+//
 // v1.2			Modified on 10 Apr 2014 by Ventsislav Zhechev
 // Updated the language mappings.
 // Added a parameter to select Solr-style output or output for MT analysis.
@@ -129,6 +133,8 @@ public class AthenaExportMt {
 		boolean useCreationDate = false;
 		if (args.length > 6) {
 			useCreationDate = args[6].equals("1");
+		}
+		if (useCreationDate) {
 			System.out.println("Using creation date for filtering.");
 		} else {
 			System.out.println("Using translation date for filtering.");
@@ -137,6 +143,8 @@ public class AthenaExportMt {
 		boolean outputForSolr = false;
 		if (args.length > 7) {
 			outputForSolr = args[7].equals("1");
+		}
+		if (outputForSolr) {
 			System.out.println("Outputting data for Solr.");
 		} else {
 			System.out.println("Outputting data for post-editing analysis.");
@@ -144,7 +152,9 @@ public class AthenaExportMt {
 		
 		boolean useICE = false;
 		if (args.length > 8) {
-			outputForSolr = args[8].equals("1");
+			useICE = args[8].equals("1");
+		}
+		if (useICE) {
 			System.out.println("Including ICE matches in output.");
 		} else {
 			System.out.println("NOT including ICE matches in output.");
