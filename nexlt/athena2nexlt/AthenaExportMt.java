@@ -95,7 +95,7 @@ public class AthenaExportMt {
 	public static void main (String[] args) {
 		System.out.println("Export from Athena for MT");
 		System.out.println("=========================\n");
-		if (args == null || args.length < 4 || args.length > 8) {
+		if (args == null || args.length < 4 || args.length > 9) {
 			System.out.println("Usage: java AthenaExportMt <dburl> <username> <password> <tablename> [<start date (yyyy.mm.dd)>] [<end date (yyyy.mm.dd)>] {0: use creation date|1: use translation date} {0: output for MT analysis|1: output for Solr indexing}");
 			// CMSDEV1.autodesk.com =(description=(address=(protocol=tcp)(host=uspetddgpdbo001.autodesk.com)(port=1521))(connect_data=(service_name=CMSDEV1.autodesk.com)))
 			// CMSSTG1.autodesk.com  =(description=(address=(protocol=tcp)(host=oracmsstg.autodesk.com)        (port=1528))(connect_data=(service_name=CMSSTG1.autodesk.com)))
@@ -134,6 +134,11 @@ public class AthenaExportMt {
 		boolean outputForSolr = false;
 		if (args.length > 7) {
 			outputForSolr = args[7].equals("1");
+		}
+		
+		boolean useICE = false;
+		if (args.length > 8) {
+			outputForSolr = args[8].equals("1");
 		}
 		
 		System.out.println("Start " + (useCreationDate ? "creation" : "translation") + " date: " + (startDate==null?"N/A":startDate));
@@ -183,7 +188,7 @@ public class AthenaExportMt {
 					continue;
 				}
 				if (!LANG_MAPPING.containsKey(tmpLanguage)) {
-					throw new RuntimeException("No mapping for: " + tmpLanguage);
+					throw new RuntimeException("No language mapping for: " + tmpLanguage);
 				}
 				String targetLanguage = LANG_MAPPING.get(tmpLanguage).toLowerCase();
 				
@@ -220,7 +225,7 @@ public class AthenaExportMt {
 					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID, MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE from " + oneTable + " " + 
 							"where REVIEWSTATUS in (5, 6, 7, 9) " + 
 							"and RELEASE != 'TESTING' " +
-							"and TRANSLATIONTYPE not in (1, 4) " + //not AUTO or ICE  match
+							"and TRANSLATIONTYPE not in (1" + (useICE ? : "" : ", 4) ") + //not AUTO or ICE  match
 							"and SOURCESEGMENT is not null and POSTTRANSLATIONTARGET is not null and PRODUCT is not null and RELEASE is not null ";
 								
 					if (startDate != null && endDate != null) {
