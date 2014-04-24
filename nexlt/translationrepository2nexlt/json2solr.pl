@@ -29,6 +29,8 @@
 #				– Fixed a small bug in the restype consistency check.
 #		2.0.3 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Apr-09-2014
 #				– Added language mapping to fix a JSON language data bug.
+#		2.0.4 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Apr-24-2014
+#				– Fixed the path to the RAPID_ProductID.tsv file.
 #
 ################################################################################
 
@@ -53,7 +55,7 @@ die( "    ERROR: JSON file $jsonFile doesn't exist!\n" ) unless -e $jsonFile;
 
 my %ProdID_ProductRel; # Key: ProductId, Value: Array(Product, Release)
 # Load reference file, RAPID_ProductId.tsv
-open( PRODIDFILE , "RAPID_ProductId.tsv" ) or die "Cannot open RAPID_ProductId.tsv file!\n";
+open( PRODIDFILE , "/mnt/tr/RAPID_ProductId.tsv" ) or die "Cannot open /mnt/tr/RAPID_ProductId.tsv file!\n";
 while(<PRODIDFILE>) {
 	my @line = split /\t/, $_;
 	$ProdID_ProductRel{$line[0]} = [$line[9],$line[8]] unless exists $ProdID_ProductRel{$line[0]};
