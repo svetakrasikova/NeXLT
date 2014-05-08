@@ -3,6 +3,9 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.2.2		Modified on 08 May 2014 by Ventsislav Zhechev
+// Fixed the SQL code to filter out raw MT segments
+//
 // v1.2.1		Modified on 15 Apr 2014 by Ventsislav Zhechev
 // Added informational output.
 // Added an option to include ICE matches in output.
@@ -244,8 +247,8 @@ public class AthenaExportMt {
 					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID, MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE from " + oneTable + " " + 
 							"where REVIEWSTATUS in (5, 6, 7, 9) " + 
 							"and RELEASE != 'TESTING' " +
-							"and TRANSLATIONTYPE = 6" +
-//							"and TRANSLATIONTYPE not in (1" + (useICE ? ") " : ", 4) ") + //not AUTO or ICE  match
+//							"and TRANSLATIONTYPE = 6" +
+							"and TRANSLATIONTYPE not in (1, 6" + (useICE ? ") " : ", 4) ") + //not AUTO or ICE  match
 							"and SOURCESEGMENT is not null and POSTTRANSLATIONTARGET is not null and PRODUCT is not null and RELEASE is not null ";
 								
 					if (startDate != null && endDate != null) {
