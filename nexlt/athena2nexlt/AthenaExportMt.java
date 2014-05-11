@@ -409,7 +409,7 @@ public class AthenaExportMt {
 						}
 						
 						if (outputForSolr) {
-							csvWriter.writeNext(new String[]{uid, product, sourceSegment, targetSegment, release, sourceSegment.toLowerCase()});
+							csvWriter.writeNext(new String[]{uid, product, sourceSegment, targetSegment, release, sourceSegment.toLowerCase(), creationDateString, translationDateString});
 						} else {
 							mtPrintStream.println(sourceSegment + "" + mtTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
 							tmPrintStream.println(sourceSegment + "" + tmTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
