@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 ################################################################################
 #
 # ©2012–2014 Autodesk Development Sàrl
@@ -31,6 +31,11 @@
 #				– Added language mapping to fix a JSON language data bug.
 #		2.0.4 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Apr-24-2014
 #				– Fixed the path to the RAPID_ProductID.tsv file.
+#		2.1 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) May-16-2014
+#				– Added a default version year.
+#				– Changed the ID generation algorithm.
+#				– Only meaningful information is passed through the print queue.
+#				– Modified to submit content directly to Solr instead of writing to files first.
 #
 ################################################################################
 
@@ -44,7 +49,10 @@ use Encode qw/encode/;
 
 use URI::Escape;
 use Digest::MD5 qw(md5 md5_hex md5_base64);
+use JSON::XS;
 use jProject;
+
+use HTTP::Tiny;
 
 
 die( "Script takes two arguments: $0 <JSON_file> <product_code>\n" ) unless @ARGV == 2;
@@ -52,12 +60,14 @@ my $jsonFile = $ARGV[0];
 my $aproduct = $ARGV[1];
 die( "    ERROR: JSON file $jsonFile doesn't exist!\n" ) unless -e $jsonFile;
 
+my $http = HTTP::Tiny->new(agent => "SW JSON Indexer", default_headers => {"Content-type" => "application/json; charset=utf-8"});
+
 
 my %ProdID_ProductRel; # Key: ProductId, Value: Array(Product, Release)
 # Load reference file, RAPID_ProductId.tsv
-open( PRODIDFILE , "/mnt/tr/RAPID_ProductId.tsv" ) or die "Cannot open /mnt/tr/RAPID_ProductId.tsv file!\n";
+open( PRODIDFILE , "./RAPID_ProductId.csv" ) or die "Cannot open ./RAPID_ProductId.tsv file!\n";
 while(<PRODIDFILE>) {
-	my @line = split /\t/, $_;
+	my @line = split /;/, $_;
 	$ProdID_ProductRel{$line[0]} = [$line[9],$line[8]] unless exists $ProdID_ProductRel{$line[0]};
 }
 close(PRODIDFILE);
@@ -75,28 +85,44 @@ my %prjCustomProps = map{$_->[0] => $_->[1]} @{$project->prj_custom_props};
 # good to have, but unused
 #my ($ProductID, $Component, $DevBranch, $Phase, $SrcVersion, $LocVersion, $LocalizationType, $Email) = @prjCustomProps{qw/M:LPUProductId M:LPUComponent M:LPUDevBranch M:LPUPhase M:LPUSrcVersion M:LPULocVersion M:LPULocalizationType M:LPUEmail/};
 my ($Version, $Product) = exists $ProdID_ProductRel{$prjCustomProps{"M:LPUProductId"}} ? @{$ProdID_ProductRel{$prjCustomProps{"M:LPUProductId"}}} : (undef, undef);
+$Version ||= 2015;
 
 my %languageQueues;
 my @workers;
+
+my $json = JSON::XS->new->allow_nonref;
 
 my $printer = sub {
 	my $language = shift;
 	return unless defined $languageQueues{$language};
 	
-	my $newFile = ! -e "$language-passolo-data";
-	open OUTPUT, ">>$language-passolo-data";
-	print OUTPUT "resource\trestype\tenu\t$language\tid\tproduct\trelease\tsrclc\n" if $newFile;
+	my $content = '{ ';
+	my $first = 1;
 	while (my $data = $languageQueues{$language}->dequeue()) {
-		print OUTPUT encode "utf-8", $data;
+		unless ($first) {
+			$content .= ', '."\n";
+		} else {
+			$first = 0;
+		}
+		$content .= '"add": { "doc": { "resource": {"set":"Software"}, ';
+		$content .= encode "utf-8", '"product": {"set":'.$json->encode($aproduct).'}, ';
+		$content .= encode "utf-8", '"release": {"set":'.$json->encode($Version).'}, ';
+		$content .= encode "utf-8", '"id": "'.$data->{id}.'", ';
+		$content .= encode "utf-8", '"restype": {"set":'.$json->encode($data->{restype}).'}, ';
+		$content .= encode "utf-8", '"enu": {"set":'.$json->encode($data->{enu}).'}, ';
+		$content .= encode "utf-8", '"'.$language.'": {"set":'.$json->encode($data->{$language}).'}, ';
+		$content .= encode "utf-8", '"srclc": {"set":'.$json->encode($data->{srclc}).'} ';
+		$content .= '} }';
 	}
-	close OUTPUT;
+	$content .= ', "commit": {} }';
+	print STDERR encode "utf-8", "Posting $language content for indexing…\n";
+	my $response = $http->request('POST', 'http://10.37.23.237:8983/solr/update/json', { content => $content });
+	die "HTML request to Solr failed!\n $response->{status} $response->{reason}\n$response->{content}\n" unless $response->{success};
+	print STDERR "$language content sucessfully posted!\n";
 };
 
 sub printForLanguage {
 	my $language = shift;
-	#Fix some bugs in the JSON files.
-	$language = "esp" if $language eq "esn";
-	$language = "eng" if $language eq "enu";
 	unless (exists $languageQueues{$language}) {
 		print STDERR "Starting thread for outputting $language.\n";
 		$languageQueues{$language} = new Thread::Queue;
@@ -107,6 +133,9 @@ sub printForLanguage {
 
 foreach my $strList (@{$project->string_lists}) {
 	my $lang = $strList->lang;
+	#Fix some bugs in the JSON files.
+	$lang = "esp" if $lang eq "esn";
+	$lang = "eng" if $lang eq "enu";
 	my $src;
 	my $trn;
 	my $restype;
@@ -140,9 +169,15 @@ foreach my $strList (@{$project->string_lists}) {
 		
 		$id = $str->id;
 		$id =~ s/\s+//g;
-		$id = $lang . "_" . $id . "_" . md5_hex(uri_escape_utf8($str->src_text));
+		$id = md5_hex(uri_escape_utf8("$id$srcSoftware"));
 
-		printForLanguage $lang, "Software\t$restype\t$src\t$trn\t$id\t$aproduct\t$Version\t".lc($src)."\n";
+		printForLanguage $lang, {
+			id			=> $id,
+			restype	=> $restype,
+			enu			=> $src,
+			$lang		=> $trn,
+			srclc		=> lc($src),
+		};
 	}
 }
 
