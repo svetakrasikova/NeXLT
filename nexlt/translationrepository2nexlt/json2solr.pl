@@ -36,6 +36,9 @@
 #				– Changed the ID generation algorithm.
 #				– Only meaningful information is passed through the print queue.
 #				– Modified to submit content directly to Solr instead of writing to files first.
+#		2.1.1 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) May-17-2014
+#				– Added a default value for $prjCustomProps{"M:LPUProductId"}.
+#				– Added a character limit to source and target strings.
 #
 ################################################################################
 
@@ -81,6 +84,7 @@ print STDERR "JSON file parsed.\n";
 
 #Convert the list of lists into a hash for easier access
 my %prjCustomProps = map{$_->[0] => $_->[1]} @{$project->prj_custom_props};
+$prjCustomProps{"M:LPUProductId"} ||= -1;
 
 # good to have, but unused
 #my ($ProductID, $Component, $DevBranch, $Phase, $SrcVersion, $LocVersion, $LocalizationType, $Email) = @prjCustomProps{qw/M:LPUProductId M:LPUComponent M:LPUDevBranch M:LPUPhase M:LPUSrcVersion M:LPULocVersion M:LPULocalizationType M:LPUEmail/};
@@ -115,6 +119,7 @@ my $printer = sub {
 		$content .= '} }';
 	}
 	$content .= ', "commit": {} }';
+#	print STDOUT $content;
 	print STDERR encode "utf-8", "Posting $language content for indexing…\n";
 	my $response = $http->request('POST', 'http://10.37.23.237:8983/solr/update/json', { content => $content });
 	die "HTML request to Solr failed!\n $response->{status} $response->{reason}\n$response->{content}\n" unless $response->{success};
@@ -159,6 +164,7 @@ foreach my $strList (@{$project->string_lists}) {
 		$src =~ s/[\h\v]+/ /g;
 		$src =~ s/\\$/\\ /g;
 		$src =~ s/\\\t/\\ \t/g;
+		next if length $src > 5000;
 
 		$trn = $str->trn_text;
 		$trn =~ s/&amp;/\&/g;
@@ -166,6 +172,7 @@ foreach my $strList (@{$project->string_lists}) {
 		$trn =~ s/[\h\v]+/ /g;
 		$trn =~ s/\\$/\\ /g;
 		$trn =~ s/\\\t/\\ \t/g;
+		next if length $trn > 5000;
 		
 		$id = $str->id;
 		$id =~ s/\s+//g;

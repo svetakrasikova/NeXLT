@@ -45,7 +45,7 @@
     that avoids logging every request
 -->
 
-<schema name="example" version="1.5">
+<schema name="NeXLT" version="1.5">
   <!-- attribute "name" is the name of this schema and is only used for display purposes.
        Applications should change this to reflect the nature of the search collection.
        version="x.y" is Solr's version number for the schema syntax and semantics.  It should
@@ -149,38 +149,6 @@
 
     <!-- A Trie based date field for faster date range queries and date faceting. -->
     <fieldType name="tdate" class="solr.TrieDateField" precisionStep="6" positionIncrementGap="0"/>
-
-
-    <!--
-      Note:
-      These should only be used for compatibility with existing indexes (created with older Solr versions)
-      or if "sortMissingFirst" or "sortMissingLast" functionality is needed. Use Trie based fields instead.
-
-      Plain numeric field types that store and index the text
-      value verbatim (and hence don't support range queries, since the
-      lexicographic ordering isn't equal to the numeric ordering)
-    -->
-    <fieldType name="pint" class="solr.IntField"/>
-    <fieldType name="plong" class="solr.LongField"/>
-    <fieldType name="pfloat" class="solr.FloatField"/>
-    <fieldType name="pdouble" class="solr.DoubleField"/>
-    <fieldType name="pdate" class="solr.DateField" sortMissingLast="true"/>
-
-
-    <!--
-      Note:
-      These should only be used for compatibility with existing indexes (created with older Solr versions).
-      Use Trie based fields instead. As of Solr 3.5 and 4.x, Trie based fields support sortMissingFirst/Last
-
-      Numeric field types that manipulate the value into
-      a string value that isn't human-readable in its internal form,
-      but with a lexicographic ordering the same as the numeric ordering,
-      so that range queries work correctly.
-    -->
-    <fieldType name="sint" class="solr.SortableIntField" sortMissingLast="true" omitNorms="true"/>
-    <fieldType name="slong" class="solr.SortableLongField" sortMissingLast="true" omitNorms="true"/>
-    <fieldType name="sfloat" class="solr.SortableFloatField" sortMissingLast="true" omitNorms="true"/>
-    <fieldType name="sdouble" class="solr.SortableDoubleField" sortMissingLast="true" omitNorms="true"/>
 
 
     <!-- The "RandomSortField" is not used to store or search any
@@ -890,9 +858,10 @@
     <!-- Thai -->
     <fieldType name="text_th" class="solr.TextField" positionIncrementGap="100">
       <analyzer> 
-        <tokenizer class="solr.StandardTokenizerFactory"/>
+      	<tokenizer class="solr.ICUTokenizerFactory"/>
+<!--         <tokenizer class="solr.StandardTokenizerFactory"/> -->
         <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.ThaiWordFilterFactory"/>
+<!--         <filter class="solr.ThaiWordFilterFactory"/> -->
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_th.txt" enablePositionIncrements="true"/>
       </analyzer>
     </fieldType>
@@ -945,82 +914,55 @@
    -->
 
    <field name="id" type="string" indexed="true" stored="true" required="true" /> 
-   <field name="sku" type="text_en_splitting_tight" indexed="true" stored="true" omitNorms="true"/>
-   <field name="name" type="text_general" indexed="true" stored="true"/>
-   <field name="alphaNameSort" type="alphaOnlySort" indexed="true" stored="false"/>
-   <field name="manu" type="text_general" indexed="true" stored="true" omitNorms="true"/>
-   <field name="cat" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="features" type="text_general" indexed="true" stored="true" multiValued="true"/>
-   <field name="includes" type="text_general" indexed="true" stored="true" termVectors="true" termPositions="true" termOffsets="true" />
 
-   <field name="weight" type="float" indexed="true" stored="true"/>
-   <field name="price"  type="float" indexed="true" stored="true"/>
-   <field name="popularity" type="int" indexed="true" stored="true" />
-   <field name="inStock" type="boolean" indexed="true" stored="true" />
-
-   <!--
-   The following store examples are used to demonstrate the various ways one might _CHOOSE_ to
-    implement spatial.  It is highly unlikely that you would ever have ALL of these fields defined.
-    -->
-   <field name="store" type="location" indexed="true" stored="true"/>
-
-   <!-- Common metadata fields, named specifically to match up with
-     SolrCell metadata when parsing rich documents such as Word, PDF.
-     Some fields are multiValued only because Tika currently may return
-     multiple values for them.
-   -->
-   <field name="title" type="text_general" indexed="true" stored="true" multiValued="true"/>
-   <field name="subject" type="text_general" indexed="true" stored="true"/>
-   <field name="description" type="text_general" indexed="true" stored="true"/>
-   <field name="comments" type="text_general" indexed="true" stored="true"/>
-   <field name="author" type="text_general" indexed="true" stored="true"/>
-   <field name="keywords" type="text_general" indexed="true" stored="true"/>
-   <field name="category" type="text_general" indexed="true" stored="true"/>
-   <field name="content_type" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="last_modified" type="date" indexed="true" stored="true"/>
-   <field name="links" type="string" indexed="true" stored="true" multiValued="true"/>
+   <!-- If you remove this field, you must _also_ disable the update log in solrconfig.xml
+      or Solr won't start. _version_ and update log are required for SolrCloud
+   --> 
+   <field name="_version_" type="long" indexed="true" stored="true"/>
+   
 <!-- Added by MirkoP 
 -->
-   <field name="enu" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
+   <field name="enu" type="text_en_splitting" indexed="true" stored="true" multiValued="false"/>
    <field name="srclc" type="string" indexed="true" stored="false" multiValued="false"/>
-   <field name="ara" type="text_ar" indexed="true" stored="true" multiValued="true"/>
-   <field name="csy" type="text_cz" indexed="true" stored="true" multiValued="true"/>
-   <field name="dnk" type="text_da" indexed="true" stored="true" multiValued="true"/>
-   <field name="deu" type="text_de" indexed="true" stored="true" multiValued="true"/>
-   <field name="ell" type="text_el" indexed="true" stored="true" multiValued="true"/>
-   <field name="ena" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
-   <field name="eng" type="text_en_splitting" indexed="true" stored="true" multiValued="true"/>
-   <field name="esp" type="text_es" indexed="true" stored="true" multiValued="true"/>
-   <field name="las" type="text_es" indexed="true" stored="true" multiValued="true"/>
-   <field name="fin" type="text_fi" indexed="true" stored="true" multiValued="true"/>
-   <field name="fra" type="text_fr" indexed="true" stored="true" multiValued="true"/>
-   <field name="frb" type="text_fr" indexed="true" stored="true" multiValued="true"/>
-   <field name="frc" type="text_fr" indexed="true" stored="true" multiValued="true"/>
-   <field name="heb" type="text_he" indexed="true" stored="true" multiValued="true"/>
-   <field name="hin" type="text_hi" indexed="true" stored="true" multiValued="true"/>
-   <field name="hun" type="text_hu" indexed="true" stored="true" multiValued="true"/>
-   <field name="ind" type="text_id" indexed="true" stored="true" multiValued="true"/>
-   <field name="ita" type="text_it" indexed="true" stored="true" multiValued="true"/>
-   <field name="jpn" type="text_ja" indexed="true" stored="true" multiValued="true"/>
-   <field name="kor" type="text_cjk" indexed="true" stored="true" multiValued="true"/>
-   <field name="nld" type="text_nl" indexed="true" stored="true" multiValued="true"/>
-   <field name="nor" type="text_no" indexed="true" stored="true" multiValued="true"/>
-   <field name="plk" type="text_pl" indexed="true" stored="true" multiValued="true"/>
-   <field name="ptb" type="text_pt" indexed="true" stored="true" multiValued="true"/>
-   <field name="ptg" type="text_pt" indexed="true" stored="true" multiValued="true"/>
-   <field name="rus" type="text_ru" indexed="true" stored="true" multiValued="true"/>
-   <field name="rom" type="text_ro" indexed="true" stored="true" multiValued="true"/>
-   <field name="slk" type="text_sk" indexed="true" stored="true" multiValued="true"/>
-   <field name="swe" type="text_sv" indexed="true" stored="true" multiValued="true"/>
-   <field name="tha" type="text_th" indexed="true" stored="true" multiValued="true"/>
-   <field name="tur" type="text_tr" indexed="true" stored="true" multiValued="true"/>
-   <field name="vit" type="text_vi" indexed="true" stored="true" multiValued="true"/>
-   <field name="chs" type="text_cjk" indexed="true" stored="true" multiValued="true"/>
-   <field name="cht" type="text_cjk" indexed="true" stored="true" multiValued="true"/>
-   <field name="resource" type="string" default="Documentation" indexed="true" stored="true" multiValued="true"/>
-   <field name="restype" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="product" type="string" indexed="true" stored="true" multiValued="true"/>
-   <field name="release" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="ara" type="text_ar" indexed="true" stored="true" multiValued="false"/>
+   <field name="csy" type="text_cz" indexed="true" stored="true" multiValued="false"/>
+   <field name="dnk" type="text_da" indexed="true" stored="true" multiValued="false"/>
+   <field name="deu" type="text_de" indexed="true" stored="true" multiValued="false"/>
+   <field name="ell" type="text_el" indexed="true" stored="true" multiValued="false"/>
+   <field name="ena" type="text_en_splitting" indexed="true" stored="true" multiValued="false"/>
+   <field name="eng" type="text_en_splitting" indexed="true" stored="true" multiValued="false"/>
+   <field name="esp" type="text_es" indexed="true" stored="true" multiValued="false"/>
+   <field name="las" type="text_es" indexed="true" stored="true" multiValued="false"/>
+   <field name="fin" type="text_fi" indexed="true" stored="true" multiValued="false"/>
+   <field name="fra" type="text_fr" indexed="true" stored="true" multiValued="false"/>
+   <field name="frb" type="text_fr" indexed="true" stored="true" multiValued="false"/>
+   <field name="frc" type="text_fr" indexed="true" stored="true" multiValued="false"/>
+   <field name="heb" type="text_he" indexed="true" stored="true" multiValued="false"/>
+   <field name="hin" type="text_hi" indexed="true" stored="true" multiValued="false"/>
+   <field name="hun" type="text_hu" indexed="true" stored="true" multiValued="false"/>
+   <field name="ind" type="text_id" indexed="true" stored="true" multiValued="false"/>
+   <field name="ita" type="text_it" indexed="true" stored="true" multiValued="false"/>
+   <field name="jpn" type="text_ja" indexed="true" stored="true" multiValued="false"/>
+   <field name="kor" type="text_cjk" indexed="true" stored="true" multiValued="false"/>
+   <field name="nld" type="text_nl" indexed="true" stored="true" multiValued="false"/>
+   <field name="nor" type="text_no" indexed="true" stored="true" multiValued="false"/>
+   <field name="plk" type="text_pl" indexed="true" stored="true" multiValued="false"/>
+   <field name="ptb" type="text_pt" indexed="true" stored="true" multiValued="false"/>
+   <field name="ptg" type="text_pt" indexed="true" stored="true" multiValued="false"/>
+   <field name="rus" type="text_ru" indexed="true" stored="true" multiValued="false"/>
+   <field name="rom" type="text_ro" indexed="true" stored="true" multiValued="false"/>
+   <field name="slk" type="text_sk" indexed="true" stored="true" multiValued="false"/>
+   <field name="swe" type="text_sv" indexed="true" stored="true" multiValued="false"/>
+   <field name="tha" type="text_th" indexed="true" stored="true" multiValued="false"/>
+   <field name="tur" type="text_tr" indexed="true" stored="true" multiValued="false"/>
+   <field name="vit" type="text_vi" indexed="true" stored="true" multiValued="false"/>
+   <field name="chs" type="text_cjk" indexed="true" stored="true" multiValued="false"/>
+   <field name="cht" type="text_cjk" indexed="true" stored="true" multiValued="false"/>
+
+   <field name="resource" type="string" default="Documentation" indexed="true" stored="true" multiValued="false"/>
+   <field name="restype" type="string" indexed="true" stored="true" multiValued="false"/>
+   <field name="product" type="string" indexed="true" stored="true" multiValued="false"/>
+   <field name="release" type="string" indexed="true" stored="true" multiValued="false"/>
    <field name="path" type="string" indexed="false" stored="true" multiValued="false"/>
 
    <!-- catchall field, containing all other searchable text fields (implemented
@@ -1030,12 +972,6 @@
    <!-- catchall text field that indexes tokens both normally and in reverse for efficient
         leading wildcard queries. -->
    <field name="text_rev" type="text_general_rev" indexed="true" stored="false" multiValued="true"/>
-
-   <!-- non-tokenized version of manufacturer to make it easier to sort or group
-        results by manufacturer.  copied from "manu" via copyField -->
-   <field name="manu_exact" type="string" indexed="true" stored="false"/>
-
-   <field name="payloads" type="payloads" indexed="true" stored="true"/>
 
    <!-- Uncommenting the following will create a "timestamp" field using
         a default value of "NOW" to indicate when each document was indexed.
@@ -1051,7 +987,7 @@
         EXAMPLE:  name="*_i" will match any field ending in _i (like myid_i, z_i)
         Longer patterns will be matched first.  if equal size patterns
         both match, the first appearing in the schema will be used.  -->
-   <dynamicField name="*_str" type="string" indexed="true" stored="false" multiValued="true"/>
+   <dynamicField name="*_str" type="string" indexed="true" stored="false" multiValued="false"/>
    <dynamicField name="*_i"  type="int"    indexed="true"  stored="true"/>
    <dynamicField name="*_s"  type="string"  indexed="true"  stored="true"/>
    <dynamicField name="*_l"  type="long"   indexed="true"  stored="true"/>
@@ -1075,7 +1011,6 @@
    <dynamicField name="*_td" type="tdouble" indexed="true"  stored="true"/>
    <dynamicField name="*_tdt" type="tdate"  indexed="true"  stored="true"/>
    
-   <dynamicField name="*_pi"  type="pint"    indexed="true"  stored="true"/>
    <dynamicField name="*_c"   type="currency" indexed="true"  stored="true"/>
 
    <dynamicField name="ignored_*" type="ignored" multiValued="true"/>
@@ -1108,6 +1043,7 @@
         is added to the index.  It's used either to index the same field differently,
         or to add multiple fields to the same field for easier/faster searching.  -->
 
+<!--
    <copyField source="enu" dest="enu_str"/>
    <copyField source="ara" dest="ara_str"/>
    <copyField source="csy" dest="csy_str"/>
@@ -1143,32 +1079,12 @@
    <copyField source="vit" dest="vit_str"/>
    <copyField source="chs" dest="chs_str"/>
    <copyField source="cht" dest="cht_str"/>
-
-   <copyField source="cat" dest="text"/>
-   <copyField source="name" dest="text"/>
-   <copyField source="manu" dest="text"/>
-   <copyField source="features" dest="text"/>
-   <copyField source="includes" dest="text"/>
-   <copyField source="manu" dest="manu_exact"/>
-
-   <!-- Copy the price into a currency enabled field (default USD) -->
-   <copyField source="price" dest="price_c"/>
-	
-   <!-- Above, multiple source fields are copied to the [text] field. 
-	  Another way to map multiple source fields to the same 
-	  destination field is to use the dynamic field syntax. 
-	  copyField also supports a maxChars to copy setting.  -->
-	   
-   <!-- <copyField source="*_t" dest="text" maxChars="3000"/> -->
-
-   <!-- copy name to alphaNameSort, a field designed for sorting by name -->
-   <!-- <copyField source="name" dest="alphaNameSort"/> -->
- 
+-->
 
  <!-- Similarity is the scoring routine for each document vs. a query.
       A custom similarity may be specified here, but the default is fine
       for most applications.  -->
- <!-- <similarity class="org.apache.lucene.search.DefaultSimilarity"/> -->
+ <similarity class="org.apache.lucene.search.similarities.DefaultSimilarity"/>
  <!-- ... OR ...
       Specify a SimilarityFactory class name implementation
       allowing parameters to be used.

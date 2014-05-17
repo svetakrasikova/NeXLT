@@ -30,19 +30,25 @@
          location = "group:athena2nexlt"
          name = "athena2nexlt">
          <FileRef
-            location = "group:athena2nexlt.sh">
+            location = "group:commons-logging-1.1.3.jar">
          </FileRef>
          <FileRef
-            location = "group:athena2solr.pl">
+            location = "group:httpclient-4.3.3.jar">
+         </FileRef>
+         <FileRef
+            location = "group:httpcore-4.3.2.jar">
+         </FileRef>
+         <FileRef
+            location = "group:json-simple-1.1.1.jar">
+         </FileRef>
+         <FileRef
+            location = "group:athena2nexlt.sh">
          </FileRef>
          <FileRef
             location = "group:AthenaExportMt.java">
          </FileRef>
          <FileRef
             location = "group:bzip2.jar">
-         </FileRef>
-         <FileRef
-            location = "group:opencsv-2.3.jar">
          </FileRef>
          <FileRef
             location = "group:oracle_11203_ojdbc6.jar">
@@ -75,9 +81,6 @@
          </FileRef>
          <FileRef
             location = "group:update-from-svn.sh">
-         </FileRef>
-         <FileRef
-            location = "group:update-solr.sh">
          </FileRef>
       </Group>
    </Group>

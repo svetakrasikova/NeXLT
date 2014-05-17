@@ -6,6 +6,9 @@
 # Based on json2solr.pl by Mirko Plitt
 #
 # Changelog
+# v1.1.1	Modified by Ventsislav Zhechev on 17 May 2014
+# Added a character limit to source and target strings.
+#
 # v1.1		Modified by Ventsislav Zhechev on 04 Apr 2014
 # Switched to incremental parsing of the JSON files—processing one string list at a time.
 # Switched to batch printing to reduce the number of subroutine calls.
@@ -137,6 +140,7 @@ my $processJSON = sub {
 						$src =~ s/[\h\v]+/ /g;
 						$src =~ s/\\$/\\ /g;
 						$src =~ s/\\\t/\\ \t/g;
+						next if length $src > 5000;
 						
 						$trn = $str->trn_text;
 						$trn =~ s/&amp;/\&/g;
@@ -144,6 +148,7 @@ my $processJSON = sub {
 						$trn =~ s/[\h\v]+/ /g;
 						$trn =~ s/\\$/\\ /g;
 						$trn =~ s/\\\t/\\ \t/g;
+						next if length $trn > 5000;
 						
 						$toPrint .= "$src$trn$product◊÷\n";
 						++$counter;

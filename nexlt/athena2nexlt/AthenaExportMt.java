@@ -3,6 +3,17 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.3.1		Modified on 17 May 2014 by Ventsislav Zhechev
+// StringBuilder is now used to generate a JSON string on the fly for performance reasons.
+// (Regular string concatenation is extremely slow.)
+// Updated the usage message.
+// Result segments are fetched from the database in large batches to mitigate network latency issues.
+// Data is submitted to Solr in batches of up to one million segments.
+//
+// v1.3			Modified on 16 May 2014 by Ventsislav Zhechev
+// Updated to submit the data directly to Solr for indexing.
+// Modified the generated SQL to select segments by explicitly specifying ‘translationtype’ instead of filtering by ‘translationtype’.
+//
 // v1.2.2		Modified on 08 May 2014 by Ventsislav Zhechev
 // Fixed the SQL code to filter out raw MT segments
 //
@@ -51,9 +62,17 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import au.com.bytecode.opencsv.CSVWriter;
-
 import org.apache.tools.bzip2.CBZip2OutputStream;
+
+import org.json.simple.JSONObject;
+
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.ContentType;
+
 
 
 public class AthenaExportMt {
@@ -96,18 +115,17 @@ public class AthenaExportMt {
 		LANG_MAPPING.put("zh_cn", "CHS");
 		LANG_MAPPING.put("zh_tw", "CHT");
 		LANG_MAPPING.put("zu_za", "ZUL");
-
 	}
 	
 	public static void main (String[] args) {
 		System.out.println("Export from Athena for MT");
 		System.out.println("=========================\n");
 		if (args == null || args.length < 4 || args.length > 9) {
-			System.out.println("Usage: java AthenaExportMt <dburl> <username> <password> <tablename> [<start date (yyyy.mm.dd)>] [<end date (yyyy.mm.dd)>] {0: use creation date|1: use translation date} {0: output for MT analysis|1: output for Solr indexing}");
+			System.out.println("Usage: java AthenaExportMt <dburl> <username> <password> <tablename> [<start date (yyyy.mm.dd)>] [<end date (yyyy.mm.dd)>] {0: use creation date|1: use translation date} {0: output for MT analysis|1: output for Solr indexing} {0: skip ICE matches|1: include ICE matches}");
 			// CMSDEV1.autodesk.com =(description=(address=(protocol=tcp)(host=uspetddgpdbo001.autodesk.com)(port=1521))(connect_data=(service_name=CMSDEV1.autodesk.com)))
 			// CMSSTG1.autodesk.com  =(description=(address=(protocol=tcp)(host=oracmsstg.autodesk.com)        (port=1528))(connect_data=(service_name=CMSSTG1.autodesk.com)))
 			// CMSPRD1.autodesk.com=( DESCRIPTION=(SDU=16384)(address=(protocol=tcp)(host=oracmsprd1.autodesk.com)(port=1521))(CONNECT_DATA=(service_name=CMSPRD1.autodesk.com)))
-			System.out.println("Example: java -cp opencsv-2.3.jar:oracle_11203_ojdbc6.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser Ten2Four ALL 2013.02.01 2013.03.01 1 0");
+			System.out.println("Example: java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser Ten2Four ALL 2013.02.01 2013.03.01 1 0");
 			System.exit(0);
 		}
 		
@@ -170,8 +188,8 @@ public class AthenaExportMt {
 		
 		Connection conn = null;
 		Properties connectionProps = new Properties();
-	    connectionProps.put("user", username);
-	    connectionProps.put("password", password);
+		connectionProps.put("user", username);
+		connectionProps.put("password", password);
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
@@ -203,7 +221,7 @@ public class AthenaExportMt {
 			
 			
 			for (String oneTable: tables) {
-				System.out.println("Processing " + oneTable + "...");
+				System.out.println("Processing " + oneTable + "…");
 				String tmpLanguage = oneTable.substring(11);
 				//Skip this as it’s not a currently used language.
 				if (tmpLanguage.equals("zu_za")) {
@@ -214,9 +232,8 @@ public class AthenaExportMt {
 				}
 				String targetLanguage = LANG_MAPPING.get(tmpLanguage).toLowerCase();
 				
-				FileOutputStream fos = null;
-				OutputStreamWriter osw = null;
-				CSVWriter csvWriter = null;
+//				FileOutputStream solrfos = null;
+//				PrintStream solrPrintStream = null;
 				FileOutputStream mtfos = null;
 				PrintStream mtPrintStream = null;
 				FileOutputStream tmfos = null;
@@ -228,10 +245,8 @@ public class AthenaExportMt {
 					final String baseFileName = "athena_" + targetLanguage;
 					
 					if (outputForSolr) {
-						fos = new FileOutputStream(new File(baseFileName + ".csv"));
-//						fos.write("BZ".getBytes());
-						osw = new OutputStreamWriter(fos, "UTF-8");
-						csvWriter = new CSVWriter(osw, '\t');
+//						solrfos = new FileOutputStream(new File(baseFileName + ".json"));
+//						solrPrintStream = new PrintStream(solrfos, true, "UTF-8");
 					} else {
 						mtfos = new FileOutputStream(new File(baseFileName + ".mt.bz2"));
 						mtfos.write("BZ".getBytes());
@@ -242,13 +257,13 @@ public class AthenaExportMt {
 						tmPrintStream = new PrintStream(new CBZip2OutputStream(tmfos), true, "UTF-8");
 					}
 					
-										
+					
 					// For MT
-					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID, MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE from " + oneTable + " " + 
+					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID" + (outputForSolr ? "" : ", MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE") + " from " + oneTable + " " + 
 							"where REVIEWSTATUS in (5, 6, 7, 9) " + 
 							"and RELEASE != 'TESTING' " +
-							"and TRANSLATIONTYPE = 6" +
-//							"and TRANSLATIONTYPE not in (1, 6" + (useICE ? ") " : ", 4) ") + //not AUTO or ICE  match
+//							"and TRANSLATIONTYPE = 6 " +
+							"and TRANSLATIONTYPE in (2, 3, 5" + (useICE ? ", 4) " : ") ") + //not AUTO or ICE  match
 							"and SOURCESEGMENT is not null and POSTTRANSLATIONTARGET is not null and PRODUCT is not null and RELEASE is not null ";
 								
 					if (startDate != null && endDate != null) {
@@ -303,138 +318,202 @@ public class AthenaExportMt {
 					
 					sqlSelect += "order by CREATIONDATE asc, PRODUCT asc, RELEASE asc";
 					
-					boolean foundSegments = false;
 					ps = conn.prepareStatement(sqlSelect);
 					rs = ps.executeQuery();
+					// To make sure we don’t stall on high-latency connections.
+					rs.setFetchSize(50000);
+					StringBuilder content = new StringBuilder("{");
+					int counter = 0;
+					String product = "";
+					String release = "";
+					String uid = "";
+					String sourceSegment = "";
+					String targetSegment = "";
+					String mtScoreString = "";
+					String mtTranslation = "";
+					String tmScoreString = "";
+					String tmTranslation = "";
+					String translationTypeString = "";
+					String creationDateString = "";
+					String translationDateString = "";
 					while (rs.next()) {
-						if (!foundSegments) {
-							if (outputForSolr) {
-								csvWriter.writeNext(new String[]{"id", "product", "enu", targetLanguage, "release", "srclc"});
+						if (counter > 0 && counter % 250000 == 0) {
+							System.out.print(".");
+						}
+						if (counter > 0 && counter % 1000000 == 0) {
+							content.append(", \"commit\": {} }");
+							
+							System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
+//							solrPrintStream.println(content.toString());
+							CloseableHttpClient httpclient = HttpClients.createDefault();
+							try {
+								HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
+								request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
+								CloseableHttpResponse response = httpclient.execute(request);
+								try {
+									System.out.println(response.getStatusLine().toString());
+								} finally {
+									response.close();
+								}
+							} finally {
+								httpclient.close();
 							}
-							foundSegments = true;
+							System.out.println("…data successfully posted to Solr! " + oneTable);
+
+							content = new StringBuilder("{");
 						}
+						if ((counter % 1000000) != 0) {
+//						if (counter != 0) {
+							content.append(", \n");
+						}
+						++counter;
 						
-						String product = rs.getString(1);
-						String release = rs.getString(2);
-						String uid = rs.getString(5);
+						product = rs.getString(1);
+						release = rs.getString(2);
+						uid = new StringBuilder(rs.getString(5)).append("Documentation").toString();
 						
-						String sourceSegment = rs.getString(3);
-						sourceSegment = sourceSegment.replaceAll("\n", " ");
-						sourceSegment = sourceSegment.replaceAll("\r", " ");
+						sourceSegment = rs.getString(3).replaceAll("\n", " ").replaceAll("\r", " ");
 						
-						String targetSegment = rs.getString(4);
-						targetSegment = targetSegment.replaceAll("\n", " ");
-						targetSegment = targetSegment.replaceAll("\r", " ");
-												
-						final Double mtScore = rs.getDouble(6);
-						String mtScoreString = null;
-						if (mtScore != null && !rs.wasNull()) {
-							mtScoreString = mtScoreFormat.format(mtScore);
-						}
-						else {
-							mtScoreString = "";
-						}
+						targetSegment = rs.getString(4).replaceAll("\n", " ").replaceAll("\r", " ");
 						
-						String mtTranslation = rs.getString(7);
-						if (mtTranslation != null) {
-							mtTranslation = mtTranslation.replaceAll("\n", " ");
-							mtTranslation = mtTranslation.replaceAll("\r", " ");
-						}
-						else {
-							mtTranslation = "";
-						}
-						
-						final Double tmScore = rs.getDouble(8);
-						String tmScoreString = null;
-						if (tmScore != null && !rs.wasNull()) {
-							tmScoreString = tmScoreFormat.format(tmScore);
-						}
-						else {
-							tmScoreString = "";
-						}
-						
-						String tmTranslation = rs.getString(9);
-						if (tmTranslation != null) {
-							tmTranslation = tmTranslation.replaceAll("\n", " ");
-							tmTranslation = tmTranslation.replaceAll("\r", " ");
-						}
-						else {
-							tmTranslation = "";
-						}
-						
-						final Integer translationType = rs.getInt(10);
-						String translationTypeString = null;
-						if (translationType != null && !rs.wasNull()) {
-							int i = translationType.intValue();
-							switch (i) {
-								case 1:
-									translationTypeString = "AUTO";
-									break;
-								case 2:
-									translationTypeString = "EXACT";
-									break;
-								case 3:
-									translationTypeString = "FUZZY";
-									break;
-								case 4:
-									translationTypeString = "ICE";
-									break;
-								case 5:
-									translationTypeString = "MT";
-									break;
-								default:
-									translationTypeString = "";							
+						if (!outputForSolr) {
+							final Double mtScore = rs.getDouble(6);
+							mtScoreString = null;
+							if (mtScore != null && !rs.wasNull()) {
+								mtScoreString = mtScoreFormat.format(mtScore);
 							}
-						}
-						else {
-							translationTypeString = "";
-						}
+							else {
+								mtScoreString = "";
+							}
+							
+							mtTranslation = rs.getString(7);
+							if (mtTranslation != null) {
+								mtTranslation = mtTranslation.replaceAll("\n", " ");
+								mtTranslation = mtTranslation.replaceAll("\r", " ");
+							}
+							else {
+								mtTranslation = "";
+							}
+							
+							final Double tmScore = rs.getDouble(8);
+							tmScoreString = null;
+							if (tmScore != null && !rs.wasNull()) {
+								tmScoreString = tmScoreFormat.format(tmScore);
+							}
+							else {
+								tmScoreString = "";
+							}
 						
-						final Timestamp creationDate = rs.getTimestamp(11);
-						String creationDateString = null;
-						if (creationDate != null) {
-							creationDateString = sdfReadable.format(toDate(creationDate));
-						}
-						else {
-							creationDateString = "";
-						}
+							tmTranslation = rs.getString(9);
+							if (tmTranslation != null) {
+								tmTranslation = tmTranslation.replaceAll("\n", " ");
+								tmTranslation = tmTranslation.replaceAll("\r", " ");
+							}
+							else {
+								tmTranslation = "";
+							}
 						
-						final Timestamp translationDate = rs.getTimestamp(12);
-						String translationDateString = null;
-						if (translationDate != null) {
-							translationDateString = sdfReadable.format(toDate(translationDate));
-						}
-						else {
-							translationDateString = "";
-						}
-						
-						if (outputForSolr) {
-							csvWriter.writeNext(new String[]{uid, product, sourceSegment, targetSegment, release, sourceSegment.toLowerCase(), creationDateString, translationDateString});
-						} else {
+							final Integer translationType = rs.getInt(10);
+							translationTypeString = null;
+							if (translationType != null && !rs.wasNull()) {
+								int i = translationType.intValue();
+								switch (i) {
+									case 1:
+										translationTypeString = "AUTO";
+										break;
+									case 2:
+										translationTypeString = "EXACT";
+										break;
+									case 3:
+										translationTypeString = "FUZZY";
+										break;
+									case 4:
+										translationTypeString = "ICE";
+										break;
+									case 5:
+										translationTypeString = "MT";
+										break;
+									case 6:
+										translationTypeString = "Raw_MT";
+										break;
+									default:
+										translationTypeString = "";							
+								}
+							}
+							else {
+								translationTypeString = "";
+							}
+							
+							final Timestamp creationDate = rs.getTimestamp(11);
+							creationDateString = null;
+							if (creationDate != null) {
+								creationDateString = sdfReadable.format(toDate(creationDate));
+							}
+							else {
+								creationDateString = "";
+							}
+							
+							final Timestamp translationDate = rs.getTimestamp(12);
+							translationDateString = null;
+							if (translationDate != null) {
+								translationDateString = sdfReadable.format(toDate(translationDate));
+							}
+							else {
+								translationDateString = "";
+							}
+							
 							mtPrintStream.println(sourceSegment + "" + mtTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
 							tmPrintStream.println(sourceSegment + "" + tmTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
+
+						} else {
+							content.append("\"add\": { \"doc\": {")
+							.append("\"resource\": {\"set\":\"Documentation\"}, ")
+							.append("\"product\": {\"set\":\"").append(JSONObject.escape(product)).append("\"}, ")
+							.append("\"release\": {\"set\":\"").append(JSONObject.escape(release)).append("\"}, ")
+							.append("\"id\": \"").append(JSONObject.escape(uid)).append("\", ")
+							.append("\"enu\": {\"set\":\"").append(JSONObject.escape(sourceSegment)).append("\"}, ")
+							.append("\"").append(targetLanguage).append("\": {\"set\":\"").append(JSONObject.escape(targetSegment)).append("\"}, ")
+							.append("\"srclc\": {\"set\":\"").append(JSONObject.escape(sourceSegment.toLowerCase())).append("\"} ")
+							.append("} }");
 						}
 					}
 					rs.close();
 					ps.close();
 					
-					if (!foundSegments) {
+					if (counter == 0) {
 						if (outputForSolr) {
-							csvWriter.writeNext(new String[]{"id", "product", "enu", targetLanguage, "release", "srclc"});
 						} else {
 							mtPrintStream.print(" ");
 							tmPrintStream.print(" ");
 						}
+					} else if (outputForSolr) {
+						content.append(", \"commit\": {} }");
+
+						System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
+//						solrPrintStream.println(content.toString());
+						CloseableHttpClient httpclient = HttpClients.createDefault();
+						try {
+							HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
+							request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
+							CloseableHttpResponse response = httpclient.execute(request);
+							try {
+								System.out.println(response.getStatusLine().toString());
+							} finally {
+								response.close();
+							}
+						} finally {
+							httpclient.close();
+						}
+						System.out.println("…data successfully posted to Solr! " + oneTable);
 					}
 					
 					conn.rollback();
 					
-					System.out.println("...done processing " + oneTable);
+					System.out.println("…done processing " + oneTable);
 				}
 				finally {
-					if (csvWriter != null) { csvWriter.close(); }
-					if (osw != null) { osw.close(); }
-					if (fos != null) { fos.close(); }
+//					if (solrPrintStream != null) { solrPrintStream.close(); }
+//					if (solrfos != null) { solrfos.close(); }
 					if (mtPrintStream != null) { mtPrintStream.close(); }
 					if (mtfos != null) { mtfos.close(); }
 					if (tmPrintStream != null) { tmPrintStream.close(); }
@@ -510,10 +589,9 @@ public class AthenaExportMt {
 	}
 	
 	public static java.util.Date toDate(java.sql.Timestamp timestamp) {
-		long milliseconds = timestamp.getTime()
-				+ (timestamp.getNanos() / 1000000);
+		long milliseconds = timestamp.getTime() + (timestamp.getNanos() / 1000000);
 		return new java.util.Date(milliseconds);
 	}
-
+	
 }
 
