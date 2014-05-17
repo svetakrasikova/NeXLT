@@ -39,6 +39,9 @@
 #		2.1.1 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) May-17-2014
 #				– Added a default value for $prjCustomProps{"M:LPUProductId"}.
 #				– Added a character limit to source and target strings.
+#				– Updated to match the format of the RAPID_ProductId file.
+#		2.1.2 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) May-18-2014
+#				– Now we map the product code based on the data in the RAPID_ProductID file.
 #
 ################################################################################
 
@@ -49,6 +52,7 @@ use threads;
 use Thread::Queue;
 
 use Encode qw/encode/;
+use Text::CSV;
 
 use URI::Escape;
 use Digest::MD5 qw(md5 md5_hex md5_base64);
@@ -67,14 +71,21 @@ my $http = HTTP::Tiny->new(agent => "SW JSON Indexer", default_headers => {"Cont
 
 
 my %ProdID_ProductRel; # Key: ProductId, Value: Array(Product, Release)
+my %ProductCodes;
+my $foundProduct = 0;
 # Load reference file, RAPID_ProductId.tsv
-open( PRODIDFILE , "./RAPID_ProductId.csv" ) or die "Cannot open ./RAPID_ProductId.tsv file!\n";
-while(<PRODIDFILE>) {
-	my @line = split /;/, $_;
-	$ProdID_ProductRel{$line[0]} = [$line[9],$line[8]] unless exists $ProdID_ProductRel{$line[0]};
+open( my $prodFile , "./RAPID_ProductId.csv" ) or die "Cannot open ./RAPID_ProductId.csv file!\n";
+my $csv = Text::CSV->new({ binary => 1, eol => "\r", sep_char => ";" });
+while(my $line = $csv->getline($prodFile)) {
+	$ProdID_ProductRel{$line->[0]} = $line->[18];
+	if (!$foundProduct && $aproduct eq $line->[7] && $line->[10]) {
+		$aproduct = $line->[10];
+		$foundProduct = 1;
+	}
 }
-close(PRODIDFILE);
+close $prodFile;
 print STDERR "RAPID file loaded.\n";
+die "Could not find product $aproduct in the database!\n" unless $foundProduct;
 
 my %ResTypeDll = ( "4" => "Menu" , "5" => "Dialog" , "6" => "String Table" , "9" => "Accelerator Table" , "11" => "Message Table" , "16" => "Version" , "23" => "HTML", "240" => "DLGINIT" );
 
@@ -88,8 +99,7 @@ $prjCustomProps{"M:LPUProductId"} ||= -1;
 
 # good to have, but unused
 #my ($ProductID, $Component, $DevBranch, $Phase, $SrcVersion, $LocVersion, $LocalizationType, $Email) = @prjCustomProps{qw/M:LPUProductId M:LPUComponent M:LPUDevBranch M:LPUPhase M:LPUSrcVersion M:LPULocVersion M:LPULocalizationType M:LPUEmail/};
-my ($Version, $Product) = exists $ProdID_ProductRel{$prjCustomProps{"M:LPUProductId"}} ? @{$ProdID_ProductRel{$prjCustomProps{"M:LPUProductId"}}} : (undef, undef);
-$Version ||= 2015;
+my $Version = exists $ProdID_ProductRel{$prjCustomProps{"M:LPUProductId"}} ? $ProdID_ProductRel{$prjCustomProps{"M:LPUProductId"}} : 2015;
 
 my %languageQueues;
 my @workers;
@@ -119,7 +129,9 @@ my $printer = sub {
 		$content .= '} }';
 	}
 	$content .= ', "commit": {} }';
-#	print STDOUT $content;
+#	open my $f, ">passolo.$aproduct.$language";
+#	print $f $content;
+#	close $f;
 	print STDERR encode "utf-8", "Posting $language content for indexing…\n";
 	my $response = $http->request('POST', 'http://10.37.23.237:8983/solr/update/json', { content => $content });
 	die "HTML request to Solr failed!\n $response->{status} $response->{reason}\n$response->{content}\n" unless $response->{success};

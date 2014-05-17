@@ -3,6 +3,10 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.3.2		Modified on 18 May 2014 by Ventsislav Zhechev
+// Now we read in a CSV file with product information that we use to select the proper product codes to store.
+// Now we are skipping segments assigned to the ‘TESTING’ product.
+//
 // v1.3.1		Modified on 17 May 2014 by Ventsislav Zhechev
 // StringBuilder is now used to generate a JSON string on the fly for performance reasons.
 // (Regular string concatenation is extremely slow.)
@@ -61,6 +65,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.nio.charset.Charset;
 
 import org.apache.tools.bzip2.CBZip2OutputStream;
 
@@ -73,6 +78,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.ContentType;
 
+import com.csvreader.CsvReader;
 
 
 public class AthenaExportMt {
@@ -125,7 +131,7 @@ public class AthenaExportMt {
 			// CMSDEV1.autodesk.com =(description=(address=(protocol=tcp)(host=uspetddgpdbo001.autodesk.com)(port=1521))(connect_data=(service_name=CMSDEV1.autodesk.com)))
 			// CMSSTG1.autodesk.com  =(description=(address=(protocol=tcp)(host=oracmsstg.autodesk.com)        (port=1528))(connect_data=(service_name=CMSSTG1.autodesk.com)))
 			// CMSPRD1.autodesk.com=( DESCRIPTION=(SDU=16384)(address=(protocol=tcp)(host=oracmsprd1.autodesk.com)(port=1521))(CONNECT_DATA=(service_name=CMSPRD1.autodesk.com)))
-			System.out.println("Example: java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser Ten2Four ALL 2013.02.01 2013.03.01 1 0");
+			System.out.println("Example: java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:javacsv.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser Ten2Four ALL 2013.02.01 2013.03.01 1 0");
 			System.exit(0);
 		}
 		
@@ -205,6 +211,19 @@ public class AthenaExportMt {
 		tmScoreFormat.setMinimumIntegerDigits(1);
 		tmScoreFormat.setGroupingUsed(false);
 		
+		CsvReader products = null;
+		Map<String, String> productsMap = new HashMap<String, String>();
+		try {
+			products = new CsvReader("./RAPID_ProductId.csv", ';', Charset.forName("UTF-8"));
+			products.skipLine();
+			while (products.readRecord()) {
+				productsMap.put(products.get(8), products.get(10));
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (products != null) { products.close(); }
+		}
 		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
@@ -219,6 +238,7 @@ public class AthenaExportMt {
 				tables.add(table);
 			}
 			
+			int badStrings = 0;
 			
 			for (String oneTable: tables) {
 				System.out.println("Processing " + oneTable + "…");
@@ -336,6 +356,7 @@ public class AthenaExportMt {
 					String translationTypeString = "";
 					String creationDateString = "";
 					String translationDateString = "";
+					boolean skipped = false;
 					while (rs.next()) {
 						if (counter > 0 && counter % 250000 == 0) {
 							System.out.print(".");
@@ -362,13 +383,38 @@ public class AthenaExportMt {
 
 							content = new StringBuilder("{");
 						}
-						if ((counter % 1000000) != 0) {
-//						if (counter != 0) {
-							content.append(", \n");
+						if (counter % 1000000 != 0) {
+							if (!skipped) {
+								content.append(", \n");
+							} else {
+								skipped = false;
+							}
 						}
 						++counter;
 						
 						product = rs.getString(1);
+						if (product.equals("TESTING")) {
+							skipped = true;
+							continue;
+						}
+						// Fix some product data.
+						product = product.replace("RENT_", "");
+						if (product.equals("PlDS")) {
+							product = "PLDS";
+						}
+						if (product.equals("PrDS")) {
+							product = "PRDS";
+						}
+						// Select correct unified product code, if exists.
+						if (productsMap.containsKey(product)) {
+							product = productsMap.get(product);
+						} else {
+							++badStrings;
+//							if (!product.equals("AGP") && !product.equals("LANDING") && !product.equals("MENU") && !product.equals("CAMPAIGN_ALPHA") && !product.equals("N/A") && !product.equals("ALGOR") && !product.equals("FLAME") && !product.equals("CAMP_ACD") && !product.equals("360EWS") && !product.equals("360EWS_GP") && !product.equals("360EWS_MOBAPPS") && !product.equals("CLDCR") && !product.equals("BIM360") && !product.equals("AA360") && !product.equals("SMOKE") && !product.equals("MAXDES") && !product.equals("FTGP") && !product.equals("SGP") && !product.equals("PGP") && !product.equals("E-LEARNING") && !product.equals("CAM360") && !product.equals("NSIM") && !product.equals("ADST") && !product.equals("ACAD_WEB") && !product.equals("EDS") && !product.equals("ROBOT-SPREADSHEET_CALCULATOR") && !product.equals("ROBOT-CBS_PRO") && !product.equals("ADKVRD") && !product.equals("SUSTAINABILITY")) {
+//								System.err.println("Could not find product " + product + " in database!");
+//							}
+						}
+						
 						release = rs.getString(2);
 						uid = new StringBuilder(rs.getString(5)).append("Documentation").toString();
 						
@@ -520,7 +566,7 @@ public class AthenaExportMt {
 					if (tmfos != null) { tmfos.close(); }
 				}
 			}
-			System.out.println("\nCompleted successfully.");
+			System.out.println("\nCompleted successfully.\n" + badStrings + " strings in unknown products.");
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

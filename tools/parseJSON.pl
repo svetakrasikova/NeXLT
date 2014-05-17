@@ -8,6 +8,7 @@
 # Changelog
 # v1.1.1	Modified by Ventsislav Zhechev on 17 May 2014
 # Added a character limit to source and target strings.
+# Relocated the language renaming that fixes some JSON file contents.
 #
 # v1.1		Modified by Ventsislav Zhechev on 04 Apr 2014
 # Switched to incremental parsing of the JSON files—processing one string list at a time.
@@ -64,9 +65,6 @@ my $printer = sub {
 
 sub printForLanguage {
 	my $language = shift;
-	#Fix some bugs in the JSON files.
-	$language = "esp" if $language eq "esn";
-	$language = "eng" if $language eq "enu";
 	unless (exists $languageQueues{$language}) {
 		{ lock %languageQueues;
 			unless (exists $languageQueues{$language}) {
@@ -113,6 +111,9 @@ my $processJSON = sub {
 					last unless @$data;
 					
 					my $lang = $data->[4];
+					#Fix some bugs in the JSON files.
+					$lang = "esp" if $lang eq "esn";
+					$lang = "eng" if $lang eq "enu";
 					my $src;
 					my $trn;
 #					my $restype;
@@ -153,7 +154,6 @@ my $processJSON = sub {
 						$toPrint .= "$src$trn$product◊÷\n";
 						++$counter;
 					}
-#					print STDERR encode "utf-8", threads->tid().": Printing for language $lang:\n$toPrint\n";
 					printForLanguage $lang, $toPrint, $counter if $counter;
 					last;
 				}
@@ -206,7 +206,7 @@ my $processJSON = sub {
 @workers = @{shared_clone ([map { scalar threads->create($processJSON) } 1..$threads])};
 
 #Find all files that should be processed.
-my @jsons = find(sub {$fileQueue->enqueue($File::Find::name) if /.json$/}, "/OptiBay/SW_JSONs");
+find(sub {$fileQueue->enqueue($File::Find::name) if /.json$/}, "/OptiBay/SW_JSONs");
 
 #Notify the file worker threads that we’ve finished processing
 $fileQueue->enqueue(undef) foreach 1..$threads;

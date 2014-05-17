@@ -30,6 +30,9 @@
          location = "group:athena2nexlt"
          name = "athena2nexlt">
          <FileRef
+            location = "group:javacsv.jar">
+         </FileRef>
+         <FileRef
             location = "group:commons-logging-1.1.3.jar">
          </FileRef>
          <FileRef
@@ -68,19 +71,10 @@
          location = "group:translationrepository2nexlt"
          name = "translationrepository2nexlt">
          <FileRef
-            location = "group:checkout_new_products.sh">
-         </FileRef>
-         <FileRef
             location = "group:json2solr.pl">
          </FileRef>
          <FileRef
-            location = "group:newjson2tsv.sh">
-         </FileRef>
-         <FileRef
             location = "group:tr2solr.sh">
-         </FileRef>
-         <FileRef
-            location = "group:update-from-svn.sh">
          </FileRef>
       </Group>
    </Group>
