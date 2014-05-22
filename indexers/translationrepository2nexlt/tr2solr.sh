@@ -7,6 +7,9 @@
 # Creted by Mirko Plitt
 #
 # Changelog
+# v3.0.2	Modified by Ventsislav Zhechev on 19 May 2014
+# Changed the location of the file indicating the last refresh date.
+#
 # v3.0.1	Modified by Ventsislav Zhechev on 18 May 2014
 # Updated to match the working dir on deployment server.
 #
@@ -23,7 +26,6 @@
 # Initial version
 #
 
-#/mnt/tr/checkout_new_products.sh
 cd /local/cms/NeXLT/nexlt/translationrepository2nexlt
 mv -f product.lst old.product.lst
 curl --user 'ferrotp:2@klopklop' https://lsdata.autodesk.com/svn/jsons/ |sed 's/.*"\(.*\)".*/\1/
@@ -31,23 +33,21 @@ curl --user 'ferrotp:2@klopklop' https://lsdata.autodesk.com/svn/jsons/ |sed 's/
 comm -23 product.lst old.product.lst | sed 's/^/svn co https:\/\/lsdata.autodesk.com\/svn\/jsons\//' | xargs -L 1 xargs -t
 
 
-#/mnt/tr/update-from-svn.sh  
 for D in `ls -d ./*/`
   do
     if [ $D != ./test/ ] && [ $D != ./ACD_old_test/ ]
     then
       echo "Trying $D"
       cd $D
-      svn up 
-			cd /local/cms/NeXLT/nexlt/translationrepository2nexlt
+      svn up
+      cd /local/cms/NeXLT/nexlt/translationrepository2nexlt
     fi
   done
 
+touch /var/www/solrUpdate/passolo.lastrefresh.new
 
-#/mnt/tr/newjson2tsv.sh  
-touch lastrefresh.new
 
-for js in `find . -name "*json" -newer ./lastrefresh`
+for js in `find . -name "*json" -newer /var/www/solrUpdate/passolo.lastrefresh`
   do
     product=`echo -n $js | sed 's/.\/\([^\/]*\)\/[^\/]*.*\/\([^\/]*\)\/[^\/]*.json/\1/'`
     if [ $product != test ] && [ $product != ACD_old_test ]
@@ -57,4 +57,4 @@ for js in `find . -name "*json" -newer ./lastrefresh`
     fi
   done
 
-mv -f lastrefresh.new lastrefresh
+mv -f /var/www/solrUpdate/passolo.lastrefresh.new /var/www/solrUpdate/passolo.lastrefresh

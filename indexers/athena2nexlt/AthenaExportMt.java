@@ -217,7 +217,7 @@ public class AthenaExportMt {
 			products = new CsvReader("./RAPID_ProductId.csv", ';', Charset.forName("UTF-8"));
 			products.skipLine();
 			while (products.readRecord()) {
-				productsMap.put(products.get(8), products.get(10));
+				productsMap.put(products.get(8), products.get(11));
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -410,9 +410,9 @@ public class AthenaExportMt {
 							product = productsMap.get(product);
 						} else {
 							++badStrings;
-//							if (!product.equals("AGP") && !product.equals("LANDING") && !product.equals("MENU") && !product.equals("CAMPAIGN_ALPHA") && !product.equals("N/A") && !product.equals("ALGOR") && !product.equals("FLAME") && !product.equals("CAMP_ACD") && !product.equals("360EWS") && !product.equals("360EWS_GP") && !product.equals("360EWS_MOBAPPS") && !product.equals("CLDCR") && !product.equals("BIM360") && !product.equals("AA360") && !product.equals("SMOKE") && !product.equals("MAXDES") && !product.equals("FTGP") && !product.equals("SGP") && !product.equals("PGP") && !product.equals("E-LEARNING") && !product.equals("CAM360") && !product.equals("NSIM") && !product.equals("ADST") && !product.equals("ACAD_WEB") && !product.equals("EDS") && !product.equals("ROBOT-SPREADSHEET_CALCULATOR") && !product.equals("ROBOT-CBS_PRO") && !product.equals("ADKVRD") && !product.equals("SUSTAINABILITY")) {
-//								System.err.println("Could not find product " + product + " in database!");
-//							}
+							if (!product.equals("AGP") && !product.equals("LANDING") && !product.equals("MENU") && !product.equals("CAMPAIGN_ALPHA") && !product.equals("N/A") && !product.equals("ALGOR") && !product.equals("FLAME") && !product.equals("CAMP_ACD") && !product.equals("360EWS") && !product.equals("360EWS_GP") && !product.equals("360EWS_MOBAPPS") && !product.equals("CLDCR") && !product.equals("BIM360") && !product.equals("AA360") && !product.equals("SMOKE") && !product.equals("MAXDES") && !product.equals("FTGP") && !product.equals("SGP") && !product.equals("PGP") && !product.equals("E-LEARNING") && !product.equals("CAM360") && !product.equals("NSIM") && !product.equals("ADST") && !product.equals("ACAD_WEB") && !product.equals("EDS") && !product.equals("ROBOT-SPREADSHEET_CALCULATOR") && !product.equals("ROBOT-CBS_PRO") && !product.equals("ADKVRD") && !product.equals("SUSTAINABILITY")) {
+								System.err.println("Could not find product " + product + " in database!");
+							}
 						}
 						
 						release = rs.getString(2);

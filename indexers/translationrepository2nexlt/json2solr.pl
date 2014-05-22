@@ -78,8 +78,8 @@ open( my $prodFile , "./RAPID_ProductId.csv" ) or die "Cannot open ./RAPID_Produ
 my $csv = Text::CSV->new({ binary => 1, eol => "\r", sep_char => ";" });
 while(my $line = $csv->getline($prodFile)) {
 	$ProdID_ProductRel{$line->[0]} = $line->[18];
-	if (!$foundProduct && $aproduct eq $line->[7] && $line->[10]) {
-		$aproduct = $line->[10];
+	if (!$foundProduct && $aproduct eq $line->[7] && $line->[11]) {
+		$aproduct = $line->[11];
 		$foundProduct = 1;
 	}
 }
