@@ -8,18 +8,6 @@
       location = "group:CGI">
    </FileRef>
    <FileRef
-      location = "group:jProject.pm">
-   </FileRef>
-   <FileRef
-      location = "group:jResource.pm">
-   </FileRef>
-   <FileRef
-      location = "group:jString.pm">
-   </FileRef>
-   <FileRef
-      location = "group:jStringList.pm">
-   </FileRef>
-   <FileRef
       location = "group:tools">
    </FileRef>
 </Workspace>
