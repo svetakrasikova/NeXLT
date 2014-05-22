@@ -214,7 +214,7 @@ public class AthenaExportMt {
 		CsvReader products = null;
 		Map<String, String> productsMap = new HashMap<String, String>();
 		try {
-			products = new CsvReader("./RAPID_ProductId.csv", ';', Charset.forName("UTF-8"));
+			products = new CsvReader("../RAPID_ProductId.csv", ';', Charset.forName("UTF-8"));
 			products.skipLine();
 			while (products.readRecord()) {
 				productsMap.put(products.get(8), products.get(11));

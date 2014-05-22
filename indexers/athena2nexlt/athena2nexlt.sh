@@ -24,7 +24,7 @@
 
 echo "*****************************************************"
 date
-cd /local/cms/NeXLT/nexlt/athena2nexlt
+cd /local/cms/NeXLT/indexers/athena2nexlt
 java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser Ten2Four ALL $(date --date yesterday +%Y.%m.%d) $(date +%Y.%m.%d) 0 1
 
 touch /var/www/solrUpdate/athena.lastrefresh

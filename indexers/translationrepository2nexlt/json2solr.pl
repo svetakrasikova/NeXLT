@@ -74,7 +74,7 @@ my %ProdID_ProductRel; # Key: ProductId, Value: Array(Product, Release)
 my %ProductCodes;
 my $foundProduct = 0;
 # Load reference file, RAPID_ProductId.tsv
-open( my $prodFile , "./RAPID_ProductId.csv" ) or die "Cannot open ./RAPID_ProductId.csv file!\n";
+open( my $prodFile , "../RAPID_ProductId.csv" ) or die "Cannot open ../RAPID_ProductId.csv file!\n";
 my $csv = Text::CSV->new({ binary => 1, eol => "\r", sep_char => ";" });
 while(my $line = $csv->getline($prodFile)) {
 	$ProdID_ProductRel{$line->[0]} = $line->[18];

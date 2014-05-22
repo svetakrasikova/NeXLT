@@ -26,7 +26,7 @@
 # Initial version
 #
 
-cd /local/cms/NeXLT/nexlt/translationrepository2nexlt
+cd /local/cms/NeXLT/indexers/translationrepository2nexlt
 mv -f product.lst old.product.lst
 curl --user 'ferrotp:2@klopklop' https://lsdata.autodesk.com/svn/jsons/ |sed 's/.*"\(.*\)".*/\1/
 /</d' | sort -f >product.lst
@@ -40,7 +40,7 @@ for D in `ls -d ./*/`
       echo "Trying $D"
       cd $D
       svn up
-      cd /local/cms/NeXLT/nexlt/translationrepository2nexlt
+      cd /local/cms/NeXLT/indexers/translationrepository2nexlt
     fi
   done
 
