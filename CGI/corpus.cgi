@@ -6,6 +6,9 @@
 # Created by Mirko Plitt based on the NAT tool
 #
 # Changelog
+# v2.0.1	Modified on 26 May 2014 by Ventsislav Zhechev
+# Added Google Analytics code.
+#
 # v2			Modified on 22 May 2014 by Ventsislav Zhechev
 # Massive clean up of dead code.
 # Script now works with ‘use strict’.
@@ -161,6 +164,16 @@ print "<link rel='stylesheet' href='/assets/css/bootstrap-1.2.0.min.css'>
 <script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.min.js'></script>
 <script type='text/javascript' src='/assets/js/bootstrap-dropdown.js'></script>
 <script type='text/javascript' src='/assets/js/table.js'></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51341692-1', 'autodesk.com');
+  ga('send', 'pageview');
+
+</script>
 </head><body>
 <section id='navigation'>
 <div class='page-header' style='padding-top:60px;'>
