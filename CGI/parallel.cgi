@@ -76,7 +76,7 @@ background: yellow;
 }
 </style>";
 print "<link rel='stylesheet' href='/assets/css/bootstrap-1.2.0.min.css'>
-<title>Language Technology at Autodesk</title>
+<title>Autodesk NeXLT Full Search</title>
 <!--[if lt IE 9]>
 <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
 <![endif]-->
