@@ -7,6 +7,10 @@
 # Creted by Mirko Plitt
 #
 # Changelog
+# v3.0.3	Modified by Ventsislav Zhechev on 27 May 2014
+# Updated the commands to connect to the SVN repository.
+# Moved the check for new products/repositories after the general repository update.
+#
 # v3.0.2	Modified by Ventsislav Zhechev on 19 May 2014
 # Changed the location of the file indicating the last refresh date.
 #
@@ -27,25 +31,25 @@
 #
 
 cd /local/cms/NeXLT/indexers/translationrepository2nexlt
-mv -f product.lst old.product.lst
-curl --user 'ferrotp:2@klopklop' https://lsdata.autodesk.com/svn/jsons/ |sed 's/.*"\(.*\)".*/\1/
-/</d' | sort -f >product.lst
-comm -23 product.lst old.product.lst | sed 's/^/svn co https:\/\/lsdata.autodesk.com\/svn\/jsons\//' | xargs -L 1 xargs -t
-
-
 for D in `ls -d ./*/`
   do
     if [ $D != ./test/ ] && [ $D != ./ACD_old_test/ ]
     then
       echo "Trying $D"
       cd $D
-      svn up
+      svn --username ferrotp --password 2@klopklop --non-interactive up
       cd /local/cms/NeXLT/indexers/translationrepository2nexlt
     fi
   done
 
-touch /var/www/solrUpdate/passolo.lastrefresh.new
 
+mv -f product.lst old.product.lst
+curl --user 'ferrotp:2@klopklop' http://lsdata.autodesk.com/svn/jsons/ |sed 's/.*"\(.*\)".*/\1/
+/</d' | sort -f >product.lst
+comm -23 product.lst old.product.lst | sed 's/^/svn --username ferrotp --password 2@klopklop --non-interactive co http:\/\/lsdata.autodesk.com\/svn\/jsons\//' | xargs -L 1 xargs -t
+
+
+touch /var/www/solrUpdate/passolo.lastrefresh.new
 
 for js in `find . -name "*json" -newer /var/www/solrUpdate/passolo.lastrefresh`
   do

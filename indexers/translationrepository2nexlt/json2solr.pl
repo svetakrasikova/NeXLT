@@ -44,6 +44,8 @@
 #				– Now we map the product code based on the data in the RAPID_ProductID file.
 #		2.1.3 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) May-27-2014
 #				– Modified the code reading the RAPID product-code-mapping file.
+#		2.1.4 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) May-28-2014
+#				– Fixed a bug in an while condition statement.
 #
 ################################################################################
 
@@ -90,7 +92,7 @@ my $foundProduct = 0;
 # Load reference file, RAPID_ProductId.tsv
 open( my $prodFile , "../RAPID_ProductId.csv" ) or die "Cannot open ../RAPID_ProductId.csv file!\n";
 my $csv = Text::CSV->new({ binary => 1, eol => "\n", sep_char => ";" });
-while (my $line = $csv->getline($prodFile) && !$foundProduct) {
+while (my $line = $csv->getline($prodFile) and !$foundProduct) {
 	if (!$foundProduct && $aproduct eq $line->[5]) {
 		$aproduct = $line->[7];
 		if ($prjCustomProps{"M:LPUProductId"} > 0) {
