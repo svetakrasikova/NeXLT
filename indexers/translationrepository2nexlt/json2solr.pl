@@ -107,7 +107,7 @@ while (my $line = $csv->getline($prodFile) and !$foundProduct) {
 }
 close $prodFile;
 print STDERR "RAPID file loaded.\n";
-die "Could not find product $aproduct in the database with ID ".$prjCustomProps{"M:LPUProductId"}."!\n" unless $foundProduct;
+warn "Could not find product $aproduct in the database with ID ".$prjCustomProps{"M:LPUProductId"}."!\n" unless $foundProduct;
 
 my %languageQueues;
 my @workers;
