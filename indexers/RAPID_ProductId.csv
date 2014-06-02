@@ -1198,9 +1198,9 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4616;Main Release;Main;Alias Automotive;2016;;;;
 4617;Main Release;Main;Alias Surface;2016;;;;
 4618;Main Release;Main;Autodesk Fusion 360;2016;FSN360;FSN360;FSN360;
-4619;Main Release;Main;Simulation CFD 360;2016;SIM360_CFD;CFD;SIM360U;
+4619;Main Release;Main;Simulation CFD;2016;;;;
 4620;Version 1;Main;SIM 360;2016;SIM360;NSIM;SIM360U;SIM360
-4624;Main Release;Main;Autodesk Simulation Multiphysics;2016;ASPRO;SIM;SIM360U;
+4624;Main Release;Main;Autodesk Simulation Mechanical;2016;;;;
 4628;Main Release;Main;Inventor Engineer-to-Order (ETO);2016;INVETO;INVETO;INVETO;
 4629;Main Release;Main;Inventor Publisher;2016;INVPUB;INVPUB;INVPUB;
 4630;Main Release;Main;Moldflow;2016;MF;MOLDFLOW;MF;
@@ -1243,7 +1243,6 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4711;Premium;Suite;Infrastructure Design Suite;2016;IDS;IDS;IDS;
 4712;Standard;Suite;Infrastructure Design Suite;2016;IDS;IDS;IDS;
 4713;Ultimate;Suite;Infrastructure Design Suite;2016;IDS;IDS;IDS;
-4714;Main Release - Navisworks;Main;Infrastructure Design Suite;2016;IDS;IDS;IDS;
 4715;Main Release - Navisworks;Main;Autodesk Navisworks;2016;NAV;NAVISWORKS;NAV;
 4716;Main Release;Main;AutoCAD P&ID;2016;PNID;;PNID;
 4717;Main Release;Main;AutoCAD Plant 3D;2016;PLNT3D;PLANT3D;PLNT3D;
@@ -1253,3 +1252,22 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4722;Ultimate;Suite;Plant Design Suite;2016;PLTDS;PLDS;PLTDS;
 4723;A modeling kernel for ACAD, Inv., + others;Main;RealDWG developer toolkit;2016;;;;
 4728;Inventor Interactive Tutorials;Feature/Extension;Autodesk Inventor Professional;2015;INV;;INV;
+4735;Main Release - Good;Main;AutoCAD MEP;2015;BLDSYS;BLDSYS;BLDSYS;
+4736;Point Cloud Surface Extraction;Feature/Extension;AutoCAD Civil 3D;2015;CIV3D;CIV3D;CIV3D;
+4737;Lujiazui;Feature/Extension;AutoCAD Civil 3D;2015;CIV3D;CIV3D;CIV3D;
+4738;Main Release;Main;Autodesk Revit LT;2015;RVT;RVTLT;RVT;
+4741;LT Suite;Main;AutoCAD Inventor  LT Suite;2016;INVLTS;;INVLTS;
+4742;Inventor LT;Main;AutoCAD Inventor LT;2016;INV;INVLT;INV;
+4743;Inventor OEM;Main;AutoCAD Inventor OEM;2016;INV;;INV;
+4747;Inventor Interactive Tutorials;Feature/Extension;Autodesk Inventor Professional;2016;INV;;INV;
+4754;Subscription Release - this is full Client + Server release;Main;Autodesk Vault Basic for AutoCAD;2016;VLT;VAULT_ADDIN_ACAD;VLT;
+4755;Workgroup;Main;Autodesk Vault Workgroup;2016;VLT;VAULT;VLT;
+4758;Professional;Main;Autodesk Vault Professional;2016;VLT;VAULT;VLT;
+4759;Web Client - Office;Main;Autodesk Vault Office;2016;VLT;VAULT;VLT;
+4760;RFLs;Feature/Extension;Autodesk Vault Professional;2016;VLT;VAULT;VLT;
+4765;TEST by Katsuya;Main;Autodesk Inventor Professional;2016;INV;;INV;
+4766;Inventor and Inventor Pro;Main;Autodesk Inventor Professional;2016;INV;;INV;
+4767;Exchange Gallery;Continuous;Autodesk Rendering;2015;RENDERING;RENDERING;RENDERING;
+4769;Main Release;Quarterly;Autodesk PLM 360;2016;360NXS;PLM;360NXS;PLM360
+4770;Exchange Gallery;Continuous;AppStore;2015;APPSTORE;;APPSTORE;
+4773;Q3 release;Main;Autodesk Advance Concrete;2015;ADSTCP;ADSTCP;ADSTCP;
