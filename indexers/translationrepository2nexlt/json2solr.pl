@@ -89,7 +89,7 @@ $prjCustomProps{"M:LPUProductId"} ||= -1;
 # good to have, but unused
 #my ($ProductID, $Component, $DevBranch, $Phase, $SrcVersion, $LocVersion, $LocalizationType, $Email) = @prjCustomProps{qw/M:LPUProductId M:LPUComponent M:LPUDevBranch M:LPUPhase M:LPUSrcVersion M:LPULocVersion M:LPULocalizationType M:LPUEmail/};
 
-my $Version, $Product;
+my $Version, my $Product;
 my $foundProduct = 0;
 # Load reference file, RAPID_ProductId.tsv
 open( my $prodFile , "../RAPID_ProductId.csv" ) or die "Cannot open ../RAPID_ProductId.csv file!\n";
