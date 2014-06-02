@@ -46,6 +46,8 @@
 #				– Modified the code reading the RAPID product-code-mapping file.
 #		2.1.4 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) May-28-2014
 #				– Fixed a bug in an while condition statement.
+#		2.1.5 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Jun-02-2014
+#				– Fixed the product code selection.
 #
 ################################################################################
 
@@ -87,14 +89,14 @@ $prjCustomProps{"M:LPUProductId"} ||= -1;
 # good to have, but unused
 #my ($ProductID, $Component, $DevBranch, $Phase, $SrcVersion, $LocVersion, $LocalizationType, $Email) = @prjCustomProps{qw/M:LPUProductId M:LPUComponent M:LPUDevBranch M:LPUPhase M:LPUSrcVersion M:LPULocVersion M:LPULocalizationType M:LPUEmail/};
 
-my $Version;
+my $Version, $Product;
 my $foundProduct = 0;
 # Load reference file, RAPID_ProductId.tsv
 open( my $prodFile , "../RAPID_ProductId.csv" ) or die "Cannot open ../RAPID_ProductId.csv file!\n";
 my $csv = Text::CSV->new({ binary => 1, eol => "\n", sep_char => ";" });
 while (my $line = $csv->getline($prodFile) and !$foundProduct) {
 	if (!$foundProduct && $aproduct eq $line->[5]) {
-		$aproduct = $line->[7];
+		$Product = $line->[7];
 		if ($prjCustomProps{"M:LPUProductId"} > 0) {
 			next unless $prjCustomProps{"M:LPUProductId"} == $line->[0];
 			$Version = $line->[4];
@@ -127,7 +129,7 @@ my $printer = sub {
 			$first = 0;
 		}
 		$content .= '"add": { "doc": { "resource": {"set":"Software"}, ';
-		$content .= encode "utf-8", '"product": {"set":'.$json->encode($aproduct).'}, ';
+		$content .= encode "utf-8", '"product": {"set":'.$json->encode($Product).'}, ';
 		$content .= encode "utf-8", '"release": {"set":'.$json->encode($Version).'}, ';
 		$content .= encode "utf-8", '"id": "'.$data->{id}.'", ';
 		$content .= encode "utf-8", '"restype": {"set":'.$json->encode($data->{restype}).'}, ';
@@ -137,7 +139,7 @@ my $printer = sub {
 		$content .= '} }';
 	}
 	$content .= ', "commit": {} }';
-	open my $f, ">>passolo.$aproduct.$language";
+	open my $f, ">>passolo.$Product.$language";
 	print $f $content;
 	close $f;
 #	print STDERR encode "utf-8", "Posting $language content for indexing…\n";
