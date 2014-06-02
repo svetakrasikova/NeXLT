@@ -143,14 +143,14 @@ my $printer = sub {
 		$content .= encode "utf-8", '"srclc": {"set":'.$json->encode($data->{srclc}).'} ';
 		$content .= '} }';
 	}
-#	$content .= ', "commit": {} }';
-#	open my $f, ">>passolo.$Product.$language";
-#	print $f $content;
-#	close $f;
-	print STDERR encode "utf-8", "Posting $language content for indexing…\n";
-	my $response = $http->request('POST', 'http://10.37.23.237:8983/solr/update/json', { content => $content });
-	die "HTML request to Solr failed!\n $response->{status} $response->{reason}\n$response->{content}\n" unless $response->{success};
-	print STDERR "$language content sucessfully posted!\n";
+	$content .= ', "commit": {} }';
+	open my $f, ">>passolo.$Product.$language";
+	print $f $content;
+	close $f;
+#	print STDERR encode "utf-8", "Posting $language content for indexing…\n";
+#	my $response = $http->request('POST', 'http://10.37.23.237:8983/solr/update/json', { content => $content });
+#	die "HTML request to Solr failed!\n $response->{status} $response->{reason}\n$response->{content}\n" unless $response->{success};
+#	print STDERR "$language content sucessfully posted!\n";
 };
 
 sub printForLanguage {
