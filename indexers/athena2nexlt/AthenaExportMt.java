@@ -348,7 +348,7 @@ public class AthenaExportMt {
 						if (counter > 0 && counter % 250000 == 0) {
 							System.out.print(".");
 						}
-						if (counter > 0 && counter % 1000000 == 0) {
+						if (counter > 0 && counter % 500000 == 0) {
 							content.append(", \"commit\": {} }");
 							
 							System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
@@ -370,7 +370,7 @@ public class AthenaExportMt {
 
 							content = new StringBuilder("{");
 						}
-						if (counter % 1000000 != 0) {
+						if (counter % 500000 != 0) {
 							if (!skipped) {
 								content.append(", \n");
 							} else {
