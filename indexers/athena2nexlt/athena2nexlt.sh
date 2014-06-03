@@ -5,6 +5,9 @@
 # Creted by Mirko Plitt
 #
 # Changelog
+# v2.0.4	Modified by Ventsislav Zhechev on 03 Jun 2014
+# AthenaExportMt no longer requires us to pass the database details on the command line.
+#
 # v2.0.3	Modified by Ventsislav Zhechev on 19 May 2014
 # Added a file indicating the last refresh date.
 #
@@ -25,6 +28,6 @@
 echo "*****************************************************"
 date
 cd /local/cms/NeXLT/indexers/athena2nexlt
-java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser Ten2Four ALL $(date --date yesterday +%Y.%m.%d) $(date +%Y.%m.%d) 0 1
+java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:. AthenaExportMt ALL $(date --date yesterday +%Y.%m.%d) $(date +%Y.%m.%d) 0 1 1
 
 touch /var/www/solrUpdate/athena.lastrefresh

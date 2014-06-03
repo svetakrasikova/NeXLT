@@ -83,7 +83,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.ContentType;
 
-import com.csvreader.CsvReader;
+//import com.csvreader.CsvReader;
 
 
 public class AthenaExportMt {
@@ -216,25 +216,25 @@ public class AthenaExportMt {
 		tmScoreFormat.setMinimumIntegerDigits(1);
 		tmScoreFormat.setGroupingUsed(false);
 		
-		CsvReader products = null;
-		Map<String, String> productsMap = new HashMap<String, String>();
-		Map<String, String> archProductsMap = new HashMap<String, String>();
-		try {
-			products = new CsvReader("../RAPID_ProductId.csv", ';', Charset.forName("UTF-8"));
-			products.skipLine();
-			while (products.readRecord()) {
-				if (!products.get(6).equals("")) {
-					productsMap.put(products.get(6), products.get(7));
-				}
-				if (!products.get(8).equals("")) {
-					archProductsMap.put(products.get(8), products.get(7));
-				}
-			}
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		} finally {
-			if (products != null) { products.close(); }
-		}
+//		CsvReader products = null;
+//		Map<String, String> productsMap = new HashMap<String, String>();
+//		Map<String, String> archProductsMap = new HashMap<String, String>();
+//		try {
+//			products = new CsvReader("../RAPID_ProductId.csv", ';', Charset.forName("UTF-8"));
+//			products.skipLine();
+//			while (products.readRecord()) {
+//				if (!products.get(6).equals("")) {
+//					productsMap.put(products.get(6), products.get(7));
+//				}
+//				if (!products.get(8).equals("")) {
+//					archProductsMap.put(products.get(8), products.get(7));
+//				}
+//			}
+//		} catch (Exception e) {
+//			throw new RuntimeException(e);
+//		} finally {
+//			if (products != null) { products.close(); }
+//		}
 		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
