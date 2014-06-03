@@ -353,19 +353,19 @@ public class AthenaExportMt {
 							
 							System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
 							solrPrintStream.println(content.toString());
-							CloseableHttpClient httpclient = HttpClients.createDefault();
-							try {
-								HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
-								request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
-								CloseableHttpResponse response = httpclient.execute(request);
-								try {
-									System.out.println(response.getStatusLine().toString());
-								} finally {
-									response.close();
-								}
-							} finally {
-								httpclient.close();
-							}
+//							CloseableHttpClient httpclient = HttpClients.createDefault();
+//							try {
+//								HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
+//								request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
+//								CloseableHttpResponse response = httpclient.execute(request);
+//								try {
+//									System.out.println(response.getStatusLine().toString());
+//								} finally {
+//									response.close();
+//								}
+//							} finally {
+//								httpclient.close();
+//							}
 							System.out.println("…data successfully posted to Solr! " + oneTable);
 
 							content = new StringBuilder("{");
