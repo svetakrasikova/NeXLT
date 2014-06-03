@@ -217,7 +217,7 @@ public class AthenaExportMt {
 		tmScoreFormat.setGroupingUsed(false);
 		
 //		CsvReader products = null;
-//		Map<String, String> productsMap = new HashMap<String, String>();
+		Map<String, String> productsMap = new HashMap<String, String>();
 //		Map<String, String> archProductsMap = new HashMap<String, String>();
 //		try {
 //			products = new CsvReader("../RAPID_ProductId.csv", ';', Charset.forName("UTF-8"));
@@ -331,6 +331,7 @@ public class AthenaExportMt {
 					StringBuilder content = new StringBuilder("{");
 					int counter = 0;
 					String product = "";
+					String mappedProduct = "";
 					String release = "";
 					String uid = "";
 					String sourceSegment = "";
@@ -404,30 +405,36 @@ public class AthenaExportMt {
 //							product = "MARKETING";
 //						}
 						
-						try {
-							productCodeStatement = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME = '" + product + "' and rownum <= 1");
-							productCodeResult = productCodeStatement.executeQuery();
-							if (!productCodeResult.isBeforeFirst()) {
-								productCodeResult.close();
-								productCodeStatement.close();
-								productCodeStatement = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME_ARCH = '" + product + "' and rownum <= 1");
+						if (productsMap.containsKey(product)) {
+							product = productsMap.get(product);
+						} else {
+							try {
+								productCodeStatement = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME = '" + product + "' and rownum <= 1");
 								productCodeResult = productCodeStatement.executeQuery();
 								if (!productCodeResult.isBeforeFirst()) {
-									++badStrings;
-									System.err.println("Could not find product " + product + " in database!");
-									product = "MARKETING";
+									productCodeResult.close();
+									productCodeStatement.close();
+									productCodeStatement = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME_ARCH = '" + product + "' and rownum <= 1");
+									productCodeResult = productCodeStatement.executeQuery();
+									if (!productCodeResult.isBeforeFirst()) {
+										++badStrings;
+										System.err.println("Could not find product " + product + " in database!");
+										mappedProduct = product;
+									} else {
+										productCodeResult.next();
+										mappedProduct = productCodeResult.getString("MTSHORTNAME");
+									}
 								} else {
 									productCodeResult.next();
-									product = productCodeResult.getString("MTSHORTNAME");
+									mappedProduct = productCodeResult.getString("MTSHORTNAME");
 								}
-							} else {
-								productCodeResult.next();
-								product = productCodeResult.getString("MTSHORTNAME");
+								
+							} finally {
+								if (productCodeResult != null) { productCodeResult.close(); };
+								if (productCodeStatement != null) { productCodeStatement.close(); };
+								productsMap.put(product, mappedProduct);
+								product = mappedProduct;
 							}
-							
-						} finally {
-							if (productCodeResult != null) { productCodeResult.close(); };
-							if (productCodeStatement != null) { productCodeStatement.close(); };
 						}
 						
 						release = rs.getString(2);
