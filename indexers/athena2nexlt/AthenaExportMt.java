@@ -201,7 +201,7 @@ public class AthenaExportMt {
 		Connection rapidConnection = null;
 		Properties rapidConnectionProperties = new Properties();
 		rapidConnectionProperties.put("user", "wwl_lcm_read");
-		rapidConnectionProperties.put("password", "lcm_re@d");
+		rapidConnectionProperties.put("password", "lcm_r3ad");
 		String rapidDBURL = "jdbc:oracle:thin:@oralsprd.autodesk.com:1528:LSPRD";
 
 		final NumberFormat mtScoreFormat = NumberFormat.getInstance(Locale.US);
