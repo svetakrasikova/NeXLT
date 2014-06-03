@@ -274,6 +274,9 @@ public class AthenaExportMt {
 				PrintStream mtPrintStream = null;
 				FileOutputStream tmfos = null;
 				PrintStream tmPrintStream = null;
+				
+				PreparedStatement productCodeStatement = null;
+				ResultSet productCodeResult = null;
 				try {
 					final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 					final SimpleDateFormat sdfReadable = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -401,12 +404,14 @@ public class AthenaExportMt {
 //							product = "MARKETING";
 //						}
 						
-						ResultSet productCodeResult = null;
 						try {
-							productCodeResult = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME = '" + product + "' and rownum <= 1").executeQuery();
+							productCodeStatement = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME = '" + product + "' and rownum <= 1");
+							productCodeResult = productCodeStatement.executeQuery();
 							if (!productCodeResult.isBeforeFirst()) {
 								productCodeResult.close();
-								productCodeResult = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME_ARCH = '" + product + "' and rownum <= 1").executeQuery();
+								productCodeStatement.close();
+								productCodeStatement = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME_ARCH = '" + product + "' and rownum <= 1");
+								productCodeResult = productCodeStatement.executeQuery();
 								if (!productCodeResult.isBeforeFirst()) {
 									++badStrings;
 									System.err.println("Could not find product " + product + " in database!");
@@ -422,6 +427,7 @@ public class AthenaExportMt {
 							
 						} finally {
 							if (productCodeResult != null) { productCodeResult.close(); };
+							if (productCodeStatement != null) { productCodeStatement.close(); };
 						}
 						
 						release = rs.getString(2);
