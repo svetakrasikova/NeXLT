@@ -3,6 +3,11 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.4			Modified on 03 Jun 2014 by Ventsislav Zhechev
+// Simplified portions of the code.
+// Added code to connect direclty to the RAPID database to check for product code mappings.
+// The Athena database coordinates are no longer part of the command-line arguments.
+//
 // v1.3.2		Modified on 18 May 2014 by Ventsislav Zhechev
 // Now we read in a CSV file with product information that we use to select the proper product codes to store.
 // Now we are skipping segments assigned to the ‘TESTING’ product.
@@ -131,35 +136,29 @@ public class AthenaExportMt {
 			// CMSDEV1.autodesk.com =(description=(address=(protocol=tcp)(host=uspetddgpdbo001.autodesk.com)(port=1521))(connect_data=(service_name=CMSDEV1.autodesk.com)))
 			// CMSSTG1.autodesk.com  =(description=(address=(protocol=tcp)(host=oracmsstg.autodesk.com)        (port=1528))(connect_data=(service_name=CMSSTG1.autodesk.com)))
 			// CMSPRD1.autodesk.com=( DESCRIPTION=(SDU=16384)(address=(protocol=tcp)(host=oracmsprd1.autodesk.com)(port=1521))(CONNECT_DATA=(service_name=CMSPRD1.autodesk.com)))
-			System.out.println("Example: java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:javacsv.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 cmsuser Ten2Four ALL 2013.02.01 2013.03.01 1 0");
+			System.out.println("Example: java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:javacsv.jar:. AthenaExportMt ALL 2013.02.01 2013.03.01 1 0");
 			System.exit(0);
 		}
 		
-		String dbUrl = args[0];
-		String username = args[1];
-		String password = args[2];
-		String table = args[3];
-		
-		System.out.println("URL: " + dbUrl);
-		System.out.println("Username: " + username);
-		System.out.println("Password: " + password);
-		System.out.println("Table: " + table);
-		
+		String athenaDBURL = "jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1";
+		String username = "cmsuser";
+		String password = "Ten2Four";
+		String table = args[0];
 		
 		
 		String startDate = null;
 		String endDate = null;
 		
-		if (args.length > 4) {
-			startDate = args[4];
+		if (args.length > 1) {
+			startDate = args[1];
 		}
-		if (args.length > 5) {
-			endDate = args[5]; 
+		if (args.length > 2) {
+			endDate = args[2]; 
 		}
 		
 		boolean useCreationDate = false;
-		if (args.length > 6) {
-			useCreationDate = args[6].equals("1");
+		if (args.length > 3) {
+			useCreationDate = args[3].equals("1");
 		}
 		if (useCreationDate) {
 			System.out.println("Using creation date for filtering.");
@@ -168,8 +167,8 @@ public class AthenaExportMt {
 		}
 		
 		boolean outputForSolr = false;
-		if (args.length > 7) {
-			outputForSolr = args[7].equals("1");
+		if (args.length > 4) {
+			outputForSolr = args[4].equals("1");
 		}
 		if (outputForSolr) {
 			System.out.println("Outputting data for Solr.");
@@ -178,8 +177,8 @@ public class AthenaExportMt {
 		}
 		
 		boolean useICE = false;
-		if (args.length > 8) {
-			useICE = args[8].equals("1");
+		if (args.length > 5) {
+			useICE = args[5].equals("1");
 		}
 		if (useICE) {
 			System.out.println("Including ICE matches in output.");
@@ -192,13 +191,19 @@ public class AthenaExportMt {
 		
 		System.out.println();
 		
-		Connection conn = null;
-		Properties connectionProps = new Properties();
-		connectionProps.put("user", username);
-		connectionProps.put("password", password);
+		Connection athenaConnection = null;
+		Properties athenaConnectionProperties = new Properties();
+		athenaConnectionProperties.put("user", username);
+		athenaConnectionProperties.put("password", password);
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
+		Connection rapidConnection = null;
+		Properties rapidConnectionProperties = new Properties();
+		rapidConnectionProperties.put("user", "wwl_lcm_read");
+		rapidConnectionProperties.put("password", "lcm_re@d");
+		String rapidDBURL = "jdbc:oracle:thin:@oralsprd.autodesk.com:1528:LSPRD";
+
 		final NumberFormat mtScoreFormat = NumberFormat.getInstance(Locale.US);
 		mtScoreFormat.setMinimumFractionDigits(3);
 		mtScoreFormat.setMaximumFractionDigits(3);
@@ -213,11 +218,17 @@ public class AthenaExportMt {
 		
 		CsvReader products = null;
 		Map<String, String> productsMap = new HashMap<String, String>();
+		Map<String, String> archProductsMap = new HashMap<String, String>();
 		try {
 			products = new CsvReader("../RAPID_ProductId.csv", ';', Charset.forName("UTF-8"));
 			products.skipLine();
 			while (products.readRecord()) {
-				productsMap.put(products.get(8), products.get(11));
+				if (!products.get(6).equals("")) {
+					productsMap.put(products.get(6), products.get(7));
+				}
+				if (!products.get(8).equals("")) {
+					archProductsMap.put(products.get(8), products.get(7));
+				}
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -227,11 +238,16 @@ public class AthenaExportMt {
 		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
-			conn = DriverManager.getConnection(dbUrl, connectionProps);
-			conn.setAutoCommit(false);
+			
+			athenaConnection = DriverManager.getConnection(athenaDBURL, athenaConnectionProperties);
+			athenaConnection.setAutoCommit(false);
+
+			rapidConnection = DriverManager.getConnection(rapidDBURL, rapidConnectionProperties);
+			rapidConnection.setAutoCommit(false);
+
 			Set<String> tables = null;
 			if ("ALL".equals(table)) {
-				tables = getTableNames(conn);
+				tables = getTableNames(athenaConnection);
 			}
 			else {
 				tables = new TreeSet<String>();
@@ -252,8 +268,8 @@ public class AthenaExportMt {
 				}
 				String targetLanguage = LANG_MAPPING.get(tmpLanguage).toLowerCase();
 				
-//				FileOutputStream solrfos = null;
-//				PrintStream solrPrintStream = null;
+				FileOutputStream solrfos = null;
+				PrintStream solrPrintStream = null;
 				FileOutputStream mtfos = null;
 				PrintStream mtPrintStream = null;
 				FileOutputStream tmfos = null;
@@ -265,8 +281,8 @@ public class AthenaExportMt {
 					final String baseFileName = "athena_" + targetLanguage;
 					
 					if (outputForSolr) {
-//						solrfos = new FileOutputStream(new File(baseFileName + ".json"));
-//						solrPrintStream = new PrintStream(solrfos, true, "UTF-8");
+						solrfos = new FileOutputStream(new File(baseFileName + ".json"));
+						solrPrintStream = new PrintStream(solrfos, true, "UTF-8");
 					} else {
 						mtfos = new FileOutputStream(new File(baseFileName + ".mt.bz2"));
 						mtfos.write("BZ".getBytes());
@@ -279,66 +295,33 @@ public class AthenaExportMt {
 					
 					
 					// For MT
-					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID" + (outputForSolr ? "" : ", MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE") + " from " + oneTable + " " + 
-							"where REVIEWSTATUS in (5, 6, 7, 9) " + 
-							"and RELEASE != 'TESTING' " +
-//							"and TRANSLATIONTYPE = 6 " +
-							"and TRANSLATIONTYPE in (2, 3, 5" + (useICE ? ", 4) " : ") ") + //not AUTO or ICE  match
-							"and SOURCESEGMENT is not null and POSTTRANSLATIONTARGET is not null and PRODUCT is not null and RELEASE is not null ";
+					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID" + (outputForSolr ? "" : ", MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE") + " from " + oneTable +
+							" where REVIEWSTATUS in (5, 6, 7, 9)" + 
+							" and RELEASE != 'TESTING'" +
+//							" and TRANSLATIONTYPE = 6" +
+							" and TRANSLATIONTYPE in (2, 3, 5" + (useICE ? ", 4) " : ")") + //not AUTO or ICE  match
+							" and SOURCESEGMENT is not null and POSTTRANSLATIONTARGET is not null and PRODUCT is not null and RELEASE is not null ";
 								
-					if (startDate != null && endDate != null) {
-						sqlSelect += "and ( ";
-						
-						sqlSelect += "( ";
-						sqlSelect += (useCreationDate ? "CREATIONDATE" : "TRANSLATIONDATE") + " > to_date('" + startDate + "', 'yyyy.mm.dd') ";
-						sqlSelect += "and " + (useCreationDate ? "CREATIONDATE" : "TRANSLATIONDATE") + " < to_date('" + endDate + "', 'yyyy.mm.dd') ";
+					if (startDate != null || endDate != null) {
+						sqlSelect += "and (( ";
+						sqlSelect += startDate != null ? (useCreationDate ? "CREATIONDATE" : "TRANSLATIONDATE") + " >= to_date('" + startDate + "', 'yyyy.mm.dd') " : "";
+						sqlSelect += startDate != null && endDate != null ? "and " : "";
+						sqlSelect += endDate != null ? (useCreationDate ? "CREATIONDATE" : "TRANSLATIONDATE") + " <= to_date('" + endDate + "', 'yyyy.mm.dd') " : "";
 						sqlSelect += ") ";
-						
 						// Only include EDITDATE when filtering by TRANSLATIONDATE.
 						if (!useCreationDate) {
-							sqlSelect += "or ";
-							
-							sqlSelect += "( ";
-							sqlSelect += "EDITDATE is not null ";
-							sqlSelect += "and EDITDATE > to_date('" + startDate + "', 'yyyy.mm.dd') ";
-							sqlSelect += "and EDITDATE < to_date('" + endDate + "', 'yyyy.mm.dd') ";
+							sqlSelect += "or (EDITDATE is not null ";
+							sqlSelect += startDate != null ? "and EDITDATE >= to_date('" + startDate + "', 'yyyy.mm.dd') " : "";
+							sqlSelect += endDate != null ? "and EDITDATE <= to_date('" + endDate + "', 'yyyy.mm.dd') " : "";
 							sqlSelect += ") ";
 						}
-						
-						sqlSelect += ") ";
-					}
-					else if (startDate != null) {						
-						sqlSelect += "and ( ";
-						
-						sqlSelect += (useCreationDate ? "CREATIONDATE" : "TRANSLATIONDATE") + " > to_date('" + startDate + "', 'yyyy.mm.dd') ";
-						
-						// Only include EDITDATE when filtering by TRANSLATIONDATE.
-						if (!useCreationDate) {
-							sqlSelect += "or ";
-							sqlSelect += "(EDITDATE is not null and EDITDATE > to_date('" + startDate + "', 'yyyy.mm.dd')) ";
-						}
-						
-						
-						sqlSelect += ") ";
-					}
-					else if (endDate != null) {
-						sqlSelect += "and ( ";
-						
-						sqlSelect += (useCreationDate ? "CREATIONDATE" : "TRANSLATIONDATE") + " < to_date('" + endDate + "', 'yyyy.mm.dd') ";
-						
-						// Only include EDITDATE when filtering by TRANSLATIONDATE.
-						if (!useCreationDate) {
-							sqlSelect += "or ";
-							sqlSelect += "(EDITDATE is not null and EDITDATE < to_date('" + endDate + "', 'yyyy.mm.dd')) ";
-						}
-						
 						sqlSelect += ") ";
 					}
 					
 					
 					sqlSelect += "order by CREATIONDATE asc, PRODUCT asc, RELEASE asc";
 					
-					ps = conn.prepareStatement(sqlSelect);
+					ps = athenaConnection.prepareStatement(sqlSelect);
 					rs = ps.executeQuery();
 					// To make sure we don’t stall on high-latency connections.
 					rs.setFetchSize(50000);
@@ -365,7 +348,7 @@ public class AthenaExportMt {
 							content.append(", \"commit\": {} }");
 							
 							System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
-//							solrPrintStream.println(content.toString());
+							solrPrintStream.println(content.toString());
 							CloseableHttpClient httpclient = HttpClients.createDefault();
 							try {
 								HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
@@ -405,14 +388,37 @@ public class AthenaExportMt {
 						if (product.equals("PrDS")) {
 							product = "PRDS";
 						}
-						// Select correct unified product code, if exists.
-						if (productsMap.containsKey(product)) {
-							product = productsMap.get(product);
-						} else {
-							++badStrings;
-							if (!product.equals("AGP") && !product.equals("LANDING") && !product.equals("MENU") && !product.equals("CAMPAIGN_ALPHA") && !product.equals("N/A") && !product.equals("ALGOR") && !product.equals("FLAME") && !product.equals("CAMP_ACD") && !product.equals("360EWS") && !product.equals("360EWS_GP") && !product.equals("360EWS_MOBAPPS") && !product.equals("CLDCR") && !product.equals("BIM360") && !product.equals("AA360") && !product.equals("SMOKE") && !product.equals("MAXDES") && !product.equals("FTGP") && !product.equals("SGP") && !product.equals("PGP") && !product.equals("E-LEARNING") && !product.equals("CAM360") && !product.equals("NSIM") && !product.equals("ADST") && !product.equals("ACAD_WEB") && !product.equals("EDS") && !product.equals("ROBOT-SPREADSHEET_CALCULATOR") && !product.equals("ROBOT-CBS_PRO") && !product.equals("ADKVRD") && !product.equals("SUSTAINABILITY")) {
-								System.err.println("Could not find product " + product + " in database!");
+						// Select correct MT product code, if exists.
+//						if (productsMap.containsKey(product)) {
+//							product = productsMap.get(product);
+//						} else if (archProductsMap.containsKey(product)) {
+//								product = archProductsMap.get(product);
+//						} else {
+//							++badStrings;
+////							if (!product.equals("AGP") && !product.equals("LANDING") && !product.equals("MENU") && !product.equals("CAMPAIGN_ALPHA") && !product.equals("N/A") && !product.equals("ALGOR") && !product.equals("FLAME") && !product.equals("CAMP_ACD") && !product.equals("360EWS") && !product.equals("360EWS_GP") && !product.equals("360EWS_MOBAPPS") && !product.equals("CLDCR") && !product.equals("BIM360") && !product.equals("AA360") && !product.equals("SMOKE") && !product.equals("MAXDES") && !product.equals("FTGP") && !product.equals("SGP") && !product.equals("PGP") && !product.equals("E-LEARNING") && !product.equals("CAM360") && !product.equals("NSIM") && !product.equals("ADST") && !product.equals("ACAD_WEB") && !product.equals("EDS") && !product.equals("ROBOT-SPREADSHEET_CALCULATOR") && !product.equals("ROBOT-CBS_PRO") && !product.equals("ADKVRD") && !product.equals("SUSTAINABILITY")) {
+//								System.err.println("Could not find product " + product + " in database!");
+////							}
+//							product = "MARKETING";
+//						}
+						
+						try {
+							ResultSet productCodeResult = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME = '" + product + "' and rownum <= 1").executeQuery();
+							if (!productCodeResult.isBeforeFirst()) {
+								productCodeResult.close();
+								productCodeResult = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME_ARCH = '" + product + "' and rownum <= 1").executeQuery();
+								if (!productCodeResult.isBeforeFirst()) {
+									++badStrings;
+									System.err.println("Could not find product " + product + " in database!");
+									product = "MARKETING";
+								} else {
+									product = productCodeResult.getString("MTSHORTNAME");
+								}
+							} else {
+								product = productCodeResult.getString("MTSHORTNAME");
 							}
+							
+						} finally {
+							productCodeResult.close();
 						}
 						
 						release = rs.getString(2);
@@ -535,31 +541,31 @@ public class AthenaExportMt {
 					} else if (outputForSolr) {
 						content.append(", \"commit\": {} }");
 
+						solrPrintStream.println(content.toString());
 						System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
-//						solrPrintStream.println(content.toString());
-						CloseableHttpClient httpclient = HttpClients.createDefault();
-						try {
-							HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
-							request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
-							CloseableHttpResponse response = httpclient.execute(request);
-							try {
-								System.out.println(response.getStatusLine().toString());
-							} finally {
-								response.close();
-							}
-						} finally {
-							httpclient.close();
-						}
+//						CloseableHttpClient httpclient = HttpClients.createDefault();
+//						try {
+//							HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
+//							request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
+//							CloseableHttpResponse response = httpclient.execute(request);
+//							try {
+//								System.out.println(response.getStatusLine().toString());
+//							} finally {
+//								response.close();
+//							}
+//						} finally {
+//							httpclient.close();
+//						}
 						System.out.println("…data successfully posted to Solr! " + oneTable);
 					}
 					
-					conn.rollback();
+					athenaConnection.rollback();
 					
 					System.out.println("…done processing " + oneTable);
 				}
 				finally {
-//					if (solrPrintStream != null) { solrPrintStream.close(); }
-//					if (solrfos != null) { solrfos.close(); }
+					if (solrPrintStream != null) { solrPrintStream.close(); }
+					if (solrfos != null) { solrfos.close(); }
 					if (mtPrintStream != null) { mtPrintStream.close(); }
 					if (mtfos != null) { mtfos.close(); }
 					if (tmPrintStream != null) { tmPrintStream.close(); }
@@ -588,9 +594,9 @@ public class AthenaExportMt {
 					
 				}
 			}
-			if (conn != null) {
+			if (athenaConnection != null) {
 				try {
-					conn.close();
+					athenaConnection.close();
 				}
 				catch (SQLException e) {
 					
@@ -620,7 +626,6 @@ public class AthenaExportMt {
 					rs.close();
 				}
 				catch (SQLException e) {
-					
 				}
 			}
 			if (ps != null) {
@@ -628,7 +633,6 @@ public class AthenaExportMt {
 					ps.close();
 				}
 				catch (SQLException e) {
-					
 				}
 			}
 		}
