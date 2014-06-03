@@ -401,8 +401,9 @@ public class AthenaExportMt {
 //							product = "MARKETING";
 //						}
 						
+						ResultSet productCodeResult = null;
 						try {
-							ResultSet productCodeResult = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME = '" + product + "' and rownum <= 1").executeQuery();
+							productCodeResult = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME = '" + product + "' and rownum <= 1").executeQuery();
 							if (!productCodeResult.isBeforeFirst()) {
 								productCodeResult.close();
 								productCodeResult = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME_ARCH = '" + product + "' and rownum <= 1").executeQuery();
