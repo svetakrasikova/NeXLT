@@ -421,7 +421,7 @@ public class AthenaExportMt {
 							}
 							
 						} finally {
-							productCodeResult.close();
+							if (productCodeResult != null) { productCodeResult.close() };
 						}
 						
 						release = rs.getString(2);
