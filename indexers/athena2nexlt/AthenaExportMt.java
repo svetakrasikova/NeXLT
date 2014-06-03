@@ -412,9 +412,11 @@ public class AthenaExportMt {
 									System.err.println("Could not find product " + product + " in database!");
 									product = "MARKETING";
 								} else {
+									productCodeResult.next();
 									product = productCodeResult.getString("MTSHORTNAME");
 								}
 							} else {
+								productCodeResult.next();
 								product = productCodeResult.getString("MTSHORTNAME");
 							}
 							
