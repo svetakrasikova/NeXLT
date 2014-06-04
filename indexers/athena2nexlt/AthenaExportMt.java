@@ -432,6 +432,7 @@ public class AthenaExportMt {
 							} finally {
 								if (productCodeResult != null) { productCodeResult.close(); };
 								if (productCodeStatement != null) { productCodeStatement.close(); };
+								System.err.println("Cached mapping for product " + product + " to " + mappedProduct);
 								productsMap.put(product, mappedProduct);
 								product = mappedProduct;
 							}
