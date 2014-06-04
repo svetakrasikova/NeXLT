@@ -264,8 +264,8 @@ public class AthenaExportMt {
 					final String baseFileName = "athena_" + targetLanguage;
 					
 					if (outputForSolr) {
-						solrfos = new FileOutputStream(new File(baseFileName + ".json"));
-						solrPrintStream = new PrintStream(solrfos, true, "UTF-8");
+//						solrfos = new FileOutputStream(new File(baseFileName + ".json"));
+//						solrPrintStream = new PrintStream(solrfos, true, "UTF-8");
 					} else {
 						mtfos = new FileOutputStream(new File(baseFileName + ".mt.bz2"));
 						mtfos.write("BZ".getBytes());
