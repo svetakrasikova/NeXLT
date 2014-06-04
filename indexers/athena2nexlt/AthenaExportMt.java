@@ -3,6 +3,9 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.4.1		Modified on 04 Jun 2014 by Ventsislav Zhechev
+// Small bug fixes.
+//
 // v1.4			Modified on 03 Jun 2014 by Ventsislav Zhechev
 // Simplified portions of the code.
 // Added code to connect direclty to the RAPID database to check for product code mappings.
@@ -245,8 +248,8 @@ public class AthenaExportMt {
 				}
 				String targetLanguage = LANG_MAPPING.get(tmpLanguage).toLowerCase();
 				
-				FileOutputStream solrfos = null;
-				PrintStream solrPrintStream = null;
+//				FileOutputStream solrfos = null;
+//				PrintStream solrPrintStream = null;
 				FileOutputStream mtfos = null;
 				PrintStream mtPrintStream = null;
 				FileOutputStream tmfos = null;
@@ -330,20 +333,20 @@ public class AthenaExportMt {
 							content.append(", \"commit\": {} }");
 							
 							System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
-							solrPrintStream.println(content.toString());
-//							CloseableHttpClient httpclient = HttpClients.createDefault();
-//							try {
-//								HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
-//								request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
-//								CloseableHttpResponse response = httpclient.execute(request);
-//								try {
-//									System.out.println(response.getStatusLine().toString());
-//								} finally {
-//									response.close();
-//								}
-//							} finally {
-//								httpclient.close();
-//							}
+//							solrPrintStream.println(content.toString());
+							CloseableHttpClient httpclient = HttpClients.createDefault();
+							try {
+								HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
+								request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
+								CloseableHttpResponse response = httpclient.execute(request);
+								try {
+									System.out.println(response.getStatusLine().toString());
+								} finally {
+									response.close();
+								}
+							} finally {
+								httpclient.close();
+							}
 							System.out.println("…data successfully posted to Solr! " + oneTable);
 
 							content = new StringBuilder("{");
@@ -525,21 +528,21 @@ public class AthenaExportMt {
 					} else if (outputForSolr) {
 						content.append(", \"commit\": {} }");
 
-						solrPrintStream.println(content.toString());
 						System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
-//						CloseableHttpClient httpclient = HttpClients.createDefault();
-//						try {
-//							HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
-//							request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
-//							CloseableHttpResponse response = httpclient.execute(request);
-//							try {
-//								System.out.println(response.getStatusLine().toString());
-//							} finally {
-//								response.close();
-//							}
-//						} finally {
-//							httpclient.close();
-//						}
+//						solrPrintStream.println(content.toString());
+						CloseableHttpClient httpclient = HttpClients.createDefault();
+						try {
+							HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
+							request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
+							CloseableHttpResponse response = httpclient.execute(request);
+							try {
+								System.out.println(response.getStatusLine().toString());
+							} finally {
+								response.close();
+							}
+						} finally {
+							httpclient.close();
+						}
 						System.out.println("…data successfully posted to Solr! " + oneTable);
 					}
 					
@@ -548,8 +551,8 @@ public class AthenaExportMt {
 					System.out.println("…done processing " + oneTable);
 				}
 				finally {
-					if (solrPrintStream != null) { solrPrintStream.close(); }
-					if (solrfos != null) { solrfos.close(); }
+//					if (solrPrintStream != null) { solrPrintStream.close(); }
+//					if (solrfos != null) { solrfos.close(); }
 					if (mtPrintStream != null) { mtPrintStream.close(); }
 					if (mtfos != null) { mtfos.close(); }
 					if (tmPrintStream != null) { tmPrintStream.close(); }
