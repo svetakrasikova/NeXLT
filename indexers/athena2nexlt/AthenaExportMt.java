@@ -3,6 +3,9 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.4.2		Modified on 05 Jun 2014 by Ventsislav Zhechev
+// Small bug fix in the product code mapping.
+//
 // v1.4.1		Modified on 04 Jun 2014 by Ventsislav Zhechev
 // Small bug fixes.
 //
@@ -389,7 +392,7 @@ public class AthenaExportMt {
 									if (!productCodeResult.isBeforeFirst()) {
 										++badStrings;
 										System.err.println("Could not find product " + product + " in database!");
-										mappedProduct = product;
+										mappedProduct = "MARKETING";
 									} else {
 										productCodeResult.next();
 										mappedProduct = productCodeResult.getString("MTSHORTNAME");
@@ -559,7 +562,7 @@ public class AthenaExportMt {
 					if (tmfos != null) { tmfos.close(); }
 				}
 			}
-			System.out.println("\nCompleted successfully.\n" + badStrings + " strings in unknown products.");
+			System.out.println("\nCompleted successfully.\n" + badStrings + " unknown products.");
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
