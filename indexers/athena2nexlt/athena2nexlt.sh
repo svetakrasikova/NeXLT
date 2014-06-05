@@ -5,6 +5,9 @@
 # Creted by Mirko Plitt
 #
 # Changelog
+# v2.0.5	Modified by Ventsislav Zhechev on 05 Jun 2014
+# Made sure the Java tool has enough heap memory to run properly.
+#
 # v2.0.4	Modified by Ventsislav Zhechev on 03 Jun 2014
 # AthenaExportMt no longer requires us to pass the database details on the command line.
 #
@@ -28,6 +31,6 @@
 echo "*****************************************************"
 date
 cd /local/cms/NeXLT/indexers/athena2nexlt
-java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:. AthenaExportMt ALL $(date --date yesterday +%Y.%m.%d) $(date +%Y.%m.%d) 0 1 1
+java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:. -Xmx4096m AthenaExportMt ALL $(date --date yesterday +%Y.%m.%d) $(date +%Y.%m.%d) 0 1 1
 
 touch /var/www/solrUpdate/athena.lastrefresh
