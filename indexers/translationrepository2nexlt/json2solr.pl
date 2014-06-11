@@ -49,6 +49,8 @@
 #		2.1.5 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Jun-02-2014
 #				– Fixed the product code selection.
 #				– Modified the rule for creating the document ID to be dependent on the restype.
+#		2.1.5 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Jun-11-2014
+#				– Now we include the product code when generating the segment ID.
 #
 ################################################################################
 
@@ -203,7 +205,7 @@ foreach my $strList (@{$project->string_lists}) {
 		
 		$id = $str->id;
 		$id =~ s/\s+//g;
-		$id = md5_hex(uri_escape_utf8("$id$src$restypeSoftware"));
+		$id = md5_hex(uri_escape_utf8("$id$src$restype$ProductSoftware"));
 
 		printForLanguage $lang, {
 			id			=> $id,
