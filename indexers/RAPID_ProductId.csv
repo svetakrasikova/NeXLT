@@ -2216,7 +2216,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3682;Caption Translation & Subtitling - CHS;N/A;N/A;FY14;;;;
 3683;Voice of the Questions - Comments into English;N/A;N/A;FY14;;;;
 3684;Main Release;Main;AutoCAD OEM;2015;ACD;;ACD;
-3686;Continuous Releases FY15 2;Feature/Extension;AppStore;2015;APPSTORE;;APPSTORE;
+3686;Continuous Releases FY15 2;Continuous;AppStore;2015;APPSTORE;;APPSTORE;
 3687;Service Pack 2;;AutoCAD;2015;ACD;ACD;ACD;
 3694;Desktop;N/A;Sketchbook Pro;2014;;;;
 3695;Android;N/A;Sketchbook Pro;2014;;;;
@@ -2317,10 +2317,10 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3953;SP2;;AutoCAD Map 3D;2015;MAP;MAP;MAP;
 3954;Main Release;Main;AutoCAD Plant 3D;2015;PLNT3D;PLANT3D;PLNT3D;
 3955;Main Release;Main;AutoCAD Structural Detailing;2015;STRDET;ROBOT-ASD;STRDET;
-3956;Q1 release;Quarterly;A360;2015;ADSK360;CLOUD;ADSK360;AA360
-3957;Q2 release;Quarterly;A360;2015;ADSK360;CLOUD;ADSK360;AA360
-3962;Q4 Release;Quarterly;A360;2015;ADSK360;CLOUD;ADSK360;AA360
-3963;Q3 Release;Quarterly;A360;2015;ADSK360;CLOUD;ADSK360;AA360
+3956;Q1 release;Continuous;A360;2015;ADSK360;CLOUD;ADSK360;AA360
+3957;Q2 release;Continuous;A360;2015;ADSK360;CLOUD;ADSK360;AA360
+3962;Q4 Release;Continuous;A360;2015;ADSK360;CLOUD;ADSK360;AA360
+3963;Q3 Release;Continuous;A360;2015;ADSK360;CLOUD;ADSK360;AA360
 3968;Main Release;Main;Autodesk 360 Structural Analysis for Revit;2015;RSAPRO360;;RSAPRO360;
 3969;R1 release;Quarterly;Autodesk Buzzsaw;2015;BZSW;BUZZSAW;BZSW;
 3970;R3 release;Quarterly;Autodesk Buzzsaw;2015;BZSW;BUZZSAW;BZSW;
@@ -2409,7 +2409,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4097;Version 2014.5;Feature/Extension;Autodesk Gameware Navigation;2014;;GW_NAV;GW_NAV;
 4099;BIM 360 Glue - Main;Main;Autodesk BIM 360 Glue;2015;BM360G;BM360G;BM360G;
 4101;French LT Re-release;N/A;AutoCAD LT;2014;ACD;ACDLT;ACD;
-4103;Continuous Releases FY15 1;Feature/Extension;AppStore;2015;APPSTORE;;APPSTORE;
+4103;Continuous Releases FY15 1;Continuous;AppStore;2015;APPSTORE;;APPSTORE;
 4106;Moldflow Adviser;Main;MITSI;2015;MF;MOLDFLOW;MF;
 4107;Maya LT 2014 Ext 1;N/A;Maya LT 2014.2;2014;MAYA;MAYALT;MAYA;
 4109;Translation for Partner CSAT 2;N/A;N/A;FY14;;;;
@@ -2426,8 +2426,8 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4134;Q4 Release;N/A;My Autodesk;2015;MYADSK;SUBS;MYADSK;
 4135;Standing Sales Translation;N/A;N/A;FY14;;;;
 4137;Inventor OEM SP1;;AutoCAD Inventor OEM;2014;INV;;INV;
-4142;Continuous Releases FY15 3;Feature/Extension;AppStore;2015;APPSTORE;;APPSTORE;
-4143;Continuous Releases FY15 4;Feature/Extension;AppStore;2015;APPSTORE;;APPSTORE;
+4142;Continuous Releases FY15 3;Continuous;AppStore;2015;APPSTORE;;APPSTORE;
+4143;Continuous Releases FY15 4;Continuous;AppStore;2015;APPSTORE;;APPSTORE;
 4148;Adhoc requests from LS Q3;N/A;N/A;FY14;;;;
 4149;PartnerCSAT additional translations;N/A;N/A;FY14;;;;
 4151;Move to Suite copy Q3;N/A;N/A;FY14;;;;
@@ -2479,7 +2479,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4225;SR1 SP1 CH1;;Autodesk Vault Professional;2014;VLT;VAULT;VLT;
 4227;Smart Monkey Add-In;Feature/Extension;Autodesk Revit;2015;RVT;RVT;RVT;
 4229;Nurtured Trial;Feature/Extension;Product Design Suite;2014;PDS;PRDS;PDS;
-4231;Feature/Extension;Feature/Extension;Simulation Composite Analysis;2016;;ACMPAN;ACMPAN;
+4231;Feature/Extension;Feature/Extension;Simulation Composite Analysis;2016;ACMPAN;ACMPAN;ACMPAN;
 4232;Main Release;Main;Simulation Composite Design;2016;;ACMPDS;ACMPDS;
 4235;Global Field Promotion;N/A;N/A;FY14;;;;
 4238;Service Pack 2;;AutoCAD for Mac;2013;ACDMAC;ACADMAC;ACDMAC;
@@ -2532,7 +2532,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4336;Main 2015;Main;Beast;2015;;;;
 4337;Main 2015;Main;Autodesk Gameware Navigation;2015;;GW_NAV;GW_NAV;
 4341;Main 2015;Main;Humanik;2015;;;;
-4343;Q1 A360 Pro release;Quarterly;A360;2015;ADSK360;CLOUD;ADSK360;AA360
+4343;Q1 A360 Pro release;Continuous;A360;2015;ADSK360;CLOUD;ADSK360;AA360
 4345;FY15 LSDV;N/A;TLQM;FY15;;;;
 4347;FY15Q1;N/A;Autodesk Maya;2015;;;;
 4348;FY15Q1;N/A;Autodesk 3ds Max;2015;;;;
@@ -2659,10 +2659,10 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4527;Main Release;Main;AutoCAD LT Network;2016;ACD;ACDLT;ACD;
 4529;Main Release;Main;AutoCAD LT Network;2015;ACD;ACDLT;ACD;
 4530;Continuous;Main;Autodesk Advance Steel;2016;ADSTPR;ADSTPR;ADSTPR;ADST
-4531;Continuous Releases FY16 1;Feature/Extension;AppStore;2016;APPSTORE;;APPSTORE;
-4532;Continuous Releases FY16 2;Feature/Extension;AppStore;2016;APPSTORE;;APPSTORE;
-4533;Continuous Releases FY16 3;Feature/Extension;AppStore;2016;APPSTORE;;APPSTORE;
-4534;Continuous Releases FY16 4;Feature/Extension;AppStore;2016;APPSTORE;;APPSTORE;
+4531;Continuous Releases FY16 1;Continuous;AppStore;2016;APPSTORE;;APPSTORE;
+4532;Continuous Releases FY16 2;Continuous;AppStore;2016;APPSTORE;;APPSTORE;
+4533;Continuous Releases FY16 3;Continuous;AppStore;2016;APPSTORE;;APPSTORE;
+4534;Continuous Releases FY16 4;Continuous;AppStore;2016;APPSTORE;;APPSTORE;
 4535;Main Release;Main;AutoCAD Architecture;2016;ARCHDESK;ACA;ARCHDESK;
 4536;Service Pack 1;;AutoCAD Architecture;2016;ARCHDESK;ACA;ARCHDESK;
 4537;Service Pack 2;;AutoCAD Architecture;2016;ARCHDESK;ACA;ARCHDESK;
@@ -2682,10 +2682,10 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4552;Service Pack 2;;AutoCAD MEP;2016;BLDSYS;BLDSYS;BLDSYS;
 4553;Main Release;Main;AutoCAD OEM;2016;ACD;;ACD;
 4554;Main;Main;AutoCAD Raster Design;2016;ARDES;RASTER;ARDES;
-4555;Q1 release;Quarterly;A360;2016;ADSK360;CLOUD;ADSK360;AA360
-4556;Q2 release;Quarterly;A360;2016;ADSK360;CLOUD;ADSK360;AA360
-4557;Q3 Release;Quarterly;A360;2016;ADSK360;CLOUD;ADSK360;AA360
-4558;Q4 release;Quarterly;A360;2016;ADSK360;CLOUD;ADSK360;AA360
+4555;Q1 release;Continuous;A360;2016;ADSK360;CLOUD;ADSK360;AA360
+4556;Q2 release;Continuous;A360;2016;ADSK360;CLOUD;ADSK360;AA360
+4557;Q3 Release;Continuous;A360;2016;ADSK360;CLOUD;ADSK360;AA360
+4558;Q4 release;Continuous;A360;2016;ADSK360;CLOUD;ADSK360;AA360
 4559;Release 1;Quarterly;InfraWorks;2016;INFMDR;ICD;INFMDR;
 4560;Release 2;Quarterly;InfraWorks;2016;INFMDR;ICD;INFMDR;
 4561;Release 3;Quarterly;InfraWorks;2016;INFMDR;ICD;INFMDR;
@@ -2837,10 +2837,10 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4770;Exchange Gallery;Continuous;AppStore;2015;APPSTORE;;APPSTORE;
 4771;GCSO - Survey Platform Localization Requirement 2;N/A;N/A;FY15;;;;
 4772;Service Pack 1;;Softimage;2015;SFTIM;SOFTIMAGE;SFTIM;
-4773;Q3 release;Main;Autodesk Advance Concrete;2015;ADSTCP;ADSTCP;ADSTCP;
+4773;Q3 release;;Autodesk Advance Concrete;2015;ADSTCP;ADSTCP;ADSTCP;
 4775;The Flame Award 2014;N/A;Campaigns;2015;;;;
 4776;Automotive Umbrella Messaging;N/A;Campaigns;2015;;;;
-4777;Main Release;Main;Simulation Composite Analysis;2015;;ACMPAN;ACMPAN;
+4777;Main Release;Main;Simulation Composite Analysis;2015;ACMPAN;ACMPAN;ACMPAN;
 4778;Main Release;Main;Configurator 360;2016;CFG360;CFG360;CFG360;
 4779;Configurator 360 Addin for Inventor;Feature/Extension;Configurator 360;2016;CFG360;CFG360;CFG360;
 4780;Main;Main;Mockup 360;2016;M360;MOCKUP360;M360;M360
@@ -2865,3 +2865,8 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4799;Project defined for MT only;N/A;Robot Structural Analysis - Toolkit;2015;;ROBOT-STRATUS;ROBOT-STRATUS;
 4800;Project defined for MT only;N/A;CROSS Products;2015;;SHARED;LIRAFX;
 4801;Paris Gallery Exhibits;N/A;Others;2015;;;;
+4803;FY15Q2 - Dictionary Update;N/A;Others;2015;;;;
+4805;FY15Q2 - Polish;N/A;Autodesk Product Design Suite;2015;;;;
+4806;FY15Q2 - China;N/A;Autodesk Education Community;2015;;;;
+4807;FY15Q2 - CHS, JPN, ENG;N/A;Autodesk Sustainable Design;2015;;;;
+4809;FY15Q2 - SEO;N/A;Subscription Center;2015;;;;
