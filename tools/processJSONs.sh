@@ -6,6 +6,11 @@
 # Based on several Solr indexing scripts by Mirko Plitt
 #
 # Changelog
+# v1.1		Modified by Ventsislav Zhechev on 17 Jun 2014
+# Added some output to make the logs more readable.
+# Updated the code to make it more robust with fewer points of failure.
+# Updated the commands to connect to the SVN repository.
+#
 # v1.0.2	Modified by Ventsislav Zhechev on 27 May 2014
 # Moved the check for new products/repositories after the general repository update.
 #
@@ -17,19 +22,27 @@
 #
 #####################
 
-for repo in `cat /OptiBay/SW_JSONs/tools/product.lst`
+cd /OptiBay/SW_JSONs
+
+# Update the local SVN store.
+for product in `cat product.lst`
 do
-	if [ $repo != test/ ] && [ $repo != ACD_old_test/ ]
-	then
-		svn up /OptiBay/SW_JSONs/$repo
-	fi
+  echo "Updating $product from SVN…"
+  svn --username ferrotp --password 2@klopklop --non-interactive up $product
 done
 
-mv -f /OptiBay/SW_JSONs/tools/product.lst /OptiBay/SW_JSONs/tools/old.product.lst
-curl --user 'ferrotp:2@klopklop' http://lsdata-internal.autodesk.com/svn/jsons/ |sed 's/.*"\(.*\)".*/\1/
-/</d' | sort > /OptiBay/SW_JSONs/tools/product.lst
-cd /OptiBay/SW_JSONs
-comm -23 /OptiBay/SW_JSONs/tools/product.lst /OptiBay/SW_JSONs/tools/old.product.lst | sed 's/^/ --username ferrotp --password 2@klopklop --non-interactive co http:\/\/lsdata-internal.autodesk.com\/svn\/jsons\//' | xargs -tL 1 svn
+# Check if new SVN repositories have been added.
+cd /OptiBay/SW_JSONs/tools
+mv -f product.lst old.product.lst
+echo "Fetching current product list…"
+curl -s --user 'ferrotp:2@klopklop' http://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
 
+cd /OptiBay/SW_JSONs
+# Make sure we index the new products’ data.
+for product in `comm -23 product.lst old.product.lst`
+do
+  echo "Checking out $product from SVN…"
+  svn --username ferrotp --password 2@klopklop --non-interactive co http://lsdata.autodesk.com/svn/jsons/$product
+done
 
 /OptiBay/SW_JSONs/tools/parseJSON.pl -threads=8
