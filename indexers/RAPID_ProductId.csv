@@ -761,7 +761,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 1576;Q3 Content Pack;;AutoCAD Architecture;2009;ARCHDESK;ACA;ARCHDESK;
 1580;Russian Content Drop;;AutoCAD MEP;2009;BLDSYS;BLDSYS;BLDSYS;
 1581;Industry Kits (Electric);Feature/Extension;Autodesk Map 3D;2009;;;;
-1587;Main Release;Main;Platform Airmax;2009;;;;
+1587;Main Release;Main;Platform Airmax;2009;AIRMAX;;AIRMAX;
 1588;Mid-Year Content Drop;Feature/Extension;Autodesk Revit Architecture;2009;RVT;;RVT;
 1589;Revit 64-bit versions (RAC, RST, RME), including BP & WSM Plug-ins;Feature/Extension;Autodesk Revit Architecture;2009;RVT;;RVT;
 1591;AutoCAD 11L SDL;N/A;E-Learning;FY09;E-LEARNING;E-LEARNING;E-LEARNING;
@@ -825,7 +825,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 1673;Main Release;Main;AutoCAD Inventor Professional Suite;2010;;;;
 1674;Subscription Advantage Pack;Feature/Extension;AutoCAD Inventor;2010;INV;INVNTOR;INV;
 1676;LT Suite;Main;AutoCAD Inventor  LT Suite;2010;INVLTS;;INVLTS;
-1677;Main Release;Feature/Extension;Platform Airmax;2011;;;;
+1677;Main Release;Feature/Extension;Platform Airmax;2011;AIRMAX;;AIRMAX;
 1678;Main Release;Main;DWG TrueView;2010;ACD;DWGTV;ACD;
 1680;Main Release;Feature/Extension;Platform LIRA;2010;;;;
 1681;R1;Main;Autodesk DirectConnect;2010;;DIRECTCONNECT;DIRECTCONNECT;
@@ -1167,7 +1167,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 2168;Service Pack 1;;AutoCAD P&ID;2011;PNID;PNID;PNID;
 2169;Update 1;;AutoCAD Architecture;2011;ARCHDESK;ACA;ARCHDESK;
 2171;Update 2;;AutoCAD Architecture;2011;ARCHDESK;ACA;ARCHDESK;
-2172;Main Release;Feature/Extension;Platform Airmax;2012;;;;
+2172;Main Release;Feature/Extension;Platform Airmax;2012;AIRMAX;;AIRMAX;
 2173;Main Release;Main;AutoCAD;2011;ACD;ACD;ACD;
 2174;Update 1;;AutoCAD;2011;ACD;ACD;ACD;
 2175;Update 2;;AutoCAD;2011;ACD;ACD;ACD;
@@ -2070,7 +2070,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3431;SP3 - to delete;;Mudbox;2013;MBXPRO;MUD;MBXPRO;
 3432;Service Pack 2;;Autodesk Vault;2012;;;;
 3433;Service Pack 2;;Autodesk Vault Professional;2013;VLT;VAULT;VLT;
-3435;Service Pack 2 (Discarded);;Autodesk Vault Professional;2014;VLT;VAULT;VLT;
+3435;Service Pack 2;;Autodesk Vault Professional;2014;VLT;VAULT;VLT;
 3436;Main (External 2);Main;SketchBook Designer;2013;ALSK;SKETCHBOOK;ALSK;
 3437;Main Release;N/A;My Autodesk;2013;ADSK360;SUBS;MYADSK;
 3438;Main Release;N/A;My Autodesk;2014;MYADSK;SUBS;MYADSK;
@@ -2206,7 +2206,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3667;PTB QA for Welocalize;N/A;N/A;FY14;;;;
 3669;Main;Main;Humanik;2014;HMNIK;HUMANIK;HMNIK;
 3672;Version 2014;Main;Autodesk Gameware Navigation;2014;;GW_NAV;GW_NAV;
-3673;Main Release;Main;Platform Airmax;2015;;;;
+3673;Main Release;Main;Platform Airmax;2015;AIRMAX;;AIRMAX;
 3674;Main Release;Main;Install Licensing;2015;LIRAFX;;LIRAFX;
 3675;Service Pack 1;;AutoCAD;2015;ACD;ACD;ACD;
 3676;Service Pack 1;;AutoCAD Architecture;2015;ARCHDESK;ACA;ARCHDESK;
@@ -2288,7 +2288,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3912;Service Pack 1;;Autodesk Vault Professional;2015;VLT;VAULT;VLT;
 3913;Service Pack 2;;Autodesk Vault Professional;2015;VLT;VAULT;VLT;
 3914;Workgroup;Main;Autodesk Vault Workgroup;2015;VLT;VAULT;VLT;
-3919;Web Cleint(mid-year release);Main;Autodesk Vault Office;2015;VLT;VAULT;VLT;
+3919;Web Cleint - Office;Main;Autodesk Vault Office;2015;VLT;VAULT;VLT;
 3920;DFM;Main;DFM;2015;SIMDFM;SIMDFM;SIMDFM;
 3921;Main Release;Main;Moldflow;2015;MF;MOLDFLOW;MF;
 3922;Main Release;Main;Inventor Optimization;2015;EFLXRO;;EFLXRO;
@@ -2649,7 +2649,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4511;SubCenter - Network Deployment Translation;N/A;Others;2015;;;;
 4512;Update Release 2;;Autodesk Revit;2015;RVT;RVT;RVT;
 4513;Add-On;Quarterly;Content Editor for InfraWorks 360;2015;;;;
-4515;Main Release;Main;Global Engineering Components;2016;;;;
+4515;Main Release;Main;Global Engineering Components;2016;AIRMAX;;AIRMAX;
 4516;GCSO - Corporate Survey - additional content;N/A;N/A;FY15;;;;
 4519;Main Project;N/A;Flame Assist;2015;FLAMEASSIST;FLAMEASSIST;FLAMEASSIST;
 4520;SW Cross vendor Kit validation;N/A;N/A;FY15;;;;
@@ -2870,3 +2870,16 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4806;FY15Q2 - China;N/A;Autodesk Education Community;2015;;;;
 4807;FY15Q2 - CHS, JPN, ENG;N/A;Autodesk Sustainable Design;2015;;;;
 4809;FY15Q2 - SEO;N/A;Subscription Center;2015;;;;
+4811;Fy15Q2 - Maya LT Ext1;N/A;Autodesk Maya LT;2015;;;;
+4813;Service Pack 1;;AutoCAD Alias;2015;ST;ALIAS;ST;
+4815;Softimage/Maya Transition Video Courseware;Feature/Extension;Softimage;2015;SFTIM;SOFTIMAGE;SFTIM;
+4818;SP3;;Maya;2015;MAYA;MAYA;MAYA;
+4819;GCSO - Desktop Subscription Research Survey;N/A;N/A;FY15;;;;
+4820;GCSO - AutoCAD CSAT Wave3 Questionnaire;N/A;N/A;FY15;;;;
+4821;GCSO - Corporate Survey FY15 Wave Comments;N/A;N/A;FY15;;;;
+4823;Solidworks and Pro/E Add-in;N/A;Autodesk Vault Professional;2015;VLT;VAULT;VLT;
+4825;GCSO - Desktop Subscription Research Survey 2;N/A;N/A;FY15;;;;
+4826;GCSO - Qualitrics Survey Translation;N/A;N/A;FY15;;;;
+4827;Service Pack;;Autodesk Navisworks;2015;NAV;NAVISWORKS;NAV;
+4829;Inventor API Help;N/A;Autodesk Inventor Professional;2015;INV;;INV;
+4830;Main Release;Main;Simulation Composite Design;2015;;ACMPDS;ACMPDS;
