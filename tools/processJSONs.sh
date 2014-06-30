@@ -6,6 +6,9 @@
 # Based on several Solr indexing scripts by Mirko Plitt
 #
 # Changelog
+# v1.1.1	Modified by Ventsislav Zhechev on 30 Jun 2014
+# Fixed the path to the product.lst file.
+#
 # v1.1		Modified by Ventsislav Zhechev on 17 Jun 2014
 # Added some output to make the logs more readable.
 # Updated the code to make it more robust with fewer points of failure.
@@ -25,7 +28,7 @@
 cd /OptiBay/SW_JSONs
 
 # Update the local SVN store.
-for product in `cat product.lst`
+for product in `cat tools/product.lst`
 do
   echo "Updating $product from SVN…"
   svn --username ferrotp --password 2@klopklop --non-interactive up $product
@@ -39,7 +42,7 @@ curl -s --user 'ferrotp:2@klopklop' http://lsdata.autodesk.com/svn/jsons/ |sed '
 
 cd /OptiBay/SW_JSONs
 # Make sure we index the new products’ data.
-for product in `comm -23 product.lst old.product.lst`
+for product in `comm -23 tools/product.lst tools/old.product.lst`
 do
   echo "Checking out $product from SVN…"
   svn --username ferrotp --password 2@klopklop --non-interactive co http://lsdata.autodesk.com/svn/jsons/$product
