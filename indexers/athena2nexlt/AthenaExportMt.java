@@ -3,6 +3,12 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.5			Modified on 28 Jul 2014 by Ventsislav Zhechev
+// Updated to index the full product name for each segment, based on Solr 4.9.0 functionality.
+//
+// v1.4.3		Modified on 15 Jul 2014 by Ventsislav Zhechev
+// Updated to export placeholder content when collecting data for post-editing analysis.
+//
 // v1.4.2		Modified on 05 Jun 2014 by Ventsislav Zhechev
 // Small bug fix in the product code mapping.
 //
@@ -280,14 +286,15 @@ public class AthenaExportMt {
 					}
 					
 					
-					// For MT
-					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID" + (outputForSolr ? "" : ", MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE") + " from " + oneTable +
+					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID" + (outputForSolr ? "" : ", MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE, PLACEHOLDERS") + " from " + oneTable +
 							" where REVIEWSTATUS in (5, 6, 7, 9)" + 
 							" and RELEASE != 'TESTING'" +
 //							" and TRANSLATIONTYPE = 6" +
 							" and TRANSLATIONTYPE in (2, 3, 5" + (useICE ? ", 4) " : ")") + //not AUTO or ICE  match
 							" and SOURCESEGMENT is not null and POSTTRANSLATIONTARGET is not null and PRODUCT is not null and RELEASE is not null ";
 								
+//					sqlSelect += "and CONTENTOWNER not like 'MARKETING_CQ' ";
+					
 					if (startDate != null || endDate != null) {
 						sqlSelect += "and (( ";
 						sqlSelect += startDate != null ? (useCreationDate ? "CREATIONDATE" : "TRANSLATIONDATE") + " >= to_date('" + startDate + "', 'yyyy.mm.dd') " : "";
@@ -326,6 +333,7 @@ public class AthenaExportMt {
 					String translationTypeString = "";
 					String creationDateString = "";
 					String translationDateString = "";
+					String placeHolders = "";
 					boolean skipped = false;
 					while (rs.next()) {
 						if (counter > 0 && counter % 100000 == 0) {
@@ -504,18 +512,32 @@ public class AthenaExportMt {
 								translationDateString = "";
 							}
 							
-							mtPrintStream.println(sourceSegment + "" + mtTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
-							tmPrintStream.println(sourceSegment + "" + tmTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
+							placeHolders = rs.getString(13);
+							if (placeHolders != null) {
+								placeHolders = placeHolders.replaceAll("\n", " ");
+								placeHolders = placeHolders.replaceAll("\r", " ");
+							}
+							else {
+								placeHolders = "";
+							}
+							
+							mtPrintStream.println((new StringBuilder(sourceSegment)).append("").append(mtTranslation).append("").append(targetSegment).append("").append(product).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
+							tmPrintStream.println((new StringBuilder(sourceSegment)).append("").append(mtTranslation).append("").append(targetSegment).append("").append(product).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
 
 						} else {
 							content.append("\"add\": { \"doc\": {")
 							.append("\"resource\": {\"set\":\"Documentation\"}, ")
 							.append("\"product\": {\"set\":\"").append(JSONObject.escape(product)).append("\"}, ")
+							.append("\"productname\": {\"remove\":\"").append(JSONObject.escape(product)).append("\"}, ")
 							.append("\"release\": {\"set\":\"").append(JSONObject.escape(release)).append("\"}, ")
 							.append("\"id\": \"").append(JSONObject.escape(uid)).append("\", ")
 							.append("\"enu\": {\"set\":\"").append(JSONObject.escape(sourceSegment)).append("\"}, ")
 							.append("\"").append(targetLanguage).append("\": {\"set\":\"").append(JSONObject.escape(targetSegment)).append("\"}, ")
 							.append("\"srclc\": {\"set\":\"").append(JSONObject.escape(sourceSegment.toLowerCase())).append("\"} ")
+							.append("} },")
+							.append("\"add\": { \"doc\": {")
+							.append("\"id\": \"").append(JSONObject.escape(uid)).append("\", ")
+							.append("\"productname\": {\"add\":\"").append(JSONObject.escape(product)).append("\"} ")
 							.append("} }");
 						}
 					}
@@ -535,7 +557,7 @@ public class AthenaExportMt {
 //						solrPrintStream.println(content.toString());
 						CloseableHttpClient httpclient = HttpClients.createDefault();
 						try {
-							HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
+							HttpPost request = new HttpPost("http://aws.stg.solr:8983/solr/update/json");
 							request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
 							CloseableHttpResponse response = httpclient.execute(request);
 							try {
