@@ -53,6 +53,8 @@
 #				– Now we include the product code when generating the segment ID.
 #		2.2 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Jul-28-2014
 #				– Updated to index the full product name for each segment, based on Solr 4.9.0 functionality.
+#		2.2.1 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Aug-13-2014
+#				– Modified to use aliases for staging and production Solr servers.
 #
 ################################################################################
 
@@ -159,7 +161,8 @@ my $printer = sub {
 #	print $f $content;
 #	close $f;
 	print STDERR encode "utf-8", "Posting $language content for indexing…\n";
-	my $response = $http->request('POST', 'http://aws.stg.solr:8983/solr/update/json', { content => $content });
+	my $response = $http->request('POST', 'http://aws.prd.solr:8983/solr/update/json', { content => $content });
+#	my $response = $http->request('POST', 'http://aws.stg.solr:8983/solr/update/json', { content => $content });
 	die "HTML request to Solr failed!\n $response->{status} $response->{reason}\n$response->{content}\n" unless $response->{success};
 	print STDERR "$language content sucessfully posted!\n";
 };
