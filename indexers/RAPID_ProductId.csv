@@ -13,7 +13,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 115;SP1 - Global SP tested in 31 'localized' scenarios;;AutoCAD;2005;ACD;ACD;ACD;
 118;98ME release;Main;DWF Viewer;5;;;;
 119;Main Release;Main;DWF Viewer;5;;;;
-120;Main Release;Main;DWG Viewer + DWF Composer;2005;;;;
+120;Main Release;Main;DWG Viewer + DWF Composer;2005;;DWGTV;;
 121;Main Release;Main;AutoSketch;9.0;;;;
 122;Main Release;Main;AutoCAD OEM;2005;ACD;;ACD;
 123;for ARS 2 - CD1 of Autodesk Revit Series 2;Main;AutoCAD;2005;ACD;ACD;ACD;
@@ -108,7 +108,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 219;Main Release;Main;AutoCAD OEM;2000;ACD;;ACD;
 220;Main Release;Main;AutoCAD;2000;ACD;ACD;ACD;
 225;Main Release;Main;Autodesk Viz;2005+1;;;;
-228;Main Release;Main;DWG Viewer + DWF Composer;R2;;;;
+228;Main Release;Main;DWG Viewer + DWF Composer;R2;;DWGTV;;
 242;Main Release;Main;AutoCAD Mechanical;2006;AMECH_PP;ACAD_M;AMECH_PP;
 244;Main Release;Main;AutoCAD Electrical;2006;ACAD_E;ACAD_E;ACAD_E;
 245;Main Release;Main;Autodesk Map 3D;2006;;;;
@@ -824,7 +824,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 1672;Main Release;Main;AutoCAD Inventor Simulation Suite;2010;;;;
 1673;Main Release;Main;AutoCAD Inventor Professional Suite;2010;;;;
 1674;Subscription Advantage Pack;Feature/Extension;AutoCAD Inventor;2010;INV;INVNTOR;INV;
-1676;LT Suite;Main;AutoCAD Inventor  LT Suite;2010;INVLTS;;INVLTS;
+1676;LT Suite;Main;AutoCAD Inventor LT Suite;2010;INVLTS;;INVLTS;
 1677;Main Release;Feature/Extension;Platform Airmax;2011;AIRMAX;;AIRMAX;
 1678;Main Release;Main;DWG TrueView;2010;ACD;DWGTV;ACD;
 1680;Main Release;Feature/Extension;Platform LIRA;2010;;;;
@@ -1053,7 +1053,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 2029;Slipstream (C-Dilla RTS - Run Time System update);;AutoCAD LT;2002;ACD;ACDLT;ACD;
 2030;Main Release;Main;AutoCAD Raster;3;;;;
 2032;SP1a;;AutoCAD;2004;ACD;ACD;ACD;
-2033;R1 SP;;DWG Viewer + DWF Composer;R1;;;;
+2033;R1 SP;;DWG Viewer + DWF Composer;R1;;DWGTV;;
 2034;MSI patch re-release - 2006;;Architectural Desktop;FY07;;;;
 2035;MSI patch re-release - 2007;;Architectural Desktop;FY07;;;;
 2036;GBU Tech;N/A;E-Learning;FY10;E-LEARNING;E-LEARNING;E-LEARNING;
@@ -1094,7 +1094,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 2074;Student Version;;AutoCAD Electrical;2007;ACAD_E;ACAD_E;ACAD_E;
 2076;MSD Tech;N/A;E-Learning;FY10;E-LEARNING;E-LEARNING;E-LEARNING;
 2078;Rio Release;;DWF Viewer;5;;;;
-2080;Main Release;Main;DWG Viewer + DWF Composer;R2;;;;
+2080;Main Release;Main;DWG Viewer + DWF Composer;R2;;DWGTV;;
 2081;OEM 2006;Main;AutoCAD OEM;2006;ACD;;ACD;
 2082;Main Release;Main;AutoCAD;2006;ACD;ACD;ACD;
 2083;CD1 of ARS8 / Rio for ARS8;Main;AutoCAD;2006;ACD;ACD;ACD;
@@ -1140,7 +1140,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 2127;ARS8.1;Main;AutoCAD;2006;ACD;ACD;ACD;
 2128;ARS8.1 SP1;;AutoCAD;2006;ACD;ACD;ACD;
 2129;DWG TrueConverter;;AutoCAD;2006;ACD;ACD;ACD;
-2130;Standalone;Main;DWG Viewer;R2;;;;
+2130;Standalone;Main;DWG Viewer;R2;;DWGTV;;
 2131;TEL release;;DWF Composer;R2;;;;
 2132;SP1;;AutoCAD;2006;ACD;ACD;ACD;
 2134;M&E Sales;N/A;E-Learning;FY10;E-LEARNING;E-LEARNING;E-LEARNING;
@@ -1225,7 +1225,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 2236;Student Edition;Feature/Extension;AutoCAD Inventor;2011;INV;INVNTOR;INV;
 2237;SP1;;AutoCAD Inventor;2011;INV;INVNTOR;INV;
 2240;Subscription Advantage Pack;;AutoCAD Inventor;2011;INV;INVNTOR;INV;
-2241;LT Suite;Main;AutoCAD Inventor  LT Suite;2011;INVLTS;;INVLTS;
+2241;LT Suite;Main;AutoCAD Inventor LT Suite;2011;INVLTS;;INVLTS;
 2242;Main Release;Main;AutoCAD Inventor Professional Suite;2011;;;;
 2243;Main Release;Main;AutoCAD Inventor Routed Systems Suite;2011;;;;
 2244;Main Release;Main;AutoCAD Inventor Simulation Suite;2011;;;;
@@ -1398,7 +1398,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 2511;Service Pack 1;;AutoCAD Electrical;2012;ACAD_E;ACAD_E;ACAD_E;
 2513;Student Edition;Feature/Extension;AutoCAD Inventor;2012;INV;INVNTOR;INV;
 2514;Inventor SP1;;AutoCAD Inventor;2012;INV;INVNTOR;INV;
-2516;LT Suite;Main;AutoCAD Inventor  LT Suite;2012;INVLTS;;INVLTS;
+2516;LT Suite;Main;AutoCAD Inventor LT Suite;2012;INVLTS;;INVLTS;
 2521;Inventor and Inventor Pro;Main;Autodesk Inventor Professional;2012;INV;;INV;
 2522;LT Standalone;Main;AutoCAD Inventor LT;2012;INV;INVLT;INV;
 2523;TestDrive;Feature/Extension;AutoCAD Inventor;2012;INV;INVNTOR;INV;
@@ -1617,7 +1617,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 2814;SAP;;3ds Max;2013;3DSMAX;3DSMAX;3DSMAX;
 2815;TestDrive;Feature/Extension;AutoCAD Inventor;2013;INV;INVNTOR;INV;
 2817;Inventor and Inventor Pro;Main;Autodesk Inventor Professional;2013;INV;;INV;
-2818;LT Suite;Main;AutoCAD Inventor  LT Suite;2013;INVLTS;;INVLTS;
+2818;LT Suite;Main;AutoCAD Inventor LT Suite;2013;INVLTS;;INVLTS;
 2819;LT Standalone;Main;AutoCAD Inventor LT;2013;INV;INVLT;INV;
 2820;Inventor OEM;Main;AutoCAD Inventor OEM;2013;INV;;INV;
 2821;Client Update/2012 SP2;N/A;Autodesk Inventor Professional;2012;INV;;INV;
@@ -1769,7 +1769,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3005;Ultimate;Suite;Plant Design Suite;2013;PLTDS;PLDS;PLTDS;
 3007;SAP;;Mudbox;2013;MBXPRO;MUD;MBXPRO;
 3008;SP3;;Mudbox;2013;MBXPRO;MUD;MBXPRO;
-3009;Inventor LT SP1;;AutoCAD Inventor  LT Suite;2012;INVLTS;;INVLTS;
+3009;Inventor LT SP1;;AutoCAD Inventor LT Suite;2012;INVLTS;;INVLTS;
 3011;SP/HF;;Maya;2013;MAYA;MAYA;MAYA;
 3013;Service Pack 1;;Inventor Publisher;2013;INVPUB;INVPUB;INVPUB;
 3015;Service Pack 1;;Autodesk Simulation Multiphysics;2013;ASPRO;SIM;SIM360U;
@@ -1858,7 +1858,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3159;Service Pack 2;;AutoCAD Plant 3D;2012;PLNT3D;PLANT3D;PLNT3D;
 3161;Service Pack 2;;AutoCAD for Mac;2012;ACDMAC;ACADMAC;ACDMAC;
 3165;May 2012 release;Feature/Extension;Autodesk PLM 360;2013;360NXS;PLM;360NXS;PLM360
-3170;Inventor LT SP1;;AutoCAD Inventor  LT Suite;2013;INVLTS;;INVLTS;
+3170;Inventor LT SP1;;AutoCAD Inventor LT Suite;2013;INVLTS;;INVLTS;
 3171;Main;Main;LSDV Reviews;2013;;;;
 3174;Online Help update (project Remora);N/A;AutoCAD;2013;ACD;ACD;ACD;
 3175;Online Help update (project Remora);N/A;AutoCAD LT;2013;ACD;ACDLT;ACD;
@@ -1883,7 +1883,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3200;Continuous Release;Main;Autodesk PLM 360;2014;360NXS;PLM;360NXS;PLM360
 3201;April 2012 release;Feature/Extension;Autodesk PLM 360;2014;360NXS;PLM;360NXS;PLM360
 3202;May 2012 release;Feature/Extension;Autodesk PLM 360;2014;360NXS;PLM;360NXS;PLM360
-3203;LT Suite;Main;AutoCAD Inventor  LT Suite;2014;INVLTS;;INVLTS;
+3203;LT Suite;Main;AutoCAD Inventor LT Suite;2014;INVLTS;;INVLTS;
 3204;Main;Main;Maya;2014;MAYA;MAYA;MAYA;
 3205;Main;Main;Mudbox;2014;MBXPRO;MUD;MBXPRO;
 3206;Extenstion 1;Feature/Extension;Mudbox;2014;MBXPRO;MUD;MBXPRO;
@@ -1897,8 +1897,8 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3219;Main Release;Main;Inventor Engineer-to-Order (ETO);2014;INVETO;INVETO;INVETO;
 3220;Main Release;Main;AutoCAD LT;2014;ACD;ACDLT;ACD;
 3221;Main Release;Main;AutoCAD;2014;ACD;ACD;ACD;
-3223;Inventor LT SP2;;AutoCAD Inventor  LT Suite;2013;INVLTS;;INVLTS;
-3224;Inventor LT SP2;;AutoCAD Inventor  LT Suite;2012;INVLTS;;INVLTS;
+3223;Inventor LT SP2;;AutoCAD Inventor LT Suite;2013;INVLTS;;INVLTS;
+3224;Inventor LT SP2;;AutoCAD Inventor LT Suite;2012;INVLTS;;INVLTS;
 3225;Roombook countrification;N/A;AutoCAD Architecture;2013;ARCHDESK;ACA;ARCHDESK;
 3227;SAP - Vault Integration;Feature/Extension;AutoCAD Plant 3D;2013;PLNT3D;PLANT3D;PLNT3D;
 3229;Q2 Marquee App;Main;Exchange Apps;2013;MARQUEEAPPS;AutoCADMarqueeApps;MARQUEEAPPS;
@@ -1939,8 +1939,8 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3276;Main Release;Main;AutoCAD Alias;2014;ST;ALIAS;ST;
 3277;Main Release;Main;Alias Design for Inventor;2014;DESNSTINV;;DESNSTINV;
 3278;Main Release;Main;Autodesk Alias Surface;2014;SURFST;ALIAS;ST;
-3279;Inventor LT SP1;;AutoCAD Inventor  LT Suite;2014;INVLTS;;INVLTS;
-3280;Inventor LT SP2;;AutoCAD Inventor  LT Suite;2014;INVLTS;;INVLTS;
+3279;Inventor LT SP1;;AutoCAD Inventor LT Suite;2014;INVLTS;;INVLTS;
+3280;Inventor LT SP2;;AutoCAD Inventor LT Suite;2014;INVLTS;;INVLTS;
 3281;Inventor OEM;Main;AutoCAD Inventor OEM;2014;INV;;INV;
 3282;LT Standalone;Main;AutoCAD Inventor LT;2014;INV;INVLT;INV;
 3283;Standard;Suite;Product Design Suite;2014;PDS;PRDS;PDS;
@@ -2072,8 +2072,8 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3433;Service Pack 2;;Autodesk Vault Professional;2013;VLT;VAULT;VLT;
 3435;Service Pack 2;;Autodesk Vault Professional;2014;VLT;VAULT;VLT;
 3436;Main (External 2);Main;SketchBook Designer;2013;ALSK;SKETCHBOOK;ALSK;
-3437;Main Release;N/A;My Autodesk;2013;ADSK360;SUBS;MYADSK;
-3438;Main Release;N/A;My Autodesk;2014;MYADSK;SUBS;MYADSK;
+3437;Main Release;N/A;My Autodesk;2013;ADSK360;SUBS;ADSK360;
+3438;Main Release;N/A;My Autodesk;2014;MYADSK;SUBS;ADSK360;
 3439;Main Release;N/A;Autodesk BIM 360 Field;2014;BM360F;BM360F;BM360F;
 3440;Main Release;Main;Simulation 360 Documentation;2013;SM360U;;SIM360U;
 3441;Main Release;Main;Simulation 360 & Simulation 360 Ultimate Installer;2013;SIM360U;SIM360INSTALLER;SIM360U;
@@ -2246,7 +2246,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3766;Main Release;Suite;Autodesk Factory Design Suite;2014;FDS;FDS;FDS;
 3824;Adhoc Translation - Web Marketing;N/A;N/A;FY14;;;;
 3825;Adhoc requests from LS Q2;N/A;N/A;FY14;;;;
-3837;SP 1;;Autodesk Fusion 360;2015;FSN360;FSN360;FSN360;
+3837;Continous Updates;;Autodesk Fusion 360;2015;FSN360;FSN360;FSN360;
 3849;Main Release;Main;3ds Max;2015;3DSMAX;3DSMAX;3DSMAX;
 3850;Ultimate;Suite;Entertainment Creation Suite;2015;ENCS;ECS;ENCS;
 3851;Main;Main;Maya;2015;MAYA;MAYA;MAYA;
@@ -2269,9 +2269,9 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3886;Subscription 2015;N/A;Subscription;FY15;SUBS;;SUBS;
 3887;Main Release;Main;Alias Design for Inventor;2015;DESNSTINV;;DESNSTINV;
 3889;Main Release;Main;Autodesk Alias Surface;2015;SURFST;ALIAS;ST;
-3890;LT Suite;Main;AutoCAD Inventor  LT Suite;2015;INVLTS;;INVLTS;
-3891;Inventor LT SP1;;AutoCAD Inventor  LT Suite;2015;INVLTS;;INVLTS;
-3892;Inventor LT SP2;;AutoCAD Inventor  LT Suite;2015;INVLTS;;INVLTS;
+3890;LT Suite;Main;AutoCAD Inventor LT Suite;2015;INVLTS;;INVLTS;
+3891;Inventor LT SP1;;AutoCAD Inventor LT Suite;2015;INVLTS;;INVLTS;
+3892;Inventor LT SP2;;AutoCAD Inventor LT Suite;2015;INVLTS;;INVLTS;
 3894;Inventor OEM;Main;AutoCAD Inventor OEM;2015;INV;;INV;
 3895;Inventor and Inventor Pro;Main;Autodesk Inventor Professional;2015;INV;;INV;
 3897;Main Release;Suite;Autodesk Factory Design Suite;2015;FDS;FDS;FDS;
@@ -2298,7 +2298,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 3926;Main Release;N/A;Simulation CFD 360;2015;SIM360_CFD;CFD;SIM360U;
 3927;Main Release;Main;SIM Job Manager;2015;SIM360_JM;SJM;SIM360U;
 3928;Main Release;Main;SIM Mech. 360;2015;SIM360_M;ALGOR;SIM360U;
-3930;Main Release;N/A;Simulation CFD 360;2015;SIM360_CFD;CFD;SIM360U;
+3930;Main Release;N/A;Simulation CFD;2015;;;;
 3931;Main Release;Quarterly;Autodesk PLM 360;2015;360NXS;PLM;360NXS;PLM360
 3932;Main Release;Main;Inventor Engineer-to-Order (ETO);2015;INVETO;INVETO;INVETO;
 3933;Premium;Suite;Product Design Suite;2015;PDS;PRDS;PDS;
@@ -2370,7 +2370,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4029;TrustedDWG LT Portfolio Copy for Q2 ACAD LT Family Campaign;N/A;N/A;FY14;;;;
 4031;Mid-Year release;Quarterly;AutoCAD ecscad;2014;ECSCAD;ECSCAD;ECSCAD;
 4033;Marketing Launch Assets Translation;N/A;N/A;FY14;;;;
-4035;Main;Continuous;Fusion 360 Documentation;2015;;;;
+4035;Main;Continuous;Fusion 360 Drawings;2015;;;;
 4037;Main;Main;SO IM;2014;;;;
 4039;Extension 1;Feature/Extension;AutoCAD Civil 3D;2014;CIV3D;CIV3D;CIV3D;
 4041;Erenewals Localization;N/A;N/A;FY14;;;;
@@ -2420,10 +2420,10 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4119;Ad-hoc requests from Marketing e-Store FY14 Q3;N/A;N/A;FY14;;;;
 4127;AutoCAD LT Product Portfolio;N/A;N/A;FY14;;;;
 4129;Main Release;N/A;Master Suite;2015;EMS;;EMS;
-4131;Q1 Release;N/A;My Autodesk;2015;MYADSK;SUBS;MYADSK;
-4132;Q2 Release;N/A;My Autodesk;2015;MYADSK;SUBS;MYADSK;
-4133;Q3 Release;N/A;My Autodesk;2015;MYADSK;SUBS;MYADSK;
-4134;Q4 Release;N/A;My Autodesk;2015;MYADSK;SUBS;MYADSK;
+4131;Q1 Release;N/A;My Autodesk;2015;MYADSK;SUBS;ADSK360;
+4132;Q2 Release;N/A;My Autodesk;2015;MYADSK;SUBS;ADSK360;
+4133;Q3 Release;N/A;My Autodesk;2015;MYADSK;SUBS;ADSK360;
+4134;Q4 Release;N/A;My Autodesk;2015;MYADSK;SUBS;ADSK360;
 4135;Standing Sales Translation;N/A;N/A;FY14;;;;
 4137;Inventor OEM SP1;;AutoCAD Inventor OEM;2014;INV;;INV;
 4142;Continuous Releases FY15 3;Continuous;AppStore;2015;APPSTORE;;APPSTORE;
@@ -2479,7 +2479,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4225;SR1 SP1 CH1;;Autodesk Vault Professional;2014;VLT;VAULT;VLT;
 4227;Smart Monkey Add-In;Feature/Extension;Autodesk Revit;2015;RVT;RVT;RVT;
 4229;Nurtured Trial;Feature/Extension;Product Design Suite;2014;PDS;PRDS;PDS;
-4231;Feature/Extension;Feature/Extension;Simulation Composite Analysis;2016;ACMPAN;ACMPAN;ACMPAN;
+4231;Main Release;Main;Simulation Composite Analysis;2016;ACMPAN;ACMPAN;ACMPAN;
 4232;Main Release;Main;Simulation Composite Design;2016;;ACMPDS;ACMPDS;
 4235;Global Field Promotion;N/A;N/A;FY14;;;;
 4238;Service Pack 2;;AutoCAD for Mac;2013;ACDMAC;ACADMAC;ACDMAC;
@@ -2580,7 +2580,6 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4415;Q1 Release;Continuous;Sketchbook Products Family;2015;;;;
 4416;Q2 Release;Continuous;Sketchbook Products Family;2015;;;;
 4417;Q3 Release;Continuous;Sketchbook Products Family;2015;;;;
-4418;Q4 Release;Continuous;Sketchbook Products Family;2015;;;;
 4419;Q1 Release;Continuous;Homestyler;2015;;;;
 4420;Q2 Release;Continuous;Homestyler;2015;;;;
 4421;Q3 Release;Continuous;Homestyler;2015;;;;
@@ -2708,7 +2707,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4583;OTS Partner Incentive Flyers - Korean;N/A;Others;2015;;;;
 4585;SP2;;Maya;2015;MAYA;MAYA;MAYA;
 4586;SP2;;Maya LT;2015;MAYA;MAYALT;MAYA;
-4587;Service Pack 1;;Simulation CFD 360;2015;SIM360_CFD;CFD;SIM360U;
+4587;Service Pack 1;;Simulation CFD;2015;;;;
 4589;Adhoc requests from LS FY15 Q2;N/A;N/A;FY15;;;;
 4591;Main Release;Main;Autodesk Infrastructure Map Server;2016;IMS;MAPSERVER;IMS;
 4592;Service Pack 1;;Autodesk Infrastructure Map Server;2016;IMS;MAPSERVER;IMS;
@@ -2718,10 +2717,10 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4596;Update Release 2;;Autodesk Revit;2016;RVT;RVT;RVT;
 4597;Content Release;Quarterly;Revit Content;2016;RVT;RVT;RVT;
 4598;Main Release;N/A;Master Suite;2016;EMS;;EMS;
-4599;Q1 Release;N/A;My Autodesk;2016;MYADSK;SUBS;MYADSK;
-4600;Q2 Release;N/A;My Autodesk;2016;MYADSK;SUBS;MYADSK;
-4601;Q3 Release;N/A;My Autodesk;2016;MYADSK;SUBS;MYADSK;
-4602;Q4 Release;N/A;My Autodesk;2016;MYADSK;SUBS;MYADSK;
+4599;Q1 Release;N/A;My Autodesk;2016;MYADSK;SUBS;ADSK360;
+4600;Q2 Release;N/A;My Autodesk;2016;MYADSK;SUBS;ADSK360;
+4601;Q3 Release;N/A;My Autodesk;2016;MYADSK;SUBS;ADSK360;
+4602;Q4 Release;N/A;My Autodesk;2016;MYADSK;SUBS;ADSK360;
 4603;Main Release;Main;3ds Max;2016;3DSMAX;3DSMAX;3DSMAX;
 4604;SP1;;3ds Max;2016;3DSMAX;3DSMAX;3DSMAX;
 4605;SP2;;3ds Max;2016;3DSMAX;3DSMAX;3DSMAX;
@@ -2735,22 +2734,22 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4617;Main Release;Main;Alias Surface;2016;;;;
 4618;Main Release;Main;Autodesk Fusion 360;2016;FSN360;FSN360;FSN360;
 4619;Main Release;Main;Simulation CFD;2016;;;;
-4620;Version 1;Main;SIM 360;2016;SIM360;NSIM;SIM360U;SIM360
+4620;Version 1;Main;SIM 360;2016;;;;
 4621;FY15Q2 - 404 Page;N/A;Others;2015;;;;
-4622;Main Release;N/A;SIM 360 / SIM 360 Moldflow - Combined Installer;2016;SIM360_I;SIM360INSTALLER;SIM360U;
+4622;Main Release;N/A;Flex / Moldflow Flex;2016;;;;
 4624;Main Release;Main;Autodesk Simulation Mechanical;2016;;;;
 4625;Service Pack 1;;Autodesk Simulation Mechanical;2016;;;;
 4628;Main Release;Main;Inventor Engineer-to-Order (ETO);2016;INVETO;INVETO;INVETO;
 4629;Main Release;Main;Inventor Publisher;2016;INVPUB;INVPUB;INVPUB;
-4630;Main Release;Main;Moldflow;2016;MF;MOLDFLOW;MF;
-4631;Main Release;Main;DFM;2016;SIMDFM;SIMDFM;SIMDFM;
+4630;Main Release;Main;Moldflow;2016;;;;
+4631;Main Release;Main;DFM;2016;;;;
 4632;Premium;Suite;Product Design Suite;2016;PDS;PRDS;PDS;
 4633;Ultimate;Suite;Product Design Suite;2016;PDS;PRDS;PDS;
 4634;Domino;;Autodesk Simulation Multiphysics;2015;ASPRO;SIM;SIM360U;
 4636;RSA 2015.1 update;N/A;Autodesk Robot Structural Analysis Professional;2015;RSAPRO;ROBOT-RSA;RSAPRO;ROBOT
 4637;GCSO - Corporate Survey Additional Contents Localization;N/A;N/A;FY15;;;;
-4639;Service Pack 1;;Moldflow;2016;MF;MOLDFLOW;MF;
-4640;Main Release;Main;SIM Job Manager;2016;SIM360_JM;SJM;SIM360U;
+4639;Service Pack 1;;Moldflow;2016;;;;
+4640;Main Release;Main;SIM Job Manager;2016;;;;
 4641;Service Pack 1;;Simulation CFD;2016;;;;
 4644;Premium;Suite;Entertainment Creation Suite;2016;ENCS;ECS;ENCS;
 4645;Standard;Suite;Entertainment Creation Suite;2016;ENCS;ECS;ENCS;
@@ -2761,16 +2760,12 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4652;MTC Project;N/A;N/A;FY15;;;;
 4656;Q1 Release;Continuous;123D;2016;123D;123D;123D;
 4657;Q2 Release;Continuous;123D;2016;123D;123D;123D;
-4665;Q1 Release;Continuous;Autodesk Impression;2016;;;;
 4667;Main;Main;Maya;2016;MAYA;MAYA;MAYA;
 4668;SP1;;Maya;2016;MAYA;MAYA;MAYA;
 4671;Q3 Release;Continuous;123D;2016;123D;123D;123D;
 4672;Q4 Release;Continuous;123D;2016;123D;123D;123D;
 4673;Q3 Release;Continuous;Homestyler;2016;;;;
 4674;Q4 Release;Continuous;Homestyler;2016;;;;
-4675;Q2 Release;Continuous;Autodesk Impression;2016;;;;
-4676;Q3 Release;Continuous;Autodesk Impression;2016;;;;
-4677;Q4 Release;Continuous;Autodesk Impression;2016;;;;
 4678;Q1 Release;Continuous;Pixlr;2016;;;;
 4679;Q2 Release;Continuous;Pixlr;2016;;;;
 4680;Q3 Release;Continuous;Pixlr;2016;;;;
@@ -2819,11 +2814,11 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4737;Lujiazui;Feature/Extension;AutoCAD Civil 3D;2015;CIV3D;CIV3D;CIV3D;
 4738;Main Release;Main;Autodesk Revit LT;2015;RVT;RVTLT;RVT;
 4739;Heartbleed SP1 & Slipstream;;AutoCAD Structural Detailing;2015;STRDET;ROBOT-ASD;STRDET;
-4741;LT Suite;Main;AutoCAD Inventor  LT Suite;2016;INVLTS;;INVLTS;
-4742;Inventor LT;Main;AutoCAD Inventor LT;2016;INV;INVLT;INV;
+4741;LT Suite;Main;AutoCAD Inventor LT Suite;2016;INVLTS;;INVLTS;
+4742;Inventor LT;Main;Autodesk Inventor LT;2016;;;;
 4743;Inventor OEM;Main;AutoCAD Inventor OEM;2016;INV;;INV;
-4745;Inventor LT SP1;;AutoCAD Inventor  LT Suite;2016;INVLTS;;INVLTS;
-4746;Inventor LT SP2;;AutoCAD Inventor  LT Suite;2016;INVLTS;;INVLTS;
+4745;Inventor LT SP1;;AutoCAD Inventor LT Suite;2016;INVLTS;;INVLTS;
+4746;Inventor LT SP2;;AutoCAD Inventor LT Suite;2016;INVLTS;;INVLTS;
 4747;Inventor Interactive Tutorials;Feature/Extension;Autodesk Inventor Professional;2016;INV;;INV;
 4754;Subscription Release - this is full Client + Server release;Main;Autodesk Vault Basic for AutoCAD;2016;VLT;VAULT_ADDIN_ACAD;VLT;
 4755;Workgroup;Main;Autodesk Vault Workgroup;2016;VLT;VAULT;VLT;
@@ -2877,7 +2872,7 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4819;GCSO - Desktop Subscription Research Survey;N/A;N/A;FY15;;;;
 4820;GCSO - AutoCAD CSAT Wave3 Questionnaire;N/A;N/A;FY15;;;;
 4821;GCSO - Corporate Survey FY15 Wave Comments;N/A;N/A;FY15;;;;
-4823;Solidworks and Pro/E Add-in;N/A;Autodesk Vault Professional;2015;VLT;VAULT;VLT;
+4823;Solidworks Add-in;N/A;Autodesk Vault Professional;2015;VLT;VAULT;VLT;
 4825;GCSO - Desktop Subscription Research Survey 2;N/A;N/A;FY15;;;;
 4826;GCSO - Qualitrics Survey Translation;N/A;N/A;FY15;;;;
 4827;Service Pack;;Autodesk Navisworks;2015;NAV;NAVISWORKS;NAV;
@@ -2885,3 +2880,49 @@ ID_REL_PROJECT;REL_PROJECT;RELEASE_TYPE;PRODUCT_RELEASED;VERSION;SWSHORTNAME;DOC
 4830;Main Release;Main;Simulation Composite Design;2015;;ACMPDS;ACMPDS;
 4831;Seek Web and RVT file for CHS;N/A;Seek Continuous Release;2015;;;;
 4832;Service Pack 3;;AutoCAD Plant 3D;2015;PLNT3D;PLANT3D;PLNT3D;
+4834;Test;;Showcase;2015;SHOWCASE;SHOWCASE;SHOWCASE;
+4835;GCSO - Partner Technical Academy Localization;N/A;N/A;FY15;;;;
+4837;Training Manual;N/A;Autodesk Simulation Multiphysics;2015;ASPRO;SIM;SIM360U;
+4841;eStore Quick Turnaround Translation FY15 Q2;N/A;N/A;FY15;;;;
+4842;Service Pack 2;;Moldflow;2015;MF;MOLDFLOW;MF;
+4843;IDML Support Work;N/A;N/A;FY15;;;;
+4844;Service Pack 2;;Simulation CFD;2015;;;;
+4845;Cross Product Terminology Cleanup;N/A;N/A;FY15;;;;
+4846;Various Projects;N/A;N/A;FY15;;;;
+4847;SP3;;AutoCAD Map 3D;2015;MAP;MAP;MAP;
+4848;Project Sundance;Main;Autodesk Simulation Sundance;2015;;;;
+4850;Asset Translation;N/A;Autodesk Factory Design Suite;2015;FDS;FDS;FDS;
+4852;FY15Q2 - FRA, KOR;N/A;Autodesk Revit LT;2015;;;;
+4853;FY15Q2 - JP;N/A;Autodesk Navisworks;2015;;;;
+4854;FY15Q3 - 3ds Max Ext1;N/A;Autodesk 3ds Max;2015;;;;
+4856;Q3 Release;Continuous;Meshmixer;2015;;;;
+4857;Q3 Release;Continuous;Tinkercad;2015;;;;
+4858;Addin: Vault Data Standard;Main;Autodesk Vault Professional;2015;VLT;VAULT;VLT;
+4860;GCSO - Partner Support Survey;N/A;N/A;FY15;;;;
+4862;SP4;;Maya;2015;MAYA;MAYA;MAYA;
+4863;Q4 Release;Continuous;Sketchbook Products Family;2015;;;;
+4864;Update Release 4;;Autodesk Revit;2015;RVT;RVT;RVT;
+4865;Update Release 5;;Autodesk Revit;2015;RVT;RVT;RVT;
+4866;FY15Q2 - Gateway Page - JP, KO;N/A;Autodesk Education Community;2015;;;;
+4867;FY15Q3 - DWG/viewer pages;N/A;Others;2015;;;;
+4868;Q3 release;Continuous;Autodesk Rendering;2015;RENDERING;RENDERING;RENDERING;
+4869;Q4 release;Continuous;Autodesk Rendering;2015;RENDERING;RENDERING;RENDERING;
+4870;FY15Q2 STKs;N/A;Sales Toolkits;2015;;;;
+4872;Make Great Plastic Products;N/A;Campaigns;2015;;;;
+4873;FY15Q3 - Locate Reseller Page;N/A;Others;2015;;;;
+4874;GCSO - Community Custom Content Localization;N/A;N/A;FY15;;;;
+4876;SP3;;3ds Max;2015;3DSMAX;3DSMAX;3DSMAX;
+4877;Extension 2;Feature/Extension;3ds Max;2015;3DSMAX;3DSMAX;3DSMAX;
+4878;GCSO - Survey Translation - 6/8;N/A;N/A;FY15;;;;
+4879;Subscription Release;;AutoCAD Alias;2015;ST;ALIAS;ST;
+4880;FY15 PGM contractor;N/A;N/A;2015;;;;
+4882;Documentation Only;N/A;Inventor HSM;2015;;;;
+4883;Main Release;N/A;Project Earl;2016;;;;
+4884;Q1 Release;Continuous;Instructables;2016;INSTD;INSTRUCTABLES;INSTD;
+4885;Q2 Release;Continuous;Instructables;2016;INSTD;INSTRUCTABLES;INSTD;
+4886;Q3 Release;Continuous;Instructables;2016;INSTD;INSTRUCTABLES;INSTD;
+4887;Q4 Release;Continuous;Instructables;2016;INSTD;INSTRUCTABLES;INSTD;
+4888;FY15Q3 - Trail Pages;N/A;Others;2015;;;;
+4889;FY15Q3 - EDU Gateway page - CHT,RUS,TUR,LAS,PTG;N/A;Autodesk Education Community;2015;;;;
+4890;Course Materials;N/A;Curriculum;2015;;;;
+4891;SP1;;SIM Job Manager;2015;SIM360_JM;SJM;SIM360U;

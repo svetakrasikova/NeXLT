@@ -51,6 +51,10 @@
 #				– Modified the rule for creating the document ID to be dependent on the restype.
 #		2.1.5 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Jun-11-2014
 #				– Now we include the product code when generating the segment ID.
+#		2.2 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Jul-28-2014
+#				– Updated to index the full product name for each segment, based on Solr 4.9.0 functionality.
+#		2.2.1 – Ventsislav Zhechev (ventsislav.zhechev@autodesk.com) Aug-13-2014
+#				– Modified to use aliases for staging and production Solr servers.
 #
 ################################################################################
 
@@ -92,7 +96,7 @@ $prjCustomProps{"M:LPUProductId"} ||= -1;
 # good to have, but unused
 #my ($ProductID, $Component, $DevBranch, $Phase, $SrcVersion, $LocVersion, $LocalizationType, $Email) = @prjCustomProps{qw/M:LPUProductId M:LPUComponent M:LPUDevBranch M:LPUPhase M:LPUSrcVersion M:LPULocVersion M:LPULocalizationType M:LPUEmail/};
 
-my $Version, my $Product;
+my ($Version, $Product, $ProductName);
 my $foundProduct = 0;
 # Load reference file, RAPID_ProductId.tsv
 open( my $prodFile , "../RAPID_ProductId.csv" ) or die "Cannot open ../RAPID_ProductId.csv file!\n";
@@ -100,6 +104,7 @@ my $csv = Text::CSV->new({ binary => 1, eol => "\n", sep_char => ";" });
 while (my $line = $csv->getline($prodFile) and !$foundProduct) {
 	if (!$foundProduct && $aproduct eq $line->[5]) {
 		$Product = $line->[7];
+		$ProductName = $line->[3];
 		if ($prjCustomProps{"M:LPUProductId"} > 0) {
 			next unless $prjCustomProps{"M:LPUProductId"} == $line->[0];
 			$Version = $line->[4];
@@ -115,6 +120,7 @@ print STDERR "RAPID file loaded.\n";
 unless ($foundProduct) {
 	warn "Could not find product $aproduct in the database with ID ".$prjCustomProps{"M:LPUProductId"}."!\n";
 	$Product ||= $aproduct;
+	$ProductName ||= $aproduct;
 	$Version ||= 2015;
 }
 
@@ -135,22 +141,28 @@ my $printer = sub {
 		} else {
 			$first = 0;
 		}
-		$content .= '"add": { "doc": { "resource": {"set":"Software"}, ';
-		$content .= encode "utf-8", '"product": {"set":'.$json->encode($Product).'}, ';
-		$content .= encode "utf-8", '"release": {"set":'.$json->encode($Version).'}, ';
-		$content .= encode "utf-8", '"id": "'.$data->{id}.'", ';
-		$content .= encode "utf-8", '"restype": {"set":'.$json->encode($data->{restype}).'}, ';
-		$content .= encode "utf-8", '"enu": {"set":'.$json->encode($data->{enu}).'}, ';
-		$content .= encode "utf-8", '"'.$language.'": {"set":'.$json->encode($data->{$language}).'}, ';
-		$content .= encode "utf-8", '"srclc": {"set":'.$json->encode($data->{srclc}).'} ';
-		$content .= '} }';
+		$content .= encode "utf-8", 
+		'"add": { "doc": { "resource": {"set":"Software"}, '.
+		'"product": {"set":'.$json->encode($Product).'}, '.
+		'"productname": {"remove":'.$json->encode($ProductName).'}, '.
+		'"release": {"set":'.$json->encode($Version).'}, '.
+		'"id": "'.$data->{id}.'", '.
+		'"restype": {"set":'.$json->encode($data->{restype}).'}, '.
+		'"enu": {"set":'.$json->encode($data->{enu}).'}, '.
+		'"'.$language.'": {"set":'.$json->encode($data->{$language}).'}, '.
+		'"srclc": {"set":'.$json->encode($data->{srclc}).'} '.
+		'} },'.
+		'"add": { "doc": { "id": "'.$data->{id}.'", '.
+		'"productname": {"add":'.$json->encode($ProductName).'} '.
+		'} }';
 	}
 	$content .= ', "commit": {} }';
 #	open my $f, ">>passolo.$Product.$language";
 #	print $f $content;
 #	close $f;
 	print STDERR encode "utf-8", "Posting $language content for indexing…\n";
-	my $response = $http->request('POST', 'http://10.37.23.237:8983/solr/update/json', { content => $content });
+	my $response = $http->request('POST', 'http://aws.prd.solr:8983/solr/update/json', { content => $content });
+#	my $response = $http->request('POST', 'http://aws.stg.solr:8983/solr/update/json', { content => $content });
 	die "HTML request to Solr failed!\n $response->{status} $response->{reason}\n$response->{content}\n" unless $response->{success};
 	print STDERR "$language content sucessfully posted!\n";
 };

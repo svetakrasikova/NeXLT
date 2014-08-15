@@ -31,7 +31,7 @@ use WebService::Solr;
 print '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8">';
 
 # Create a new client
-my $solr = WebService::Solr->new('http://10.37.23.237:8983/solr');
+my $solr = WebService::Solr->new('http://aws.stg.solr:8983/solr');
 
 # Current corpus if undefined, without a name
 my $crp = "";

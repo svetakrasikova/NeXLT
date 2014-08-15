@@ -3,6 +3,15 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.5.1		Modified on 13 Aug 2014 by Ventsislav Zhechev
+// Modified to use aliases for staging and production Solr servers.
+//
+// v1.5			Modified on 28 Jul 2014 by Ventsislav Zhechev
+// Updated to index the full product name for each segment, based on Solr 4.9.0 functionality.
+//
+// v1.4.3		Modified on 15 Jul 2014 by Ventsislav Zhechev
+// Updated to export placeholder content when collecting data for post-editing analysis.
+//
 // v1.4.2		Modified on 05 Jun 2014 by Ventsislav Zhechev
 // Small bug fix in the product code mapping.
 //
@@ -74,6 +83,7 @@ import java.util.HashMap;
 import java.util.TreeSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.AbstractMap;
 import java.util.Properties;
 import java.util.Set;
 import java.nio.charset.Charset;
@@ -217,7 +227,7 @@ public class AthenaExportMt {
 		tmScoreFormat.setMinimumIntegerDigits(1);
 		tmScoreFormat.setGroupingUsed(false);
 		
-		Map<String, String> productsMap = new HashMap<String, String>();
+		Map<String, Map.Entry<String, String>> productsMap = new HashMap<String, Map.Entry<String, String>>();
 		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
@@ -280,14 +290,15 @@ public class AthenaExportMt {
 					}
 					
 					
-					// For MT
-					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID" + (outputForSolr ? "" : ", MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE") + " from " + oneTable +
+					String sqlSelect = "select PRODUCT, RELEASE, SOURCESEGMENT, POSTTRANSLATIONTARGET, SEGMENTUID" + (outputForSolr ? "" : ", MTSCORE, MTTRANSLATION, TMSCORE, TMTRANSLATION, TRANSLATIONTYPE, CREATIONDATE, TRANSLATIONDATE, PLACEHOLDERS") + " from " + oneTable +
 							" where REVIEWSTATUS in (5, 6, 7, 9)" + 
 							" and RELEASE != 'TESTING'" +
 //							" and TRANSLATIONTYPE = 6" +
 							" and TRANSLATIONTYPE in (2, 3, 5" + (useICE ? ", 4) " : ")") + //not AUTO or ICE  match
 							" and SOURCESEGMENT is not null and POSTTRANSLATIONTARGET is not null and PRODUCT is not null and RELEASE is not null ";
 								
+//					sqlSelect += "and CONTENTOWNER not like 'MARKETING_CQ' ";
+					
 					if (startDate != null || endDate != null) {
 						sqlSelect += "and (( ";
 						sqlSelect += startDate != null ? (useCreationDate ? "CREATIONDATE" : "TRANSLATIONDATE") + " >= to_date('" + startDate + "', 'yyyy.mm.dd') " : "";
@@ -315,6 +326,8 @@ public class AthenaExportMt {
 					int counter = 0;
 					String product = "";
 					String mappedProduct = "";
+					StringBuilder mappedProductNames = null;
+					Map.Entry<String, String> productData = null;
 					String release = "";
 					String uid = "";
 					String sourceSegment = "";
@@ -326,6 +339,7 @@ public class AthenaExportMt {
 					String translationTypeString = "";
 					String creationDateString = "";
 					String translationDateString = "";
+					String placeHolders = "";
 					boolean skipped = false;
 					while (rs.next()) {
 						if (counter > 0 && counter % 100000 == 0) {
@@ -339,7 +353,8 @@ public class AthenaExportMt {
 //							solrPrintStream.println(content.toString());
 							CloseableHttpClient httpclient = HttpClients.createDefault();
 							try {
-								HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
+								HttpPost request = new HttpPost("http://aws.prd.solr:8983/solr/update/json");
+//								HttpPost request = new HttpPost("http://aws.stg.solr:8983/solr/update/json");
 								request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
 								CloseableHttpResponse response = httpclient.execute(request);
 								try {
@@ -379,35 +394,46 @@ public class AthenaExportMt {
 
 						// Select correct MT product code, if exists.
 						if (productsMap.containsKey(product)) {
-							product = productsMap.get(product);
+							productData = productsMap.get(product);
 						} else {
+							mappedProductNames = new StringBuilder("[");
 							try {
-								productCodeStatement = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME = '" + product + "' and rownum <= 1");
+								productCodeStatement = rapidConnection.prepareStatement("select distinct MTSHORTNAME, PRODUCT_RELEASED from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME = '" + product + "'");
 								productCodeResult = productCodeStatement.executeQuery();
 								if (!productCodeResult.isBeforeFirst()) {
 									productCodeResult.close();
 									productCodeStatement.close();
-									productCodeStatement = rapidConnection.prepareStatement("select MTSHORTNAME from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME_ARCH = '" + product + "' and rownum <= 1");
+									productCodeStatement = rapidConnection.prepareStatement("select distinct MTSHORTNAME, PRODUCT_RELEASED from WWL_SPS.GET_NEXLT_PROJECT_INFO where DOCSHORTNAME_ARCH = '" + product + "'");
 									productCodeResult = productCodeStatement.executeQuery();
 									if (!productCodeResult.isBeforeFirst()) {
 										++badStrings;
 										System.err.println("Could not find product " + product + " in database!");
 										mappedProduct = "MARKETING";
+										mappedProductNames.append("\"MARKETING\"");
 									} else {
 										productCodeResult.next();
 										mappedProduct = productCodeResult.getString("MTSHORTNAME");
+										mappedProductNames.append("\"").append(productCodeResult.getString("PRODUCT_RELEASED")).append("\"");
+										while (productCodeResult.next()) {
+											mappedProductNames.append(",\"").append(JSONObject.escape(productCodeResult.getString("PRODUCT_RELEASED"))).append("\"");
+										}
 									}
 								} else {
 									productCodeResult.next();
 									mappedProduct = productCodeResult.getString("MTSHORTNAME");
+									mappedProductNames.append("\"").append(productCodeResult.getString("PRODUCT_RELEASED")).append("\"");
+									while (productCodeResult.next()) {
+										mappedProductNames.append(",\"").append(JSONObject.escape(productCodeResult.getString("PRODUCT_RELEASED"))).append("\"");
+									}
 								}
 								
 							} finally {
 								if (productCodeResult != null) { productCodeResult.close(); };
 								if (productCodeStatement != null) { productCodeStatement.close(); };
 								// Cache the result to avoid polling the RAPID database repeatedly.
-								productsMap.put(product, mappedProduct);
-								product = mappedProduct;
+								mappedProductNames.append("]");
+								productData = new AbstractMap.SimpleImmutableEntry<>(mappedProduct, mappedProductNames.toString());
+								productsMap.put(product, productData);
 							}
 						}
 						
@@ -504,13 +530,23 @@ public class AthenaExportMt {
 								translationDateString = "";
 							}
 							
-							mtPrintStream.println(sourceSegment + "" + mtTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
-							tmPrintStream.println(sourceSegment + "" + tmTranslation + "" + targetSegment + "" + product + "__" + release + "__alln/a" + translationTypeString + "" + mtScoreString + "" + tmScoreString + "◊÷");
+							placeHolders = rs.getString(13);
+							if (placeHolders != null) {
+								placeHolders = placeHolders.replaceAll("\n", " ");
+								placeHolders = placeHolders.replaceAll("\r", " ");
+							}
+							else {
+								placeHolders = "";
+							}
+							
+							mtPrintStream.println((new StringBuilder(sourceSegment)).append("").append(mtTranslation).append("").append(targetSegment).append("").append(product).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
+							tmPrintStream.println((new StringBuilder(sourceSegment)).append("").append(mtTranslation).append("").append(targetSegment).append("").append(product).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
 
 						} else {
 							content.append("\"add\": { \"doc\": {")
 							.append("\"resource\": {\"set\":\"Documentation\"}, ")
-							.append("\"product\": {\"set\":\"").append(JSONObject.escape(product)).append("\"}, ")
+							.append("\"product\": {\"set\":\"").append(JSONObject.escape(productData.getKey())).append("\"}, ")
+							.append("\"productname\": {\"set\":").append(productData.getValue()).append("}, ")
 							.append("\"release\": {\"set\":\"").append(JSONObject.escape(release)).append("\"}, ")
 							.append("\"id\": \"").append(JSONObject.escape(uid)).append("\", ")
 							.append("\"enu\": {\"set\":\"").append(JSONObject.escape(sourceSegment)).append("\"}, ")
@@ -535,11 +571,13 @@ public class AthenaExportMt {
 //						solrPrintStream.println(content.toString());
 						CloseableHttpClient httpclient = HttpClients.createDefault();
 						try {
-							HttpPost request = new HttpPost("http://10.37.23.237:8983/solr/update/json");
+							HttpPost request = new HttpPost("http://aws.prd.solr:8983/solr/update/json");
+//							HttpPost request = new HttpPost("http://aws.stg.solr:8983/solr/update/json");
 							request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
 							CloseableHttpResponse response = httpclient.execute(request);
 							try {
 								System.out.println(response.getStatusLine().toString());
+								response.getEntity().writeTo(System.out);
 							} finally {
 								response.close();
 							}
