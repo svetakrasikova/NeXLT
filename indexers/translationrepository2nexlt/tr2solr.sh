@@ -37,9 +37,9 @@
 
 echo "*****************************************************"
 date
-#cd /local/cms/NeXLT/indexers/translationrepository2nexlt
+cd /local/cms/NeXLT/indexers/translationrepository2nexlt
 
-touch ../passolo.lastrefresh.new
+touch /var/www/solrUpdate/passolo.lastrefresh.new
 
 # Update the local SVN store.
 for product in `cat product.lst`
@@ -68,11 +68,11 @@ done
 # Index all files that have been changed since the last indexing.
 for product in `cat old.product.lst`
 do
-  for js  in `find $product -name "*json" -newer ../passolo.lastrefresh`
+  for js  in `find $product -name "*json" -newer /var/www/solrUpdate/passolo.lastrefresh`
   do
     echo "Parsing $js - product: $product"
     ./json2solr.pl $js $product
   done
 done
 
-mv -f ../passolo.lastrefresh.new ../passolo.lastrefresh
+mv -f /var/www/solrUpdate/passolo.lastrefresh.new /var/www/solrUpdate/passolo.lastrefresh
