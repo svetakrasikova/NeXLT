@@ -6,6 +6,11 @@
 # Created by Mirko Plitt based on the NAT tool
 #
 # Changelog
+#
+# v2.0.2    Modified on 19 August 2014 by Samuel Läubli
+# Implemented displaying of all product names when hovering over a product code.
+# Updated jQuery to 1.7.1.
+#
 # v2.0.1	Modified on 26 May 2014 by Ventsislav Zhechev
 # Added Google Analytics code.
 #
@@ -161,7 +166,8 @@ print "<link rel='stylesheet' href='/assets/css/bootstrap-1.2.0.min.css'>
 <!--[if lt IE 9]>
 <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
 <![endif]-->
-<script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.min.js'></script>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.min.js'></script>
+<script type='text/javascript' src='/assets/js/bootstrap-twipsy.js'></script>
 <script type='text/javascript' src='/assets/js/bootstrap-dropdown.js'></script>
 <script type='text/javascript' src='/assets/js/table.js'></script>
 <script>
@@ -174,6 +180,27 @@ print "<link rel='stylesheet' href='/assets/css/bootstrap-1.2.0.min.css'>
   ga('send', 'pageview');
 
 </script>
+<script type='text/javascript'>
+    //enable tooltips for product names (twipsies)
+    \$(document).ready( function() {
+        // enable twipsy popups (on hover over links with rel='twipsy')
+        \$('a[rel=twipsy]').twipsy({placement: 'bottom'});
+        // prevent links with href=# to move the viewport to the top of the page
+        \$('a[rel=twipsy]').click(function(event){
+            event.preventDefault();
+        });
+    });
+</script>
+<style>
+    /* product names: pseudo-links with help cursor */
+    a.tooltip {
+        color: #808080; /* default bootstrap text color */
+        border-bottom: 1px dotted;
+        cursor: help;
+        text-decoration: none !important;
+        outline: 0;
+    }
+</style>
 </head><body>
 <section id='navigation'>
 <div class='page-header' style='padding-top:60px;'>
@@ -340,7 +367,9 @@ if ((param("l1") || param("l2"))) {
 		my $srcscreen = lc($segment); 
 		$segment =~ s/</&lt;/g;
 		$segment =~ s/>/&gt;/g;
-		my $product = $doc->value_for('product');
+		my $product_code = $doc->value_for('product');
+        my $product_names = encode "utf-8", ('• ' . join('<br /> • ', $doc->values_for('productname')));
+        my $product = "<a href=\"#\" class=\"tooltip\" rel=\"twipsy\" title=\"$product_names\">$product_code</a>";
 		my $resource = $doc->value_for('resource');
 		#if($resource eq "Documentation") {
 		#$_->[0] = taguirefs($segment,$product,$tgtlocale);
