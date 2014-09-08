@@ -3,6 +3,9 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.5.2		Modified on 21 Aug 2014 by Ventsislav Zhechev
+// Fixed a bug where the TM analysis output actually contained MT data.
+//
 // v1.5.1		Modified on 13 Aug 2014 by Ventsislav Zhechev
 // Modified to use aliases for staging and production Solr servers.
 //
@@ -540,7 +543,7 @@ public class AthenaExportMt {
 							}
 							
 							mtPrintStream.println((new StringBuilder(sourceSegment)).append("").append(mtTranslation).append("").append(targetSegment).append("").append(product).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
-							tmPrintStream.println((new StringBuilder(sourceSegment)).append("").append(mtTranslation).append("").append(targetSegment).append("").append(product).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
+							tmPrintStream.println((new StringBuilder(sourceSegment)).append("").append(tmTranslation).append("").append(targetSegment).append("").append(product).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
 
 						} else {
 							content.append("\"add\": { \"doc\": {")
