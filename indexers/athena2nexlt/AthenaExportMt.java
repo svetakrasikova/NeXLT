@@ -3,6 +3,9 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.5.3		Modified on 16 Sep 2014 by Ventsislav Zhechev
+// Fixed a bug where the language code would not be recognised if a specific DB table name were provided in ALL CAPS.
+//
 // v1.5.2		Modified on 21 Aug 2014 by Ventsislav Zhechev
 // Fixed a bug where the TM analysis output actually contained MT data.
 //
@@ -254,7 +257,7 @@ public class AthenaExportMt {
 			
 			for (String oneTable: tables) {
 				System.out.println("Processing " + oneTable + "…");
-				String tmpLanguage = oneTable.substring(11);
+				String tmpLanguage = oneTable.substring(11).toLowerCase();
 				//Skip this as it’s not a currently used language.
 				if (tmpLanguage.equals("zu_za")) {
 					continue;
