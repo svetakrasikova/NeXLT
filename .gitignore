@@ -1,6 +1,8 @@
 .DS_Store
 UserInterfaceState.xcuserstate
 
+old.product.lst
+
 *.class
 *.log
 
