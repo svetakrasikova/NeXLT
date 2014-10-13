@@ -62,4 +62,4 @@ do
   svn --username $1 --password $2 --non-interactive co http://lsdata.autodesk.com/svn/jsons/$product
 done
 
-/OptiBay/SW_JSONs/tools/parseJSON.pl -threads=8 -jsonDir=/OptiBay/SW_JSONs -format=moses
+/OptiBay/SW_JSONs/tools/parseJSON.pl -threads=8 -jsonDir=/OptiBay/SW_JSONs -targetDir=/OptiBay/SW_JSONs/corpus -format=moses
