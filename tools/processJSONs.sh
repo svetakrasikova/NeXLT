@@ -33,7 +33,7 @@
 #####################
 
 # make sure SVN user and password are supplied as positional arguments
-if (( "$#" != 1 )) 
+if (( "$#" != 2 )) 
 then
     echo "Usage: processJSON.sh svnUserName svnPassword"
 	exit 1
