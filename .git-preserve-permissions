@@ -1,0 +1,37 @@
+0600:::.gitignore
+0600:::CGI/corpus.cgi
+0600:::CGI/parallel.cgi
+0600:::NeXLT Scripts and Config.xcworkspace/contents.xcworkspacedata
+0600:::NeXLT Scripts and Config.xcworkspace/xcshareddata/NeXLT Scripts and Config.xccheckout
+0600:::indexers/RAPID_ProductId.csv
+0600:::indexers/README.md
+0600:::indexers/athena2nexlt/AthenaExportMt.java
+0700:::indexers/athena2nexlt/athena2nexlt.sh
+0600:::indexers/athena2nexlt/bzip2.jar
+0600:::indexers/athena2nexlt/commons-codec-1.6.jar
+0600:::indexers/athena2nexlt/commons-logging-1.1.3.jar
+0600:::indexers/athena2nexlt/fluent-hc-4.3.3.jar
+0600:::indexers/athena2nexlt/httpclient-4.3.3.jar
+0600:::indexers/athena2nexlt/httpclient-cache-4.3.3.jar
+0600:::indexers/athena2nexlt/httpcore-4.3.2.jar
+0600:::indexers/athena2nexlt/httpmime-4.3.3.jar
+0600:::indexers/athena2nexlt/json-simple-1.1.1.jar
+0600:::indexers/athena2nexlt/oracle_11203_ojdbc6.jar
+0600:::indexers/termtranslationcentral2nexlt/terms2nexlt.sh
+0600:::indexers/translationrepository2nexlt/jProject.pm
+0600:::indexers/translationrepository2nexlt/jResource.pm
+0600:::indexers/translationrepository2nexlt/jString.pm
+0600:::indexers/translationrepository2nexlt/jStringList.pm
+0700:::indexers/translationrepository2nexlt/json2solr.pl
+0600:::indexers/translationrepository2nexlt/product.lst
+0700:::indexers/translationrepository2nexlt/tr2solr.sh
+0600:::solr/apache-solr-3.6.1/example/solr/conf/schema.xml
+0600:::tools/jString.pm
+0700:::tools/parseJSON.pl
+0700:::tools/processJSONs.sh
+0600:::tools/product.lst
+0600:::tools/test.sh
+0600:::tools/test/deu-passolo-data.csv
+0600:::tools/test/en_us_de-DE_3.json
+0600:::tools/test/fra-passolo-data.csv
+0600:::tools/test/jpn-passolo-data.csv
