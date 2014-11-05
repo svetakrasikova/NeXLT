@@ -9,6 +9,10 @@
 #
 # Changelog
 #
+#
+# v1.2.1	Modified by Samuel Läubli on 5 Nov 2014
+# Connect to SVN server via https instead of http
+#
 # v1.2		Modified by Samuel Läubli on 13 Oct 2014
 # Included additional parameters for parseJSON.pl.
 # Parametrised SVN login credentials.
@@ -52,14 +56,14 @@ done
 cd /OptiBay/SW_JSONs/tools
 mv -f product.lst old.product.lst
 echo "Fetching current product list…"
-curl -s --user "$1:$2" http://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
+curl -s --user "$1:$2" https://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
 
 cd /OptiBay/SW_JSONs
 # Make sure we index the new products’ data.
 for product in `comm -23 tools/product.lst tools/old.product.lst`
 do
   echo "Checking out $product from SVN…"
-  svn --username $1 --password $2 --non-interactive co http://lsdata.autodesk.com/svn/jsons/$product
+  svn --username $1 --password $2 --non-interactive co https://lsdata.autodesk.com/svn/jsons/$product
 done
 
 /OptiBay/SW_JSONs/tools/parseJSON.pl -threads=8 -jsonDir=/OptiBay/SW_JSONs -targetDir=/OptiBay/SW_JSONs/corpus -format=moses
