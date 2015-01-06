@@ -32,19 +32,20 @@ function managerMaker(whichSort) {
         //console.log("Hello from MM!");
         Manager.init();
 	    var langVal = $('#langSelect').val(), langQ = langVal + ':[* TO *]', searchIn = $('#sLangSearch').val(), rowsReturned = $('#numItemsSelect').val();
-	    var searchVal;
+	    var searchVal = 'enu:' + searchIn;
 
+        // var searchVal;
         //if more than one word was searched, split into strings
-        var res = searchIn.split(" ");
-        if (res.length <=1) {
-            searchVal = 'enu:' + searchIn;
-        } else {
-            searchVal = 'enu:';
-            for (i = 0; i<res.length; i++) {
-                searchVal += res[i];
-                if (i < res.length - 1) {searchVal += ' OR ';}
-            }
-        }
+        // var res = searchIn.split(" ");
+        // if (res.length <=1) {
+        //     searchVal = 'enu:' + searchIn;
+        // } else {
+        //     searchVal = 'enu:';
+        //     for (i = 0; i<res.length; i++) {
+        //         searchVal += res[i];
+        //         if (i < res.length - 1) {searchVal += ' OR ';}
+        //     }
+        // }
 
         console.log("searchVal = " + searchVal);
 
