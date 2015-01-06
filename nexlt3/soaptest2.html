@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Submitting SOAP Requests With jQuery</title>
+    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    
+    <script type="text/javascript">
+    // Create the XHR object.
+	function createCORSRequest(method, url) {
+		var xhr = new XMLHttpRequest();
+		if ("withCredentials" in xhr) {
+			// XHR for Chrome/Firefox/Opera/Safari.
+			xhr.open(method, url, true);
+		} else if (typeof XDomainRequest != "undefined") {
+			// XDomainRequest for IE.
+			xhr = new XDomainRequest();
+			xhr.open(method, url);
+		} else {
+			// CORS not supported.
+			xhr = null;
+		}
+			return xhr;
+	}
+
+	// Helper method to parse the title tag from the response.
+	function getTitle(text) {
+		$( "#outputDiv" ).val(text);
+	}
+
+	// Make the actual CORS request.
+	function makeCorsRequest() {
+		var url = 'http://10.35.130.170/LCMAdminDS/LCMAdminDS.asmx';
+
+		var xhr = createCORSRequest('GET', url);
+		if (!xhr) {
+			alert('CORS not supported');
+			return;
+		}
+
+		// Response handlers.
+		xhr.onload = function() {
+		var text = xhr.responseText;
+		//console.log("text: " + text);
+		$('#outputDiv').html(text);
+		};
+
+		xhr.onerror = function() {
+		alert('Woops, there was an error making the request.');
+		};
+
+		xhr.send();
+	}
+    </script>
+	<script type="text/javascript">
+	var prodUrl = 'http://10.35.130.170/LCMAdminDS/LCMAdminDS.asmx';
+    function beginSaveProduct(productRelease) {
+		var soapMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://autodesk.com/"> \
+	        		<soap:Header/> \
+	    			<soap:Body> \
+	    				<GetCurrentProductRelease> ' + productRelease + '</GetCurrentProductRelease> \
+	    			</soap:Body> \
+	    		</soap:Envelope>';
+
+	    $.ajax({
+	    	type: "POST",
+	    	url: prodUrl,
+	    	contentType: "text/xml",
+	    	dataType: "xml",
+	    	data: soapMessage,
+	    	complete: endSaveProduct
+	    });
+	    return false;
+	}
+
+	function endSaveProduct(XMLHttpRequest, status) {
+		$(XMLHttpRequest.responseXML)
+			.find('GetCurrentProductRelease')
+			.each(function() {
+				var product = $(this).find('Name').text();
+			});
+	}
+	</script>
+
+</head>
+<body>
+ 
+    <h1>
+        Submitting SOAP Requests With jQuery
+    </h1>
+
+    <div id = "outputDiv">
+    </div>
+ 
+    <!--
+        This is the SOAP template that we will use when making
+        our SOAP POST to the server (ColdFusion SOAP Proxy).
+    -->
+    <script id="soap-template" type="application/soap-template">
+
+        <?xml version="1.0" encoding="utf-8"?>
+        	<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+        		<soap:Header/>
+    			<soap:Body>
+    				<GetCurrentProductRelease/>
+    			</soap:Body>
+    		</soap:Envelope>
+    </script>
+
+	<script type="text/javascript">
+		var invocation = new XMLHttpRequest();
+		var url = 'http://10.35.130.170/LCMAdminDS/LCMAdminDS.asmx?WSDL';
+   
+		function callOtherDomain() {
+  			if(invocation) {    
+			    invocation.open('GET', url, true);
+			    //invocation.onreadystatechange = handler;
+			    invocation.send(); 
+			}
+		}
+	</script> 
+
+	<script type="text/javascript">
+		var getNextJobId = function(productRelease) {
+			var se = '';
+			se += '<?xml version="1.0" encoding="UTF-8" standalone="no"?>';
+			se += '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:adsk="http://langtech.autodesk.com/nexlt/">';
+			se += '<soap:Header/>';
+			se += '<soap:Body>';
+	//		se += '<asdk:getNextJobIdRequest xmlns:asdk="http://langtech.autodesk.com/nexlt/">';
+//			se += '<adsk:getCurrentProductRelease> ' + productRelease + '</adsk:getCurrentProductRelease>';
+			se += '<adsk:getCurrentProductRelease/>';
+	//		se += '</adsk:getNextJobIdRequest>';
+			se += '</soap:Body>';
+			se += '</soap:Envelope>';
+
+			$.ajax({
+			    url: 'http://10.35.130.170/LCMAdminDS/LCMAdminDS.asmx?WSDL',
+				
+				beforeSend: function(xhr) {
+			  		xhr.setRequestHeader("SOAPAction", "getCurrentProductRelease");
+				},
+				
+				type: "POST",
+				dataType: "xml",
+				data: se,
+				crossDomain: true,
+				headers: {"X-Requested-With": "XMLHttpRequest"},
+				async: false,
+			
+			success: function(xml) {
+			  params.jobId =   $(xml).find("adsk\:productRelease").text();
+			},
+
+			failure: function(xml) {
+			  params.webserviceFailure = $(xml).text();
+			},
+			      contentType: "charset=UTF-8"
+			});
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Submitting SOAP Requests With jQuery</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    
+    <script type="text/javascript">
+    // Create the XHR object.
+	function createCORSRequest(method, url) {
+		var xhr = new XMLHttpRequest();
+		if ("withCredentials" in xhr) {
+			// XHR for Chrome/Firefox/Opera/Safari.
+			xhr.open(method, url, true);
+		} else if (typeof XDomainRequest != "undefined") {
+			// XDomainRequest for IE.
+			xhr = new XDomainRequest();
+			xhr.open(method, url);
+		} else {
+			// CORS not supported.
+			xhr = null;
+		}
+			return xhr;
+	}
+
+	// Helper method to parse the title tag from the response.
+	function getTitle(text) {
+		$( "#outputDiv" ).val(text);
+	}
+
+	// Make the actual CORS request.
+	function makeCorsRequest() {
+		// All HTML5 Rocks properties support CORS.
+		var url = 'http://10.35.130.170/LCMAdminDS/LCMAdminDS.asmx';
+
+		var xhr = createCORSRequest('GET', url);
+		if (!xhr) {
+			alert('CORS not supported');
+			return;
+		}
+
+		// Response handlers.
+		xhr.onload = function() {
+		var text = xhr.responseText;
+		//var title = getTitle(text);
+		//alert('Response from CORS request to ' + url + ': ' + title);
+		console.log("text: " + text);
+		$('#outputDiv').html(text);
+		};
+
+		xhr.onerror = function() {
+		alert('Woops, there was an error making the request.');
+		};
+
+		xhr.send();
+	}
+    </script>
+<script type="text/javascript">
+	var prodUrl = 'http://10.35.130.170/LCMAdminDS/LCMAdminDS.asmx';
+    function beginSaveProduct(productRelease) {
+		var soapMessage = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://autodesk.com/"> \
+	        		<soap:Header/> \
+	    			<soap:Body> \
+	    				<GetCurrentProductRelease> ' + productRelease + '</GetCurrentProductRelease> \
+	    			</soap:Body> \
+	    		</soap:Envelope>';
+	    
+	    //STARTING POINT: MATCH THIS TO THE CORS REQUEST BELOW!!!
+
+	    // Create our SOAP body content based off of
+        // the template.
+        //var 
+        //WHAT IS THIS???
+        // var soapBody = soapTemplate.html().replace(
+        //     new RegExp( "\\$\\{[^}]+\\}", "i" ),
+        //     zip.val() //this is def wrong
+        // );
+
+	    $.ajax({
+	    	type: "post",
+	    	url: prodUrl,
+	    	contentType: "text/xml; charset=\"utf-8\"",
+	    	dataType: "xml",
+	    	data: soapMessage,
+	    	complete: endSaveProduct
+	    });
+	    return false;
+	}
+
+	function endSaveProduct(XMLHttpRequest, status) {
+		$(XMLHttpRequest.responseXML)
+			.find('GetCurrentProductRelease')
+			.each(function() {
+				var product = $(this).find('Name').text();
+			});
+	}
+</script>
+
+
+<!-- -------------------- ********************* ----------------------- ***************** -->
+
+
+    <script type="text/javascript">
+
+        // When the DOM is ready, initialize the script.
+        jQuery(function( $ ){
+        	//makeCorsRequest();
+            /*// Get a handle on our SOAP template.
+            var soapTemplate = $( "#soap-template" );
+
+            // Get a handle on our form.
+            var form = $( "form:first" );
+
+            // Get a handle on our zip code input field.
+            var zip = $( "#zip" );
+
+            // Get a hand on our city and state place holders.
+            var city = $( "#city" );
+            var state = $( "#state" );
+
+
+            // Bind the form submission to re-route through our
+            // SOAP-based AJAX request.
+            form.submit(
+                function( event ){
+                    // Prevent the default submit.
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    // Create our SOAP body content based off of
+                    // the template.
+                    var soapBody = soapTemplate.html().replace(
+                        new RegExp( "\\$\\{[^}]+\\}", "i" ),
+                        zip.val()
+                    );
+
+                    // Trim the SOAP body so that we don't get any
+                    // XML prolog errors.
+                    soapBody = $.trim( soapBody );
+
+                    // Post SOAP request.
+                    $.ajax({
+                        type: "post",
+                        url: "http://10.35.130.170/LCMAdminDS/LCMAdminDS.asmx",
+                        contentType: "text/xml",
+                        data: soapBody,
+                        dataType: "xml",
+                        processData: false,
+                        // beforeSend: function( xhr ){
+                        //     // Pass the target URL onto the proxy.
+                        //     xhr.setRequestHeader(
+                        //         "SOAPTarget",
+                        //         "http://www.webservicex.net/uszip.asmx"
+                        //     );
+
+                        //     // Pass the action onto the proxy.
+                        //     xhr.setRequestHeader(
+                        //         "SOAPAction",
+                        //         "http://www.webserviceX.NET/GetInfoByZIP"
+                        //     );
+                        // },
+                        success: function( response ){
+                            // Get a jQuery-ized version of the response.
+                            var xml = $( response );
+
+                            // Populate the city. NOTE: These
+                            // node names are case-sensitive and
+                            // have to be uppercase.
+                            city.text(
+                                xml.find( "CITY" ).text()
+                            );
+
+                            // Populate the state. NOTE: These
+                            // node names are case-sensitive and
+                            // have to be uppercase.
+                            state.text(
+                                xml.find( "STATE" ).text()
+                            );
+                        },
+                        error: function(){
+                            console.log( "ERROR", arguments );
+                        }
+                    });
+
+                }
+            );*/
+
+        });
+
+    </script>
+</head>
+<body>
+ 
+    <h1>
+        Submitting SOAP Requests With jQuery
+    </h1>
+ 
+   <!--  <form id="formTest">
+ 
+        <p>
+            Zip Code:
+            <input id="zip" type="text" size="20" />
+            <input type="submit" value="Get Info" />
+        </p>
+ 
+        <p>
+            City: <span id="city"> ... </span><br />
+            State: <span id="state"> ... </span>
+        </p>
+ 
+    </form> -->
+    <div id = "outputDiv">
+    </div>
+ 
+    <!--
+        This is the SOAP template that we will use when making
+        our SOAP POST to the server (ColdFusion SOAP Proxy).
+    -->
+    <script id="soap-template" type="application/soap-template">
+
+        <?xml version="1.0" encoding="utf-8"?>
+        // <soap:Envelope
+        //     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        //     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        //     xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+
+        //     <soap:Body>
+
+        //         <GetInfoByZIP xmlns="http://www.webserviceX.NET">
+        //             <USZip>${zip}</USZip>
+        //         </GetInfoByZIP>
+
+        //     </soap:Body>
+
+        // </soap:Envelope>
+        	<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+        		<soap:Header/>
+    			<soap:Body>
+    				<GetCurrentProductRelease/>
+    			</soap:Body>
+    		</soap:Envelope>
+    </script>
+
+	<script type="text/javascript">
+		var invocation = new XMLHttpRequest();
+		var url = 'http://10.35.130.170/LCMAdminDS/LCMAdminDS.asmx?WSDL';
+   
+		function callOtherDomain() {
+  			if(invocation) {    
+			    invocation.open('GET', url, true);
+			    //invocation.onreadystatechange = handler;
+			    invocation.send(); 
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+	// https://code.google.com/p/js-soap-proxy/
+    // Assume service defined method SayHello() returning string "Hello, world!"
+    /*    function resultcallback(res, xml, text, proxy) {
+            alert(res);
+        }
+        function failurecallback(res, xml, text, proxy) {
+            alert("SayHello() failed");
+        }
+        function gotproxycallback(proxy, wsdl, text) {
+            if (proxy instanceof SOAPProxy) {
+                proxy.SayHello(null, true, resultcallback, failurecallback);
+            } else {
+                alert("Proxy not created!");
+            }
+        }
+        $(document).ready(function () {
+            try {
+                SOAPProxyFabric.fromUrl("http://myhost.org/webservices/MyService.wsdl", true, gotproxycallback);
+            } catch (x) {
+                alert("Failed to load or parse WSDL!");
+            }
+        }); */
+    </script>
+ 
+</body>
+</html>

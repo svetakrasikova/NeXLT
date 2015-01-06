@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Autodesk NeXLT</title>
+
+	<link rel="stylesheet" type="text/css" href="./css/ajaxsolr.css">
+	<link rel="stylesheet" href="/assets/css/bootstrap-1.2.0.min.css">
+
+</head>
+<body class="blue helvetica">
+<div id="container">
+<div class="topbar">
+	<!-- <div class="topbar-inner">
+		<div class="container">
+		  <h3><a href="/">Language Technology at Autodesk</a></h3>
+		  <ul class="nav">
+		    <li class="active"><a href="#masthead">Overview</a></li>
+		    <li><a href="/nexlt/">Corpus Search</a></li>
+		    <li><a href="/ttc/">Terminology</a></li>
+		    <li><a href="/productivity.html">Productivity</a></li>
+		  </ul>
+		<ul class="nav secondary-nav"><li><img src="/images/ADSK_logo_S_white_web.png"/></li></ul>
+		</div>
+	</div> -->
+</div>
+
+	<div id="header">
+		<div id="headerimage">
+			<img src="images/autodesk-logo-color-text-black-rgb-large.png" width="500" height="84" alt="Autodesk Corporate Logo">
+		</div>
+		<div id="title">
+			<h1>
+				<a href="index.html">NeXLT <span style="color:#f00;font-size:0.65em;">(beta)</span></a>
+			</h1>
+			<p class="slogan">Autodesk Localization Services</p>
+		</div>
+	
+		<div id="searchBox">
+			<div class="sbRow"><div class="sbCell sbLeft">Target Language:</div>  <div class="sbCell"><select name="langSelect" id="langSelect" onchange="managerMaker();">
+				<option value="ara">Arabic</option>
+				<option value="chs">Chinese Simplified</option>
+				<option value="cht">Chinese Traditional</option>
+				<option value="csy">Czech</option>
+				<option value="dnk">Danish</option>
+				<option value="nld">Dutch</option>
+				<option value="ena">English Australia</option>
+				<option value="eng">English UK</option>
+				<option value="fin">Finnish</option>
+				<option value="frb">French Belgium</option>
+				<option value="frc">French Canada</option>
+				<option value="fra">French France</option>
+				<option value="deu">German</option>
+				<option value="ell">Greek</option>
+				<option value="heb">Hebrew</option>
+				<option value="hin">Hindi</option>
+				<option value="hun">Hungarian</option>
+				<option value="ind">Indonesian</option>
+				<option value="ita">Italian</option>
+				<option value="jpn">Japanese</option>
+				<option value="kor">Korean</option>
+				<option value="nor">Norwegian</option>
+				<option value="plk">Polish</option>
+				<option value="ptb">Portuguese Brazil</option>
+				<option value="ptg">Portuguese Portugal</option>
+				<option value="rom">Romanian</option>
+				<option value="rus">Russian</option>
+				<option value="las">Spanish Mexico</option>
+				<option value="esp">Spanish Spain</option>
+				<option value="slk">Slovak</option>
+				<option value="swe">Swedish</option>
+				<option value="tha">Thai</option>
+				<option value="tur">Turkish</option>
+				<option value="vit">Vietnamese</option>
+			</select></div>
+			</div>
+			<div class="sbRow">
+			<div class="sbCell sbLeft">Search source language (English) for: </div><div class="sbCell"><input type="text" value="" id="sLangSearch" class="searchField"></div>
+			</div>
+			
+			<div class="sbRow"><div class="sbCell sbLeft">Search target language for: </div><div class="sbCell"><input type="text" value="" id="tLangSearch" class="searchField"></div></div>
+			<div><p>&nbsp;</p></div>
+			<div class="sbRow"><div class="sbCell sbLeft">Autodesk Product(s):</div> <div class="sbCell"><select id="prodSelect" onchange="managerMaker();">
+			<!--<select multiple="multiple" size="4" onchange="" onclick="">-->
+			<option value="null">Filter: All</option>
+			<option value="123D">123D</option>
+			<option value="360NXS">360NXS</option>
+			<option value="3DSMAX">3DSMAX</option>
+			<option value="ACAD_E">ACAD_E</option>
+			<option value="ACD">ACD</option>
+			<option value="ACD360MOB">ACD360MOB</option>
+			<option value="ACD360WEB">ACD360WEB</option>
+			<option value="ACDWS">ACDWS</option>
+			<option value="ACMPAN">ACMPAN</option>
+			<option value="ADR">ADR</option>
+			<option value="ADSK360">ADSK360</option>
+			<option value="AIRMAX">AIRMAX</option>
+			<option value="ALSK">ALSK</option>
+			<option value="AMECH_PP">AMECH_PP</option>
+			<option value="APPSTORE">APPSTORE</option>
+			<option value="AQTO">AQTO</option>
+			<option value="ARCHDESK">ARCHDESK</option>
+			<option value="ARDES">ARDES</option>
+			<option value="BDS">BDS</option>
+			<option value="BIM360">BIM360</option>
+			<option value="BLDSYS">BLDSYS</option>
+			<option value="BZSW">BZSW</option>
+			<option value="CERCIP">CERCIP</option>
+			<option value="CFG360">CFG360</option>
+			<option value="CIV3D">CIV3D</option>
+			<option value="CLOUDS">CLOUDS</option>
+			<option value="E-LEARNING">E-LEARNING</option>
+			<option value="EDU">EDU</option>
+			<option value="ENCS">ENCS</option>
+			<option value="FDS">FDS</option>
+			<option value="FSN360">FSN360</option>
+			<option value="IMS">IMS</option>
+			<option value="INFMDR">INFMDR</option>
+			<option value="INV">INV</option>
+			<option value="INVETO">INVETO</option>
+			<option value="INVFUS">INVFUS</option>
+			<option value="INVPUB">INVPUB</option>
+			<option value="LIRAFX">LIRAFX</option>
+			<option value="M360">M360</option>
+			<option value="MAP">MAP</option>
+			<option value="MARQUEEAPPS">MARQUEEAPPS</option>
+			<option value="MAYA">MAYA</option>
+			<option value="MBXPRO">MBXPRO</option>
+			<option value="MF">MF</option>
+			<option value="NAV">NAV</option>
+			<option value="PDS">PDS</option>
+			<option value="PLNT3D">PLNT3D</option>
+			<option value="PNID">PNID</option>
+			<option value="RECAP">RECAP</option>
+			<option value="RSAPRO">RSAPRO</option>
+			<option value="RSAPRO360">RSAPRO360</option>
+			<option value="RVT">RVT</option>
+			<option value="SHOWCASE">SHOWCASE</option>
+			<option value="SIM360U">SIM360U</option>
+			<option value="SIMDFM">SIMDFM</option>
+			<option value="ST">ST</option>
+			<option value="STRDET">STRDET</option>
+			<option value="TORCH">TORCH</option>
+			<option value="VLT">VLT</option>
+		</select></div></div>
+			<div class="sbRow"><div class="sbCell sbLeft">Number of items per page:</div><div class="sbCell"> <select name="numItemsSelect" id="numItemsSelect" onchange="managerMaker();">
+				<option value="10">10</option> 
+				<option value="25">25</option> 
+				<option value="50">50</option> 
+				<option value="100">100</option> 
+			</select></div></div>
+			<!-- Search target language for: <input type="text" name="tLangSearch"><br>-->
+			<div class="sbRow"><div class="sbCell sbLeft"><button id="searchCorpus" onclick="startManager();return false">Search Corpus</button></div><div class="sbCell">&nbsp;</div></div>
+			<button id="fRIButton" onclick="#">Find related images on Autodesk websites</button>
+		</div>
+	</div>
+	<div><p id="rResults"></p></div>
+	<div id="docs"></div>
+	<div id="links"></div>
+	<div id="pagerContainer">
+		<div id="pager"></div>
+	</div>
+	<footer>
+	Copyright &copy; 2011-<script type="text/javascript">document.write(new Date().getFullYear());</script> <a href="http://autodesk.com">Autodesk Inc.</a>
+	</footer>
+	<div id="alertBox">
+		You must enter some text before proceeding!
+	</div>
+</div>
+
+
+	<!-- jQuery Library -->
+	<!-- THIS JQ LIB NEEDS TO BE BACKED OUT FOR REVERSE COMPATIBILITY!!! -->
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+
+	<!-- LOCAL JS STUFF -->
+	<script type="text/javaScript">
+		// flipflop = function(event) {
+		// 	event.preventDefault();
+		// 	$('#prod').toggleClass('upClass downClass');
+		// 	console.log("Hello");
+		// }
+		$('.searchField').keypress(function(e) {
+			var keyDown = e.which;
+			if (keyDown == 13) {
+				console.log("Enter...");
+				$("#searchCorpus").click();
+				return false;
+			}
+		});
+	</script>
+
+	<!-- CUSTOM JS -->
+	<script src="./jslib/solrTestLib_v2.js"></script>
+	
+	<!-- AJAX SOLR CORE SCRIPTS -->
+	<script src="./ajax-solr/core/Core.js"></script>
+	<script src="./ajax-solr/core/AbstractManager.js"></script>
+	<script src="./ajax-solr/managers/Manager.jquery.js"></script>
+
+	<script src="./ajax-solr/core/Parameter.js"></script>
+	<script src="./ajax-solr/core/ParameterStore.js"></script>
+
+	<script src="./ajax-solr/core/AbstractWidget.js"></script>
+	<script src="./ajax-solr/core/AbstractFacetWidget.js"></script>
+	<script src="./ajax-solr/widgets/ResultWidget.js"></script>
+
+	<script src="./ajax-solr/widgets/jquery/PagerWidget.js"></script>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-51341692-1', 'autodesk.com');
+	  ga('send', 'pageview');
+	</script>
+</body>
+</html>
