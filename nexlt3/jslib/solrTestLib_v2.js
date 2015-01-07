@@ -55,12 +55,24 @@ function managerMaker(whichSort) {
         if ($('#tLangSearch').val() != "") {
             Manager.store.addByValue('fq', langVal + ':"' + $('#tLangSearch').val() + '"');
         }
-        if ($('#prodSelect').val() != "null") {
+
+        var prodSelect = 'product:', ps = $('#prodSelect').val();
+        if (ps != "null") {
             //needs to be refactored to handle multiple product selection
-            var prodSelect = 'product:"' + $('#prodSelect').val() + '"';
-            //console.log("prodSelect: " + prodSelect);
-            Manager.store.addByValue('fq', prodSelect);
+            if (ps.length == 1) {
+                prodSelect += '"' + $('#prodSelect').val() + '"';
+            
+            } else {
+                prodSelect += '(';
+                for (i = 0; i < ps.length; i++) {
+                    prodSelect += '"' + ps[i] + '"';
+                    prodSelect += (i < ps.length - 1 ? ' OR ':'');
+                }
+                prodSelect += ')';
+            }
         }
+        console.log("prodSelect: " + prodSelect);
+        Manager.store.addByValue('fq', prodSelect);
 
         //filter by resource
         if ($('#filterByResource').val() != "null") {
