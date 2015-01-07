@@ -32,7 +32,7 @@ function managerMaker(whichSort) {
         //console.log("Hello from MM!");
         Manager.init();
 	    var langVal = $('#langSelect').val(), langQ = langVal + ':[* TO *]', searchIn = $('#sLangSearch').val(), rowsReturned = $('#numItemsSelect').val();
-	    var searchVal = 'enu:' + searchIn;
+	    var searchVal = 'enu:"' + searchIn + '"';
 
         // var searchVal;
         //if more than one word was searched, split into strings
@@ -61,8 +61,14 @@ function managerMaker(whichSort) {
             //console.log("prodSelect: " + prodSelect);
             Manager.store.addByValue('fq', prodSelect);
         }
-        //var sortVar;
-        //console.log("whichSort: " + whichSort);
+
+        //filter by resource
+        if ($('#filterByResource').val() != "null") {
+            var fbr = 'resource:' + $('#filterByResource').val();
+            Manager.store.addByValue('fq', fbr);
+        }
+
+        //sort by product or release
 	    switch (whichSort) {
             case "prod":
                 var sortVar = "product " + (prodToggle ? "asc" : "desc");
@@ -75,11 +81,11 @@ function managerMaker(whichSort) {
                 break;
         }
         //console.log("sortVar: " + sortVar);
-        if (whichSort != null) {
-            Manager.store.addByValue('sort', sortVar);
-        } else {
-            //console.log("whichsort == null");
+        if (whichSort == null) {
+            sortVar = "enu asc";
         }
+        Manager.store.addByValue('sort', sortVar);
+
         Manager.store.addByValue('rows', rowsReturned);
 	    Manager.store.addByValue('fl', 'product enu resource release ' + langVal);
 	    Manager.doRequest();
