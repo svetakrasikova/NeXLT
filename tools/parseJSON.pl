@@ -1,11 +1,13 @@
 #!/usr/bin/perl -ws
 #####################
 #
-# ©2014 Autodesk Development Sàrl
+# ©2014–2015 Autodesk Development Sàrl
 #
 # Based on json2solr.pl by Mirko Plitt
 #
 # Changelog
+# v1.2.1	Modified by Ventsislav Zhechev on 12 Jan 2015
+# Fixed a bug where the wrong part of a file’s path would be taken as the product code, when operating in the -moses mode.
 #
 # v1.2		Modified by Samuel Läubli on 13 October 2014
 # Removed static path to Passolo root directory and replaced it with a command line argument (-jsonDir).
@@ -116,7 +118,7 @@ my $processJSON = sub {
 		
 		# extract product name from path (if not given as a command line argument)
 		if (defined $jsonDir) {
-			($product) = File::Spec->catfile($jsonDir, $currentJSONFile) =~ m/trunk\/(\w+)\//g
+			($product) = File::Spec->catfile($jsonDir, $currentJSONFile) =~ m/$jsonDir\/(\w+)\//g
 				unless defined $product;
 		}
 		
