@@ -9,6 +9,9 @@
 #
 # Changelog
 #
+# v1.2.2	Modified by Samuel Läubli on 12 Jan 2015
+# Use --trust-server-cert flag for svn in order to connect
+# to SVN server via https
 #
 # v1.2.1	Modified by Samuel Läubli on 5 Nov 2014
 # Connect to SVN server via https instead of http
@@ -49,7 +52,7 @@ cd /OptiBay/SW_JSONs
 for product in `cat tools/product.lst`
 do
   echo "Updating $product from SVN…"
-  svn --username $1 --password $2 --non-interactive up $product
+  svn --username $1 --password $2 --non-interactive --trust-server-cert up $product
 done
 
 # Check if new SVN repositories have been added.
@@ -63,7 +66,7 @@ cd /OptiBay/SW_JSONs
 for product in `comm -23 tools/product.lst tools/old.product.lst`
 do
   echo "Checking out $product from SVN…"
-  svn --username $1 --password $2 --non-interactive co https://lsdata.autodesk.com/svn/jsons/$product
+  svn --username $1 --password $2 --non-interactive --trust-server-cert co https://lsdata.autodesk.com/svn/jsons/$product
 done
 
 /OptiBay/SW_JSONs/tools/parseJSON.pl -threads=8 -jsonDir=/OptiBay/SW_JSONs -targetDir=/OptiBay/SW_JSONs/corpus -format=moses
