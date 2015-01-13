@@ -21,8 +21,20 @@ function startManager() {
         //alert('please enter a value in the source language field');
         $('#alertBox').stop().show().css({opacity:1}).fadeOut(3000);
     }
-
 }
+
+function sanitize(tts) {
+        var i, clean = "";
+        //console.log(tts);
+        for (i = 0; i < tts.length; i++) {
+            if (tts[i].charCodeAt() != 34 && tts[i].charCodeAt() != 39) {
+                clean += tts.charAt(i);
+            }
+        }
+        //console.log(clean);
+        //$("#outputField").val(clean);
+        return clean;
+     }
 
 
 
@@ -47,7 +59,8 @@ function managerMaker(whichSort) {
         //     }
         // }
 
-        console.log("searchVal = " + searchVal);
+        //console.log("searchVal = " + searchVal);
+        searchVal = sanitize(searchVal);
 
         Manager.store.addByValue('q', langQ);
         Manager.store.remove('fq');
@@ -57,8 +70,8 @@ function managerMaker(whichSort) {
         }
 
         var prodSelect = 'product:', ps = $('#prodSelect').val();
+        //console.log("ps: " + ps)
         if (ps != "null") {
-            //needs to be refactored to handle multiple product selection
             if (ps.length == 1) {
                 prodSelect += '"' + $('#prodSelect').val() + '"';
             
@@ -70,9 +83,13 @@ function managerMaker(whichSort) {
                 }
                 prodSelect += ')';
             }
+        // } else {
+        //     prodSelect = "All";
+            //console.log("prodSelect: " + prodSelect);
+            Manager.store.addByValue('fq', prodSelect);
         }
-        console.log("prodSelect: " + prodSelect);
-        Manager.store.addByValue('fq', prodSelect);
+        
+        
 
         //filter by resource
         if ($('#filterByResource').val() != "null") {
@@ -94,7 +111,7 @@ function managerMaker(whichSort) {
         }
         //console.log("sortVar: " + sortVar);
         if (whichSort == null) {
-            sortVar = "enu asc";
+            sortVar = "enu_sort asc";
         }
         Manager.store.addByValue('sort', sortVar);
 

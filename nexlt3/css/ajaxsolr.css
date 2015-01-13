@@ -117,6 +117,28 @@ h1 a:hover {color:#3f3f3f; text-decoration:none;}
   float:left;
 }
 
+/* Line up the search terms */
+
+#searchTerms {
+  margin-top:55px;
+}
+
+#searchFilters {
+  margin-top: -25px;
+  float:left;
+  /*border: 1px solid #f00;*/
+}
+
+/* Wee bit of responsiveness */
+@media (max-width: 840px) {
+  #searchFilters{
+    margin-top: 1em;
+    margin-left: 65px;
+  }
+}
+
+
+
 .outputSpan {
 	padding:.5em;
 }

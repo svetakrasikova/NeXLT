@@ -36,7 +36,8 @@
 			</h1>
 			<p class="slogan">Autodesk Localization Services</p>
 		</div>
-	
+		
+		<div id="searchTerms">
 		<div id="searchBox">
 			<div class="sbRow"><div class="sbCell sbLeft">Target Language:</div>  <div class="sbCell"><select name="langSelect" id="langSelect" onchange="managerMaker();">
 				<option value="ara">Arabic</option>
@@ -80,9 +81,13 @@
 			</div>
 			
 			<div class="sbRow"><div class="sbCell sbLeft">Search target language for: </div><div class="sbCell"><input type="text" value="" id="tLangSearch" class="searchField"></div></div>
+			</div><!--end of search terms div -->
+			
 			<div><p>&nbsp;</p></div>
+			
+			<div id="searchFilters">
 			<div class="sbRow"><div class="sbCell sbLeft multilineDiv">Autodesk Product(s):</div> <div class="sbCell"><select multiple="multiple" size="4" id="prodSelect" onchange="managerMaker();">
-			<option value="null">Filter: All</option>
+			<option selected value="null">Filter: All</option>
 			<option value="123D">123D</option>
 			<option value="360NXS">360NXS</option>
 			<option value="3DSMAX">3DSMAX</option>
@@ -161,6 +166,7 @@
 			<div class="sbRow"><div class="sbCell sbLeft"><button id="searchCorpus" onclick="startManager();return false">Search Corpus</button></div><div class="sbCell">&nbsp;</div></div>
 			<button id="fRIButton" onclick="#">Find related images on Autodesk websites</button>
 		</div>
+				</div> <!-- end of search filter div -->
 	</div>
 	<div><p id="rResults"></p></div>
 	<div id="docs"></div>
@@ -169,6 +175,7 @@
 		<div id="pager"></div>
 	</div>
 	<footer>
+	Links: <a href="http://langtech.autodesk.com">Language Technologies at Autodesk</a> | <a href="http://langtech.autodesk.com/ttc/">Term Translation Central(TTC)</a><br> 
 	Copyright &copy; 2011-<script type="text/javascript">document.write(new Date().getFullYear());</script> <a href="http://autodesk.com">Autodesk Inc.</a>
 	</footer>
 	<div id="alertBox">
@@ -193,7 +200,7 @@
 		$('.searchField').keypress(function(e) {
 			var keyDown = e.which;
 			if (keyDown == 13) {
-				console.log("Enter...");
+				//console.log("Enter...");
 				$("#searchCorpus").click();
 				return false;
 			}
