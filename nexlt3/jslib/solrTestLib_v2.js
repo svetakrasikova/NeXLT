@@ -43,8 +43,9 @@ function managerMaker(whichSort) {
 	if (!(firstQuery)) {
         //console.log("Hello from MM!");
         Manager.init();
-	    var langVal = $('#langSelect').val(), langQ = langVal + ':[* TO *]', searchIn = $('#sLangSearch').val(), rowsReturned = $('#numItemsSelect').val();
-	    var searchVal = 'enu:"' + searchIn + '"';
+	    var langVal = $('#langSelect').val(), langQ = langVal + ':[* TO *]', searchIn = sanitize($('#sLangSearch').val()), rowsReturned = $('#numItemsSelect').val();
+	    
+        var searchVal = 'enu:"' + searchIn + '"';
 
         // var searchVal;
         //if more than one word was searched, split into strings
@@ -59,8 +60,8 @@ function managerMaker(whichSort) {
         //     }
         // }
 
-        //console.log("searchVal = " + searchVal);
-        searchVal = sanitize(searchVal);
+        console.log("searchVal = " + searchVal);
+        
 
         Manager.store.addByValue('q', langQ);
         Manager.store.remove('fq');
@@ -100,10 +101,10 @@ function managerMaker(whichSort) {
         //sort by product or release
 	    switch (whichSort) {
             case "prod":
-                var sortVar = "product " + (prodToggle ? "asc" : "desc");
+                var sortVar = "product " + (prodToggle ? "asc" : "desc") + ", srclc asc";
                 break;
             case "release":
-                var sortVar = "release " + (releaseToggle ? "asc" : "desc");
+                var sortVar = "release " + (releaseToggle ? "asc" : "desc") + ", srclc asc";
                 //flipflop("#release");
                 break;
             default:
@@ -111,12 +112,12 @@ function managerMaker(whichSort) {
         }
         //console.log("sortVar: " + sortVar);
         if (whichSort == null) {
-            sortVar = "enu_sort asc";
+            sortVar = "srclc asc";
         }
         Manager.store.addByValue('sort', sortVar);
 
         Manager.store.addByValue('rows', rowsReturned);
-	    Manager.store.addByValue('fl', 'product enu resource release ' + langVal);
+	    Manager.store.addByValue('fl', 'product enu resource release productname restype ' + langVal);
 	    Manager.doRequest();
         //firstQuery = true;
     }

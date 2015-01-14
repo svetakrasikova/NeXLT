@@ -115,6 +115,9 @@ h1 a:hover {color:#3f3f3f; text-decoration:none;}
 #docs {
   color:#f00;
   float:left;
+  position: relative;
+  z-index:50;
+
 }
 
 /* Line up the search terms */
@@ -126,6 +129,8 @@ h1 a:hover {color:#3f3f3f; text-decoration:none;}
 #searchFilters {
   margin-top: -25px;
   float:left;
+  position: relative;
+  z-index:100;
   /*border: 1px solid #f00;*/
 }
 
@@ -239,6 +244,8 @@ h1 a:hover {color:#3f3f3f; text-decoration:none;}
 	font-family:Arial;
 	font-weight:normal;
 	color:#000000;
+  position: relative;
+  z-index: 20;
 }
 
 .sOutputTable tr:last-child td{
@@ -286,6 +293,11 @@ h1 a:hover {color:#3f3f3f; text-decoration:none;}
   vertical-align: top;
 }
 
+.tdClass {
+  position: relative;
+  z-index: 10;
+}
+
 #mytable a {
   text-decoration: none;
 }
@@ -315,6 +327,8 @@ td.spacer {
   line-height: 2em;
   text-align: center;
   font-size: 1.25em;
+  position: relative;
+  z-index: 10;
 }
 
 #pager,

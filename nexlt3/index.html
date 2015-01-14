@@ -7,6 +7,8 @@
 
 	<link rel="stylesheet" type="text/css" href="./css/ajaxsolr.css">
 	<link rel="stylesheet" href="/assets/css/bootstrap-1.2.0.min.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
 
 </head>
 <body class="blue helvetica">
@@ -163,7 +165,7 @@
 				<option value="100">100</option> 
 			</select></div></div>
 			<!-- Search target language for: <input type="text" name="tLangSearch"><br>-->
-			<div class="sbRow"><div class="sbCell sbLeft"><button id="searchCorpus" onclick="startManager();return false">Search Corpus</button></div><div class="sbCell">&nbsp;</div></div>
+			<div class="sbRow" id="searchCorpusDiv"><div class="sbCell sbLeft"><button id="searchCorpus" onclick="startManager();return false">Search Corpus</button></div><div class="sbCell">&nbsp;</div></div>
 			<button id="fRIButton" onclick="#">Find related images on Autodesk websites</button>
 		</div>
 				</div> <!-- end of search filter div -->
@@ -188,7 +190,9 @@
 	<!-- THIS JQ LIB NEEDS TO BE BACKED OUT FOR REVERSE COMPATIBILITY!!! -->
 	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+
 
 	<!-- LOCAL JS STUFF -->
 	<script type="text/javaScript">
@@ -203,6 +207,11 @@
 				//console.log("Enter...");
 				$("#searchCorpus").click();
 				return false;
+			}
+		});
+		$(document).tooltip({
+			content: function() {
+				return $(this).attr('title');
 			}
 		});
 	</script>
