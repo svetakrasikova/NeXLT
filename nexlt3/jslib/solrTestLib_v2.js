@@ -60,14 +60,14 @@ function managerMaker(whichSort) {
         //     }
         // }
 
-        console.log("searchVal = " + searchVal);
+        //console.log("searchVal = " + searchVal);
         
 
         Manager.store.addByValue('q', langQ);
         Manager.store.remove('fq');
 	    Manager.store.addByValue('fq', searchVal);
         if ($('#tLangSearch').val() != "") {
-            Manager.store.addByValue('fq', langVal + ':"' + $('#tLangSearch').val() + '"');
+            Manager.store.addByValue('fq', langVal + ':"' + sanitize($('#tLangSearch').val()) + '"');
         }
 
         var prodSelect = 'product:', ps = $('#prodSelect').val();
