@@ -14,11 +14,6 @@ table{border-collapse:collapse;border-spacing:0}
 hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
 input,select{vertical-align:middle}
 
-/*body {
-	background:#fefefe url(../images/background.jpg) top left repeat-x;
-	color:#555;
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}*/
 body {
   margin-top: -40px !important; 
   padding:0; 
@@ -29,13 +24,10 @@ body {
   line-height:1.6em;
 }
 
-
-
 /* HTML Tags */
 a {font-weight:400;}
 a:hover {color:#3f3f3f !important;}
 a img {border:0;}
-
 
 /* Font options */
 .helvetica {font:84% Helvetica,sans-serif;}
@@ -302,8 +294,8 @@ h1 a:hover {color:#3f3f3f; text-decoration:none;}
   text-decoration: none;
 }
 
+/* pseudoclass selectors to flip arrows */
 .upClass::after {
-  /* need to add pseudoclass selectors so that these flip over.  Opposite is '\2228' */
   content: '\2227';
 }
 

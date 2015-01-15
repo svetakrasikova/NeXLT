@@ -14,7 +14,7 @@ function toggleRelease() {
 
 function startManager() {
     //keeps search from executing if people are trying to just set parameters
-    if ($('#sLangSearch').val().length != 0){
+    if (($('#sLangSearch').val().length != 0) && ($('#tLangSearch').val().length != 0)){
         firstQuery = false;
         managerMaker();
     } else {
@@ -25,14 +25,11 @@ function startManager() {
 
 function sanitize(tts) {
         var i, clean = "";
-        //console.log(tts);
         for (i = 0; i < tts.length; i++) {
             if (tts[i].charCodeAt() != 34 && tts[i].charCodeAt() != 39) {
                 clean += tts.charAt(i);
             }
         }
-        //console.log(clean);
-        //$("#outputField").val(clean);
         return clean;
      }
 
@@ -41,28 +38,11 @@ function sanitize(tts) {
 function managerMaker(whichSort) {
 
 	if (!(firstQuery)) {
-        //console.log("Hello from MM!");
         Manager.init();
 	    var langVal = $('#langSelect').val(), langQ = langVal + ':[* TO *]', searchIn = sanitize($('#sLangSearch').val()), rowsReturned = $('#numItemsSelect').val();
 	    
         var searchVal = 'enu:"' + searchIn + '"';
-
-        // var searchVal;
-        //if more than one word was searched, split into strings
-        // var res = searchIn.split(" ");
-        // if (res.length <=1) {
-        //     searchVal = 'enu:' + searchIn;
-        // } else {
-        //     searchVal = 'enu:';
-        //     for (i = 0; i<res.length; i++) {
-        //         searchVal += res[i];
-        //         if (i < res.length - 1) {searchVal += ' OR ';}
-        //     }
-        // }
-
-        //console.log("searchVal = " + searchVal);
         
-
         Manager.store.addByValue('q', langQ);
         Manager.store.remove('fq');
 	    Manager.store.addByValue('fq', searchVal);
@@ -71,7 +51,7 @@ function managerMaker(whichSort) {
         }
 
         var prodSelect = 'product:', ps = $('#prodSelect').val();
-        //console.log("ps: " + ps)
+
         if (ps != "null") {
             if (ps.length == 1) {
                 prodSelect += '"' + $('#prodSelect').val() + '"';
@@ -84,9 +64,7 @@ function managerMaker(whichSort) {
                 }
                 prodSelect += ')';
             }
-        // } else {
-        //     prodSelect = "All";
-            //console.log("prodSelect: " + prodSelect);
+
             Manager.store.addByValue('fq', prodSelect);
         }
         
@@ -105,12 +83,10 @@ function managerMaker(whichSort) {
                 break;
             case "release":
                 var sortVar = "release " + (releaseToggle ? "asc" : "desc") + ", srclc asc";
-                //flipflop("#release");
                 break;
             default:
                 break;
         }
-        //console.log("sortVar: " + sortVar);
         if (whichSort == null) {
             sortVar = "srclc asc";
         }
@@ -119,7 +95,6 @@ function managerMaker(whichSort) {
         Manager.store.addByValue('rows', rowsReturned);
 	    Manager.store.addByValue('fl', 'product enu resource release productname restype ' + langVal);
 	    Manager.doRequest();
-        //firstQuery = true;
     }
 }
 
