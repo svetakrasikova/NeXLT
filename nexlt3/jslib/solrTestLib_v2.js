@@ -36,10 +36,8 @@ function sanitize(tts) {
 
 
 function managerMaker(whichSort) {
-
 	if (!(firstQuery)) {
         Manager.init();
-        self.manager.doRequest(0);
 	    var langVal = $('#langSelect').val(), langQ = langVal + ':[* TO *]', searchIn = sanitize($('#sLangSearch').val()), rowsReturned = $('#numItemsSelect').val();
 	    
         var searchVal = 'enu:"' + searchIn + '"';
@@ -99,9 +97,11 @@ function managerMaker(whichSort) {
 
         Manager.store.addByValue('rows', rowsReturned);
 	    Manager.store.addByValue('fl', 'product enu resource release productname restype ' + langVal);
-	    Manager.doRequest();
+	    Manager.doRequest(0);
     }
 }
+
+
 
 
 (function ($) {
