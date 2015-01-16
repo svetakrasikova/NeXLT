@@ -14,7 +14,7 @@ function toggleRelease() {
 
 function startManager() {
     //keeps search from executing if people are trying to just set parameters
-    if (($('#sLangSearch').val().length != 0) && ($('#tLangSearch').val().length != 0)){
+    if (($('#sLangSearch').val().length != 0) || ($('#tLangSearch').val().length != 0)){
         firstQuery = false;
         managerMaker();
     } else {
@@ -39,13 +39,18 @@ function managerMaker(whichSort) {
 
 	if (!(firstQuery)) {
         Manager.init();
+        self.manager.doRequest(0);
 	    var langVal = $('#langSelect').val(), langQ = langVal + ':[* TO *]', searchIn = sanitize($('#sLangSearch').val()), rowsReturned = $('#numItemsSelect').val();
 	    
         var searchVal = 'enu:"' + searchIn + '"';
         
         Manager.store.addByValue('q', langQ);
         Manager.store.remove('fq');
-	    Manager.store.addByValue('fq', searchVal);
+
+        //done at two different times hence two different ways
+        if ($('#sLangSearch').val() != "") {
+	       Manager.store.addByValue('fq', searchVal);
+        }
         if ($('#tLangSearch').val() != "") {
             Manager.store.addByValue('fq', langVal + ':"' + sanitize($('#tLangSearch').val()) + '"');
         }
