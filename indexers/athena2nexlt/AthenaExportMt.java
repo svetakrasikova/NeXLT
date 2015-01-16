@@ -1,8 +1,11 @@
 //
-// ©2013–2014 Autodesk Development Sàrl
+// ©2013–2015 Autodesk Development Sàrl
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.5.3		Modified on 16 Jan 2015 by Ventsislav Zhechev
+// Updated to export product code instead of product name for MT analysis.
+//
 // v1.5.3		Modified on 16 Sep 2014 by Ventsislav Zhechev
 // Fixed a bug where the language code would not be recognised if a specific DB table name were provided in ALL CAPS.
 //
@@ -152,7 +155,7 @@ public class AthenaExportMt {
 		System.out.println("Export from Athena for MT");
 		System.out.println("=========================\n");
 		if (args == null || args.length < 4 || args.length > 9) {
-			System.out.println("Usage: java AthenaExportMt <dburl> <username> <password> <tablename> [<start date (yyyy.mm.dd)>] [<end date (yyyy.mm.dd)>] {0: use creation date|1: use translation date} {0: output for MT analysis|1: output for Solr indexing} {0: skip ICE matches|1: include ICE matches}");
+			System.out.println("Usage: java AthenaExportMt <tablename> [<start date (yyyy.mm.dd)>] [<end date (yyyy.mm.dd)>] {1: use creation date|0: use translation date} {0: output for MT analysis|1: output for Solr indexing} {0: skip ICE matches|1: include ICE matches}");
 			System.out.println("Example: java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:javacsv.jar:. AthenaExportMt ALL 2013.02.01 2013.03.01 1 0");
 			System.exit(0);
 		}
@@ -330,6 +333,8 @@ public class AthenaExportMt {
 					rs.setFetchSize(50000);
 					StringBuilder content = new StringBuilder("{");
 					int counter = 0;
+					int mtCounter = 0;
+					int tmCounter = 0;
 					String product = "";
 					String mappedProduct = "";
 					StringBuilder mappedProductNames = null;
@@ -462,8 +467,7 @@ public class AthenaExportMt {
 							
 							mtTranslation = rs.getString(7);
 							if (mtTranslation != null) {
-								mtTranslation = mtTranslation.replaceAll("\n", " ");
-								mtTranslation = mtTranslation.replaceAll("\r", " ");
+								mtTranslation = mtTranslation.replaceAll("\n", " ").replaceAll("\r", " ");
 							}
 							else {
 								mtTranslation = "";
@@ -480,8 +484,7 @@ public class AthenaExportMt {
 						
 							tmTranslation = rs.getString(9);
 							if (tmTranslation != null) {
-								tmTranslation = tmTranslation.replaceAll("\n", " ");
-								tmTranslation = tmTranslation.replaceAll("\r", " ");
+								tmTranslation = tmTranslation.replaceAll("\n", " ").replaceAll("\r", " ");
 							}
 							else {
 								tmTranslation = "";
@@ -538,15 +541,14 @@ public class AthenaExportMt {
 							
 							placeHolders = rs.getString(13);
 							if (placeHolders != null) {
-								placeHolders = placeHolders.replaceAll("\n", " ");
-								placeHolders = placeHolders.replaceAll("\r", " ");
+								placeHolders = placeHolders.replaceAll("\n", " ").replaceAll("\r", " ");
 							}
 							else {
 								placeHolders = "";
 							}
 							
-							mtPrintStream.println((new StringBuilder(sourceSegment)).append("").append(mtTranslation).append("").append(targetSegment).append("").append(product).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
-							tmPrintStream.println((new StringBuilder(sourceSegment)).append("").append(tmTranslation).append("").append(targetSegment).append("").append(product).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
+							mtPrintStream.println((new StringBuilder(sourceSegment)).append("").append(mtTranslation).append("").append(targetSegment).append("").append(productData.getKey()).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
+							tmPrintStream.println((new StringBuilder(sourceSegment)).append("").append(tmTranslation).append("").append(targetSegment).append("").append(productData.getKey()).append("__").append(release).append("__alln/a").append(translationTypeString).append("").append(mtScoreString).append("").append(tmScoreString).append("").append(placeHolders).append("◊÷").toString());
 
 						} else {
 							content.append("\"add\": { \"doc\": {")
@@ -591,6 +593,13 @@ public class AthenaExportMt {
 							httpclient.close();
 						}
 						System.out.println("…data successfully posted to Solr! " + oneTable);
+					} else {
+						if (mtCounter == 0) {
+							mtPrintStream.print(" ");
+						}
+						if (tmCounter == 0) {
+							tmPrintStream.print(" ");
+						}
 					}
 					
 					athenaConnection.rollback();
