@@ -46,10 +46,10 @@
 
 # make sure SVN user and password are supplied as positional arguments
 if (( "$#" != 2 )) 
-	then
-		echo "Usage: processJSON.sh svnUserName svnPassword"
-		exit 1
-	fi
+then
+	echo "Usage: tr2solr.sh svnUserName svnPassword"
+	exit 1
+fi
 
 echo "*****************************************************"
 date
@@ -65,15 +65,7 @@ do
 done
 
 # Index all files that have been changed since the last indexing.
-#for product in `cat old.product.lst`
-#do
-	./parseJSON.pl -jsonDir=/local/cms/NeXLT/indexers/translationrepository2nexlt -format=solr -threads=1 -lastUpdateFile=/var/www/solrUpdate/passolo.lastrefresh
-#		for js  in `find $product -name "*json" -newer /var/www/solrUpdate/passolo.lastrefresh`
-#		do
-#			echo "Parsing $js - product: $product"
-#			./json2solr.pl $js $product
-#		done
-#done
+./parseJSON.pl -jsonDir=/local/cms/NeXLT/indexers/translationrepository2nexlt -format=solr -threads=1 -lastUpdateFile=/var/www/solrUpdate/passolo.lastrefresh
 
 # Check if new SVN repositories have been added.
 mv -f product.lst old.product.lst
@@ -86,11 +78,6 @@ do
   echo "Checking out $product from SVN…"
   svn --username $1 --password $2 --non-interactive --trust-server-cert co https://lsdata.autodesk.com/svn/jsons/$product
 	./parseJSON.pl -jsonDir=/local/cms/NeXLT/indexers/translationrepository2nexlt/$product -format=solr -threads=1
-#  for js  in `find $product -name "*json"`
-#  do
-#    echo "Parsing $js - product: $product"
-#    ./json2solr.pl $js $product
-#  done
 done
 
 mv -f /var/www/solrUpdate/passolo.lastrefresh.new /var/www/solrUpdate/passolo.lastrefresh
