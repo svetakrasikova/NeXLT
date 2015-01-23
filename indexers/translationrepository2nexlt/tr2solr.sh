@@ -1,12 +1,17 @@
 #!/bin/bash
 #
-# ©2013–2014 Autodesk Development Sàrl
+# ©2013–2015 Autodesk Development Sàrl
 #
 # Sequence of steps needed to update Solr with latest JSON files from transaltion repository
 # 
 # Creted by Mirko Plitt
 #
 # Changelog
+#
+# v3.2		Modified by Ventsislav Zhechev on 23 Jan 2015
+# Switched to using parseJSON.pl instead of json2solr.pl
+# This allows the processing of a full folder of content in a single go, using incremental JSON parsing to limit memory usage.
+# Proper product codes are retrieved directly from RAPID, rather than from a static file.
 #
 # v3.1.1  Modified by Samuel Läubli on 5 Nov 2014
 # Connect to SVN server via https instead of http
@@ -39,6 +44,13 @@
 # Initial version
 #
 
+# make sure SVN user and password are supplied as positional arguments
+if (( "$#" != 2 )) 
+	then
+		echo "Usage: processJSON.sh svnUserName svnPassword"
+		exit 1
+	fi
+
 echo "*****************************************************"
 date
 cd /local/cms/NeXLT/indexers/translationrepository2nexlt
@@ -49,34 +61,36 @@ touch /var/www/solrUpdate/passolo.lastrefresh.new
 for product in `cat product.lst`
 do
   echo "Updating $product from SVN…"
-  svn --username ferrotp --password 2@klopklop --non-interactive up $product
-done
-
-# Check if new SVN repositories have been added.
-mv -f product.lst old.product.lst
-echo "Fetching current product list…"
-curl -s --user 'ferrotp:2@klopklop' https://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
-
-# Make sure we index the new products’ data.
-for product in `comm -23 product.lst old.product.lst`
-do
-  echo "Checking out $product from SVN…"
-  svn --username ferrotp --password 2@klopklop --non-interactive co https://lsdata.autodesk.com/svn/jsons/$product
-  for js  in `find $product -name "*json"`
-  do
-    echo "Parsing $js - product: $product"
-    ./json2solr.pl $js $product
-  done
+  svn --username $1 --password $2 --non-interactive up $product
 done
 
 # Index all files that have been changed since the last indexing.
 for product in `cat old.product.lst`
 do
-  for js  in `find $product -name "*json" -newer /var/www/solrUpdate/passolo.lastrefresh`
-  do
-    echo "Parsing $js - product: $product"
-    ./json2solr.pl $js $product
-  done
+	./parseJSON.pl -jsonDir=/local/cms/NeXLT/indexers/translationrepository2nexlt -format=solr -threads=1 -lastUpdateFile=/var/www/solrUpdate/passolo.lastrefresh
+#		for js  in `find $product -name "*json" -newer /var/www/solrUpdate/passolo.lastrefresh`
+#		do
+#			echo "Parsing $js - product: $product"
+#			./json2solr.pl $js $product
+#		done
+done
+
+# Check if new SVN repositories have been added.
+mv -f product.lst old.product.lst
+echo "Fetching current product list…"
+curl -s --user '$1:$2' https://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
+
+# Make sure we index the new products’ data.
+for product in `comm -23 product.lst old.product.lst`
+do
+  echo "Checking out $product from SVN…"
+  svn --username $1 --password $2 --non-interactive co https://lsdata.autodesk.com/svn/jsons/$product
+	./parseJSON.pl -jsonDir=/local/cms/NeXLT/indexers/translationrepository2nexlt/$product -format=solr -threads=1
+#  for js  in `find $product -name "*json"`
+#  do
+#    echo "Parsing $js - product: $product"
+#    ./json2solr.pl $js $product
+#  done
 done
 
 mv -f /var/www/solrUpdate/passolo.lastrefresh.new /var/www/solrUpdate/passolo.lastrefresh
