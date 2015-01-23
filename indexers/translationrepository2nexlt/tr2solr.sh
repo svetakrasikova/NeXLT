@@ -78,7 +78,7 @@ done
 # Check if new SVN repositories have been added.
 mv -f product.lst old.product.lst
 echo "Fetching current product list…"
-curl -sSk --user "$1:$2" https://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
+curl -s -S -k --user "$1:$2" https://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
 
 # Make sure we index the new products’ data.
 for product in `comm -23 product.lst old.product.lst`
