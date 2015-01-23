@@ -65,15 +65,15 @@ do
 done
 
 # Index all files that have been changed since the last indexing.
-for product in `cat old.product.lst`
-do
+#for product in `cat old.product.lst`
+#do
 	./parseJSON.pl -jsonDir=/local/cms/NeXLT/indexers/translationrepository2nexlt -format=solr -threads=1 -lastUpdateFile=/var/www/solrUpdate/passolo.lastrefresh
 #		for js  in `find $product -name "*json" -newer /var/www/solrUpdate/passolo.lastrefresh`
 #		do
 #			echo "Parsing $js - product: $product"
 #			./json2solr.pl $js $product
 #		done
-done
+#done
 
 # Check if new SVN repositories have been added.
 mv -f product.lst old.product.lst
