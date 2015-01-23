@@ -1,1 +1,1 @@
-indexers/translationrepository2nexlt/parseJSON.pl
+../indexers/translationrepository2nexlt/parseJSON.pl
