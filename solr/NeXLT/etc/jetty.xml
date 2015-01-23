@@ -115,6 +115,9 @@
 		       <Call name="addWhite">
 			       <Arg>10.31.32.73|/solr/update</Arg>
 		       </Call>
+		       <Call name="addWhite">
+			       <Arg>10.31.32.73|/solr/update/json</Arg>
+		       </Call>
 		       <Set name="handler">
 		         <New id="Contexts" class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/>
 		       </Set>
