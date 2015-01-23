@@ -182,10 +182,7 @@ foreach my $strList (@{$project->string_lists}) {
 	#Fix some bugs in the JSON files.
 	$lang = "esp" if $lang eq "esn";
 	$lang = "eng" if $lang eq "enu";
-	my $src;
-	my $trn;
-	my $restype;
-	my $id;
+	my ($src, $trn, $restype, $id);
 	
 	foreach my $str (@{$strList->strings}) {
 		#Short-circuit exit conditions
