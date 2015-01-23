@@ -1,17 +1,18 @@
 #!/bin/bash
 #####################
 #
-# ©2014 Autodesk Development Sàrl
+# ©2014–2015 Autodesk Development Sàrl
 #
 # Based on several Solr indexing scripts by Mirko Plitt
 #
 # Usage: processJSONs.sh svn_user svn_password
 #
 # Changelog
+# v1.2.3	Modified by Ventsislav Zhechev on 23 Jan 2015
+# Updated curl command line parameters.
 #
 # v1.2.2	Modified by Samuel Läubli on 12 Jan 2015
-# Use --trust-server-cert flag for svn in order to connect
-# to SVN server via https
+# Use --trust-server-cert flag for svn in order to connect to SVN server via https
 #
 # v1.2.1	Modified by Samuel Läubli on 5 Nov 2014
 # Connect to SVN server via https instead of http
@@ -42,7 +43,7 @@
 # make sure SVN user and password are supplied as positional arguments
 if (( "$#" != 2 )) 
 then
-    echo "Usage: processJSON.sh svnUserName svnPassword"
+	echo "Usage: processJSON.sh svnUserName svnPassword"
 	exit 1
 fi
 
@@ -59,7 +60,7 @@ done
 cd /OptiBay/SW_JSONs/tools
 mv -f product.lst old.product.lst
 echo "Fetching current product list…"
-curl -s --user "$1:$2" https://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
+curl -sSk --user "$1:$2" https://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
 
 cd /OptiBay/SW_JSONs
 # Make sure we index the new products’ data.
