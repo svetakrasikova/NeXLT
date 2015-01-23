@@ -97,8 +97,8 @@ my %ResTypeDll = ( "4" => "Menu" , "5" => "Dialog" , "6" => "String Table" , "9"
 
 my $postToSolr = sub {
 	my $content = shift;
-	#		my $response = $http->request('POST', 'http://aws.prd.solr:8983/solr/update/json', { content => $content });
-	my $response = $http->request('POST', 'http://aws.stg.solr:8983/solr/update/json', { content => $content });
+	my $response = $http->request('POST', 'http://aws.prd.solr:8983/solr/update/json', { content => $content });
+#	my $response = $http->request('POST', 'http://aws.stg.solr:8983/solr/update/json', { content => $content });
 	die encode "utf-8", "HTML request to Solr failed!\n $response->{status} $response->{reason}\n$response->{content}\nContent submitted:\n$content\n" unless $response->{success};
 };
 
