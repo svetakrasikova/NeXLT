@@ -61,7 +61,7 @@ touch /var/www/solrUpdate/passolo.lastrefresh.new
 for product in `cat product.lst`
 do
   echo "Updating $product from SVN…"
-  svn --username $1 --password $2 --non-interactive up $product
+  svn --username $1 --password $2 --non-interactive --trust-server-cert up $product
 done
 
 # Index all files that have been changed since the last indexing.
@@ -78,13 +78,13 @@ done
 # Check if new SVN repositories have been added.
 mv -f product.lst old.product.lst
 echo "Fetching current product list…"
-curl -sSk --user '$1:$2' https://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
+curl -sSk --user "$1:$2" https://lsdata.autodesk.com/svn/jsons/ |sed 's!.*"\(.*\)/".*!\1!;/<\|test/d' | sort -f >product.lst
 
 # Make sure we index the new products’ data.
 for product in `comm -23 product.lst old.product.lst`
 do
   echo "Checking out $product from SVN…"
-  svn --username $1 --password $2 --non-interactive co https://lsdata.autodesk.com/svn/jsons/$product
+  svn --username $1 --password $2 --non-interactive --trust-server-cert co https://lsdata.autodesk.com/svn/jsons/$product
 	./parseJSON.pl -jsonDir=/local/cms/NeXLT/indexers/translationrepository2nexlt/$product -format=solr -threads=1
 #  for js  in `find $product -name "*json"`
 #  do
