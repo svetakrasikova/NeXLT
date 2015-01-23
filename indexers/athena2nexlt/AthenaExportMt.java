@@ -3,6 +3,9 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.5.4		Modified on 23 Jan 2015 by Ventsislav Zhechev
+// DB parameters now need to be supplied as command-line parameters.
+//
 // v1.5.3		Modified on 16 Jan 2015 by Ventsislav Zhechev
 // Updated to export product code instead of product name for MT analysis.
 //
@@ -155,30 +158,30 @@ public class AthenaExportMt {
 		System.out.println("Export from Athena for MT");
 		System.out.println("=========================\n");
 		if (args == null || args.length < 4 || args.length > 9) {
-			System.out.println("Usage: java AthenaExportMt <tablename> [<start date (yyyy.mm.dd)>] [<end date (yyyy.mm.dd)>] {1: use creation date|0: use translation date} {0: output for MT analysis|1: output for Solr indexing} {0: skip ICE matches|1: include ICE matches}");
-			System.out.println("Example: java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:javacsv.jar:. AthenaExportMt ALL 2013.02.01 2013.03.01 1 0");
+			System.out.println("Usage: java AthenaExportMt <DBURL> <username> <password> <tablename> [<start date (yyyy.mm.dd)>] [<end date (yyyy.mm.dd)>] {1: use creation date|0: use translation date} {0: output for MT analysis|1: output for Solr indexing} {0: skip ICE matches|1: include ICE matches}");
+			System.out.println("Example: java -cp bzip2.jar:oracle_11203_ojdbc6.jar:httpclient-4.3.3.jar:httpcore-4.3.2.jar:commons-logging-1.1.3.jar:json-simple-1.1.1.jar:javacsv.jar:. AthenaExportMt jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1 <username> <password> ALL 2013.02.01 2013.03.01 1 0");
 			System.exit(0);
 		}
 		
-		String athenaDBURL = "jdbc:oracle:thin:@oracmsprd1.autodesk.com:1521:CMSPRD1";
-		String username = "cmsuser";
-		String password = "Ten2Four";
-		String table = args[0];
+		String athenaDBURL = args[0];
+		String username = args[1];
+		String password = args[2];
+		String table = args[3];
 		
 		
 		String startDate = null;
 		String endDate = null;
 		
-		if (args.length > 1) {
-			startDate = args[1];
+		if (args.length > 4) {
+			startDate = args[4];
 		}
-		if (args.length > 2) {
-			endDate = args[2]; 
+		if (args.length > 5) {
+			endDate = args[5]; 
 		}
 		
 		boolean useCreationDate = false;
-		if (args.length > 3) {
-			useCreationDate = args[3].equals("1");
+		if (args.length > 6) {
+			useCreationDate = args[6].equals("1");
 		}
 		if (useCreationDate) {
 			System.out.println("Using creation date for filtering.");
@@ -187,8 +190,8 @@ public class AthenaExportMt {
 		}
 		
 		boolean outputForSolr = false;
-		if (args.length > 4) {
-			outputForSolr = args[4].equals("1");
+		if (args.length > 7) {
+			outputForSolr = args[7].equals("1");
 		}
 		if (outputForSolr) {
 			System.out.println("Outputting data for Solr.");
@@ -197,8 +200,8 @@ public class AthenaExportMt {
 		}
 		
 		boolean useICE = false;
-		if (args.length > 5) {
-			useICE = args[5].equals("1");
+		if (args.length > 8) {
+			useICE = args[8].equals("1");
 		}
 		if (useICE) {
 			System.out.println("Including ICE matches in output.");
@@ -270,8 +273,6 @@ public class AthenaExportMt {
 				}
 				String targetLanguage = LANG_MAPPING.get(tmpLanguage).toLowerCase();
 				
-//				FileOutputStream solrfos = null;
-//				PrintStream solrPrintStream = null;
 				FileOutputStream mtfos = null;
 				PrintStream mtPrintStream = null;
 				FileOutputStream tmfos = null;
@@ -285,10 +286,7 @@ public class AthenaExportMt {
 					final Date now = new Date();
 					final String baseFileName = "athena_" + targetLanguage;
 					
-					if (outputForSolr) {
-//						solrfos = new FileOutputStream(new File(baseFileName + ".json"));
-//						solrPrintStream = new PrintStream(solrfos, true, "UTF-8");
-					} else {
+					if (!outputForSolr) {
 						mtfos = new FileOutputStream(new File(baseFileName + ".mt.bz2"));
 						mtfos.write("BZ".getBytes());
 						mtPrintStream = new PrintStream(new CBZip2OutputStream(mtfos), true, "UTF-8");
@@ -361,7 +359,6 @@ public class AthenaExportMt {
 							content.append(", \"commit\": {} }");
 							
 							System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
-//							solrPrintStream.println(content.toString());
 							CloseableHttpClient httpclient = HttpClients.createDefault();
 							try {
 								HttpPost request = new HttpPost("http://aws.prd.solr:8983/solr/update/json");
@@ -576,7 +573,6 @@ public class AthenaExportMt {
 						content.append(", \"commit\": {} }");
 
 						System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
-//						solrPrintStream.println(content.toString());
 						CloseableHttpClient httpclient = HttpClients.createDefault();
 						try {
 							HttpPost request = new HttpPost("http://aws.prd.solr:8983/solr/update/json");
@@ -607,8 +603,6 @@ public class AthenaExportMt {
 					System.out.println("…done processing " + oneTable);
 				}
 				finally {
-//					if (solrPrintStream != null) { solrPrintStream.close(); }
-//					if (solrfos != null) { solrfos.close(); }
 					if (mtPrintStream != null) { mtPrintStream.close(); }
 					if (mtfos != null) { mtfos.close(); }
 					if (tmPrintStream != null) { tmPrintStream.close(); }
