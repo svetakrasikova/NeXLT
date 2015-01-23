@@ -1,0 +1,596 @@
+English	Korean	Product	Chapter	Sequence
+Tutorial 2: Draw and edit in AutoCAD WS 2011	튜토리얼 2: 그리기 및 편집 AutoCAD WS 2011	acad	tut2a	68738
+Audience: Users new to AutoCAD WS	대상: 사용자가 새 AutoCAD WS	acad	tut2a	68739
+Prerequisites: None	사전 요구사항:	acad	tut2a	68740
+In This Tutorial	이 튜토리얼에서는	acad	tut2a	68741
+Please complete the lessons in this tutorial in order.	이 자습서의 단원 완료하십시오.	acad	tut2a	68742
+The earlier lessons include information that is needed in the later lessons.	이전 단원에는 단원에 필요한 정보가 담겨 있습니다.	acad	tut2a	68743
+In this tutorial, you learn how to do the following:	이 자습서에서는 다음과 같은 내용을 배우게 됩니다.	acad	tut2a	68744
+Draw Objects 	객체 그리기	acad	tut2a	68745
+Use the Command Line	명령행을 사용하여	acad	tut2a	68746
+Modify Object Properties	객체 특성 수정	acad	tut2a	68747
+Lesson 1: Draw Objects	학습 1: 객체 그리기	acad	tut2a	68748
+In this lesson, you will learn how to draw, select and delete objects.	이 단원에서는 그리는 방법을 배웁니다, 선택 및 객체 삭제.	acad	tut2a	68749
+In addition, you will learn how to change view mode.	또한 변경하는 방법을 배웁니다 뷰 모드입니다.	acad	tut2a	68750
+Currently AutoCAD WS does not support the creation of a new drawing without a pre-existing file.	현재 AutoCAD WS에서 지원하지 않는 새 없이 기존 도면 파일.	acad	tut2a	68751
+Open a file before starting to draw.	파일 열기 그리기를 시작합니다.	acad	tut2a	68752
+To draw a line	선을 그리려면	acad	tut2a	68753
+1 Click Home ➤ Open ➤ My Drawings, then select AEC Plan Elev Sample.dwg.	1 홈 &submenu; 열기 &submenu; 내 도면 를 선택한 다음 AEC ###평면 ELEV sample.dwg.	acad	tut2a	68754
+2 In the Editor menu, click Draw ➤ Line Tool.	2 편집기 메뉴에서 그리기 &submenu; 선 도구를 클릭합니다.	acad	tut2a	68755
+3 Drag the mouse down to the sample drawing.	3 마우스 아래 샘플 도면.	acad	tut2a	68756
+A crosshairs cursor appears with a text box.	십자선 커서가 표시됩니다.	acad	tut2a	68757
+This is known as the “Specify first point” dynamic prompt.	이 탭은 "첫 번째 점 지정" 동적 프롬프트.	acad	tut2a	68758
+4 In the sample drawing, click the mouse to pick a start point for your first line.	4 샘플 도면 마우스를 클릭하여 선택 첫 번째 선의 시작점을 선택합니다.	acad	tut2a	68759
+The dynamic prompt changes to “Specify distance”.	동적 프롬프트가 "으로 바뀝니다 거리 지정" 을 참고하십시오.	acad	tut2a	68760
+5 Drag the cursor in any direction and click to pick the end point of your line.	5 커서를 원하는 방향으로 끈 다음 클릭하여 선의 끝점을 선택합니다.	acad	tut2a	68761
+You have drawn your first line!	첫 번째 선을 다 그렸습니다!	acad	tut2a	68762
+To select and delete a single line	선 하나를 선택하여 삭제하려면	acad	tut2a	68763
+Before you learn how to draw other objects, select and delete the line you just drew.	그리는 방법을 배우기 전에 다른 객체, 선을 선택하여 방금 그린.	acad	tut2a	68764
+1 Click Draw ➤ Select.	1 그리기를 클릭하고 &submenu; 선택합니다.	acad	tut2a	68765
+2 Use the window selection box to select the line.	2 창 선택 상자에서 선을 선택합니다.	acad	tut2a	68766
+Move the cursor above and to the left of the line.	커서를 위와 왼쪽에 있습니다.	acad	tut2a	68767
+3 Click and hold down the mouse button as you drag to the right and down to form a selection box around the line.	3 클릭하고 마우스 버튼을 누른 채 드래그하여 오른쪽 아래로 이동하여 양식 주변에 선택 상자를 선택합니다.	acad	tut2a	68768
+4 Click the mouse.	4 마우스를 클릭합니다.	acad	tut2a	68769
+You know the line is selected when the following appears:	알고 선을 선택한 다음 나타납니다.	acad	tut2a	68770
+5 Click the Erase button on the Toolbar at the top of the window.	5 지우기 도구 모음의 버튼을 창의 맨 위에 있습니다.	acad	tut2a	68771
+You have learned how to select a single line and delete it.	다음과 같은 작업을 하는 방법을 배웠습니다 단일 선 및 삭제합니다.	acad	tut2a	68772
+To draw a polyline	폴리선을 그리려면	acad	tut2a	68773
+A polyline is a sequence of segments created as a single object.	폴리선이 일련의 작성된 세그먼트에 단일 오브젝트를 선택합니다.	acad	tut2a	68774
+Polylines can contain both straight and curved segments.	폴리선은 직선 및 곡선 세그먼트가 모두 포함될 수 있습니다.	acad	tut2a	68775
+In this lesson, you learn how to draw a polyline with straight segments.	이 단원에서는 폴리선을 그리는 방법을 배웁니다 직선 세그먼트가 있습니다.	acad	tut2a	68776
+1 Click Open.	1 열기를 클릭합니다.	acad	tut2a	68777
+2 In the Upload files dialog box, select bolt_add_polyline.dwg.	2에 파일 업로드 대화상자에서 bolt_add_polyline.dwg.	acad	tut2a	68778
+3 In this lesson, you will finish the side view drawing of a bolt by adding polylines.	3이 단원에서는 마침 측면 뷰 도면에 폴리선을 추가하여 볼트의.	acad	tut2a	68779
+4 Click Draw ➤ Polyline.	4 그리기를 클릭하고 &submenu; 폴리선.	acad	tut2a	68780
+5 Drag the cursor down to the bolt drawing and go to the location indicated in the following figure:	5 커서를 아래로 볼트 도면 및 위치로 이동하여 표시된 다음 그림:	acad	tut2a	68781
+6 Click on that location.	6을 클릭하여 해당 위치에 있습니다.	acad	tut2a	68782
+This is the first point of the polyline.	이 옵션은 폴리선의 첫 번째 점입니다.	acad	tut2a	68783
+7 Drag the cursor to the location indicated by the colored square in the following figure:	7 커서를 끌어 채색된 사각형이 표시된 위치로 다음 그림:	acad	tut2a	68784
+8 Click near the center of the colored square.	8 근처를 클릭하여 채색된 사각형의 중심.	acad	tut2a	68785
+You have drawn the first line in the polyline.	첫 번째 선을 그렸습니다 폴리선.	acad	tut2a	68786
+9 Drag the cursor to the location indicated by the colored square in the following figure:	9 커서를 끌어 채색된 사각형이 표시된 위치로 다음 그림:	acad	tut2a	68787
+10 Click near the center of the colored square.	10 근처를 클릭하여 채색된 사각형의 중심.	acad	tut2a	68788
+You have drawn the second line in the polyline.	두 번째 선을 그렸습니다 폴리선.	acad	tut2a	68789
+11 Drag the cursor to the location indicated by the colored square in the following figure:	11 커서를 끌어 채색된 사각형이 표시된 위치로 다음 그림:	acad	tut2a	68790
+12 Click near the center of the colored square.	12 근처를 클릭하여 채색된 사각형의 중심.	acad	tut2a	68791
+You have drawn the third line in the polyline.	세 번째 선을 그렸습니다 폴리선.	acad	tut2a	68792
+13 Press the Enter key to end the polyline.	13 Enter 키를 눌러 폴리선을 종료합니다.	acad	tut2a	68793
+14 Click Home ➤ Save, and save the drawing as Drawing1.dwg.	14 홈 &submenu; 저장 및 도면을 Drawing1.dwg.	acad	tut2a	68794
+To draw a circle	원을 그리려면	acad	tut2a	68795
+In this lesson, you learn how to draw a circle by specifying the center point and radius.	이 단원에서는 원을 그리는 방법을 배웁니다 중심점과 반지름을 지정하여.	acad	tut2a	68796
+1 With Drawing1.dwg open, click Draw ➤ Circle.	1 Drawing1.dwg 열려 있으면 그리기 &submenu; 원을 클릭합니다.	acad	tut2a	68797
+2 Drag the crosshairs cursor down to the drawing area.	2 십자선을 끌고 커서를 아래로 도면 영역에 있습니다.	acad	tut2a	68798
+3 Click the left mouse button to specify the center of the circle.	3 마우스 왼쪽 버튼을 클릭하여 원의 중심점을 지정합니다.	acad	tut2a	68799
+4 The dynamic input prompt asks you to “Specify distance.”	4 동적 입력 메시지가 표시됩니다. “거리 지정 " 을 참고하십시오.	acad	tut2a	68800
+Enter 0.25 from the keyboard and press the Enter key to create a circle with a radius of 0.25.	Enter 0.25 from 키보드에서 Enter 키를 눌러 원 작성 반지름 0.25 입니다.	acad	tut2a	68801
+5 Click Home ➤ Save, and save the drawing as Drawing1.dwg.	5 홈 &submenu; 저장 및 도면을 Drawing1.dwg.	acad	tut2a	68802
+You will use this file in Lesson 3.	에서 이 파일을 사용하게 됩니다. 학습 3	acad	tut2a	68803
+Using PhysX in 3ds Max	PhysX 3ds Max 사용	physx	using1	68898
+The following pages are part of {557}Using PhysX in 3ds Max{558}:	다음 페이지 일부가 {557} 사용 PhysX 3ds Max {558}:	physx	using1	68899
+An introduction the ways you interact with the plug-in in 3ds Max.	소개 방법을 상호 작용할 때 플러그인은 3ds Max.	physx	using1	68900
+{559} Rigid Bodies & Constraints{560}	{559} 강체 및 제약 조건 {560}	physx	using1	68901
+Working with blocks, balls, and more complex non-deforming objects hooked together.	블록 관련 작업에 공, 더 복잡한 non-deforming 오브젝트를 연결할 수 있습니다.	physx	using1	68902
+The convenience commands and helper available for working with boned characters.	이 편의를 위해 명령 및 도우미 사용 가능한 작업 골격 자입니다.	physx	using1	68903
+Realistic cloth constrained and colliding with characters.	실제 의상 구속 및 충돌 문자로 채웁니다.	physx	using1	68904
+Tools for seeing more about the simulation than just its effects.	도구 확인하는 데 대한 자세한 정보는 시뮬레이션 외에 해당 효과를 적용할 수 있습니다.	physx	using1	68905
+{561} Baking PhysX Simulation Results{562}	{561} 굽기 PhysX 시뮬레이션 결과 {562}	physx	using1	68906
+Moving your PhysX and APEX simulations into keyframes that 3ds Max understands.	움직이는 PhysX 및 APEX 시뮬레이션 에 있는 키프레임 3ds Max 인식합니다.	physx	using1	68907
+The Plug-in Interface	플러그인 인터페이스	physx	using1	68908
+The PhysX Toolbar	PhysX 도구 모음	physx	using1	68909
+The PhysX Menu	PhysX 메뉴	physx	using1	68910
+Simulation Controls	시뮬레이션 컨트롤	physx	using1	68911
+Physical Material Editor	물리적 재질 편집기	physx	using1	68912
+Ragdolls	ragdolls	physx	using1	68913
+Rigid Bodies & Constraints	강체 및 제약 조건	physx	using1	68914
+The PhysX Tools panel	PhysX 도구 패널	physx	using1	68915
+Basics	기본 사항	physx	using1	68917
+Introduction	소개	physx	using1	68918
+Overview	개요	physx	using1	68919
+The most obvious way to interact with the PhysX plug-in via the PhysX Toolbar.	가장 쉬운 방법은 상호 작용할 PhysX 플러그인 via the MassFX 도구 모음.	physx	using1	68920
+If you have just installed the plug-in, this toolbar should appear automatically, floating in plain sight.	if 방금 설치된 플러그인, 이 도구막대가 나타날 자동으로, 부동 일반.	physx	using1	68921
+It appears as shown at right.	이 모양으로 표시됩니다.	physx	using1	68922
+If the toolbar isn’t visible (if, for example, you have closed it), you can get it to show up again as with any other toolbar in Max: simply right-click in an unused toolbar area, and choose “PhysX Toolbar” from the right-click menu.	도구 모음이 보이지 (예를 들어, 닫힌) 수 있습니다 표시하기 위해 다시 다른 도구막대 Max: 단순히 사용하지 않는 도구막대 영역 및 "MassFX 도구 모음" 마우스 오른쪽 버튼 클릭 메뉴에서 사용할 수 있습니다.	physx	using1	68923
+Ah, there it is!	aH, 이는!	physx	using1	68924
+{563}The first button in the PhysX Toolbar opens the PhysX Tools panel, shown at right.	{563} 첫 번째 버튼을 PhysX 도구막대가 열립니다 PhysX 도구 패널에 표시됩니다.	physx	using1	68926
+There are two tabs at the top of the panel, the {564}Global{565} and the {566}Modifier{567} tab.	두 가지 탭 패널 위쪽의, {564} ###전역 {565} 및 {566} ###수정자 {567} 탭을 클릭합니다.	physx	using1	68927
+The {568}Global{569} tab (as seen at right) lets you control aspects common to the entire project.	이 {568} ###전역 {569} 탭 (오른쪽) 를 사용하여 전체 프로젝트에 공통적으로 적용되는 측면을 제어할 수 있습니다.	physx	using1	68928
+The “Scene Settings” rollout allows you to specify values that affect the scene.	장면 설정 롤아웃에서 값을 지정할 수 있는 장면에 영향을 주지 않습니다.	physx	using1	68929
+The “Advanced Settings” rollout allows you to control advanced controls that affect the scene.	고급 설정 롤아웃 조정할 수 있습니다. 고급 컨트롤을 장면에 영향을 주지 않습니다.	physx	using1	68930
+The “Simulation” rollout provides authoring defaults for the simulation.	" 시뮬레이션” 롤아웃은 제작 기본값.
+The {570}Display{571} tab lets you control the display properties common to the entire project.	이 {570} 화면표시 {571} 탭을 제어할 수 있는 전체 프로젝트에 공통되는 디스플레이 속성을 선택합니다.
+The “Rigid Bodies” rollout provides display options for all rigid bodies in the scene.	“강체  롤아웃에서 모든 강체에 대한 디스플레이 옵션을 제공하며 입니다."	physx	using1	68931
+The “APEX Clothing” rollout provides diplay options for all apex clothing in the scene.	“APEX 의상 " 롤아웃은 화면표시 옵션 모든 APEX 의상 입니다.	physx	using1	68932
+For more information, see the {572}reference section{573}.	자세한 내용은 {572} 참조 단면 {573}.	physx	using1	68933
+{574}The next two buttons are the rigid body and constraints flyouts.	{574} 다음 두 개의 버튼은 강체 및 제약 조건 플라이아웃입니다.	physx	using1	68935
+As with Max flyouts, clicking on the button will perform the action indicated by the icon, while clicking and holding on the flyout will display a list of related actions.	As 최대 플라이아웃 버튼을 클릭하여 작업을 수행할 나타내는 아이콘, 플라이아웃을 클릭한 채 누르고 있으면 이 리스트를 표시하고 관련 동작.	physx	using1	68936
+For more information, see {575}, or the reference sections for the {576} and the {577}.	자세한 내용은 {575} 또는 참조 단면 {576} 및 {577}.	physx	using1	68937
+{578}The third flyout button contains actions for working with ragdolls.	{578} 세 번째 플라이아웃 버튼이 포함된 동작 작업 ragdolls.	physx	using1	68939
+As above, clicking the button will perform the action shown, while clicking and holding on the button will let you choose an alternative action.	위 버튼을 클릭하면 이 작업을 수행할 을 클릭한 채 누르고 있으면 버튼을 선택할 수 있는 대체 동작.	physx	using1	68940
+For more information, see {579}Creating Ragdolls{580}, or the reference section for the {581}.	자세한 내용은 {579} 작성 ragdolls {580} 또는 의 참조 섹션을 {581}.	physx	using1	68941
+{582}This button on the toolbar opens and closes the Physical Material Editor.	{582} 이 도구 모음의 버튼을 열고 닫습니다 물리적 재질 편집기에 있습니다.	physx	using1	68943
+Like Max’s (graphical) Material Editor, the Physical Material Editor lets you create presets for the physical properties of rigid bodies or clothing, and re-use them throughout your project.	LIKE Max의 (그래픽) 재질 편집기, 물리적 재질 편집기를 사용하면 작성 사전 설정에 대한 물리적 특성을 강체 또는 의복 및 다시 사용할 전체 프로젝트에 있습니다.	physx	using1	68944
+For more information, see the reference section for the {583}&nbsp;(where you can reference a physical material preset), or the reference section for the {584}&nbsp;itself.	자세한 내용은 의 참조 섹션을 {583} &nbsp; (참조할 수 있는 물리적 재질 사전 설정) 또는 의 참조 섹션을 {584} &nbsp; 자체입니다.	physx	using1	68945
+{585}Last on the toolbar are three buttons for controlling the simulation:	{585} 도구 모음의 나머지 세 개의 버튼이 시뮬레이션:	physx	using1	68947
+The {586}&nbsp;{587}Reset Simulation{588} button rewinds the Max Time Slider to the first frame and moves any dynamic rigid bodies back to their initial transform.	이 {586} &nbsp; {587} 시뮬레이션 다시 설정 버튼 {588} 처음으로 Max 시간 슬라이더를 첫 번째 프레임으로 이동하는 모든 역학 강체를 초기 변환.	physx	using1	68948
+Where Max’s own “Play Animation” button advances the Time Slider and shows you animations (only), the PhysX {589}&nbsp;{590}Start Simulation{591} button updates the positions of (dynamic) rigid body and clothing objects in the scene, along with advancing the Max Time Slider and visualizing Max animations.	여기서 Max 자체의 "애니메이션 재생" 버튼을 클릭하여 시간 슬라이더 및 보여줍니다. 애니메이션 (), PhysX {589} &nbsp; {590} 시뮬레이션 시작 {591} 버튼 위치를 (동적) 강체 및 의상 오브젝트가 장면에서 함께 진행하고 Max 시간 슬라이더 및 시각화 Max 애니메이션.	physx	using1	68949
+If you wish to run the simulation only (without advancing the Max Time Slider, and thus not updating the position of any kinematic rigid bodies), a second ‘play’ button named {592}&nbsp;{593}Start Simulation without Animation{594} is available as part of the flyout.	원하는 경우 시뮬레이션을 실행하려면 (진행하고 Max 시간 슬라이더 및 업데이트하지 위치 모든 운동학 강체가), 두 번째 ‘’ 재생 버튼 명명된 {592} &nbsp; {593} 애니메이션 없이 시뮬레이션 시작 {594} 가 일부로 제공됨 플라이아웃	physx	using1	68950
+The {595}&nbsp;{596}Step Simulation{597} button runs the simulation for a single frame (with Max animation) and then stops it.	이 {595} &nbsp; {596} 시뮬레이션 단계 {597} 버튼 시뮬레이션을 한 프레임씩 실행합니다 (최대 애니메이션) 다음 중지합니다.	physx	using1	68951
+Finally, there is the PhysX menu in the menu bar of Max itself.	마지막으로, PhysX 메뉴를 메뉴 막대에 Max.	physx	using1	68953
+While much of this menu exists to provide you with an alternative to the toolbar, there are some actions (such as {598}creating clothing{599} or {600}exporting the scene{601}) that must be made through the menu itself.	동안 이 메뉴 존재합니다 제공하기 위해 대체 도구막대, 몇 가지 작업 (예: {598} 작성 의상 {599} 또는 {600} 장면을 내보내기 {601} ) 하는 통해 메뉴.	physx	using1	68954
+For more information, see the reference section for the {602}.	자세한 내용은 의 참조 섹션을 {602}.	physx	using1	68955
+The following pages are part of {603}Rigid Bodies & Constraints{604}:	다음 페이지 일부가 {603} 강체 및 제약 조건 {604}:	physx	using1	68957
+{605} Rigid Body Overview{606}	{605} 강체 개요 {606}	physx	using1	68958
+Introduction to the concepts needed for authoring rigid bodies.	소개 필요한 개념을 제작 강체입니다.	physx	using1	68959
+{607} Working with Rigid Bodies{608}	{607} 강체 작업 {608}	physx	using1	68960
+The workflow for creating and editing rigid bodies.	워크플로우 작성 및 편집을 위한 강체입니다.	physx	using1	68961
+{609} Constraining Physics Objects{610}	{609} 피지크 오브젝트 제한 {610}	physx	using1	68962
+Understanding, creating, and editing PhysX constraints.	이해 작성, 편집 및 PhysX 제약 조건이 있습니다.	physx	using1	68963
+Rigid Body Overview	강체 개요	physx	using1	68964
+What is a "Rigid Body"?	어떤 "고정 몸체"?	physx	using1	68965
+Composing the Physical Representation	물리적 표시 구성	physx	using1	68966
+Rigid Body Types: Dynamic, Kinematic, and Static	강체 유형: 역학, 운동학 및 정적	physx	using1	68967
+Physical Meshes versus Graphical Meshes	물리적 메시와 그래픽 메시 비교	physx	using1	68968
+What is a	무엇입니까	physx	using1	68969
+A "rigid body" is an object in the physical simulation whose shape and size cannot change.	강체 가 있는 오브젝트의 물리적 시뮬레이션에서 모양과 크기를 변경할 수 없습니다.	physx	using1	68970
+If you make a rod in your scene into a rigid body, it may bounce and slide around, but it can never be bent or snapped (no matter how much force is applied).	로드 만드는 경우 장면에서 강체 경우 바운스 및 슬라이딩할 수 있지만 전혀 절곡부 또는 스냅됨 (아무리 힘을 가해도).	physx	using1	68971
+Multiple rigid bodies may be joined together in a scene by constraints.	여러 강체를 결합할 수 있습니다 (장면의 제약 조건이 있습니다.	physx	using1	68972
+For example, imagine that you have added a door to your scene and made it a rigid body.	예를 들어, 사용자가 장면에 문을 추가하고 이를 강체로 설정한.	physx	using1	68973
+While it may may start out precariously balanced upright in the door frame, any bump into the door is going to have it fall flat on the floor.	이 있을 수도 있습니다. 시작 아웃 precariously 균형 상향식 문 프레임, 인해 문이 이동하여 해당 바닥에.	physx	using1	68974
+You need to add a hinge constraint to hold the door on the door frame.	추가 힌지 제약 조건을 ###유지 문 문 프레임.	physx	using1	68975
+{611}teapot graphical mesh and simplified physical mesh	{611} 찻주전자 그래픽 메시 및 단순화된 물리적 메시	physx	using1	68977
+Manage Your Data	데이터를 관리할	physx	using1	68978
+Data Management Overview	데이터 관리 개요	physx	using1	68979
+data management:overview;overview:data management	데이터 관리:개요; 개요: 데이터 관리	galileo	manage	69153
+Using &ProdName;, a city modeler can manage the data in a city model project.	&ProdName; 을(를) 사용하여 도시 모델러 관리할 수 있는 데이터 도시 모형 프로젝트.	galileo	manage	69154
+Management functions include the following abilities:	관리 기능에는 다음과 같은 기능이 있습니다.	galileo	manage	69155
+review referenced data sources and attribute mappings	검토 참조된 데이터 소스 및 속성 매핑	galileo	manage	69156
+remove city objects that have been previously imported	제거 도시 객체는 이전에 가져온	galileo	manage	69157
+update data mappings	업데이트 데이터 매핑	galileo	manage	69158
+reimport relevant source data	가져올 관련 소스 데이터	galileo	manage	69159
+Manage Data Sources and Attribute Mappings	데이터 소스를 관리할 및 속성 매핑	galileo	manage	69160
+manage:data sources;manage:attribute mapping;data sources:management of;attribute mapping:management of	관리: 데이터 소스; 관리: 속성 매핑; 데이터 소스: 관리; 속성 매핑: 관리	galileo	manage	69161
+You can manage all data sources and attribute mapping entries used during import operations.	관리할 수 모든 데이터 소스 및 속성 매핑 항목이 사용된 가져오는 동안 작업.	galileo	manage	69162
+When model objects are imported, their data source location, connection information, and relevant attribute mappings remain intact.	모형 오브젝트를 가져온 경우 해당 데이터 원본 위치, 연결 정보 및 관련 속성 매핑을 그대로 유지됩니다.	galileo	manage	69163
+All settings are maintained between the source data and the city model object classes.	모든 설정은 유지됩니다 소스 데이터 및 도시 모형 객체 클래스.	galileo	manage	69164
+Data source locations, connection information, and attribute mappings are reviewed by ...	데이터 원본 위치, 연결 정보 및 속성 매핑을 검토됩니다 기준...	galileo	manage	69165
+To review data sources	검토 데이터 소스	galileo	manage	69166
+Click Start menu {83} Programs {84} Autodesk {85} &ProdNameLong; {86} &ProdNameLong;.	시작 메뉴 {83} 프로그램 {84} Autodesk {85} &ProdNameLong; {86} &ProdNameLong; 을(를) 참고하십시오.	galileo	manage	69167
+Open an existing city model.	기존 도시 모형.	galileo	manage	69168
+Click Import menu {87} Terrain.	가져오기를 클릭하여 메뉴 {87} 지형.	galileo	manage	69169
+The Import Geospatial Data dialog box is displayed.	지형 공간 데이터 가져오기 대화상자가 표시됩니다.	galileo	manage	69170
+Click the Add Files button and select a terrain model you want added to the project.	Add Files 버튼을 선택하고 지형 모델 원하는 프로젝트에 추가됩니다.	galileo	manage	69171
+Navigate to the folder containing source data and select a terrain model.	포함하는 폴더로 이동하여 소스 데이터 및 지형 모델.	galileo	manage	69172
+Click Open.	열기를 클릭합니다.	galileo	manage	69173
+The selected terrain model is added to the import list.	선택한 지형 모형에 추가되고 가져오기 리스트.	galileo	manage	69174
+The terrain model has a coordinate system of CA-I assigned.	지형 모형에 좌표계를 CA-I 지정됩니다.	galileo	manage	69175
+Click Insert.	삽입을 클릭합니다.	galileo	manage	69176
+{88}Result:{89}	{88} 결과: {89}	galileo	manage	69177
+The terrain model is imported into the city model project and the coordinate system is automatically set to that of the terrain model.	지형 모델을 가져오면 도시 모형 프로젝트 및 좌표계가 자동으로 설정할 수 있는 지형 모델.	galileo	manage	69178
+To review attribute mappings	검토 속성 매핑	galileo	manage	69179
+Click Start menu {90} Programs {91} Autodesk {92} &ProdNameLong; {93} &ProdNameLong;.	시작 메뉴 {90} 프로그램 {91} Autodesk {92} &ProdNameLong; {93} &ProdNameLong; 을(를) 참고하십시오.	galileo	manage	69180
+Click Import menu {94} Terrain.	가져오기를 클릭하여 메뉴 {94} 지형.	galileo	manage	69182
+{95}Result:{96}	{95} 결과: {96}	galileo	manage	69190
+To manage data sources	데이터 소스를 관리할	galileo	manage	69192
+Click Start menu {97} Programs {98} Autodesk {99} &ProdNameLong; {100} &ProdNameLong;.	시작 메뉴 {97} 프로그램 {98} Autodesk {99} &ProdNameLong; {100} &ProdNameLong; 을(를) 참고하십시오.	galileo	manage	69193
+Click Import menu {101} Terrain.	가져오기를 클릭하여 메뉴 {101} 지형.	galileo	manage	69195
+{102}Result:{103}	{102} 결과: {103}	galileo	manage	69203
+To manage attribute mappings	관리 속성 매핑	galileo	manage	69205
+Click Start menu {104} Programs {105} Autodesk {106} &ProdNameLong; {107} &ProdNameLong;.	시작 메뉴 {104} 프로그램 {105} Autodesk {106} &ProdNameLong; {107} &ProdNameLong; 을(를) 참고하십시오.	galileo	manage	69206
+Click Import menu {108} Terrain.	가져오기를 클릭하여 메뉴 {108} 지형.	galileo	manage	69208
+{109}Result:{110}	{109} 결과: {110}	galileo	manage	69216
+Edit Attribute Mappings	속성 매핑 편집	galileo	manage	69218
+edit:attribute mapping;attribute mapping:editing of	편집: 속성 매핑; 매핑: 속성 편집	galileo	manage	69219
+To visualize elements in the city model project correctly, source data attributes require mapping to corresponding attributes of city model objects.	시각화할 수 있는 요소 도시 모형 프로젝트 올바르게, 소스 데이터 속성 필수 매핑 해당 속성을 도시 모형 객체가 포함되어 있습니다.	galileo	manage	69220
+After model objects are imported, you may find it necessary to edit attribute mappings.	이후 모형 객체는 가져온 경우 필요한 속성 편집 매핑.	galileo	manage	69221
+For example, the height attribute of an apartment building may need to change for greater visual accuracy.	예를 들어, 높이 속성 아파트 건물 변경해야 할 보다 시각적인 정확도	galileo	manage	69222
+After editing any attribute mappings, it is necessary to import the source data again to update the visualization.	편집하고 나면 모든 속성 매핑을 경우, 가져오기 원본 데이터 다시 업데이트를 위해 시각화.	galileo	manage	69223
+Because this operation changes the city model, you are prompted to confirm the action.	이 작업을 수행하면 도시 모형 확인하는 메시지가 표시됩니다.	galileo	manage	69224
+Attribute mapping does not support undo/redo.	속성 매핑 지원하지 않는 실행 취소/다시 실행.	galileo	manage	69225
+To edit attribute mappings	편집할 속성 매핑	galileo	manage	69226
+Click Start menu {111} Programs {112} Autodesk {113} &ProdNameLong; {114} &ProdNameLong;.	시작 메뉴 {111} 프로그램 {112} Autodesk {113} &ProdNameLong; {114} &ProdNameLong; 을(를) 참고하십시오.	galileo	manage	69227
+Click Import menu {115} Terrain.	가져오기를 클릭하여 메뉴 {115} 지형.	galileo	manage	69229
+{116}Result:{117}	{116} 결과: {117}	galileo	manage	69237
+To render updated source data	렌더링 업데이트된 소스 데이터	galileo	manage	69239
+Click Start menu {118} Programs {119} Autodesk {120} &ProdNameLong; {121} &ProdNameLong;.	시작 메뉴 {118} 프로그램 {119} Autodesk {120} &ProdNameLong; {121} &ProdNameLong; 을(를) 참고하십시오.	galileo	manage	69240
+Click Import menu {122} Terrain.	가져오기를 클릭하여 메뉴 {122} 지형.	galileo	manage	69242
+{123}Result:{124}	{123} 결과: {124}	galileo	manage	69250
+Remove City Objects from Source Data	제거 시 객체를 소스 데이터	galileo	manage	69252
+remove:city objects;city objects:removal of;data sources:remove city objects;city objects:removal from source data	제거: City 객체; City 객체: 제거; 데이터 소스: 제거 시 객체; City 객체 제거: 데이터 소스	galileo	manage	69253
+Model objects retain a constant connection with their source data.	모델 객체 유지 상수 연결 해당 소스 데이터가 있습니다.	galileo	manage	69254
+It is not uncommon for data sources to be associated with several model objects of a certain type.	많습니다 데이터 소스 연관된 모형 여러 오브젝트 중 특정 유형입니다.	galileo	manage	69255
+For example, source data for street objects for a specific part of the city may be stored in a SHP file.	예를 들어, 소스 데이터의 도로 객체 특정 부품 구/군/시 저장될 수 있지만 SHP 파일에 있습니다.	galileo	manage	69256
+When you import the SHP file content, the streets are visualized in the viewport.	가져올 때 SHP 파일 내용을 거리에 시각화 뷰포트에 나타납니다.	galileo	manage	69257
+If you remove a street, this operation removes {125}all{126} of the street objects associated with the SHP file; not the individual street object.	제거하는 경우 도로, 이 작업을 제거합니다 {125} 모든 {126} 거리의 연관된 객체의 SHP 파일; 아닌 개별 도로 객체.	galileo	manage	69258
+Model objects that are imported from other data sources remain in the city model.	모형 에서 가져온 오브젝트에 다른 데이터 소스의 남아 도시 모형.	galileo	manage	69259
+Removing city model objects from the data source is not supported by undo/redo.	제거 시 모형 객체 데이터 소스 지원하지 않습니다. 실행 취소/다시 실행.	galileo	manage	69261
+To remove city objects imported from a data source	제거할 수 있는 도시 가져온 객체 데이터 소스	galileo	manage	69262
+Click Start menu {127} Programs {128} Autodesk {129} &ProdNameLong; {130} &ProdNameLong;.	시작 메뉴 {127} 프로그램 {128} Autodesk {129} &ProdNameLong; {130} &ProdNameLong; 을(를) 참고하십시오.	galileo	manage	69263
+Click Import menu {131} Terrain.	가져오기를 클릭하여 메뉴 {131} 지형.	galileo	manage	69265
+{132}Result:{133}	{132} 결과: {133}	galileo	manage	69273
+Filter the list of data sources below	필터 리스트 데이터 소스 아래	galileo	manage	69275
+Show:	표시:	galileo	manage	69276
+Add file data source	파일 추가 데이터 소스	galileo	sw1	69658
+Add File	파일 추가	galileo	sw1	69659
+Add database data source	추가 데이터베이스 데이터 소스	galileo	sw1	69660
+Connect Database	데이터베이스 연결	galileo	sw1	69661
+Configure	구성	galileo	sw1	69662
+Select Features	피쳐 선택	galileo	sw1	69663
+Delete Features	피쳐 삭제	galileo	sw1	69664
+Expand All	모두 확장	galileo	sw1	69665
+Collapse All	모두 축소	galileo	sw1	69666
+Hide Details	상세 정보 숨기기	galileo	sw1	69667
+Data Source Details	데이터 소스 정보	galileo	sw1	69668
+Source type:	소스 유형:	galileo	sw1	69669
+Connection string:	연결 문자열:	galileo	sw1	69670
+Coordinate system:	좌표계:	galileo	sw1	69671
+Date loaded:	날짜 로드됩니다.	galileo	sw1	69672
+File Data Source Reconnection	파일 데이터 소스를 다시 연결하기	galileo	sw1	69673
+Select	선택	galileo	sw1	69674
+Rename	이름 바꾸기	galileo	sw1	69675
+Refresh...	갱신...	galileo	sw1	69676
+Remove Data	데이터 제거	galileo	sw1	69677
+Removal cannot be undone.	제거 취소할 수 없습니다.	galileo	sw1	69678
+Continue and remove the data?	계속해서 제거할 데이터?	galileo	sw1	69679
+Remove All Features	모두 제거 (피쳐	galileo	sw1	69680
+Continue and remove all features of this data source?	계속 및 Remove All이 데이터 소스?	galileo	sw1	69682
+Name	이름	galileo	sw1	69683
+Multiple Values	다중 값	galileo	sw1	69684
+Source	소스	galileo	sw1	69685
+Type	유형	galileo	sw1	69686
+Invert Orientation	방향 반전	galileo	sw1	69687
+Invert Up Axis	반전 축을	galileo	sw1	69688
+Flip Y and Z	Y 및 Z 반전	galileo	sw1	69689
+Texture Blend Mode	텍스처 혼합 모드	galileo	sw1	69690
+Original	원본	galileo	sw1	69691
+Modulate	변조	galileo	sw1	69692
+Decal	그림	galileo	sw1	69693
+Lifespan	수명 기간	galileo	sw1	69694
+Common	공통	galileo	sw1	69695
+Style	스타일	galileo	sw1	69696
+Elevation	표고	galileo	sw1	69697
+Edit	편집	galileo	sw1	69698
+Revert	되돌리기	galileo	sw1	69699
+Script	스크립트	galileo	sw1	69700
+Source Filter	필터 소스	galileo	sw1	69701
+Draping Options	드레이핑 옵션	galileo	sw1	69702
+Convert closed polylines to polygons	닫힌 폴리선을 폴리곤으로 변환	galileo	sw1	69703
+Do not drape	Do Not 드레이프	galileo	sw1	69704
+Drape	드레이프	galileo	sw1	69705
+Set Elevation	입면도 설정	galileo	sw1	69706
+Table	테이블	galileo	sw1	69707
+Coordinate System	좌표계	galileo	sw1	69708
+Position	위치	galileo	sw1	69709
+Offset	간격띄우기	galileo	sw1	69710
+Scale	축척	galileo	sw1	69711
+Rotation	회전	galileo	sw1	69712
+Interactive Placing...	대화식 배치...	galileo	sw1	69713
+Local Origin	로컬 원점	galileo	sw1	69714
+Center 2D	중심 2D	galileo	sw1	69715
+Center 3D	3D 중심	galileo	sw1	69716
+Lower Left Front	왼쪽 앞	galileo	sw1	69717
+Geo Location	형상 위치	galileo	sw1	69718
+Clip to Model Extent	클립 모형 범위	galileo	sw1	69719
+No Data Value	데이터 값	galileo	sw1	69720
+Height Band	높이 밴드	galileo	sw1	69721
+Classification	분류	galileo	sw1	69722
+Color Mask	마스크 색상	galileo	sw1	69723
+Band Mapping	밴드 매핑	galileo	sw1	69724
+Gray	회색	galileo	sw1	69725
+Red	빨간색	galileo	sw1	69726
+Green	초록색	galileo	sw1	69727
+Blue	파란색	galileo	sw1	69728
+Alpha	알파	galileo	sw1	69729
+Undefined	정의되지 않음	galileo	sw1	69730
+Aerial	공중	galileo	sw1	69731
+Satellite	위성	galileo	sw1	69732
+Topographic Map	지형도	galileo	sw1	69733
+Smooth Colors	부드러운 색상	galileo	sw1	69734
+Discrete Colors	개별 색상	galileo	sw1	69735
+Gray + Alpha	회색 + 알파	galileo	sw1	69736
+RGB	RGB	galileo	sw1	69737
+RGB + Alpha	RGB 알파 +	galileo	sw1	69738
+Pick Color	색상 선택	galileo	sw1	69739
+Link	링크	galileo	sw1	69740
+Tooltip	tooltip	galileo	sw1	69741
+Expression Editor...	표현식 편집기...	galileo	sw1	69742
+Style Chooser...	스타일 선택...	galileo	sw1	69743
+Export to FBX	FBX로 내보내기	galileo	sw1	69744
+Target Coordinate System	대상 좌표계	galileo	sw1	69745
+Target File(s)	대상 파일 (S)	galileo	sw1	69746
+Single File	단일 파일	galileo	sw1	69747
+Set File...	파일...	galileo	sw1	69748
+Multiple Files	여러 파일	galileo	sw1	69749
+Set Location...	위치 설정...	galileo	sw1	69750
+Feature Type	피쳐 유형	galileo	sw1	69751
+File Name	파일 이름	galileo	sw1	69752
+Export Materials/Textures	내보내기 재료/텍스처	galileo	sw1	69753
+Import Bookmarks	가져오기 북마크	galileo	sw1	69754
+File Settings	파일 설정	galileo	sw1	69755
+Source file	소스 파일	galileo	sw1	69756
+Shot Settings	샷 설정	galileo	sw1	69757
+Order Index	순서 색인	galileo	sw1	69758
+Camera Height	카메라 높이	galileo	sw1	69759
+Add Geometry Z	형상 추가 Z	galileo	sw1	69760
+Expression	표현식	galileo	sw1	69761
+Camera Orientation	카메라 방향	galileo	sw1	69762
+Tilt	경사	galileo	sw1	69763
+Timing Control	타이밍 조정	galileo	sw1	69764
+Set Speed	속도	galileo	sw1	69765
+Set Duration	설정 시간	galileo	sw1	69766
+Path Speed	경로 속도	galileo	sw1	69767
+Path Duration	경로 기간	galileo	sw1	69768
+Pause Duration	일시 중지 기간	galileo	sw1	69769
+3D Model Files (%1)	3D 모형 파일 (%1)	galileo	sw1	69770
+Arc/Info Binary Grid	호/정보 이진 그리드	galileo	sw1	69771
+Arc/Info ASCII Grid	호/정보 ASCII 그리드	galileo	sw1	69772
+VTP Binary Terrain	vtp 이진 지형	galileo	sw1	69773
+Collada	Collada	galileo	sw1	69774
+Database	데이터베이스	galileo	sw1	69775
+Military elevation data	MGRS (Military 표고 데이터	galileo	sw1	69776
+Autodesk DWG	Autodesk DWG	galileo	sw1	69777
+Arc/Info Grid Export	호/정보 그리드 내보내기	galileo	sw1	69778
+Enhanced Compressed Wavelet	Enhanced Compressed Wavelet	galileo	sw1	69779
+Autodesk FBX	Autodesk FBX	galileo	sw1	69780
+Golden Surfer Grid	골드 검색 그리드	galileo	sw1	69781
+Nasa SRTM	nasa SRTM	galileo	sw1	69782
+Erdas Imagine	erdas 상상해 봅니다.	galileo	sw1	69783
+OBJ	오브젝트	galileo	sw1	69784
+PNG	PNG	galileo	sw1	69785
+SDF	SDF	galileo	sw1	69786
+SQLite	SQLite	galileo	sw1	69787
+Autodesk 3DS	Autodesk 3DS	galileo	sw1	69788
+GeoTIFF	GeoTIFF	galileo	sw1	69789
+MrSID	MrSID	galileo	sw1	69790
+Comma Separated Value	쉼표 구분 값	galileo	sw1	69791
+Civil	토목	galileo	sw1	69792
+Terrain Texture	지세 텍스처	galileo	sw1	69793
+Terrain Surface	지형 표면	galileo	sw1	69794
+Texture	텍스처	galileo	sw1	69795
+Facade Style Editor	정면 스타일 편집기	galileo	sw1	69796
+Theme	주제	galileo	sw1	69797
+Building Base Color	빌딩 기준 색상	galileo	sw1	69798
+Layouts	배치	galileo	sw1	69799
+Block Sequence	블록 시퀀스	galileo	sw1	69800
+various values	다양한 값	galileo	sw1	69801
+FileBasedDbConnectionWidget	filebaseddbconnectionwidget	galileo	sw1	69802
+Source file:	원본 파일:	galileo	sw1	69803
+Source file or folder:	소스 파일 또는 폴더:	galileo	sw1	69804
+File	파일	galileo	sw1	69805
+Folder	폴더	galileo	sw1	69806
+Dialog	대화상자	galileo	sw1	69807
+Type of data:	데이터 유형:	galileo	sw1	69808
+Unkown File Extension	알 수 없는 파일 확장자	galileo	sw1	69809
+Unknown File Category	알 수 없는 파일 범주	galileo	sw1	69810
+Files	파일	galileo	sw1	69811
+MySql	MySQL	galileo	sw1	69812
+ODBC	ODBC	galileo	sw1	69813
+Oracle	Oracle	galileo	sw1	69814
+SQL Server	SQL Server	galileo	sw1	69815
+SQL Server Spatial	SQL Server Spatial	galileo	sw1	69816
+WFS	WFS	galileo	sw1	69817
+WMS	WMS	galileo	sw1	69818
+Unkown connection type	알 수 없는 연결 유형	galileo	sw1	69819
+Base Layer Management	기준 도면층 관리	galileo	sw1	69820
+Apply	적용	galileo	sw1	69821
+Internal Error	내부 오류	galileo	sw1	69822
+There occured an error while applying the made changes.	다음과 같은 발생한 오류 적용하는 동안 변경한 사항이 있습니다.	galileo	sw1	69823
+(See the current log for details).	(현재 로그에서 상세 정보).	galileo	sw1	69824
+Hide data source contents	데이터 원본 내용 숨기기	galileo	sw1	69825
+Show data source contents	데이터 원본 내용	galileo	sw1	69826
+Terrain Surfaces	지형 표면	galileo	sw1	69827
+Ground Imagery and Coverages	지면 이미지 및 커버리지	galileo	sw1	69828
+Roads and Railways	도로, 철도	galileo	sw1	69829
+Unknown	알 수 없음	galileo	sw1	69830
+Show contents of selected data sources	표시 내용을 선택한 데이터 소스	galileo	sw1	69831
+Hide contents of selected data sources	목차 숨기기 선택한 데이터 소스	galileo	sw1	69832
+A Level-of-Detail must be selected.	정밀도 수준 선택해야 합니다.	galileo	sw1	69833
+A valid default unit of measure must be selected.	유효한 기본 측정 단위를 선택해야 합니다.	galileo	sw1	69834
+Generation Level-of-Detail	생성 정밀도 수준	galileo	sw1	69835
+Default Unit Of Measure	기본 측정 단위	galileo	sw1	69836
+LOD Quality	LOD 품질	galileo	sw1	69837
+Reduce it to render faster.	줄이는 렌더링이 빠릅니다.	galileo	sw1	69838
+Increase it to see more detail.	늘리면 보다 자세히 설명합니다.	galileo	sw1	69839
+If this flag is set the whole model will be regenerated for the specified point in time.	이 플래그는 세트 전체 모형을 재생성할 지정된 점.	galileo	sw1	69840
+Use Model Time	모형 사용 시간	galileo	sw1	69841
+A model can be generated for a specific point in time.	모형 생성할 수 있습니다 (특정 점.	galileo	sw1	69842
+Provider:	공급자:	galileo	sw1	69843
+Configuration string:	구성 문자열:	galileo	sw1	69845
+Help	도움말	galileo	sw1	69846
+Large Icons	큰 아이콘	galileo	sw1	69847
+Medium Icons	중간 아이콘	galileo	sw1	69848
+Small Icons	작은 아이콘	galileo	sw1	69849
+Icon List	아이콘 목록	galileo	sw1	69850
+Error	오류	galileo	sw1	69851
+Failed to connect to data source.	연결하지 못했습니다. 데이터 소스입니다.	galileo	sw1	69852
+Please refer to the log window for further details.	자세한 정보는 로그 윈도우에서.	galileo	sw1	69853
+Model Style Editor	모형 스타일 편집기	galileo	sw1	69854
+Model URI:	모형 URI:	galileo	sw1	69855
+Instanced Model Settings	인스턴스화된 모형 설정	galileo	sw1	69856
+Anchor point:	부착 점:	galileo	sw1	69857
+Flip Y/Z	반전 Y/Z	galileo	sw1	69858
+Invert axis sign	축 반전 기호	galileo	sw1	69859
+Invert polygon orientation	다각형 방향 반전	galileo	sw1	69860
+Show Bounding Box	경계 상자 표시	galileo	sw1	69861
+Show X-Y-Grid	Show x-y-grid	galileo	sw1	69862
+Clear Log	로그 지우기	galileo	sw1	69863
+Enter Credentials	인증서 입력	galileo	sw1	69864
+Enter credentials for:	인증서 입력:	galileo	sw1	69865
+Some sort of context info	일부 일종의 상황에 맞는 정보	galileo	sw1	69866
+User Name:	사용자 이름:	galileo	sw1	69867
+Password:	암호:	galileo	sw1	69868
+Manage Models	모델 관리	galileo	sw1	69870
+Account :	계정:	galileo	sw1	69871
+Download	다운로드	galileo	sw1	69872
+Delete	삭제	galileo	sw1	69873
+GroupBox	groupbox	galileo	sw1	69874
+From:	시작:	galileo	sw1	69875
+MM/dd/yyyy	MM/DD/YYYY	galileo	sw1	69876
+To:	끝:	galileo	sw1	69877
+Details...	상세 정보...	galileo	sw1	69878
+No model or proposal selected	모형 없음 또는 제안 선택됨	galileo	sw1	69879
+No models found.	NO 모형을 찾을 수 없습니다.	galileo	sw1	69880
+%1 History	%1을(를) 사용 내역	galileo	sw1	69881
+%1 : %2 History	%1: %2 사용 내역	galileo	sw1	69882
+Download Model	다운로드 모형	galileo	sw1	69883
+Model download failed!	모형 다운로드 실패!	galileo	sw1	69884
+See the error log for details.	(오류 로그 상세 정보를 확인합니다.	galileo	sw1	69885
+Manage Accounts	계정 관리	galileo	sw1	69886
+Add Account	추가 ###계정	galileo	sw1	69887
+Remove Account	제거 ###계정	galileo	sw1	69888
+Del	Del	galileo	sw1	69889
+Test Connection	연결 테스트	galileo	sw1	69890
+Connection succeeded.	연결에 성공했습니다.	galileo	sw1	69891
+Connection failed	연결 실패	galileo	sw1	69892
+Invalid Display Name	유효하지 않은 화면표시 이름	galileo	sw1	69893
+The highlighted display name is blank or is duplicate.	강조 표시된 화면표시 이름이 비어 있거나 중복됩니다.	galileo	sw1	69894
+Invalid Service/Account	유효하지 않은 service/account	galileo	sw1	69895
+The highlighted service/account is blank or is duplicate.	강조 표시된 service/account 비어 있거나 중복됩니다.	galileo	sw1	69896
+File Format Error	파일 형식 오류	galileo	sw1	69897
+Unsupported File Format.	지원되지 않는 파일 형식입니다.	galileo	sw1	69898
+File Error	파일 오류	galileo	sw1	69899
+Invalid service file.	유효하지 않은 서비스 파일입니다.	galileo	sw1	69900
+Duplicate Account	중복 ###계정	galileo	sw1	69901
+A service (%1) already exists for this Galileo Online account.	서비스 (%1) 이(가) 이미 이 galileo 온라인 고려합니다.	galileo	sw1	69902
+Do you want to replace it?	바꾸시겠습니까?	galileo	sw1	69903
+(Default)	(기본값)	galileo	sw1	69904
+Duplicate Mapping Name	중복 이름 매핑	galileo	sw1	69905
+A mapping with the name: %1 already exists!	매핑 이름 %1이(가) 이미 존재합니다!	galileo	sw1	69906
+Material Group Style Editor	재질 그룹 스타일 편집기	galileo	sw1	69907
+Default Material:	기본 재질:	galileo	sw1	69908
+Material Mapping	재료 매핑	galileo	sw1	69909
+Add Material	재질 추가	galileo	sw1	69910
+Remove Selected Material	선택한 재질 제거	galileo	sw1	69911
+Merge Proposals	병합 제안	galileo	sw1	69912
+Select Proposal to Merge into current:	선택한 제안 병합할 현재:	galileo	sw1	69913
+Remove Subset	하위 세트 제거	galileo	sw1	69914
+Create Attribute Filter	속성 작성 필터	galileo	sw1	69915
+Create new subset	새 하위 세트 작성	galileo	sw1	69916
+Edit subset expression	편집 세트 표현식	galileo	sw1	69917
+Delete Subsets	하위 세트 삭제	galileo	sw1	69918
+Are you sure you want to delete the selected subset(s)?	삭제 선택한 하위 세트 (S)?	galileo	sw1	69919
+Manage base layer visibility...	관리 기준 도면층 가시성...	galileo	sw1	69920
+Select All	모두 선택	galileo	sw1	69921
+Select By Filter...	선택 기준 필터...	galileo	sw1	69922
+Visible	표시	galileo	sw1	69923
+LOD	세부 수준 (LOD)	galileo	sw1	69924
+Selectable	선택 가능	galileo	sw1	69925
+Highlight	강조 표시	galileo	sw1	69926
+Set Highlighting Color...	세트 강조 색상 (& D)...	galileo	sw1	69927
+View In Data Table	뷰 데이터 테이블	galileo	sw1	69928
+Create Subset...	만들기 하위 세트...	galileo	sw1	69929
+Set Default Tooltip...	기본 툴팁 (& T)...	galileo	sw1	69930
+Set Default Link...	기본 링크 (& L)...	galileo	sw1	69931
+Rename Subset...	하위 세트 이름바꾸기 (& R)...	galileo	sw1	69932
+Edit Subset...	편집 세트...	galileo	sw1	69933
+Copy Subset	하위 세트 복사	galileo	sw1	69934
+Downloading %1...	다운로드 중 %1...	galileo	sw1	69936
+Publishing %1	게시 %1	galileo	sw1	69937
+Synchronizing %1	동기화 %1	galileo	sw1	69938
+Delete Raster Data	Delete 래스터 데이터	galileo	sw1	69939
+Files cannot be deleted : %1	파일을 삭제할 수 없습니다.: %1	galileo	sw1	69940
+Collecting info...	수집할 정보...	galileo	sw1	69941
+Allocating resource on server...	배치 리소스를 서버에...	galileo	sw1	69942
+Uploading model...	업로드 모형...	galileo	sw1	69943
+Uploading raster data...	업로드 래스터 데이터...	galileo	sw1	69944
+Uploading %1...	업로드 %1...	galileo	sw1	69945
+Publish Raster failed!	###게시 래스터 실패!	galileo	sw1	69946
+Publish failed files: %1	게시 실패 파일: %1	galileo	sw1	69947
+Sending notification...	보내는 알림 (& A)...	galileo	sw1	69948
+%1 has been published.	%1 게시됩니다.	galileo	sw1	69949
+Description: %2	설명: %2	galileo	sw1	69950
+Downloading model...	다운로드 모형...	galileo	sw1	69951
+Downloading raster data...	래스터 데이터 다운로드...	galileo	sw1	69952
+Downloading %1	다운로드 중 %1	galileo	sw1	69953
+Deserialize database...	deserialize 데이터베이스...	galileo	sw1	69954
+Fetching changes...	가져오기 변경...	galileo	sw1	69956
+Interface Fundamentals	인터페이스 기본 사항	galileo	sw1	69957
+Topics in this chapter:	이 장의 주제는:	galileo	sw1	69958
+Basic Interface Functions	기본 인터페이스 함수	compo	interface1	70339
+An intuitive set of editing functions are available to manipulate elements, such as compositions, folders, and so on.	직관적인 세트 편집 기능을 사용할 수 있습니다. 조작 요소 (예: 화합물, 폴더 등이 있습니다.	compo	interface1	70340
+These include basic functions for cutting, copying, pasting, and deleting, as well as more advanced functions.	여기에는 기본 기능을 절단, 복사, 붙여넣기 및 삭제, 보다 고급 기능을 수행합니다.	compo	interface1	70341
+Mouse, Pen, Keyboard	마우스, 키보드, 펜	compo	interface1	70342
+You can interact with the user interface using a mouse or a pen and graphics tablet, in concert with the keyboard.	상호 작용할 수 있는 사용자 인터페이스 마우스를 사용할 또는 펜 및 그래픽 타블렛, 어떻게 키보드.	compo	interface1	70343
+If you have a mouse wheel, you can use it to scroll through menus.	마우스 휠이 있는 경우 휠을 사용할 수 있도록 스크롤하려면 메뉴에 있습니다.	compo	interface1	70344
+To generate a right-click with a pen, press the {146}Context Menu{147} key in concert with the pen.	생성 마우스 오른쪽 버튼을 사용하여 펜을 눌러 {146} 상황에 맞는 메뉴 {147} 키 어떻게 펜.	compo	interface1	70345
+If a key board includes a {148}Context Menu{149} key, it is typically located three keys to the right of the {150}Spacebar{151}.	키가 보드 에는 {148} 상황에 맞는 메뉴 {149} 키, 일반적으로 있는 세 개의 오른쪽의 키가 {150} 스페이스바 {151}.	compo	interface1	70346
+Cutting, Copying and Pasting	잘라내기, 복사 및 붙여넣기	compo	interface1	70347
+Standard cut, copy, and paste commands let you manipulate elements, such as composition and folders.	표준 잘라내기, 복사 및 붙여넣기 명령을 사용하여 조작 요소 (예: 구성 및 폴더가 있습니다.	compo	interface1	70348
+{152}To cut or copy, then paste an element:{153}	{152} 잘라내거나 복사한 다음 붙여넣기 요소: {153}	compo	interface1	70349
+Right-click the element and select Cut ({154}Ctrl + X{155} for Windows, Linux or {156}Cmd + X{157} for Mac OS) or Copy ({158}Ctrl + C{159} for Windows, Linux or {160}Cmd + C {161} for Mac OS).	요소를 마우스 오른쪽 버튼으로 클릭하고 잘라내기를 선택합니다 ({154} Ctrl + X {155} Windows, Linux 또는 {156} Cmd + {157} Mac OS X) 또는 복사 ({158} Ctrl + C {159} Windows, Linux 또는 {160} Cmd + C {161} Mac OS).	compo	interface1	70350
+Navigate to the location where you want to paste the element.	위치를 탐색하고 요소를 붙여넣을 수 있습니다.	compo	interface1	70351
+Then right-click the location and select Paste or press ({162}Ctrl + V{163} for Windows, Linux or {164}Cmd + V{165} for Mac OS).	그런 다음 마우스 오른쪽 버튼을 클릭하고 위치 및 붙여넣기 선택 또는 Enter 키를 누릅니다 {162}(Ctrl + V {163} Windows, Linux 또는 {164} Cmd + V {165} Mac OS).	compo	interface1	70352
+Entering Text	문자	compo	interface1	70353
+Tools such as the Slate and Notes tools require that you type into text editor fields.	도구 (예: 슬레이트 및 주 도구 필요가 유형을 문자 편집기 필드를 사용할 수 있습니다.	compo	interface1	70354
+{166}To accept changes in a text editor field, do one of the following:{167}	{166} 적용한 변경 사항이 문자 편집기에서 필드 (다음 중 하나 수행){167}	compo	interface1	70355
+Press {168}Enter{169} in the case of a single-line editor.	Enter 키를 눌러 {168} Enter {169} 경우 단일행 문자 편집기를 선택합니다.	compo	interface1	70356
+Press {170}Ctrl + Enter{171} in the case of a multi-line editor.	Enter 키를 눌러 {170} Ctrl + Enter {171} 경우 여러 줄 편집기.	compo	interface1	70357
+Click outside the editor.	외부를 클릭합니다.	compo	interface1	70358
+{172}To revert to the previous text:{173}	{172} 되돌리려면 이전 문자: {173}	compo	interface1	70359
+Press {174}Esc{175}.	Enter 키를 눌러 {174} Esc {175}.	compo	interface1	70360
+For more text editor/field hotkey combinations, see {176}.	추가 문자 editor/field 바로 가기 키 조합, {176}.	compo	interface1	70361
+Dragging and Dropping	드래그 앤 드롭	compo	interface1	70362
+You can drag and drop the contents of most folders in the user interface.	드래그 앤 드롭할 수 있습니다 내용을 대부분의 폴더는 사용자 인터페이스.	compo	interface1	70363
+In the user preferences, you can choose whether you see the ghosted image of the composition or not.	사용자 기본 설정, 여부를 선택할 수 있는 가상 이미지 합성 않습니다.	compo	interface1	70364
+See {177}.	참조 {177}.	compo	interface1	70365
+Undoing and Redoing	명령 취소 및 명령 복구	compo	interface1	70366
+You can undo most operations.	취소할 수 있는 대부분의 작업에 사용됩니다.	compo	interface1	70367
+You can also redo any operation you undo.	수도 있습니다 (Redo 모든 작업이 있습니다.	compo	interface1	70368
+{178}To undo or redo an operation, do one of the following:{179}	{178} 명령 취소 또는 명령 복구 작업을 다음 중 하나를 수행합니다. {179}	compo	interface1	70369
+From the Edit menu, select Undo (or press {180}Ctrl + Z{181} for Windows, Linux or {182}Cmd + Z{183} for Mac OS).	편집 메뉴에서 명령 취소 (또는 Enter 키를 눌러 {180} Ctrl + Z {181} Windows, Linux 또는 {182} Cmd + Z {183} Mac OS).	compo	interface1	70370
+Or select Redo (or press {184}Ctrl + Y{185} for Windows, Linux or {186}Cmd + Shift +Z{187} for Mac OS).	선택 또는 다시 실행 (또는 Enter 키를 눌러 {184} Ctrl + Y {185} Windows, Linux 또는 {186} Cmd + Shift + Z {187} Mac OS).	compo	interface1	70371
+Or, in the taskbar, at the bottom of the UI, locate the Undo icon.	또는 작업 표시줄 맨 아래에서 UI 찾고 실행 취소 아이콘을 클릭합니다.	compo	interface1	70372
+The last action performed is displayed beside it.	마지막 작업을 수행하지 옆에 표시됩니다.	compo	interface1	70373
+Then do one of two things:	다음 중 하나를 수행하여 두 가지:	compo	interface1	70374
+To undo the last operation you performed, click the arrow next the Undo icon.	마지막 작업을 명령취소할 수 수행한 화살표를 클릭한 다음 Undo 아이콘을 클릭합니다.	compo	interface1	70375
+To undo any operation other than the last one you performed, or to redo an operation, click the text to the right of the Undo button, and select the operation you want to undo or redo from the list.	취소하려면 작업이 아닌 마지막으로 수행된 또는 복구하려면 작업, 텍스트 오른쪽에 명령 취소 버튼을 선택하여 작업을 할 때 Undo 또는 Redo를 클릭합니다.	compo	interface1	70376
+Note that the arrow that appears in the list indicates the most recent operation you performed.	해당 화살표를 목록에 나타나는 나타냅니다 (가장 최근 수행한 작업입니다.	compo	interface1	70377
+This operation and all operations above it are operations you can undo.	이 작업을 수행한 모든 작업을 위 변환하는 작업을 취소할 수 있습니다.	compo	interface1	70378
+All operations below the arrow are ones you can redo.	모든 작업 아래 화살표 스타일을 복구할 수 있습니다.	compo	interface1	70379
+{188}Things to Remember:{189}	{188} 기억해야 할 사항: {189}	compo	interface1	70380
+You set the maximum number of items in the undo/redo list in the user preferences General tab.	설정하면 최대 항목 수 있는 실행 취소/다시 실행 리스트 사용자 기본 설정 일반 탭을 클릭합니다.	compo	interface1	70381
+Browsers have a separate undo/redo list.	검색기 별도의 실행 취소/다시 실행 리스트.	compo	interface1	70382
+Press {190}Ctrl + Y {191}for Windows and Linux, or {192}Cmd + Shift + Z{193} for Mac OS to redo an operation.	Enter 키를 눌러 {190} Ctrl + Y {191} Windows 및 Linux 또는 {192} Cmd + Shift + Z {193} Mac OS 복구하려면 작업.	compo	interface1	70383
+Deleting Elements and Compositions	요소 삭제 및 화합물	compo	interface1	70384
+You can delete an element, such as a composition or folder.	삭제할 수 있는 같은 요소의 구성 또는 폴더에 있습니다.	compo	interface1	70385
+{194}To delete an element do one of the following:{195}	{194} 요소를 삭제하려면 다음 중 하나를 수행합니다. {195}	compo	interface1	70386
+Select the element and press {196}Delete{197}.	요소를 선택하고 Enter 키를 눌러 {196} 삭제 {197}.	compo	interface1	70387
+Right-click the element and select {198}Delete{199}.	요소를 마우스 오른쪽 버튼으로 클릭하고 선택 {198} 삭제 {199}.	compo	interface1	70388
+The Gate UI	게이트 UI	compo	interface1	70389
+The Gate UI allows you to access any of the four hidden panels in the workspace.	게이트 UI 액세스할 수 있는 네 개의 숨겨진 패널을 작업공간을 선택합니다.	compo	interface1	70390
+The Gate UI resembles a compass; it has four gates that each correspond to one of the hidden panels.	게이트 UI 유사하며 나침반, 4개의 게이트 각 해당하는 하나의 ###숨김 패널이 있습니다.	compo	interface1	70391
+The gates are distributed along the four cardinal directions.	이 게이트를 분산되는 네 개의 진홍색 방향.	compo	interface1	70392
+The four gates are as follows:	네 개의 게이트 다음과 같습니다.	compo	interface1	70393
+Gate:	게이트:	compo	interface1	70394
+Displays:	표시됩니다.	compo	interface1	70395
+a) North gate	a) 게이트	compo	interface1	70396
+The Schematic overlay.	스키매틱 ###중첩.	compo	interface1	70397
+This is a semi-transparent, larger view of the Schematic.	이것은 반투명 큰 뷰.	compo	interface1	70398
+You can set the transparency of the background and nodes in the overlay, in the Creative tab of the User Preferences.	설정하면 투명 배경 및 노드 ###중첩, 창조적인 탭에서 사용자 기본 설정.	compo	interface1	70399
+b) East gate	b) 동쪽 게이트	compo	interface1	70400
+Pick List, Tools, or Views tab (depends on the last chosen option).	선택 리스트, 도구 또는 뷰 탭 (따라 마지막으로 선택한 옵션).	compo	interface1	70401
+You can drop views onto viewports, add tools to compositions, and access the Pick List -- see {200}.	놓을 수 있으며 뷰를 뷰포트 도구를 추가하고, 구성 및 액세스 선택 리스트 -- 내용은 {200}.	compo	interface1	70402
+c) South gate	c) 게이트	compo	interface1	70403
+View options for the view on which the cursor is currently paused.	뷰 옵션 뷰 있는 커서의 현재 중지되었습니다.	compo	interface1	70404
+For example, if you access the Gate UI when the cursor is over a Player, the south gate will display the Player options.	예를 들어, 액세스할 경우 게이트 UI 위에 커서를 놓으면 플레이어, 남쪽 게이트 하면 Player 옵션이 있습니다.	compo	interface1	70405
+d) West gate	D) 서쪽 게이트	compo	interface1	70406
+The Composition Browser.	구성을 검색기에 있습니다.	compo	interface1	70407
+To access the Gate UI:	액세스 게이트 UI:	compo	interface1	70408
+Press the tilde (~) key or middle-click your mouse.	Enter 키를 눌러 틸드 기호 (~) 키 또는 middle-click.	compo	interface1	70409
+The Gate UI appears.	게이트 UI 나타납니다.	compo	interface1	70410
+Swipe north, south, east or west.	스윕 북쪽, 남쪽, 동쪽 또는 서쪽.	compo	interface1	70411
+The panel associated with that gate appears.	패널 연관된 게이트 나타납니다.	compo	interface1	70412
+To exit the panel.	클릭하여 종료합니다.	compo	interface1	70413
+move the cursor away from the panel.	커서를 패널.	compo	interface1	70414
+If you press the tilde (~) key, or middle-click and swipe simultaneously, the Gate UI is not displayed.	키를 눌러 틸드 기호 (~) 키 또는 middle-click 및 스윕 동시에 게이트 UI가 표시되지 않습니다.	compo	interface1	70415
+If you press the {201}Alt{202} key while swiping, the panel will stay open until you press {203}Esc{204}.	Alt 키를 누르면 {201}{202} swiping, 패널 상태로 키를 누를 때까지 {203} Esc {204}.	compo	interface1	70416
+The Drop Gate	단차 게이트	compo	interface1	70417
+Similar to the Gate UI in appearance, the Drop Gate appears when you drop a composition or a tool into a Player, Layer Editor, or Schematic view.	유사한 게이트 UI 모양, 드롭 게이트 나타납니다 놓으면 구성 또는 도구 한 플레이어, 도면층 편집기 또는 도식적 뷰.	compo	interface1	70418
+The available options for the Drop Gate depend on whether you are dropping a tool or composition, the view you are dropping it in, and also what node is currently selected in the dependency graph.	사용 가능한 옵션은 드롭 게이트 중인지에 따라 다릅니다 놓을 도구 또는 구성, 뷰 놓아 in, 어떤 노드는 현재 선택한 종속성 그래프.	compo	interface1	70419
+For example, if you drop a composition on a Reaction node in the Schematic view, the Composition Drop Gate appears.	예를 들어, 구성 설정 반응 노드를 도식적 뷰, 구성 드롭 게이트 나타납니다.	compo	interface1	70420
+Here are the options associated with the Drop Gate when used in conjunction with a composition or a tool.	다음은 옵션 연관된 드롭 게이트 과 연동하여 사용하는 경우 구성 또는 도구를 클릭합니다.	compo	interface1	70421
+To use the Drop gate when dropping a composition, do the following:	사용할 드롭 게이트 놓을 때 구성을 다음을 수행합니다.	compo	interface1	70422
+Either drop a composition into the Player or Layer Editor.	자동 드롭 구성에 있는 플레이어 또는 도면층 편집기.	compo	interface1	70423
+Or, drop a composition onto a tool in the Schematic view.	또는, 드롭 구성을 도구 도식적 뷰.	compo	interface1	70424
+Then swipe through the appropriate option to select it, or click to cancel the drop.	그런 다음 스윕 관통 적절한 옵션을 선택하거나, 취소하려면 클릭합니다.	compo	interface1	70425
+If you drop the composition or tool, and swipe to select an option simultaneously, the option is executed but the Drop Gate is not displayed.	끄는 경우 구성을 또는 도구 및 스윕 옵션을 선택합니다 동시에 옵션을 실행될 수 있지만 해당 드롭 게이트 표시되지 않습니다.	compo	interface1	70426
+

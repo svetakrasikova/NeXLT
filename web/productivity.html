@@ -1,0 +1,533 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="/assets/css/bootstrap-1.2.0.min.css">
+    <meta charset="utf-8">
+    <title>Language Technology at Autodesk</title>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le javascript -->
+    <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+    <script src="/assets/js/bootstrap-dropdown.js"></script> 
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/images/favicon.ico">
+
+    <!-- 1/3. Include the RGraph libraries --> 
+    <script src="RGraph/libraries/RGraph.common.core.js" ></script> 
+    <script src="RGraph/libraries/RGraph.common.effects.js" ></script> 
+    <script src="RGraph/libraries/RGraph.common.tooltips.js" ></script> 
+    <script src="RGraph/libraries/RGraph.bipolar.js" ></script>
+    <script src="RGraph/libraries/RGraph.bar.js" ></script> 
+    <script src="RGraph/libraries/RGraph.common.context.js" ></script> 
+    <script src="RGraph/libraries/RGraph.common.annotate.js" ></script> 
+    <script src="RGraph/libraries/RGraph.common.tooltips.js" ></script> 
+    <script src="RGraph/libraries/RGraph.common.zoom.js" ></script> 
+    <script src="RGraph/libraries/RGraph.common.resizing.js" ></script> 
+    <script src="RGraph/libraries/RGraph.line.js" ></script> 
+    <!--[if IE 8]><script src="RGraph/excanvas/excanvas.original.js"></script><![endif]--> 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51341692-1', 'autodesk.com');
+  ga('send', 'pageview');
+
+</script>
+    <script> 
+        /**
+        * The onload function creates the graph
+        */
+        window.onload = function ()
+        {
+ 
+            var barall = new RGraph.Bar('barall', [
+[5141.228088,7279.399757],
+[3458.77256,4958.04507],
+[4552.480575,6528.477623],
+[6826.199282,10750.27299],
+[5919.021421,9505.614129],
+[5907.07913,9733.95252],
+[6685.653004,12403.4262],
+[6622.775708,14352.14051],
+[6156.408416,14228.66135]]);
+
+//barall.Set('chart.title', 'Translation Productivity per Language');
+            //barall.Set('chart.title.vpos', 0.5);
+            //barall.Set('chart.background.barcolor1', 'white');
+            barall.Set('chart.background.barcolor1', '#f5f5f5');
+            barall.Set('chart.background.barcolor2', '#f5f5f5');
+            barall.Set('chart.labels', [
+'Chinese',
+'Japanese',
+'Polish',
+'Portuguese',
+'German',
+'Italian',
+'Korean',
+'Spanish',
+'French'
+]);
+
+            //barall.Set('chart.key', ['Translation', 'Post-Editing']);
+            //barall.Set('chart.key.position.y', 25);
+            //barall.Set('chart.key.position', 'gutter');
+barall.Set('chart.key.halign', 'left');
+
+    
+            barall.Set('chart.key.background', '#f5f5f5');
+            //barall.Set('chart.key.background', 'rgb(255,255,255)');
+            barall.Set('chart.colors', ['red', 'green']);
+            //barall.Set('chart.colors', ['#dceaf4', '#bbd8e9']);
+//barall.Set('chart.text.angle', 45);
+            barall.Set('chart.shadow', true);
+            barall.Set('chart.shadow.blur', 15);
+            barall.Set('chart.shadow.offsetx', 0);
+            barall.Set('chart.shadow.offsety', 0);
+            barall.Set('chart.shadow.color', '#aaa');
+            barall.Set('chart.strokestyle', 'rgba(0,0,0,0)');
+            barall.Set('chart.yaxispos', 'left');
+barall.Set('chart.key', ['Translation', 'Post-Editing']);
+
+            barall.Set('chart.ylabels', false);
+            barall.Set('chart.noaxes', true);
+            barall.Set('chart.strokestyle', 'rgba(0,0,0,0)');
+            barall.Set('chart.gutter.left', 5);
+            barall.Set('chart.gutter.right', 45);
+            barall.Set('chart.tooltips.event', 'onmousemove');
+            
+       var line = new RGraph.Line('barall', [ 42, 43, 43, 57, 61, 65, 86, 117, 131 ]);
+       line.Set('chart.background.grid', false);
+            line.Set('chart.key', ['Productivity increase']);
+            line.Set('chart.key.background', '#f5f5f5');
+            line.Set('chart.key.position', 'gutter');
+        line.Set('chart.linewidth', 2);
+        line.Set('chart.colors', ['orange']);
+            line.Set('chart.noaxes', true);
+        line.Set('chart.tickmarks', 'circle');
+        line.Set('chart.labels.ingraph', [
+'42%',
+'43%',
+'43%',
+'57%',
+'61%',
+'65%',
+'86%',
+'117%',
+'131%'
+]);
+        line.Set('chart.highlight.fill', 'black');
+        
+        line.Set('chart.animation.unfold.x', true);
+            if (!RGraph.isIE8()) {
+                tooltipFunc = function (i)
+                {
+                    var r = i % 2;
+                    
+                    if (r == 1) return 'Post-Editing'
+                    else if (r == 0) return 'Translation';
+                }
+                barall.Set('chart.tooltips', tooltipFunc);
+            }
+        
+barall.Set('chart.line', line);
+      
+            barall.Draw();
+
+            var bar1 = new RGraph.Bar('bar1', [
+[3633.839874, 5520.685643],
+[5093.608023, 6518.241419],
+[5613.117818, 10314.62641],
+[6248.625956, 11957.60512]]);
+
+            //bar1.Set('chart.title.vpos', 0.5);
+            bar1.Set('chart.background.barcolor1', '#f5f5f5');
+            bar1.Set('chart.background.barcolor2', '#f5f5f5');
+            bar1.Set('chart.labels', [
+'1 year or less',
+'1 to 2 years',
+'3 to 4 years',
+'more than 4 years'
+]);
+
+            //bar1.Set('chart.key', ['Translation', 'Post-Editing']);
+            //bar1.Set('chart.key.position.y', 25);
+            //bar1.Set('chart.key.position', 'gutter');
+bar1.Set('chart.highlight.fill', 'yellow');
+            bar1.Set('chart.key.background', 'rgb(255,255,255)');
+            bar1.Set('chart.colors', ['red', 'green']);
+            //bar1.Set('chart.colors', ['#dceaf4', '#bbd8e9']);
+            bar1.Set('chart.shadow', true);
+            bar1.Set('chart.shadow.blur', 15);
+            bar1.Set('chart.shadow.offsetx', 0);
+            bar1.Set('chart.shadow.offsety', 0);
+            bar1.Set('chart.shadow.color', '#aaa');
+            bar1.Set('chart.yaxispos', 'right');
+            bar1.Set('chart.ylabels', false);
+            bar1.Set('chart.noaxes', true);
+            bar1.Set('chart.strokestyle', 'rgba(0,0,0,0)');
+            bar1.Set('chart.gutter.left', 5);
+            bar1.Set('chart.gutter.right', 45);
+            bar1.Set('chart.tooltips.event', 'onmousemove');
+            
+            if (!RGraph.isIE8()) {
+                tooltipFunc = function (i)
+                {
+                    var r = i % 2;
+                    
+                    if (r == 1) return 'Post-Editing'
+                    else if (r == 0) return 'Translation';
+                }
+                bar1.Set('chart.tooltips', tooltipFunc);
+            }
+            bar1.Draw();
+
+            var bar2 = new RGraph.Bar('bar2', [
+[4670.025503, 6845.13834],
+[5004.036038, 8534.939858],
+[6000.79748, 10834.21799],
+[6918.71448, 12950.36325]]);
+
+bar2.Set('chart.highlight.fill', 'yellow');
+
+            //bar2.Set('chart.title.vpos', 0.5);
+            bar2.Set('chart.background.barcolor1', '#f5f5f5');
+            bar2.Set('chart.colors', ['red', 'green']);
+            //bar2.Set('chart.colors', ['#dceaf4', '#bbd8e9']);
+            bar2.Set('chart.background.barcolor2', '#f5f5f5');
+            bar2.Set('chart.labels', [
+'Don\'t know',
+'Same',
+'Post-Editing',
+'Translation'
+]);
+
+            //bar2.Set('chart.key', ['Translation', 'Post-Editing']);
+            //bar2.Set('chart.key.position.y', 25);
+            //bar2.Set('chart.key.position', 'gutter');
+            bar2.Set('chart.key.background', 'rgb(255,255,255)');
+            bar2.Set('chart.shadow', true);
+            bar2.Set('chart.shadow.blur', 15);
+            bar2.Set('chart.shadow.offsetx', 0);
+            bar2.Set('chart.shadow.offsety', 0);
+            bar2.Set('chart.shadow.color', '#aaa');
+            bar2.Set('chart.yaxispos', 'right');
+            bar2.Set('chart.ylabels', false);
+            bar2.Set('chart.noaxes', true);
+            bar2.Set('chart.strokestyle', 'rgba(0,0,0,0)');
+            bar2.Set('chart.gutter.left', 5);
+            bar2.Set('chart.gutter.right', 45);
+            bar2.Set('chart.tooltips.event', 'onmousemove');
+            
+            if (!RGraph.isIE8()) {
+                tooltipFunc = function (i)
+                {
+                    var r = i % 2;
+                    
+                    if (r == 1) return 'Post-Editing'
+                    else if (r == 0) return 'Translation';
+                }
+                bar2.Set('chart.tooltips', tooltipFunc);
+            }
+            bar2.Draw();
+
+            var bar3 = new RGraph.Bar('bar3', [
+[3973.52579, 5065.660638],
+[6068.99511, 9975.27686],
+[5501.508374, 10278.57269],
+[7146.851141, 11226.26382]]);
+
+            //bar3.Set('chart.title.vpos', 0.5);
+            bar3.Set('chart.background.barcolor1', '#f5f5f5');
+            bar3.Set('chart.background.barcolor2', '#f5f5f5');
+            bar3.Set('chart.colors', ['red', 'green']);
+            //bar3.Set('chart.colors', ['#dceaf4', '#bbd8e9']);
+bar3.Set('chart.highlight.fill', 'yellow');
+            bar3.Set('chart.labels', [
+'Prefers fuzzy matches',
+'Prefers post-editing',
+'Prefers translation',
+'Prefers mix of all'
+]);
+
+            //bar3.Set('chart.key', ['Translation', 'Post-Editing']);
+            //bar3.Set('chart.key.position.y', 25);
+            //bar3.Set('chart.key.position', 'gutter');
+            bar3.Set('chart.key.background', 'rgb(255,255,255)');
+            bar3.Set('chart.shadow', true);
+            bar3.Set('chart.shadow.blur', 15);
+            bar3.Set('chart.shadow.offsetx', 0);
+            bar3.Set('chart.shadow.offsety', 0);
+            bar3.Set('chart.shadow.color', '#aaa');
+            bar3.Set('chart.yaxispos', 'right');
+            bar3.Set('chart.ylabels', false);
+            bar3.Set('chart.noaxes', true);
+            bar3.Set('chart.strokestyle', 'rgba(0,0,0,0)');
+            bar3.Set('chart.gutter.left', 5);
+            bar3.Set('chart.gutter.right', 45);
+            bar3.Set('chart.tooltips.event', 'onmousemove');
+            
+            if (!RGraph.isIE8()) {
+                tooltipFunc = function (i)
+                {
+                    var r = i % 2;
+                    
+                    if (r == 1) return 'Post-Editing'
+                    else if (r == 0) return 'Translation';
+                }
+                bar3.Set('chart.tooltips', tooltipFunc);
+            }
+            bar3.Draw();
+
+        var data = [9180.748053, 9516.054596, 10496.06844, 13219.86234, 16794.47089, 28565.07375];
+        //var data = [9180.748053, 9516.054596, 10496.06844, 13219.86234, 16794.47089, 28565.07375, 27204.67927];
+    
+        var bartm1 = new RGraph.Bar('bartm1', data);
+//bartm1.Set('chart.title', 'Productivity per category');
+        bartm1.Set('chart.labels', ['From scratch', '0-49%', '50-74%', '75-84%', '85-94%', '95-99%']);
+        bartm1.Set('chart.gutter.left', 45);
+        bartm1.Set('chart.background.barcolor1', '#f5f5f5');
+        bartm1.Set('chart.background.barcolor2', '#f5f5f5');
+	bartm1.Set('chart.noaxes', true);
+bartm1.Set('chart.highlight.fill', 'yellow');
+	bartm1.Set('chart.ymax', 30000);
+            bartm1.Set('chart.shadow', true);
+            bartm1.Set('chart.shadow.blur', 15);
+            bartm1.Set('chart.shadow.offsetx', 0);
+            bartm1.Set('chart.shadow.offsety', 0);
+            bartm1.Set('chart.shadow.color', '#aaa');
+	bartm1.Set('chart.ylabels', false);
+        bartm1.Set('chart.background.grid', true);
+        bartm1.Set('chart.colors', ['red']);
+        //bartm1.Set('chart.colors', ['#bbd8e9']);
+       var peline = new RGraph.Line('bartm1', [ 16069.28014,16069.28014,16069.28014,16069.28014,16069.28014,16069.28014,16069.28014,16069.28014 ]);
+	peline.Set('chart.ymax', 30000);
+       peline.Set('chart.background.grid', false);
+	peline.Set('chart.ylabels', false);
+            peline.Set('chart.key', ['Post-Editing']);
+            peline.Set('chart.key.background', '#f5f5f5');
+            peline.Set('chart.key.position', 'gutter');
+        peline.Set('chart.linewidth', 2);
+        peline.Set('chart.colors', ['green']);
+            peline.Set('chart.noaxes', true);
+        //line.Set('chart.tickmarks', 'circle');
+        peline.Set('chart.highlight.fill', 'black');
+        
+bartm1.Set('chart.line', peline);
+      
+        bartm1.Draw();
+ 
+            var bartm2 = new RGraph.Bar('bartm2', [
+[6738.819595, 9782.491248, 8007.835402],
+[5533.49324, 7041.65526, 7766.691946],
+[6882.904583, 9642.208125, 8286.191361],
+[8928.037884, 12914.32078, 14901.59249],
+[7894.835598, 9314.103148, 12374.79436],
+[7294.618547, 10473.5274, 11207.48791]]);
+
+
+            //bartm2.Set('chart.title.vpos', 0.5);
+            bartm2.Set('chart.background.barcolor1', '#f5f5f5');
+            bartm2.Set('chart.key', ['From scratch', 'From fuzzy', 'Post-Editing']);
+            bartm2.Set('chart.key.background', '#f5f5f5');
+bartm2.Set('chart.key.halign', 'left');
+            bartm2.Set('chart.background.barcolor2', '#f5f5f5');
+            bartm2.Set('chart.labels', [
+'Chinese',
+'Polish',
+'German',
+'Spanish',
+'French',
+'Italian']);
+
+            bartm2.Set('chart.key.background', 'rgb(255,255,255)');
+            bartm2.Set('chart.colors', ['red', 'blue', 'green']);
+            //bartm2.Set('chart.colors', ['#dceaf4', 'darkgray', '#bbd8e9']);
+            bartm2.Set('chart.shadow', true);
+            bartm2.Set('chart.shadow.blur', 15);
+bartm2.Set('chart.highlight.fill', 'yellow');
+            bartm2.Set('chart.shadow.offsetx', 0);
+            bartm2.Set('chart.shadow.offsety', 0);
+            bartm2.Set('chart.shadow.color', '#aaa');
+            bartm2.Set('chart.yaxispos', 'right');
+            bartm2.Set('chart.ylabels', false);
+            bartm2.Set('chart.noaxes', true);
+            bartm2.Set('chart.strokestyle', 'rgba(0,0,0,0)');
+            bartm2.Set('chart.gutter.left', 5);
+            bartm2.Set('chart.gutter.right', 45);
+            bartm2.Set('chart.tooltips.event', 'onmousemove');
+            
+            if (!RGraph.isIE8()) {
+                tooltipFunc = function (i)
+                {
+                    var r = i % 3;
+                    
+                    if (r == 0) return 'From scratch'
+                    if (r == 1) return 'From TM'
+                    else if (r == 2) return 'Post-Editing';
+                }
+                bartm2.Set('chart.tooltips', tooltipFunc);
+            }
+            bartm2.Draw();
+}
+    </script> 
+</head>
+<body style="padding-top: 60px;">
+<div class="topbar" data-dropdown="dropdown">
+      <div class="topbar-inner">
+        <div class="container"> 
+          <h3><a href="/">Language Technology at Autodesk</a></h3>
+          <ul class="nav">
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="/nexlt/">Corpus Search</a></li>
+            <li><a href="/ttc/">Terminology</a></li>
+           <li class="dropdown active"> <a href="#" class="dropdown-toggle">Productivity</a> <ul class="dropdown-menu"> <li><a href="/productivity.html#prod_barall">Productivity per language</a></li> <li><a href="/productivity.html#prod_bar1">Post-editing experience</a></li> <li><a href="/productivity.html#prod_bar2">Translator perception</a></li> <li><a href="/productivity.html#prod_bar3">Translator preference</a></li> <li><a href="/productivity.html#prod_bartm2">TM vs MT</a></li> <li><a href="/productivity.html#prod_bartm1">Fuzzy match categories</a></li> <li><a href="/productivity.html#prod_wc">Segment length</a></li> <li><a href="/quality.html">Quality assessment</a></li> <li><a href="/prod_pertranslator.html">All participants</a></li> <li><a href="/prod_samples.html">MT samples</a></li> </ul> </li>
+          </ul>
+<ul class="nav secondary-nav"><li><img src="/images/ADSK_logo_S_white_web.png"/></li></ul>
+        </div>
+      </div>
+    </div>
+    <div id="masthead">
+      <div class="inner">
+        <div class="container-fluid">
+        <div class="content" style="width: 450px;">
+          <h1>Translation and Post-Editing Productivity<a name="prod_intro">&nbsp;</a></h1>
+          <p class="lead">
+            The below charts present the results of a 2-day translation and post-editing productivity test with 37 participants that Autodesk held in August of 2011. The machine translation was produced by Autodesk's in-house Moses engines trained exclusively on Autodesk data. The test was carried out in a purpose-built browser translation interface which recorded the time spent on each and every segment. The content for the productivity test consisted of typical Autodesk content &ndash; software strings as well as documentation, general CAD as well as multimedia software.
+          </p>
+        </div><!-- /container -->
+      </div>
+    </div>
+
+<a name="prod_barall">&nbsp;</a>
+<div class="container-fluid">
+<div class="sidebar" 
+style="background-color: #f5f5f5;
+padding: 5px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;"><br/>
+<p><a href="#prod_barall">Productivity per language</a></p>
+<p><a href="#prod_bar1">Post-editing experience</a></p>
+<p><a href="#prod_bar2">Translator perception</a></p>
+<p><a href="#prod_bar3">Translator preference</a></p>
+<p><a href="#prod_bartm2">TM vs MT</a></p>
+<p><a href="#prod_bartm1">Fuzzy match categories</a></p>
+<p><a href="#prod_wc">Segment length</a></p>
+<p><a href="/quality.html">Quality assessment</a></p>
+<p><a href="/prod_pertranslator.html">All participants</a></p>
+<p><a href="/prod_samples.html">MT samples</a></p>
+</div>
+<div class="content"
+style="background-color: #f5f5f5;
+width: 450px;
+padding: 20px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;">
+<h3>Productivity per Language &ndash; Translation vs Post-Editing</h3>
+<p>For all languages tested &ndash; in fact for all 37 test participants &ndash;, post-editing productivity was significantly higher than translation productivity.</p>
+<canvas id="barall" width="700" height="400">[No canvas support]</canvas>
+<p/>
+</div>
+<p/>
+<a name="prod_bar1">&nbsp;</a>
+<div class="content" id="prod_exp"
+style="background-color: #f5f5f5;
+padding: 20px;
+width: 450px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;">
+<h3>Translation and Post-Editing Productivity vs Post-Editing Experience</h3>
+<p>Our test results suggest that experience, especially in post-editing, is the single most important factor in translation productivity, particularly in relation to post-editing.</p>
+<canvas id="bar1" width="700" height="400">[No canvas support]</canvas>
+<a href="#prod_intro" class="btn">Back to intro</a>
+</div>
+<p/>
+<a name="prod_bar2">&nbsp;</a>
+<div class="content" id="prod_exp"
+style="background-color: #f5f5f5;
+width: 450px;
+padding: 20px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;">
+<h3>Believes to be faster at translation/post-editing vs. actual productivity</h3>
+<p>Most test participants either had no or a wrong perception of their own productivity. The most productive post-editors and the ones who benefitted most from MT proposals were those translators who believed to be faster at translating.</p>
+<canvas id="bar2" width="700" height="400">[No canvas support]</canvas>
+<a href="#prod_intro" class="btn">Back to intro</a>
+</div>
+<p/>
+<a name="prod_bar3">&nbsp;</a>
+<div class="content" id="prod_exp"
+style="background-color: #f5f5f5;
+width: 450px;
+padding: 20px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;">
+<h3>Preference and Productivity</h3>
+<p>In our test, there was no strong correlation between post-editing productivity and the preference for one or the other translation method. The minority of translators who preferred to work with TM matches however were the least productive. </p>
+<canvas id="bar3" width="700" height="400">[No canvas support]</canvas>
+<a href="#prod_intro" class="btn">Back to intro</a>
+</div>
+<p/>
+<a name="prod_bartm2">&nbsp;</a>
+<div class="content" 
+style="background-color: #f5f5f5;
+width: 450px;
+padding: 20px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;">
+<h3>Productivity per chapter &ndash; translated from scratch, fuzzy, MT</h3>
+<p>For some of the languages, our test included three chapters which contained content of a similar nature but were all three to be translated in a different way; the first chapter had to be translated from scratch, the second was entirely pretranslated with fuzzy matches of all categories including below 50%, and the third chapter was to be post-edited. The chart shows that for the languages with presumably "best" MT output, post-editing beat fuzzy match editing.</p>  
+<canvas id="bartm2" width="700" height="400">[No canvas support]</canvas>
+<a href="#prod_intro" class="btn">Back to intro</a>
+</div>
+<p/>
+<a name="prod_bartm1">&nbsp;</a>
+<div class="content" 
+style="background-color: #f5f5f5;
+width: 450px;
+padding: 20px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;">
+<h3>Productivity per category</h3>
+<p>A break-down by match categories shows that post-editing of MT was roughly as productive as working from matches in the 85-94% category. Note however that this varies significantly across languages, as already reflected on the previous chart.</p>
+<canvas id="bartm1" width="700" height="400">[No canvas support]</canvas>
+<a href="#prod_intro" class="btn">Back to intro</a>
+</div>
+<p/>
+<a name="prod_wc">&nbsp;</a>
+<div class="content" 
+style="background-color: #f5f5f5;
+width: 450px;
+padding: 20px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;">
+<h3>Productivity and segment length</h3>
+<p>Post-editing typically yields higher productivity no matter the number of words a given segment contains. The gain is higher for shorter than for longer segments and then increases again for extremely long segments. This variation is however mainly due to translation productivity as opposed to post-editing productivity; the correlation between post-editing productivity and segment length is low whereas translation is quite clearly proportionally slower for shorter (and extremely long) segments. The ideal segment length for translation is around 21 words and 25 words for post-editing. Note that these numbers are generally in line with results from our previous productivity tests.</p>
+<p>(The red curves on the first chart are polynomial trendlines.)</p>
+<h5>All languages</h5>
+<img src="/images/wc-throughput.png" width="700"/>
+<h5>Portuguese</h5>
+<img src="/images/wc-throughput_PTB.png" width="700"/>
+<h5>Korean</h5>
+<img src="/images/wc-throughput_KOR.png" width="700"/>
+<h5>Chinese</h5>
+<img src="/images/wc-throughput_CHS.png" width="700"/>
+<a href="#prod_intro" class="btn">Back to intro</a>
+</div>
+</body>
+</html>
+
