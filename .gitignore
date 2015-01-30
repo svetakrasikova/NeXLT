@@ -1,11 +1,10 @@
 .DS_Store
 UserInterfaceState.xcuserstate
 
-*product.lst
-*lastrefresh
-
 
 *.class
 *.log
 
-NeXLT
+*.lst
+
+solr/NeXLT
