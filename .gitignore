@@ -6,5 +6,8 @@ UserInterfaceState.xcuserstate
 *.log
 
 *.lst
+*.lastrefresh
 
 solr/NeXLT
+
+ajax-solr
