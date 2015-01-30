@@ -1,0 +1,596 @@
+English	Japanese	Product	Chapter	Sequence
+Tutorial 2: Draw and edit in AutoCAD WS 2011	チュートリアル 2: AutoCAD WS で作図と編集 2011	acad	tut2a	58610
+Audience: Users new to AutoCAD WS	対象: ユーザは AutoCAD WS に新しい	acad	tut2a	58611
+Prerequisites: None	前提条件なし	acad	tut2a	58612
+In This Tutorial	このチュートリアルの内容	acad	tut2a	58613
+Please complete the lessons in this tutorial in order.	を参照してください。 このチュートリアルのレッスンを完了します。	acad	tut2a	58614
+The earlier lessons include information that is needed in the later lessons.	前のレッスンには、後のレッスンで必要な情報が含まれています。	acad	tut2a	58615
+In this tutorial, you learn how to do the following:	このチュートリアルでは、次の内容を学習します。	acad	tut2a	58616
+Draw Objects 	作図オブジェクト	acad	tut2a	58617
+Use the Command Line	コマンドライン	acad	tut2a	58618
+Modify Object Properties	[オブジェクトプロパティ]	acad	tut2a	58619
+Lesson 1: Draw Objects	レッスン 1: 描画オブジェクト	acad	tut2a	58620
+In this lesson, you will learn how to draw, select and delete objects.	このレッスンでは、選択するオブジェクトを作図する方法を学習します。	acad	tut2a	58621
+In addition, you will learn how to change view mode.	また、表示モードを変更する方法について学習します。	acad	tut2a	58622
+Currently AutoCAD WS does not support the creation of a new drawing without a pre-existing file.	現在、AutoCAD WS の既存のファイルを使用せずに新しい図面の作成をサポートしていません。	acad	tut2a	58623
+Open a file before starting to draw.	描画を開始する前にファイルを開きます。	acad	tut2a	58624
+To draw a line	線分を描画するには	acad	tut2a	58625
+1 Click Home ➤ Open ➤ My Drawings, then select AEC Plan Elev Sample.dwg.	[図面] ➤ [1、[Home] ➤ 開いて sample.dwg 標高 AEC プランを選択します。	acad	tut2a	58626
+2 In the Editor menu, click Draw ➤ Line Tool.	[編集] メニューから、[表示] ➤ [線分] ツールにします。	acad	tut2a	58627
+3 Drag the mouse down to the sample drawing.	3 は、サンプル図面にマウスをドラッグします。	acad	tut2a	58628
+A crosshairs cursor appears with a text box.	は、クロスヘアカーソルをテキストボックスで表示されます。	acad	tut2a	58629
+This is known as the “Specify first point” dynamic prompt.	ダイナミックプロンプトは、[1 番目の点と呼ばれます。	acad	tut2a	58630
+4 In the sample drawing, click the mouse to pick a start point for your first line.	サンプル図面では 4 つで、最初の線分の始点を指定するには、マウスをクリックします。	acad	tut2a	58631
+The dynamic prompt changes to “Specify distance”.	距離を指定するには、ダイナミックプロンプトが変わります。	acad	tut2a	58632
+5 Drag the cursor in any direction and click to pick the end point of your line.	5、線分の終点をクリックしていずれかの方向でカーソルをドラッグします。	acad	tut2a	58633
+You have drawn your first line!	最初の線分の作図は完了です。	acad	tut2a	58634
+To select and delete a single line	1 つの線分を選択して削除するには	acad	tut2a	58635
+Before you learn how to draw other objects, select and delete the line you just drew.	他のオブジェクトを作成し、線分を作図する方法を学習します。	acad	tut2a	58636
+1 Click Draw ➤ Select.	1 をクリックして、[選択] ➤ をクリックします。	acad	tut2a	58637
+2 Use the window selection box to select the line.	2 つの線分を選択するには、窓選択ボックスを使用します。	acad	tut2a	58638
+Move the cursor above and to the left of the line.	上の線分の左端にカーソルを移動します。	acad	tut2a	58639
+3 Click and hold down the mouse button as you drag to the right and down to form a selection box around the line.	3 をクリックして、右側の線分の周囲に選択ボックスをドラッグしてマウスボタンを押したままにします。	acad	tut2a	58640
+4 Click the mouse.	4 をクリックします。	acad	tut2a	58641
+You know the line is selected when the following appears:	表示される線分と次の選択であることが分かります。	acad	tut2a	58642
+5 Click the Erase button on the Toolbar at the top of the window.	5 ウィンドウの上部のツールバーの [削除] ボタンをクリックします。	acad	tut2a	58643
+You have learned how to select a single line and delete it.	1 つの線分を選択して削除する方法を学習しました。	acad	tut2a	58644
+To draw a polyline	ポリラインを描くには	acad	tut2a	58645
+A polyline is a sequence of segments created as a single object.	ポリラインとは、1 つのオブジェクトとして作成された一連のセグメントです。	acad	tut2a	58646
+Polylines can contain both straight and curved segments.	ポリラインは、直線セグメントと曲線セグメントの両方を含めることができます。	acad	tut2a	58647
+In this lesson, you learn how to draw a polyline with straight segments.	このレッスンでは、直線セグメントでポリラインを作図する方法を学習します。	acad	tut2a	58648
+1 Click Open.	1 は [開く] をクリックします。	acad	tut2a	58649
+2 In the Upload files dialog box, select bolt_add_polyline.dwg.	[アップロードするファイルを選択] ダイアログボックスで [bolt_add_polyline.dwg で 2] を選択します。	acad	tut2a	58650
+3 In this lesson, you will finish the side view drawing of a bolt by adding polylines.	このレッスンでは 3 は、ポリラインを追加することによって、ボルトの側面図を完成させます。	acad	tut2a	58651
+4 Click Draw ➤ Polyline.	ポリライン] ➤ [4 を描画] をクリックします。	acad	tut2a	58652
+5 Drag the cursor down to the bolt drawing and go to the location indicated in the following figure:	5 ボルト図面にカーソルをドラッグし、次の図に示す位置に移動します。	acad	tut2a	58653
+6 Click on that location.	その場所に 6] をクリックします。	acad	tut2a	58654
+This is the first point of the polyline.	これは、ポリラインの始点です。	acad	tut2a	58655
+7 Drag the cursor to the location indicated by the colored square in the following figure:	7 次の図の色の付いた正方形で示されている場所にカーソルをドラッグします。	acad	tut2a	58656
+8 Click near the center of the colored square.	色の付いた正方形の中心付近の 8] をクリックします。	acad	tut2a	58657
+You have drawn the first line in the polyline.	ポリラインの最初の線分の作図は完了です。	acad	tut2a	58658
+9 Drag the cursor to the location indicated by the colored square in the following figure:	9 は次の図の色の付いた正方形で示されている場所にカーソルをドラッグします。	acad	tut2a	58659
+10 Click near the center of the colored square.	色の付いた正方形の中心付近に 10 をクリックします。	acad	tut2a	58660
+You have drawn the second line in the polyline.	ポリラインの 2 番目の線分の作図は完了です。	acad	tut2a	58661
+11 Drag the cursor to the location indicated by the colored square in the following figure:	11 の場合、次の図の色の付いた正方形で示されている場所にカーソルをドラッグします。	acad	tut2a	58662
+12 Click near the center of the colored square.	色の付いた正方形の中心付近に 12] をクリックします。	acad	tut2a	58663
+You have drawn the third line in the polyline.	これで、ポリラインの 3 番目の線分の作図は完了です。	acad	tut2a	58664
+13 Press the Enter key to end the polyline.	ポリラインの終点と 13、Enter キーを押します。	acad	tut2a	58665
+14 Click Home ➤ Save, and save the drawing as Drawing1.dwg.	14 [ホーム] ➤ [保存、Drawing1.dwg として図面を保存します。	acad	tut2a	58666
+To draw a circle	円を描画するには	acad	tut2a	58667
+In this lesson, you learn how to draw a circle by specifying the center point and radius.	このレッスンでは、中心点と半径を指定して円を作図する方法を学習します。	acad	tut2a	58668
+1 With Drawing1.dwg open, click Draw ➤ Circle.	Drawing1.dwg を開き、[表示] ➤ [円] を 1 に設定します。	acad	tut2a	58669
+2 Drag the crosshairs cursor down to the drawing area.	2 つの図面領域でクロスヘアカーソルをドラッグします。	acad	tut2a	58670
+3 Click the left mouse button to specify the center of the circle.	円の中心を指定するには、マウスの左ボタン 3 をクリックします。	acad	tut2a	58671
+4 The dynamic input prompt asks you to “Specify distance.”	4 つのダイナミック入力プロンプトの距離を指定するには、メッセージが表示されます。	acad	tut2a	58672
+Enter 0.25 from the keyboard and press the Enter key to create a circle with a radius of 0.25.	0.25 の半径の円を作成するには、[Enter] キーをキーボードから入力 0.25 です。	acad	tut2a	58673
+5 Click Home ➤ Save, and save the drawing as Drawing1.dwg.	5 をクリックしてホームビュー] ➤ [保存、Drawing1.dwg として図面を保存します。	acad	tut2a	58674
+You will use this file in Lesson 3.	このファイルは、レッスン 3 で使用されます。	acad	tut2a	58675
+Using PhysX in 3ds Max	3ds Max で PhysX を使用する	physx	using1	58857
+The following pages are part of {557}Using PhysX in 3ds Max{558}:	次のページ {558} 3ds Max {557} PhysX のパーツがあります。	physx	using1	58858
+An introduction the ways you interact with the plug-in in 3ds Max.	概要には、3ds Max では、プラグインの操作方法があります。	physx	using1	58859
+{559} Rigid Bodies & Constraints{560}	{559} リジッドボディとコンストレイント {560}	physx	using1	58860
+Working with blocks, balls, and more complex non-deforming objects hooked together.	ブロック、ボールを使用すると、組み立てて複雑な non-deforming オブジェクト。	physx	using1	58861
+The convenience commands and helper available for working with boned characters.	便利なコマンドとヘルパーボーン文字を使用することができます。	physx	using1	58862
+Realistic cloth constrained and colliding with characters.	現実感のある布地コンストレイン、および文字と衝突します。	physx	using1	58863
+Tools for seeing more about the simulation than just its effects.	は、エフェクトのシミュレーションについての詳細を確認するためのツールをクリックします。	physx	using1	58864
+{561} Baking PhysX Simulation Results{562}	ベイク処理 PhysX シミュレーション結果 {562}{561}	physx	using1	58865
+Moving your PhysX and APEX simulations into keyframes that 3ds Max understands.	Max されたキーフレームには、PhysX および頂点をシミュレートします。	physx	using1	58866
+The Plug-in Interface	プラグインは、インタフェース	physx	using1	58867
+The PhysX Toolbar	PhysX ツールバー	physx	using1	58868
+The PhysX Menu	PhysX メニュー	physx	using1	58869
+Simulation Controls	シミュレーションをコントロール	physx	using1	58870
+Physical Material Editor	物理的マテリアルエディタ	physx	using1	58871
+Ragdolls	ラグドール	physx	using1	58872
+Rigid Bodies & Constraints	リジッドボディコンストレイント (& C)	physx	using1	58873
+The PhysX Tools panel	PhysX ツール] パネル	physx	using1	58874
+Basics	Maya の基本	physx	using1	58876
+Introduction	はじめに	physx	using1	58877
+Overview	概要	physx	using1	58878
+The most obvious way to interact with the PhysX plug-in via the PhysX Toolbar.	PhysX ツールバーで [PhysX プラグインとやりとりするための最も直接的な方法です。	physx	using1	58879
+If you have just installed the plug-in, this toolbar should appear automatically, floating in plain sight.	このプラグインをインストールした場合、このツールバーの表示を自由に自動的に表示されます。	physx	using1	58880
+It appears as shown at right.	右の図に示すように表示されます。	physx	using1	58881
+If the toolbar isn’t visible (if, for example, you have closed it), you can get it to show up again as with any other toolbar in Max: simply right-click in an unused toolbar area, and choose “PhysX Toolbar” from the right-click menu.	[ツールバーが表示されていな (たとえば、、閉じた) するには、[繰り返してその他のツールバーの最大を右クリックで使用されていないツールバーを選択して、[PhysX] ツールバーからは、右クリックメニューがあります。	physx	using1	58882
+Ah, there it is!	ah はあります。	physx	using1	58883
+{563}The first button in the PhysX Toolbar opens the PhysX Tools panel, shown at right.	{563} PhysX ツールバーの最初のボタンの右に表示されている PhysX ツールパネルを開きます。	physx	using1	58885
+There are two tabs at the top of the panel, the {564}Global{565} and the {566}Modifier{567} tab.	パネル、{564} グローバル {565} と {566} モディファイヤ {567} ] タブの上部にある 2 つのタブがあります。	physx	using1	58886
+The {568}Global{569} tab (as seen at right) lets you control aspects common to the entire project.	[{568} グローバル {569} ] タブの右側に示されている部分はプロジェクト全体に共通のコントロールすることができます。	physx	using1	58887
+The “Scene Settings” rollout allows you to specify values that affect the scene.	[シーン設定] ロールアウトには、シーンに影響する値を指定することができます。	physx	using1	58888
+The “Advanced Settings” rollout allows you to control advanced controls that affect the scene.	設定] ロールアウトには、シーンに影響を与える高度なコントロールを制御できるように拡張します。	physx	using1	58889
+The “Simulation” rollout provides authoring defaults for the simulation.	[シミュレーション] ロールアウトには、シミュレーションのオーサリングの既定値が表示されます。	physx	using1	58890
+The {570}Display{571} tab lets you control the display properties common to the entire project.	[{570} 表示 {571} ] タブでは、表示プロパティは、プロジェクト全体に共通のコントロールすることができます。	physx	using1	58891
+The “Rigid Bodies” rollout provides display options for all rigid bodies in the scene.	ロールアウトのリジッドボディを、シーン内のすべてのリジッドボディの表示オプションがあります。	physx	using1	58892
+The “APEX Clothing” rollout provides diplay options for all apex clothing in the scene.	「 APEX Clothing] ロールアウトには、シーン内のすべての頂点の衣服の表示オプションがあります。	physx	using1	58893
+For more information, see the {572}reference section{573}.	詳細については、{572} リファレンスセクション {573} 」 を参照してください。	physx	using1	58894
+{574}The next two buttons are the rigid body and constraints flyouts.	次の 2 つのボタンは、リジッドボディとコンストレイントフライアウトで {574} します。	physx	using1	58896
+As with Max flyouts, clicking on the button will perform the action indicated by the icon, while clicking and holding on the flyout will display a list of related actions.	[フライアウトを使用して、このボタンをクリックすると、フライアウトをクリックしたまま関連アクションのリストが表示され、アイコンで示されているアクションを実行します。	physx	using1	58897
+For more information, see {575}, or the reference sections for the {576} and the {577}.	詳細については、{575}、{576} と {577} の参照セクションを参照してください。	physx	using1	58898
+{578}The third flyout button contains actions for working with ragdolls.	ラグドールの操作には、3 番目のフライアウトボタンが含まれているアクション {578} します。	physx	using1	58900
+As above, clicking the button will perform the action shown, while clicking and holding on the button will let you choose an alternative action.	このボタンをクリックすると、上記とは、ボタンをクリックしたまま、別のアクションを選択すると、次の操作を実行します。	physx	using1	58901
+For more information, see {579}Creating Ragdolls{580}, or the reference section for the {581}.	詳細については、ラグドール {580}、{581} の参照を作成する {579} 」 を参照してください。	physx	using1	58902
+{582}This button on the toolbar opens and closes the Physical Material Editor.	{582} ツールバーには、このボタンが表示され、[マテリアルエディタ] を閉じます。	physx	using1	58904
+Like Max’s (graphical) Material Editor, the Physical Material Editor lets you create presets for the physical properties of rigid bodies or clothing, and re-use them throughout your project.	MAX のグラフィカルな) マテリアルエディタのように、[マテリアルエディタ] では、リジッドボディや衣服の物理的なプロパティのプリセットを作成し、プロジェクト全体で再利用することができます。	physx	using1	58905
+For more information, see the reference section for the {583}&nbsp;(where you can reference a physical material preset), or the reference section for the {584}&nbsp;itself.	詳細については、{583} &nbsp; のリファレンスセクションでは、物理的マテリアルプリセットを参照できるよう、{584} &nbsp; 自体の参照セクションを参照してください。	physx	using1	58906
+{585}Last on the toolbar are three buttons for controlling the simulation:	ツールバーの {585} 最後のシミュレーションを制御するための 3 つのボタンがあります。	physx	using1	58908
+The {586}&nbsp;{587}Reset Simulation{588} button rewinds the Max Time Slider to the first frame and moves any dynamic rigid bodies back to their initial transform.	[{586} &nbsp; {587} シミュレーション {588} ボタンは、最初のフレームに、タイムスライダを巻き戻し、ダイナミックリジッドボディの最初の変換に戻してリセットします。	physx	using1	58909
+Where Max’s own “Play Animation” button advances the Time Slider and shows you animations (only), the PhysX {589}&nbsp;{590}Start Simulation{591} button updates the positions of (dynamic) rigid body and clothing objects in the scene, along with advancing the Max Time Slider and visualizing Max animations.	ここで最大の 「 アニメーションを再生] ボタンが [タイムスライダが表示され、アニメーションは、PhysX {589} &nbsp; {590} シミュレーション開始 {591} ボタンが更新され、位置のダイナミックリジッドボディとクロスオブジェクトでシーンに沿って進む最大タイムスライダが表示する最大アニメーション。	physx	using1	58910
+If you wish to run the simulation only (without advancing the Max Time Slider, and thus not updating the position of any kinematic rigid bodies), a second ‘play’ button named {592}&nbsp;{593}Start Simulation without Animation{594} is available as part of the flyout.	場合によって、実行したシミュレーションのみに進む最大タイムスライダ、更新の位置のキネマティクスリジッドボディ)、2 番目の [再生] ボタンという {592} &nbsp; {593} シミュレーションを開始せずにアニメーション {594} で使用できるパーツのフライアウトです。	physx	using1	58911
+The {595}&nbsp;{596}Step Simulation{597} button runs the simulation for a single frame (with Max animation) and then stops it.	ボタン {597}[{595} &nbsp; {596} ステップシミュレーションの単一フレームのアニメーションでシミュレーションを実行して終了します。	physx	using1	58912
+Finally, there is the PhysX menu in the menu bar of Max itself.	最後に、[Max のメニューバーで [PhysX] メニューが表示されます。	physx	using1	58914
+While much of this menu exists to provide you with an alternative to the toolbar, there are some actions (such as {598}creating clothing{599} or {600}exporting the scene{601}) that must be made through the menu itself.	このメニューのツールバーの代わりに示すことが存在する場合は、メニューを使用する必要がある操作 (シーン {601} エクスポート {598} 衣服 {599} 作成または {600} など) があります。	physx	using1	58915
+For more information, see the reference section for the {602}.	詳細については、{602} の参照セクションを参照してください。	physx	using1	58916
+The following pages are part of {603}Rigid Bodies & Constraints{604}:	次のページ {604}{603} リジッドボディとコンストレイントがあります。	physx	using1	58918
+{605} Rigid Body Overview{606}	{605} リジッドボディ {606} の概要	physx	using1	58919
+Introduction to the concepts needed for authoring rigid bodies.	リジッドボディのオーサリングに必要な概念を紹介します。	physx	using1	58920
+{607} Working with Rigid Bodies{608}	リジッドボディの作業 {607}{608}	physx	using1	58921
+The workflow for creating and editing rigid bodies.	リジッドボディを作成および編集するためのワークフローを選択します。	physx	using1	58922
+{609} Constraining Physics Objects{610}	{609} 物理オブジェクトの制限 {610}	physx	using1	58923
+Understanding, creating, and editing PhysX constraints.	とは、作成、および PhysX コンストレインを編集します。	physx	using1	58924
+Rigid Body Overview	リジッドボディの概要	physx	using1	58925
+What is a "Rigid Body"?	」 リジッドボディ 」 がありますか?	physx	using1	58926
+Composing the Physical Representation	物理的表現を構成する	physx	using1	58927
+Rigid Body Types: Dynamic, Kinematic, and Static	リジットボディタイプ: ダイナミック、キネマティクス、およびスタティック	physx	using1	58928
+Physical Meshes versus Graphical Meshes	物理的メッシュとグラフィカルメッシュ	physx	using1	58929
+What is a	は、	physx	using1	58930
+A "rigid body" is an object in the physical simulation whose shape and size cannot change.	「 リジッドボディのシェイプやサイズを変更できない物理的シミュレーション内のオブジェクトです。	physx	using1	58931
+If you make a rod in your scene into a rigid body, it may bounce and slide around, but it can never be bent or snapped (no matter how much force is applied).	リジッドボディには、シーン内のロッドを行うと、バウンドになりますが、これは曲げまたは (フォースが適用されているかは関係ありません)、スナップすることができます。	physx	using1	58932
+Multiple rigid bodies may be joined together in a scene by constraints.	複数のリジッドボディをコンストレイントによってシーンに結合できます。	physx	using1	58933
+For example, imagine that you have added a door to your scene and made it a rigid body.	たとえば、シーンにドアを追加し、これをリジッドボディにしたいとします。	physx	using1	58934
+While it may may start out precariously balanced upright in the door frame, any bump into the door is going to have it fall flat on the floor.	この precariously 平衡のドアのフレームから開始されることがありませんが、ドアにバンプが床の上に平らに減衰になります。	physx	using1	58935
+You need to add a hinge constraint to hold the door on the door frame.	ドアフレームのドアを押したままにするには、ヒンジコンストレイントを追加する必要があります。	physx	using1	58936
+{611}teapot graphical mesh and simplified physical mesh	{611} ティーポットのグラフィカルメッシュと単純化された物理的メッシュ	physx	using1	58938
+Manage Your Data	データ管理	galileo	manage	59180
+Data Management Overview	データ管理の概要	galileo	manage	59181
+data management:overview;overview:data management	データ管理<so > がいよう; 概要: データ管理	galileo	manage	59182
+Using &ProdName;, a city modeler can manage the data in a city model project.	&ProdName; を使用して、都市モデラ都市モデルプロジェクトのデータを管理することができます。	galileo	manage	59183
+Management functions include the following abilities:	管理機能は、機能を次に示します。	galileo	manage	59184
+review referenced data sources and attribute mappings	データソースとアトリビュートのマッピングを参照を確認	galileo	manage	59185
+remove city objects that have been previously imported	これまでに読み込んだ区画オブジェクトを削除	galileo	manage	59186
+update data mappings	更新データマッピング	galileo	manage	59187
+reimport relevant source data	再読み込みで、関連するソースデータ	galileo	manage	59188
+Manage Data Sources and Attribute Mappings	[データソースとアトリビュートのマッピング	galileo	manage	59189
+manage:data sources;manage:attribute mapping;data sources:management of;attribute mapping:management of	管理<so > データソース; 管理: 属性マッピング; データソース、属性マッピングの管理: 管理	galileo	manage	59190
+You can manage all data sources and attribute mapping entries used during import operations.	すべてのデータソースやインポート処理中に使用される属性マッピングエントリを管理することができます。	galileo	manage	59191
+When model objects are imported, their data source location, connection information, and relevant attribute mappings remain intact.	オブジェクトを読み込むと、データソースの場所、接続情報、および関連する属性マッピングはそのまま残ります。	galileo	manage	59192
+All settings are maintained between the source data and the city model object classes.	すべての設定は、ソースデータと、都市のモデルオブジェクトクラスとの間で維持されます。	galileo	manage	59193
+Data source locations, connection information, and attribute mappings are reviewed by ...	データソースの接続情報は、属性マッピングを見直して示します。	galileo	manage	59194
+To review data sources	[データソースにするには	galileo	manage	59195
+Click Start menu {83} Programs {84} Autodesk {85} &ProdNameLong; {86} &ProdNameLong;.	&ProdNameLong; Autodesk {84}{85}{86} &ProdNameLong; プログラム {83}[スタート] メニューをクリックします。	galileo	manage	59196
+Open an existing city model.	は、都市の既存のモデルを開きます。	galileo	manage	59197
+Click Import menu {87} Terrain.	地表 {87}[読み込み] をクリックします。	galileo	manage	59198
+The Import Geospatial Data dialog box is displayed.	[空間データ] ダイアログボックスが表示されます。	galileo	manage	59199
+Click the Add Files button and select a terrain model you want added to the project.	[ファイルを追加] ボタンをクリックし、プロジェクトに追加されるかを選択し、地形モデルを選択します。	galileo	manage	59200
+Navigate to the folder containing source data and select a terrain model.	フォルダのソースデータを含む、地形モデルを選択します。	galileo	manage	59201
+Click Open.	[開く] をクリックします。	galileo	manage	59202
+The selected terrain model is added to the import list.	選択した地形モデルが読み込みリストに追加されます。	galileo	manage	59203
+The terrain model has a coordinate system of CA-I assigned.	地形モデルを CA-I に座標系が割り当てられています。	galileo	manage	59204
+Click Insert.	[挿入] をクリックします。	galileo	manage	59205
+{88}Result:{89}	{88}{89} 結果:	galileo	manage	59206
+The terrain model is imported into the city model project and the coordinate system is automatically set to that of the terrain model.	この地形モデルは、都市のモデルをプロジェクトに読み込むと、座標系が自動的に地形モデルに設定されています。	galileo	manage	59207
+To review attribute mappings	アトリビュートのマッピングをレビューするには	galileo	manage	59208
+Click Start menu {90} Programs {91} Autodesk {92} &ProdNameLong; {93} &ProdNameLong;.	&ProdNameLong; {93} &ProdNameLong; プログラム {90}{91}{92} Autodesk [スタート] メニューをクリックします。	galileo	manage	59209
+Click Import menu {94} Terrain.	地表 {94}[読み込み] をクリックします。	galileo	manage	59211
+{95}Result:{96}	{95}{96} 結果:	galileo	manage	59219
+To manage data sources	[データソースにするには	galileo	manage	59221
+Click Start menu {97} Programs {98} Autodesk {99} &ProdNameLong; {100} &ProdNameLong;.	&ProdNameLong; Autodesk {98}{99}{100} &ProdNameLong; プログラム {97}[スタート] メニューをクリックします。	galileo	manage	59222
+Click Import menu {101} Terrain.	地表 {101}[読み込み] をクリックします。	galileo	manage	59224
+{102}Result:{103}	{102}{103} 結果:	galileo	manage	59232
+To manage attribute mappings	[アトリビュートをマッピングする	galileo	manage	59234
+Click Start menu {104} Programs {105} Autodesk {106} &ProdNameLong; {107} &ProdNameLong;.	&ProdNameLong; Autodesk {105}{106}{107} &ProdNameLong; プログラム {104}[スタート] メニューをクリックします。	galileo	manage	59235
+Click Import menu {108} Terrain.	地表 {108}[読み込み] をクリックします。	galileo	manage	59237
+{109}Result:{110}	結果: {109}{110}	galileo	manage	59245
+Edit Attribute Mappings	編集属性マッピング	galileo	manage	59247
+edit:attribute mapping;attribute mapping:editing of	編集<so > ヘンシュウ: アトリビュートマップ、属性マッピングの編集	galileo	manage	59248
+To visualize elements in the city model project correctly, source data attributes require mapping to corresponding attributes of city model objects.	都市モデルプロジェクトを正しく内の要素を表示するには、ソースデータのアトリビュートのモデルオブジェクトの対応するアトリビュートにマッピングする必要があります。	galileo	manage	59249
+After model objects are imported, you may find it necessary to edit attribute mappings.	オブジェクトモデルをインポートした後に、属性マッピングを編集する必要があります。	galileo	manage	59250
+For example, the height attribute of an apartment building may need to change for greater visual accuracy.	たとえば、アパートの高さアトリビュートが表示精度を変更する必要があります。	galileo	manage	59251
+After editing any attribute mappings, it is necessary to import the source data again to update the visualization.	アトリビュートのマッピングを編集した後、表示を更新するには、ソースデータを再度読み込む必要があります。	galileo	manage	59252
+Because this operation changes the city model, you are prompted to confirm the action.	この操作は、都市のモデルが変更されるので、アクションを確認するプロンプトが表示されます。	galileo	manage	59253
+Attribute mapping does not support undo/redo.	属性マッピング元に戻す / やり直しをサポートしていません。	galileo	manage	59254
+To edit attribute mappings	編集するアトリビュートをマッピングする	galileo	manage	59255
+Click Start menu {111} Programs {112} Autodesk {113} &ProdNameLong; {114} &ProdNameLong;.	&ProdNameLong; {114} &ProdNameLong; プログラム {111}{112}{113} Autodesk [スタート] メニューをクリックします。	galileo	manage	59256
+Click Import menu {115} Terrain.	地表 {115}[読み込み] をクリックします。	galileo	manage	59258
+{116}Result:{117}	{116}{117} 結果:	galileo	manage	59266
+To render updated source data	更新されたレンダーソースデータ	galileo	manage	59268
+Click Start menu {118} Programs {119} Autodesk {120} &ProdNameLong; {121} &ProdNameLong;.	&ProdNameLong; Autodesk {119}{120}{121} &ProdNameLong; プログラム {118}[スタート] メニューをクリックします。	galileo	manage	59269
+Click Import menu {122} Terrain.	地表 {122}[読み込み] をクリックします。	galileo	manage	59271
+{123}Result:{124}	{123}{124} 結果:	galileo	manage	59279
+Remove City Objects from Source Data	ソースデータから区画オブジェクトを削除	galileo	manage	59281
+remove:city objects;city objects:removal of;data sources:remove city objects;city objects:removal from source data	削除<so > サクジョ: 都市オブジェクト; City オブジェクト: 都市オブジェクト; City オブジェクト: ソースデータの削除を削除します。 データソースを削除します。	galileo	manage	59282
+Model objects retain a constant connection with their source data.	モデルのオブジェクトには、ソースデータに対して一定の接続は維持されます。	galileo	manage	59283
+It is not uncommon for data sources to be associated with several model objects of a certain type.	特定のタイプの複数のオブジェクトに関連付けるデータソースのことは珍しくありません。	galileo	manage	59284
+For example, source data for street objects for a specific part of the city may be stored in a SHP file.	たとえば、都市の特定のパーツの境界オブジェクトのソースデータを SHP ファイルに格納されます。	galileo	manage	59285
+When you import the SHP file content, the streets are visualized in the viewport.	[SHP ファイルのコンテンツをインポートすると、道路は、ビューポートに表示されます。	galileo	manage	59286
+If you remove a street, this operation removes {125}all{126} of the street objects associated with the SHP file; not the individual street object.	道路を削除する場合は、この操作を削除し、SHP ファイルに関連付けられている道路の全オブジェクト {126}。 個々 の道路オブジェクト {125} します。	galileo	manage	59287
+Model objects that are imported from other data sources remain in the city model.	その他のデータソースから読み込まれたモデルオブジェクトに都市のモデルに残ります。	galileo	manage	59288
+Removing city model objects from the data source is not supported by undo/redo.	データソースからのモデルオブジェクトを元に戻す / やり直しによってサポートされていません。	galileo	manage	59290
+To remove city objects imported from a data source	データソースからインポートされた都市のオブジェクトを削除するには	galileo	manage	59291
+Click Start menu {127} Programs {128} Autodesk {129} &ProdNameLong; {130} &ProdNameLong;.	&ProdNameLong; Autodesk {128}{129}{130} &ProdNameLong; プログラム {127}[スタート] メニューをクリックします。	galileo	manage	59292
+Click Import menu {131} Terrain.	地表 {131}[読み込み] をクリックします。	galileo	manage	59294
+{132}Result:{133}	{132}{133} 結果:	galileo	manage	59302
+Filter the list of data sources below	データソースのリストをフィルタ	galileo	sw1	59787
+Show:	表示:	galileo	sw1	59788
+Add file data source	[データソース	galileo	sw1	59789
+Add File	ファイルを追加	galileo	sw1	59790
+Add database data source	[データベースのデータソース	galileo	sw1	59791
+Connect Database	データベース接続	galileo	sw1	59792
+Configure	環境設定	galileo	sw1	59793
+Select Features	フィーチャを選択	galileo	sw1	59794
+Delete Features	フィーチャを削除する	galileo	sw1	59795
+Expand All	すべてを展開	galileo	sw1	59796
+Collapse All	すべてを集約	galileo	sw1	59797
+Hide Details	詳細を非表示	galileo	sw1	59798
+Data Source Details	データソースの詳細について	galileo	sw1	59799
+Source type:	ソースタイプ:	galileo	sw1	59800
+Connection string:	接続文字列:	galileo	sw1	59801
+Coordinate system:	座標系:	galileo	sw1	59802
+Date loaded:	ロードされた日付です。	galileo	sw1	59803
+File Data Source Reconnection	データソースの再接続	galileo	sw1	59804
+Select	選択	galileo	sw1	59805
+Rename	名前変更	galileo	sw1	59806
+Refresh...	再表示...	galileo	sw1	59807
+Remove Data	データを除去	galileo	sw1	59808
+Removal cannot be undone.	削除を元に戻すことはできません。	galileo	sw1	59809
+Continue and remove the data?	続けて、データを削除しますか?	galileo	sw1	59810
+Remove All Features	すべてのフィーチャを削除	galileo	sw1	59811
+Continue and remove all features of this data source?	続けて、このデータソースのすべてのフィーチャを削除しますか?	galileo	sw1	59813
+Name	名前	galileo	sw1	59814
+Multiple Values	複数の値	galileo	sw1	59815
+Source	ソース	galileo	sw1	59816
+Type	タイプ	galileo	sw1	59817
+Invert Orientation	反転方向	galileo	sw1	59818
+Invert Up Axis	[Up 軸]	galileo	sw1	59819
+Flip Y and Z	[Y 軸反転]、[Z]	galileo	sw1	59820
+Texture Blend Mode	テクスチャブレンドモード	galileo	sw1	59821
+Original	オリジナル	galileo	sw1	59822
+Modulate	調整	galileo	sw1	59823
+Decal	デカール	galileo	sw1	59824
+Lifespan	ライフスパン （ Lifespan ）	galileo	sw1	59825
+Common	一般	galileo	sw1	59826
+Style	スタイル	galileo	sw1	59827
+Elevation	高さ	galileo	sw1	59828
+Edit	編集	galileo	sw1	59829
+Revert	元に戻す	galileo	sw1	59830
+Script	スクリプト	galileo	sw1	59831
+Source Filter	ソースフィルタ	galileo	sw1	59832
+Draping Options	ドレープするオプション	galileo	sw1	59833
+Convert closed polylines to polygons	閉じたポリラインをポリゴンに変換する	galileo	sw1	59834
+Do not drape	ドレープしない	galileo	sw1	59835
+Drape	ドレープ	galileo	sw1	59836
+Set Elevation	高度を設定	galileo	sw1	59837
+Table	テーブル	galileo	sw1	59838
+Coordinate System	座標系	galileo	sw1	59839
+Position	位置	galileo	sw1	59840
+Offset	オフセット	galileo	sw1	59841
+Scale	スケール	galileo	sw1	59842
+Rotation	回転	galileo	sw1	59843
+Interactive Placing...	インタラクティブ配置中...	galileo	sw1	59844
+Local Origin	ローカル基点	galileo	sw1	59845
+Center 2D	中心 2	galileo	sw1	59846
+Center 3D	中心 3D	galileo	sw1	59847
+Lower Left Front	正面左下	galileo	sw1	59848
+Geo Location	地理的位置	galileo	sw1	59849
+Clip to Model Extent	モデル範囲にクリップ	galileo	sw1	59850
+No Data Value	データ値	galileo	sw1	59851
+Height Band	高さバンド	galileo	sw1	59852
+Classification	分類	galileo	sw1	59853
+Color Mask	カラーマスク	galileo	sw1	59854
+Band Mapping	帯のマッピング	galileo	sw1	59855
+Gray	グレー	galileo	sw1	59856
+Red	赤	galileo	sw1	59857
+Green	緑	galileo	sw1	59858
+Blue	青	galileo	sw1	59859
+Alpha	アルファ	galileo	sw1	59860
+Undefined	undefined	galileo	sw1	59861
+Aerial	上空	galileo	sw1	59862
+Satellite	衛星	galileo	sw1	59863
+Topographic Map	トポロジマップ	galileo	sw1	59864
+Smooth Colors	Smooth Colors	galileo	sw1	59865
+Discrete Colors	個々 のカラー	galileo	sw1	59866
+Gray + Alpha	グレー + アルファ	galileo	sw1	59867
+RGB	RGB	galileo	sw1	59868
+RGB + Alpha	RGB + アルファ	galileo	sw1	59869
+Pick Color	選択カラー	galileo	sw1	59870
+Link	リンク	galileo	sw1	59871
+Tooltip	ツールチップ	galileo	sw1	59872
+Expression Editor...	式エディタ...	galileo	sw1	59873
+Style Chooser...	スタイルを選択 (& C)...	galileo	sw1	59874
+Export to FBX	FBX にエクスポートするには	galileo	sw1	59875
+Target Coordinate System	ターゲットの座標系	galileo	sw1	59876
+Target File(s)	ターゲットファイル	galileo	sw1	59877
+Single File	単一ファイル	galileo	sw1	59878
+Set File...	設定ファイル (& N)...	galileo	sw1	59879
+Multiple Files	複数ファイル	galileo	sw1	59880
+Set Location...	地理的位置を設定...	galileo	sw1	59881
+Feature Type	フィーチャタイプ	galileo	sw1	59882
+File Name	ファイル名	galileo	sw1	59883
+Export Materials/Textures	書き出すマテリアル / テクスチャ	galileo	sw1	59884
+Import Bookmarks	読み込みのブックマーク	galileo	sw1	59885
+File Settings	ファイルの設定	galileo	sw1	59886
+Source file	ソースファイル	galileo	sw1	59887
+Shot Settings	ショット設定	galileo	sw1	59888
+Order Index	配列インデックス	galileo	sw1	59889
+Camera Height	カメラの高さ	galileo	sw1	59890
+Add Geometry Z	ジオメトリを追加]	galileo	sw1	59891
+Expression	式	galileo	sw1	59892
+Camera Orientation	カメラの方向	galileo	sw1	59893
+Tilt	傾斜	galileo	sw1	59894
+Timing Control	タイミングコントロール	galileo	sw1	59895
+Set Speed	速度を設定	galileo	sw1	59896
+Set Duration	時間設定	galileo	sw1	59897
+Path Speed	パスの速度	galileo	sw1	59898
+Path Duration	パス]	galileo	sw1	59899
+Pause Duration	停止時間	galileo	sw1	59900
+3D Model Files (%1)	3D モデルファイル (%1)	galileo	sw1	59901
+Arc/Info Binary Grid	Arc/Info バイナリグリッド	galileo	sw1	59902
+Arc/Info ASCII Grid	Arc/Info ASCII グリッド	galileo	sw1	59903
+VTP Binary Terrain	vtp バイナリ地表	galileo	sw1	59904
+Collada	Collada	galileo	sw1	59905
+Database	データベース	galileo	sw1	59906
+Military elevation data	軍事標高データ	galileo	sw1	59907
+Autodesk DWG	Autodesk DWG	galileo	sw1	59908
+Arc/Info Grid Export	Arc/Info グリッドをエクスポート	galileo	sw1	59909
+Enhanced Compressed Wavelet	拡張圧縮ウェーブレット	galileo	sw1	59910
+Autodesk FBX	Autodesk FBX	galileo	sw1	59911
+Golden Surfer Grid	金色サーファー]	galileo	sw1	59912
+Nasa SRTM	nasa STRM (スペース	galileo	sw1	59913
+Erdas Imagine	erdas を想像してください	galileo	sw1	59914
+OBJ	OBJ	galileo	sw1	59915
+PNG	PNG	galileo	sw1	59916
+SDF	SDF	galileo	sw1	59917
+SQLite	SQLite	galileo	sw1	59918
+Autodesk 3DS	Autodesk 3ds Max	galileo	sw1	59919
+GeoTIFF	GeoTIFF	galileo	sw1	59920
+MrSID	MrSID	galileo	sw1	59921
+Comma Separated Value	カンマで区切られた値	galileo	sw1	59922
+Civil	Civil	galileo	sw1	59923
+Terrain Texture	地表テクスチャ	galileo	sw1	59924
+Terrain Surface	地形サーフェス	galileo	sw1	59925
+Texture	テクスチャ	galileo	sw1	59926
+Facade Style Editor	壁スタイルエディタ	galileo	sw1	59927
+Theme	テーマ	galileo	sw1	59928
+Building Base Color	建物のベースカラー	galileo	sw1	59929
+Layouts	レイアウト	galileo	sw1	59930
+Block Sequence	ブロックのシーケンス	galileo	sw1	59931
+various values	さまざまな値	galileo	sw1	59932
+FileBasedDbConnectionWidget	filebaseddbconnectionwidget	galileo	sw1	59933
+Source file:	ソースファイル:	galileo	sw1	59934
+Source file or folder:	ソースファイルまたはフォルダ:	galileo	sw1	59935
+File	ファイル	galileo	sw1	59936
+Folder	フォルダ	galileo	sw1	59937
+Dialog	ダイアログボックス	galileo	sw1	59938
+Type of data:	データのタイプ:	galileo	sw1	59939
+Unkown File Extension	不明なファイル拡張子	galileo	sw1	59940
+Unknown File Category	不明なファイルカテゴリ	galileo	sw1	59941
+Files	ファイル	galileo	sw1	59942
+MySql	MySQL	galileo	sw1	59943
+ODBC	ODBC	galileo	sw1	59944
+Oracle	Oracle	galileo	sw1	59945
+SQL Server	SQL Server	galileo	sw1	59946
+SQL Server Spatial	SQL Server Spatial	galileo	sw1	59947
+WFS	WFS	galileo	sw1	59948
+WMS	WMS	galileo	sw1	59949
+Unkown connection type	不明な接続タイプ	galileo	sw1	59950
+Base Layer Management	基本画層の管理	galileo	sw1	59951
+Apply	適用	galileo	sw1	59952
+Internal Error	内部エラー	galileo	sw1	59953
+There occured an error while applying the made changes.	加えた変更を適用するときにエラーが発生します。	galileo	sw1	59954
+(See the current log for details).	詳細については、現在のログを参照してください。	galileo	sw1	59955
+Hide data source contents	非表示データソースの内容	galileo	sw1	59956
+Show data source contents	データソースの内容	galileo	sw1	59957
+Terrain Surfaces	地形サーフェス	galileo	sw1	59958
+Ground Imagery and Coverages	地表イメージとカバレッジ	galileo	sw1	59959
+Roads and Railways	道路や線路	galileo	sw1	59960
+Unknown	不明な	galileo	sw1	59961
+Show contents of selected data sources	選択したデータソースの内容を表示	galileo	sw1	59962
+Hide contents of selected data sources	選択したデータソースの内容を非表示	galileo	sw1	59963
+A Level-of-Detail must be selected.	詳細レベルを選択する必要があります。	galileo	sw1	59964
+A valid default unit of measure must be selected.	計測の有効な既定の単位を選択する必要があります。	galileo	sw1	59965
+Generation Level-of-Detail	生成の詳細レベル	galileo	sw1	59966
+Default Unit Of Measure	計測の既定の単位	galileo	sw1	59967
+LOD Quality	詳細レベルの品質	galileo	sw1	59968
+Reduce it to render faster.	レンダリングの速度を下げます。	galileo	sw1	59969
+Increase it to see more detail.	詳細についてはこの値を増やします。	galileo	sw1	59970
+If this flag is set the whole model will be regenerated for the specified point in time.	このフラグは、モデル全体に指定した点に再作図されます。 設定されています。	galileo	sw1	59971
+Use Model Time	モデルを使用時間	galileo	sw1	59972
+A model can be generated for a specific point in time.	モデルの特定のポイントに対して作成することができます。	galileo	sw1	59973
+Provider:	プロバイダ:	galileo	sw1	59974
+Configuration string:	環境文字列:	galileo	sw1	59976
+Help	ヘルプ	galileo	sw1	59977
+Large Icons	大きいアイコン	galileo	sw1	59978
+Medium Icons	中アイコン	galileo	sw1	59979
+Small Icons	小さいアイコン	galileo	sw1	59980
+Icon List	アイコンのリスト	galileo	sw1	59981
+Error	エラー	galileo	sw1	59982
+Failed to connect to data source.	データソースへの接続に失敗しました。	galileo	sw1	59983
+Please refer to the log window for further details.	詳細については、ログインウィンドウを参照してください。	galileo	sw1	59984
+Model Style Editor	モデルスタイルエディタ	galileo	sw1	59985
+Model URI:	モデルの URI:	galileo	sw1	59986
+Instanced Model Settings	インスタンス化されたモデルの設定	galileo	sw1	59987
+Anchor point:	アンカー点を指定:	galileo	sw1	59988
+Flip Y/Z	反転 [同値にする ： Y/Z]	galileo	sw1	59989
+Invert axis sign	軸を反転。	galileo	sw1	59990
+Invert polygon orientation	ポリゴンを反転方向	galileo	sw1	59991
+Show Bounding Box	[バウンディングボックスを表示]	galileo	sw1	59992
+Show X-Y-Grid	Show x-y-grid	galileo	sw1	59993
+Clear Log	[ログをクリア]	galileo	sw1	59994
+Enter Credentials	入力情報	galileo	sw1	59995
+Enter credentials for:	の資格情報:	galileo	sw1	59996
+Some sort of context info	コンテキスト情報を	galileo	sw1	59997
+User Name:	ユーザ名:	galileo	sw1	59998
+Password:	パスワード:	galileo	sw1	59999
+Manage Models	[モデル]	galileo	sw1	60001
+Account :	計算:	galileo	sw1	60002
+Download	ダウンロード	galileo	sw1	60003
+Delete	削除	galileo	sw1	60004
+GroupBox	GroupBox	galileo	sw1	60005
+From:	開始位置:	galileo	sw1	60006
+MM/dd/yyyy	MM/DD/YYYY	galileo	sw1	60007
+To:	します。	galileo	sw1	60008
+Details...	詳細 (& T)...	galileo	sw1	60009
+No model or proposal selected	選択したモデルまたは計画	galileo	sw1	60010
+No models found.	モデルがあります。	galileo	sw1	60011
+%1 History	%1 の履歴	galileo	sw1	60012
+%1 : %2 History	%1: %2 の履歴	galileo	sw1	60013
+Download Model	ダウンロードモデル	galileo	sw1	60014
+Model download failed!	モデルのダウンロードに失敗しました。	galileo	sw1	60015
+See the error log for details.	詳細については、エラーのログを参照してください。	galileo	sw1	60016
+Manage Accounts	[アカウント	galileo	sw1	60017
+Add Account	を追加するには	galileo	sw1	60018
+Remove Account	[アカウント	galileo	sw1	60019
+Del	[Del]	galileo	sw1	60020
+Test Connection	[接続のテスト	galileo	sw1	60021
+Connection succeeded.	接続に成功しました。	galileo	sw1	60022
+Connection failed	接続に失敗しました	galileo	sw1	60023
+Invalid Display Name	表示名が無効	galileo	sw1	60024
+The highlighted display name is blank or is duplicate.	ハイライト表示された表示名は空であるか、または重複しています。	galileo	sw1	60025
+Invalid Service/Account	無効な service/account	galileo	sw1	60026
+The highlighted service/account is blank or is duplicate.	ハイライト表示された service/account 空白または重複しています。	galileo	sw1	60027
+File Format Error	ファイルエラー	galileo	sw1	60028
+Unsupported File Format.	サポートされないファイル形式です。	galileo	sw1	60029
+File Error	ファイルエラー	galileo	sw1	60030
+Invalid service file.	無効なサービスファイルに保存します。	galileo	sw1	60031
+Duplicate Account	複製アカウント	galileo	sw1	60032
+A service (%1) already exists for this Galileo Online account.	サービス名 (%1) は既にこの Galileo オンラインが存在します。	galileo	sw1	60033
+Do you want to replace it?	置き換えますか?	galileo	sw1	60034
+(Default)	(既定値)	galileo	sw1	60035
+Duplicate Mapping Name	重複するマッピング名	galileo	sw1	60036
+A mapping with the name: %1 already exists!	%1 は既に存在します、名前でマッピングします。	galileo	sw1	60037
+Material Group Style Editor	材料グループスタイルエディタ	galileo	sw1	60038
+Default Material:	既定値のマテリアルです。	galileo	sw1	60039
+Material Mapping	マテリアルマッピング	galileo	sw1	60040
+Add Material	マテリアルを追加	galileo	sw1	60041
+Remove Selected Material	選択した材料を削除	galileo	sw1	60042
+Merge Proposals	マージ proposals	galileo	sw1	60043
+Select Proposal to Merge into current:	現在の結合を提案します。	galileo	sw1	60044
+Remove Subset	[サブセットを除去]	galileo	sw1	60045
+Create Attribute Filter	作成するアトリビュートをフィルタ	galileo	sw1	60046
+Create new subset	サブセットを新規作成	galileo	sw1	60047
+Edit subset expression	[サブセット式	galileo	sw1	60048
+Delete Subsets	[サブセット	galileo	sw1	60049
+Are you sure you want to delete the selected subset(s)?	選択したファイルを削除してよろしいですか?	galileo	sw1	60050
+Manage base layer visibility...	[ベース] 画層の表示設定...	galileo	sw1	60051
+Select All	すべてを選択	galileo	sw1	60052
+Select By Filter...	フィルタによる選択	galileo	sw1	60053
+Visible	表示	galileo	sw1	60054
+LOD	詳細レベル	galileo	sw1	60055
+Selectable	選択	galileo	sw1	60056
+Highlight	ハイライト	galileo	sw1	60057
+Set Highlighting Color...	セットのハイライトカラー	galileo	sw1	60058
+View In Data Table	データテーブルで表示	galileo	sw1	60059
+Create Subset...	[サブセット...	galileo	sw1	60060
+Set Default Tooltip...	既定値をツールチップ (& O)...	galileo	sw1	60061
+Set Default Link...	既定値をリンク (& L)...	galileo	sw1	60062
+Rename Subset...	サブセットの名前を変更...	galileo	sw1	60063
+Edit Subset...	[サブセット...	galileo	sw1	60064
+Copy Subset	[サブセット	galileo	sw1	60065
+Downloading %1...	ダウンロード %1...	galileo	sw1	60067
+Publishing %1	パブリッシュ %1	galileo	sw1	60068
+Synchronizing %1	同期 %1	galileo	sw1	60069
+Delete Raster Data	ラスターデータを削除	galileo	sw1	60070
+Files cannot be deleted : %1	ファイルを削除できません: %1	galileo	sw1	60071
+Collecting info...	収集情報...	galileo	sw1	60072
+Allocating resource on server...	サーバに割り当てるリソース...	galileo	sw1	60073
+Uploading model...	アップロードモデル...	galileo	sw1	60074
+Uploading raster data...	アップロードのラスターデータ (& P)...	galileo	sw1	60075
+Uploading %1...	アップロード %1...	galileo	sw1	60076
+Publish Raster failed!	[ラスターに失敗しました。	galileo	sw1	60077
+Publish failed files: %1	ファイル: %1 のパブリッシュに失敗しました	galileo	sw1	60078
+Sending notification...	を通知 (& P)...	galileo	sw1	60079
+%1 has been published.	%1 をパブリッシュしています。	galileo	sw1	60080
+Description: %2	説明: %2	galileo	sw1	60081
+Downloading model...	ダウンロードモデル...	galileo	sw1	60082
+Downloading raster data...	ダウンロードするラスターデータ (& P)...	galileo	sw1	60083
+Downloading %1	ダウンロード中: %1	galileo	sw1	60084
+Deserialize database...	deserialize データベース...	galileo	sw1	60085
+Fetching changes...	一時保存が変更...	galileo	sw1	60087
+Interface Fundamentals	インタフェースの基本	compo	interface1	60817
+Topics in this chapter:	この章のトピック:	compo	interface1	60818
+Basic Interface Functions	基本的なインタフェース関数	compo	interface1	60819
+An intuitive set of editing functions are available to manipulate elements, such as compositions, folders, and so on.	編集機能の簡単な設定の要素、構成、フォルダなどの操作に使用できます。	compo	interface1	60820
+These include basic functions for cutting, copying, pasting, and deleting, as well as more advanced functions.	これらの切断の基本的な機能、コピー、貼り付け、および削除するだけでなく、より高度な機能があります。	compo	interface1	60821
+Mouse, Pen, Keyboard	マウス、ペン、キーボード	compo	interface1	60822
+You can interact with the user interface using a mouse or a pen and graphics tablet, in concert with the keyboard.	キーボードを加えることによっては、マウスやペンとタブレットを使用して、ユーザインタフェースを操作することができます。	compo	interface1	60823
+If you have a mouse wheel, you can use it to scroll through menus.	マウスホイールがある場合、メニューをスクロールすることができます。	compo	interface1	60824
+To generate a right-click with a pen, press the {146}Context Menu{147} key in concert with the pen.	ペンで右クリックを生成するには、[ペンしながら {146}{147} コンテキストメニューキーを押します。	compo	interface1	60825
+If a key board includes a {148}Context Menu{149} key, it is typically located three keys to the right of the {150}Spacebar{151}.	キーボード、{148}{149} コンテキストメニューキーが含まれている場合、通常は、{150}{151} スペースバーの右側に 3 つのキーがあります。	compo	interface1	60826
+Cutting, Copying and Pasting	切り取り、コピー、貼り付けを行う	compo	interface1	60827
+Standard cut, copy, and paste commands let you manipulate elements, such as composition and folders.	標準の切り取り、コピー、および貼り付けコマンドは、要素、構成、およびフォルダとして操作することができます。	compo	interface1	60828
+{152}To cut or copy, then paste an element:{153}	カットまたはコピーする、{152}{153} 貼り付け要素:	compo	interface1	60829
+Right-click the element and select Cut ({154}Ctrl + X{155} for Windows, Linux or {156}Cmd + X{157} for Mac OS) or Copy ({158}Ctrl + C{159} for Windows, Linux or {160}Cmd + C {161} for Mac OS).	要素を右クリックし、[切断 Mac OS の Windows、Linux、{156}{157}[Cmd] + [X {154}{155}[Ctrl] + [X] または [コピー (Windows、Linux または Mac OS C {161} + C {158}{159}{160} Cmd + [Ctrl] ) をクリックします。	compo	interface1	60830
+Navigate to the location where you want to paste the element.	要素を貼り付ける場所に移動します。	compo	interface1	60831
+Then right-click the location and select Paste or press ({162}Ctrl + V{163} for Windows, Linux or {164}Cmd + V{165} for Mac OS).	次の位置を選択して、[貼り付け] または [{162} Ctrl + V Windows、Linux または Mac OS の {164}[Cmd] + [V {165} の {163}() を右クリックします。	compo	interface1	60832
+Entering Text	入力テキスト	compo	interface1	60833
+Tools such as the Slate and Notes tools require that you type into text editor fields.	ツール (スレートおよび注記ツールとしてテキストエディタ] フィールドに入力する必要があります。	compo	interface1	60834
+{166}To accept changes in a text editor field, do one of the following:{167}	テキストエディタに変更を適用するには、{166}{167} のいずれかを実行します	compo	interface1	60835
+Press {168}Enter{169} in the case of a single-line editor.	1 行のエディタで [{168}{169} 入力します。	compo	interface1	60836
+Press {170}Ctrl + Enter{171} in the case of a multi-line editor.	マルチラインエディタの場合は [Ctrl] + [Enter]{170}{171} ] を押します。	compo	interface1	60837
+Click outside the editor.	エディタの外側をクリックします。	compo	interface1	60838
+{172}To revert to the previous text:{173}	前の値に戻す {172}{173}:	compo	interface1	60839
+Press {174}Esc{175}.	[Esc {174}{175} します。	compo	interface1	60840
+For more text editor/field hotkey combinations, see {176}.	複数の文字 editor/field ホットキーの組み合わせの場合、{176} 」 を参照してください。	compo	interface1	60841
+Dragging and Dropping	ドラッグアンドドロップ	compo	interface1	60842
+You can drag and drop the contents of most folders in the user interface.	ドラッグすると、ユーザインタフェースのほとんどのフォルダのコンテンツをドラッグアンドドロップすることができます。	compo	interface1	60843
+In the user preferences, you can choose whether you see the ghosted image of the composition or not.	[ユーザ設定では、構成のゴーストイメージを表示するかどうかを選択できます。	compo	interface1	60844
+See {177}.	{177} 」 を参照してください。	compo	interface1	60845
+Undoing and Redoing	元に戻す / やり直す	compo	interface1	60846
+You can undo most operations.	ほとんどの操作を元に戻すことができます。	compo	interface1	60847
+You can also redo any operation you undo.	また、操作を元に戻す] をやり直します。	compo	interface1	60848
+{178}To undo or redo an operation, do one of the following:{179}	操作を元に戻すまたはやり直す {178}{179}、のいずれかを実行します	compo	interface1	60849
+From the Edit menu, select Undo (or press {180}Ctrl + Z{181} for Windows, Linux or {182}Cmd + Z{183} for Mac OS).	[編集] メニューで、Windows、Linux または Mac OS の {182}[Cmd] + [Z] の {183}{181} を元に戻す (Ctrl + Z {180} ] を押します。	compo	interface1	60850
+Or select Redo (or press {184}Ctrl + Y{185} for Windows, Linux or {186}Cmd + Shift +Z{187} for Mac OS).	[Ctrl] + [Y]{184} ] を選択します (または [Windows、Linux または Mac OS の Z {186}{187} + [Cmd] + [Shift] + {185} ) します。	compo	interface1	60851
+Or, in the taskbar, at the bottom of the UI, locate the Undo icon.	ユーザインタフェースの下には、TASKBAR [タスクバー]、または [元に戻す] アイコンを選択します。	compo	interface1	60852
+The last action performed is displayed beside it.	実行された最後のアクションの横に表示されます。	compo	interface1	60853
+Then do one of two things:	次の 2 つの方法のいずれかを実行します。	compo	interface1	60854
+To undo the last operation you performed, click the arrow next the Undo icon.	[元に戻す] アイコンの横の矢印をクリックし、実行された最後の操作を元に戻します。	compo	interface1	60855
+To undo any operation other than the last one you performed, or to redo an operation, click the text to the right of the Undo button, and select the operation you want to undo or redo from the list.	操作は実行された最後の操作を元に戻す、または操作をやり直すには、[元に戻す] ボタンの右にあるテキストをクリックして、リストから元に戻す / やり直しの操作を選択します。	compo	interface1	60856
+Note that the arrow that appears in the list indicates the most recent operation you performed.	リストに表示される矢印は、最近実行した操作を示します。	compo	interface1	60857
+This operation and all operations above it are operations you can undo.	この操作は、上記のすべての操作は、元に戻すことが可能です。	compo	interface1	60858
+All operations below the arrow are ones you can redo.	矢印の下にあるすべての操作をやり直すことができるものがあります。	compo	interface1	60859
+{188}Things to Remember:{189}	覚え {188}{189} 事項:	compo	interface1	60860
+You set the maximum number of items in the undo/redo list in the user preferences General tab.	[ユーザ設定] の [一般] タブの [元に戻す ]/[ やり直し] リストの項目の最大数を設定します。	compo	interface1	60861
+Browsers have a separate undo/redo list.	ブラウザ<so > ぶらうざの元に戻す ]/[ やり直し] リストがあります。	compo	interface1	60862
+Press {190}Ctrl + Y {191}for Windows and Linux, or {192}Cmd + Shift + Z{193} for Mac OS to redo an operation.	[{190} Ctrl + Y Windows、Linux、または操作をやり直すには Mac OS の Z + {192}{193} Cmd + Shift {191} します。	compo	interface1	60863
+Deleting Elements and Compositions	削除する要素と構成	compo	interface1	60864
+You can delete an element, such as a composition or folder.	これは、要素、構成、またはフォルダを削除することができます。	compo	interface1	60865
+{194}To delete an element do one of the following:{195}	要素が: {194}{195} は削除する	compo	interface1	60866
+Select the element and press {196}Delete{197}.	[要素] と [{196}{197} 削除] を選択します。	compo	interface1	60867
+Right-click the element and select {198}Delete{199}.	要素を右クリックし、[{198}{199} 削除します。	compo	interface1	60868
+The Gate UI	ゲートのユーザインタフェース	compo	interface1	60869
+The Gate UI allows you to access any of the four hidden panels in the workspace.	ゲートの UI は、ワークスペースには 4 つの非表示パネルにアクセスできます。	compo	interface1	60870
+The Gate UI resembles a compass; it has four gates that each correspond to one of the hidden panels.	これは非表示にされたパネルの 1 つに対応する 4 つのゲートがあるゲートの UI は、コンパスに似ています。	compo	interface1	60871
+The gates are distributed along the four cardinal directions.	ゲートは、4 つの主方向に沿って配置されます。	compo	interface1	60872
+The four gates are as follows:	4 つのゲートは次のとおりです。	compo	interface1	60873
+Gate:	ゲートです。	compo	interface1	60874
+Displays:	が表示されます。	compo	interface1	60875
+a) North gate	a) 北ゲート	compo	interface1	60876
+The Schematic overlay.	回路図のオーバーレイします。	compo	interface1	60877
+This is a semi-transparent, larger view of the Schematic.	これは、回路図の半透明の、より大きく表示されます。	compo	interface1	60878
+You can set the transparency of the background and nodes in the overlay, in the Creative tab of the User Preferences.	ユーザ基本設定] の [ユーザ] タブには、オーバーレイの背景とノードの透明度を設定することができます。	compo	interface1	60879
+b) East gate	b) 東ゲート	compo	interface1	60880
+Pick List, Tools, or Views tab (depends on the last chosen option).	選択リストは、[ツール]、または [ビュー] タブは、最後に選択したオプションによって異なります。	compo	interface1	60881
+You can drop views onto viewports, add tools to compositions, and access the Pick List -- see {200}.	[合成ツールを追加すると、ビューポートにビューをドロップすることができ、[選択リスト -- {200} 」 を参照してください。	compo	interface1	60882
+c) South gate	c) 南ゲート	compo	interface1	60883
+View options for the view on which the cursor is currently paused.	カーソルが一時停止されているビューのオプションを表示します。	compo	interface1	60884
+For example, if you access the Gate UI when the cursor is over a Player, the south gate will display the Player options.	カーソルをプレーヤーの上にある場合は、ゲートの UI にアクセスすると、たとえば、南ゲートは、プレーヤのオプションが表示されます。	compo	interface1	60885
+d) West gate	d) 西ゲート	compo	interface1	60886
+The Composition Browser.	[構成] をクリックします。	compo	interface1	60887
+To access the Gate UI:	[ゲート]:	compo	interface1	60888
+Press the tilde (~) key or middle-click your mouse.	[Enter] を押してティルダ (~) キーまたはキーを中央クリックし、マウスを動かします。	compo	interface1	60889
+The Gate UI appears.	ゲートの UI が表示されます。	compo	interface1	60890
+Swipe north, south, east or west.	swipe 北、南、東、西] を選択します。	compo	interface1	60891
+The panel associated with that gate appears.	表示されるゲートに関連付けられているパネルを指定します。	compo	interface1	60892
+To exit the panel.	パネルを終了します。	compo	interface1	60893
+move the cursor away from the panel.	カーソルがパネルから離します。	compo	interface1	60894
+If you press the tilde (~) key, or middle-click and swipe simultaneously, the Gate UI is not displayed.	[ティルダ (~) キーを中央クリックして swipe、UI が表示されないが、ゲートを押します。	compo	interface1	60895
+If you press the {201}Alt{202} key while swiping, the panel will stay open until you press {203}Esc{204}.	[スワイプ操作を行うと、{201}{202} Alt キーを押すと、そのパネルは {203}{204} Esc を押すまで開いたままになります。	compo	interface1	60896
+The Drop Gate	ドロップゲート	compo	interface1	60897
+Similar to the Gate UI in appearance, the Drop Gate appears when you drop a composition or a tool into a Player, Layer Editor, or Schematic view.	外観でゲートのユーザインタフェースと同様に、ドロップゲートは、プレーヤー、レイヤエディタ、またはスケマティックビューに構成またはツールをドラッグアンドドロップすると表示されます。	compo	interface1	60898
+The available options for the Drop Gate depend on whether you are dropping a tool or composition, the view you are dropping it in, and also what node is currently selected in the dependency graph.	ツールまたは構成をドロップするにはゲート依存に使用できるオプションには、ノードは、ディペンデンシーグラフで選択されたか、ドロップされます。	compo	interface1	60899
+For example, if you drop a composition on a Reaction node in the Schematic view, the Composition Drop Gate appears.	[スケマティクビューでの反応をノードの構成を削除した場合は、[構成ドロップゲートが表示されます。	compo	interface1	60900
+Here are the options associated with the Drop Gate when used in conjunction with a composition or a tool.	ここでは、構成またはツールと組み合わせて使用する場合にはゲートに関するオプションがあります。	compo	interface1	60901
+To use the Drop gate when dropping a composition, do the following:	合成をドロップするときにはゲートを使用するには、次の操作を行います。	compo	interface1	60902
+Either drop a composition into the Player or Layer Editor.	[プレーヤーまたはレイヤエディタに構成できます。	compo	interface1	60903
+Or, drop a composition onto a tool in the Schematic view.	[スケマティクビューのツールには、構成を削除します。	compo	interface1	60904
+Then swipe through the appropriate option to select it, or click to cancel the drop.	次に、または削除をキャンセルするには [選択] をクリックし、適切なオプションを使用して swipe します。	compo	interface1	60905
+If you drop the composition or tool, and swipe to select an option simultaneously, the option is executed but the Drop Gate is not displayed.	[構成] または [ツール] ドロップダウンをクリックしてオプションを同時に選択すると、swipe オプションが実行されますが、ドロップゲートが表示されません。	compo	interface1	60906
+

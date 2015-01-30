@@ -1,5 +1,13 @@
 .DS_Store
 UserInterfaceState.xcuserstate
 
+
 *.class
-*.csv
+*.log
+
+*.lst
+*.lastrefresh
+
+solr/NeXLT
+
+ajax-solr

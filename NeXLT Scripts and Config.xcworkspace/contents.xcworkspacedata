@@ -1,107 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "group:tools"
-      name = "tools">
-      <FileRef
-         location = "group:parseJSON.pl">
-      </FileRef>
-      <FileRef
-         location = "group:processJSONs.sh">
-      </FileRef>
-   </Group>
    <FileRef
-      location = "group:jProject.pm">
+      location = "group:indexers">
    </FileRef>
    <FileRef
-      location = "group:jResource.pm">
+      location = "group:CGI">
    </FileRef>
    <FileRef
-      location = "group:jString.pm">
+      location = "group:tools">
    </FileRef>
-   <FileRef
-      location = "group:jStringList.pm">
-   </FileRef>
-   <Group
-      location = "group:nexlt"
-      name = "nexlt">
-      <Group
-         location = "group:athena2nexlt"
-         name = "athena2nexlt">
-         <FileRef
-            location = "group:athena2nexlt.sh">
-         </FileRef>
-         <FileRef
-            location = "group:athena2solr.pl">
-         </FileRef>
-         <FileRef
-            location = "group:AthenaExportMt.java">
-         </FileRef>
-         <FileRef
-            location = "group:bzip2.jar">
-         </FileRef>
-         <FileRef
-            location = "group:opencsv-2.3.jar">
-         </FileRef>
-         <FileRef
-            location = "group:oracle_11203_ojdbc6.jar">
-         </FileRef>
-      </Group>
-      <FileRef
-         location = "group:README.md">
-      </FileRef>
-      <Group
-         location = "group:termtranslationcentral2nexlt"
-         name = "termtranslationcentral2nexlt">
-         <FileRef
-            location = "group:terms2nexlt.sh">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:translationrepository2nexlt"
-         name = "translationrepository2nexlt">
-         <FileRef
-            location = "group:checkout_new_products.sh">
-         </FileRef>
-         <FileRef
-            location = "group:json2solr.pl">
-         </FileRef>
-         <FileRef
-            location = "group:newjson2tsv.sh">
-         </FileRef>
-         <FileRef
-            location = "group:tr2solr.sh">
-         </FileRef>
-         <FileRef
-            location = "group:update-from-svn.sh">
-         </FileRef>
-         <FileRef
-            location = "group:update-solr.sh">
-         </FileRef>
-      </Group>
-   </Group>
-   <Group
-      location = "group:solr"
-      name = "solr">
-      <Group
-         location = "group:apache-solr-3.6.1"
-         name = "apache-solr-3.6.1">
-         <Group
-            location = "group:example"
-            name = "example">
-            <Group
-               location = "group:solr"
-               name = "solr">
-               <Group
-                  location = "group:conf"
-                  name = "conf">
-                  <FileRef
-                     location = "group:schema.xml">
-                  </FileRef>
-               </Group>
-            </Group>
-         </Group>
-      </Group>
-   </Group>
 </Workspace>
