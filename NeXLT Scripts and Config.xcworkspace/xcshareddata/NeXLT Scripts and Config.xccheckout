@@ -10,29 +10,41 @@
 	<string>NeXLT Scripts and Config</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0BEC0460-3445-4B40-A281-C80F5F4B66D7</key>
+		<key>4788EE5B6A0219E3EA0353936A418C8F1B7926DB</key>
+		<string>https://github.com/venyz/MTWorkflowScripts.git</string>
+		<key>EC2163413CD82DC693FFFD31362B0C28E5172045</key>
 		<string>https://github.com/venyz/NeXLT.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>NeXLT Scripts and Config.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0BEC0460-3445-4B40-A281-C80F5F4B66D7</key>
+		<key>4788EE5B6A0219E3EA0353936A418C8F1B7926DB</key>
+		<string>../..</string>
+		<key>EC2163413CD82DC693FFFD31362B0C28E5172045</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/venyz/MTWorkflowScripts.git</string>
+	<string>https://github.com/venyz/NeXLT.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0BEC0460-3445-4B40-A281-C80F5F4B66D7</string>
+	<string>EC2163413CD82DC693FFFD31362B0C28E5172045</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0BEC0460-3445-4B40-A281-C80F5F4B66D7</string>
+			<string>4788EE5B6A0219E3EA0353936A418C8F1B7926DB</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EC2163413CD82DC693FFFD31362B0C28E5172045</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Solr</string>
 		</dict>
