@@ -1,1 +1,0 @@
-aws.stg.solr/opt/solr/NeXLT/solr/collection1/conf/schema.xml
