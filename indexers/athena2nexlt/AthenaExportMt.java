@@ -3,6 +3,9 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// v1.5.5		Modified on 30 Jan 2015 by Ventsislav Zhechev
+// Updated the Solr URI
+//
 // v1.5.4		Modified on 23 Jan 2015 by Ventsislav Zhechev
 // DB parameters now need to be supplied as command-line parameters.
 //
@@ -361,8 +364,8 @@ public class AthenaExportMt {
 							System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
 							CloseableHttpClient httpclient = HttpClients.createDefault();
 							try {
-								HttpPost request = new HttpPost("http://aws.prd.solr:8983/solr/update/json");
-//								HttpPost request = new HttpPost("http://aws.stg.solr:8983/solr/update/json");
+								HttpPost request = new HttpPost("http://aws.prd.solr:8983/search/update/json");
+//								HttpPost request = new HttpPost("http://aws.stg.solr:8983/search/update/json");
 								request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
 								CloseableHttpResponse response = httpclient.execute(request);
 								try {
@@ -575,8 +578,8 @@ public class AthenaExportMt {
 						System.out.println("Posting content to Solr for indexing (" + counter + ")… " + oneTable);
 						CloseableHttpClient httpclient = HttpClients.createDefault();
 						try {
-							HttpPost request = new HttpPost("http://aws.prd.solr:8983/solr/update/json");
-//							HttpPost request = new HttpPost("http://aws.stg.solr:8983/solr/update/json");
+							HttpPost request = new HttpPost("http://aws.prd.solr:8983/search/update/json");
+//							HttpPost request = new HttpPost("http://aws.stg.solr:8983/search/update/json");
 							request.setEntity(new StringEntity(content.toString(), ContentType.create("application/json", "UTF-8")));
 							CloseableHttpResponse response = httpclient.execute(request);
 							try {
