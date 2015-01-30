@@ -3,7 +3,8 @@
 # Folders
 
 ### web
-Current ajax-solr based NeXLT UI
+langtech.autodesk.com web content
+Current ajax-solr based NeXLT UI under …/nexlt
 
 ### CGI
 Old Perl-based NeXLT UI
