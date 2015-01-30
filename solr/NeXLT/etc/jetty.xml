@@ -105,23 +105,7 @@
         <Set name="handlers">
          <Array type="org.eclipse.jetty.server.Handler">
            <Item>
-		     <New class="org.eclipse.jetty.server.handler.IPAccessHandler">
-		       <Call name="addWhite">
-		         <Arg>-.-.-.-|/solr/select</Arg>
-		       </Call>
-		       <Call name="addWhite">
-			       <Arg>10.146.4.62|/solr/*</Arg>
-		       </Call>
-		       <Call name="addWhite">
-			       <Arg>10.31.32.73|/solr/update</Arg>
-		       </Call>
-		       <Call name="addWhite">
-			       <Arg>10.31.32.73|/solr/update/json</Arg>
-		       </Call>
-		       <Set name="handler">
-		         <New id="Contexts" class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/>
-		       </Set>
-		     </New>
+	         <New id="Contexts" class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/>
            </Item>
            <Item>
              <New id="DefaultHandler" class="org.eclipse.jetty.server.handler.DefaultHandler"/>
