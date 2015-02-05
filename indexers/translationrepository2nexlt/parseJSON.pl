@@ -6,6 +6,9 @@
 # Based on json2solr.pl by Mirko Plitt
 #
 # Changelog
+# v1.3.1	Modified by Ventsislav Zhechev on 30 Jan 2015
+# Updated the Solr URI
+#
 # v1.3		Modified by Ventsislav Zhechev on 23 Jan 2015
 # Added a mode for submitting processed JSON data to Solr for indexing, including the option to provide a timestamp file.
 # Product meta data is now loaded directly from RAPID for all modes.
@@ -97,8 +100,8 @@ my %ResTypeDll = ( "4" => "Menu" , "5" => "Dialog" , "6" => "String Table" , "9"
 
 my $postToSolr = sub {
 	my $content = shift;
-	my $response = $http->request('POST', 'http://aws.prd.solr:8983/solr/update/json', { content => $content });
-#	my $response = $http->request('POST', 'http://aws.stg.solr:8983/solr/update/json', { content => $content });
+	my $response = $http->request('POST', 'http://aws.prd.solr:8983/search/update/json', { content => $content });
+#	my $response = $http->request('POST', 'http://aws.stg.solr:8983/search/update/json', { content => $content });
 	die encode "utf-8", "HTML request to Solr failed!\n $response->{status} $response->{reason}\n$response->{content}\nContent submitted:\n$content\n" unless $response->{success};
 };
 
