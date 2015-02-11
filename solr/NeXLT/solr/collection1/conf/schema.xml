@@ -955,7 +955,7 @@
    <field name="swe" type="text_sv" indexed="true" stored="true" multiValued="false"/>
    <field name="tha" type="text_th" indexed="true" stored="true" multiValued="false"/>
    <field name="tur" type="text_tr" indexed="true" stored="true" multiValued="false"/>
-   <field name="vit" type="text_vi" indexed="true" stored="true" multiValued="false"/>
+   <field name="vie" type="text_vi" indexed="true" stored="true" multiValued="false"/>
    <field name="chs" type="text_cjk" indexed="true" stored="true" multiValued="false"/>
    <field name="cht" type="text_cjk" indexed="true" stored="true" multiValued="false"/>
 
