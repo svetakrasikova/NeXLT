@@ -3,6 +3,8 @@
 // Originally by Patrice Ferrot
 //
 // Change Log
+// !!! Subsequent changes tracked on GitHub only !!!
+//
 // v1.5.5		Modified on 30 Jan 2015 by Ventsislav Zhechev
 // Updated the Solr URI
 //
@@ -151,7 +153,7 @@ public class AthenaExportMt {
 		LANG_MAPPING.put("sv_se", "SWE");
 		LANG_MAPPING.put("th_th", "THA");
 		LANG_MAPPING.put("tr_tr", "TUR");
-		LANG_MAPPING.put("vi_vn", "VIT");
+		LANG_MAPPING.put("vi_vn", "VIE");
 		LANG_MAPPING.put("zh_cn", "CHS");
 		LANG_MAPPING.put("zh_tw", "CHT");
 		LANG_MAPPING.put("zu_za", "ZUL");

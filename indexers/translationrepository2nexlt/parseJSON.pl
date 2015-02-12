@@ -6,6 +6,8 @@
 # Based on json2solr.pl by Mirko Plitt
 #
 # Changelog
+# !!! Subsequent changes tracked on GitHub only !!!
+#
 # v1.3.1	Modified by Ventsislav Zhechev on 30 Jan 2015
 # Updated the Solr URI
 #
@@ -281,6 +283,7 @@ my $processJSON = sub {
 					$lang = "esp" if $lang eq "esn";
 					$lang = "eng" if $lang eq "enu";
 					$lang = "tur" if $lang eq "trk";
+					$lang = "vie" if $lang eq "vit";
 					my ($src, $trn, $id);
 					my $resource = $data->[1];
 					$resource =~ s/.*\\(.*)/$1/;
