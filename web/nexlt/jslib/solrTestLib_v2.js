@@ -111,10 +111,7 @@ function prodChg() {
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-	    //Staging
-// 		solrUrl: 'http://aws.stg.web/search/'
-		//Production
-		solrUrl: 'http://langtech.autodesk.com/search/'
+		solrUrl: '../search/'
     });
 
     Manager.addWidget(new AjaxSolr.ResultWidget({
